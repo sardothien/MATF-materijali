@@ -1,15 +1,11 @@
 @font-face {
     font-family: 'Bai Jamjuree Bold';
-    src: url('BaiJamjuree-Bold.ttf');
+    src: url('fontovi/BaiJamjuree-Bold.ttf');
 }
 
 @font-face {
     font-family: 'Bai Jamjuree Light';
-    src: url('BaiJamjuree-Light.ttf');
-}
-
-* {
-    box−sizing: border−box;
+    src: url('fontovi/BaiJamjuree-Light.ttf');
 }
 
 body {

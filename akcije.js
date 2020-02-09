@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     $("#p1mat").hide();
     $("#p2mat").hide();
+    $("#a1mat").hide();
     $("#engl1mat").hide();
     $("#engl2mat").hide();
     $("#uor1mat").hide();
@@ -23,6 +24,10 @@ $(document).ready(function(){
 
     $("#p2").on("click", function(){
         $("#p2mat").slideToggle("slow");
+    });
+
+    $("#a1").on("click", function(){
+        $("#a1mat").slideToggle("slow");
     });
 
     $("#engl1").on("click", function(){
