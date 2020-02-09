@@ -8,6 +8,7 @@ $(document).ready(function(){
     $("#uor1mat").hide();
     $("#uor2mat").hide();
     $("#aispmat").hide();
+    $("#oopmat").hide();
     $("#osmat").hide();
     $("#oasmat").hide();
     $("#a2mat").hide();
@@ -48,6 +49,10 @@ $(document).ready(function(){
 
     $("#aisp").on("click", function(){
         $("#aispmat").slideToggle("slow");
+    });
+
+    $("#oop").on("click", function(){
+        $("#oopmat").slideToggle("slow");
     });
 
     $("#os").on("click", function(){
