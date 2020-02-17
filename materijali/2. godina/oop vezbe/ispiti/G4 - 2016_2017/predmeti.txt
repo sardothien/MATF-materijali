@@ -1,0 +1,8 @@
+O,1,AN1,Analiza 1,2,20
+O,2,OOP,Objektno orijentisano programiranje,1,5
+I,2,DM,Diskretna matematika,5,M
+O,1,LA,Linearna algebra,2,13
+O,1,P2,Programiranje 2,1,6
+I,2,PPM,Programski paketi u matematici,5,R
+O,1,P1,Programiranje 1,1,6
+O,2,AN2,Analiza 2,2,18

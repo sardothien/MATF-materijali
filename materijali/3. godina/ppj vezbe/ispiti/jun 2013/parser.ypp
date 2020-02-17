@@ -1,0 +1,108 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include"stek.hpp"
+    using namespace std;
+        
+    void yyerror(string s);
+    extern int yylex();
+    int operator_uslova = -1;
+%}
+
+%union {
+    unsigned char broj;
+};
+
+%token KRAJ IZ ROFL ORLY UBER NUBER LIEK NLIEK
+%token<broj> BROJ ID
+%type<broj> izraz
+
+%left '+' '-'
+%left '*' '/'
+%left UVECANJE SMANJENJE
+
+%%
+program : niznaredbi KRAJ
+        ;
+        
+niznaredbi : niznaredbi naredba '\n'    { izvrsi_akcije(); }
+           | niznaredbi '\n'            {}
+           | naredba '\n'               { izvrsi_akcije(); }
+           ;
+           
+naredba : dodela 
+        | stampanje
+        | uslov
+        ;
+        
+uslov : ORLY izraz IZ operator_uslova izraz '\n'
+        ROFL izraz  {
+                        int uslov_ispunjen = 0;
+                        switch(operator_uslova){
+                            case UBER: uslov_ispunjen = $2 > $5; break;
+                            case NUBER: uslov_ispunjen = $2 <= $5; break;
+                            case LIEK: uslov_ispunjen = $2 == $5; break;
+                            case NLIEK: uslov_ispunjen = $2 != $5; break;
+                            default: yyerror("Greska!"); break;
+                        }
+                        
+                        operator_uslova = -1;
+                        if(uslov_ispunjen)
+                            cout << $8 << endl;
+                    }
+      ;
+      
+operator_uslova : UBER      { operator_uslova = UBER; }
+                | NUBER     { operator_uslova = NUBER; }
+                | LIEK      { operator_uslova = LIEK; }
+                | NLIEK     { operator_uslova = NLIEK; }
+                ;
+        
+dodela : ID IZ izraz    { sacuvaj($1, $3); }
+       ;
+       
+stampanje : ROFL izraz  {
+                            if($2 == '\n' || $2 == 11)
+                                cout << "\\n" << endl;
+                            else
+                                cout << $2 << endl;
+                        } 
+          ;
+       
+izraz : izraz '+' izraz { $$ = $1 + $3; }
+      | izraz '-' izraz { $$ = $1 - $3; }
+      | izraz '*' izraz { $$ = $1 * $3; }
+      | izraz '/' izraz { $$ = $1 / $3; }
+      | '(' izraz ')'   { $$ = $2; }
+      | UVECANJE ID     {
+                            sacuvaj($2, nadji($2) + 1);
+                            $$ = nadji($2);
+                        }
+      | SMANJENJE ID    {
+                            sacuvaj($2, nadji($2) - 1);
+                            $$ = nadji($2);
+                        }
+      | ID UVECANJE     {
+                            stavi($1, UVECANJE);
+                            $$ = nadji($1);
+                        }
+      | ID SMANJENJE    {
+                            stavi($1, SMANJENJE);
+                            $$ = nadji($1);
+                        }
+      | BROJ            { $$ = $1; }
+      | ID              { $$ = nadji($1); } 
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

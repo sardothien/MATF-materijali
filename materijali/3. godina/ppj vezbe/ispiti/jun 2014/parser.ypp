@@ -1,0 +1,80 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include"lista.hpp"
+    using namespace std;
+    
+    void yyerror(string s);
+    extern int yylex();
+%}
+
+%union {
+    int vr;
+    lista* l;
+};
+
+%token CAR CDR CONS APPEND IF_T EQL NULL_T
+%token<vr> BROJ
+
+%type<vr> izraz uslov vraca_atom
+%type<l> vraca_listu niz_listi elementi lista
+
+%start program
+
+%%
+program : niznaredbi
+        ;
+        
+niznaredbi : niznaredbi naredba '\n'
+           | niznaredbi '\n'
+           | naredba '\n'
+           ;
+           
+naredba : izraz         { cout << $1 << endl; }
+        | vraca_listu   { ispisi_listu($1); }
+        | uslov         { cout << ($1 ? "t" : "nil") << endl; }
+        ;
+        
+izraz : '(' '*' izraz izraz ')'     { $$ = $3 * $4; }
+      | '(' '+' izraz izraz ')'     { $$ = $3 + $4; }
+      | vraca_atom                  { $$ = $1; }
+      | BROJ                        { $$ = $1; }
+      ;
+      
+vraca_atom : '(' CAR vraca_listu ')'        { $$ = $3->glava->vred; }
+           | '(' IF_T uslov izraz izraz ')' { $$ = $3 ? $4 : $5; }
+           ;
+           
+vraca_listu : '(' CONS izraz vraca_listu ')'    { $$ = dodaj_na_pocetak($4, $3); }
+            | '(' APPEND niz_listi ')'          { $$ = $3; }
+            | '(' CDR vraca_listu ')'           { $$ = ostatak($3); }
+            | lista                             { $$ = $1; }
+            ;
+            
+niz_listi : niz_listi lista     { $$ = nadovezi($1, $2); }
+          | lista lista         { $$ = nadovezi($1, $2); }
+          ;
+          
+uslov : '(' NULL_T vraca_listu ')'  { $$ = ($3 == nullptr); }
+      | '(' EQL izraz izraz ')'     { $$ = ($3 == $4); }
+      ;
+      
+lista : '\'' '(' elementi ')'   { $$ = $3; }
+      ;
+      
+elementi : elementi BROJ        { $$ = dodaj_na_kraj($1, $2); }
+         |                      { $$ = nullptr; }
+         ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

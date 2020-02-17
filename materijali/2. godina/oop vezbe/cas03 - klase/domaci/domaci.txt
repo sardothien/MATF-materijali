@@ -1,0 +1,5 @@
+Zadaci koji mi ne rade:
+   1. SigurniScanner (4. zadatak)
+   2. Program (5. zadatak, poslednji zahtev)
+   3. Complex (7. zadatak)
+   4. Polinomial (8. zadatak)

@@ -1,0 +1,3 @@
+list lx = [-1, 02, 0x3];
+print(lx);
+print(lx[0] << lx[1]);

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<igre>
+    <igra id="1">
+        <naziv>The Legend of Zelda: Breath of the Wild</naziv>
+        <godina>2017</godina>
+        <izdavac>Nintendo</izdavac>
+        <platforme>Nintendo</platforme>
+        <ocena>9.2</ocena>
+    </igra>
+    <igra id="2">
+        <naziv>Grand Theft Auto IV</naziv>
+        <godina>2008</godina>
+        <izdavac>Rockstar Games</izdavac>
+        <platforme>PlayStation, Xbox, PC</platforme>
+        <ocena>7.5</ocena>
+    </igra>
+    <igra id="3">
+        <naziv>The Elder Scrolls V: Skyrim</naziv>
+        <godina>2011</godina>
+        <izdavac>Bethesda</izdavac>
+        <platforme>PlayStation, Xbox, Nintendo</platforme>
+        <ocena>8.6</ocena>
+    </igra>
+    <igra id="4">
+        <naziv>Red Dead Redemption 2</naziv>
+        <godina>2018</godina>
+        <izdavac>Rockstar Games</izdavac>
+        <platforme>Xbox, PlayStation</platforme>
+        <ocena>8.9</ocena>
+    </igra>
+    <igra id="5">
+        <naziv>World of Goo</naziv>
+        <godina>2008</godina>
+        <izdavac>2D Boy</izdavac>
+        <platforme>PC, Nintendo</platforme>
+        <ocena>8.8</ocena>
+    </igra>
+</igre>

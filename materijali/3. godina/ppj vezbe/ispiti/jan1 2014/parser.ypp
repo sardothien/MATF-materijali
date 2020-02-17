@@ -1,0 +1,152 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<cstring>
+    #include"prom.hpp"
+    #include"liste.hpp"
+    using namespace std;
+    
+    // #define YYDEBUG 1
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    void ispisi(int br, int novi_red);
+    int heksadekadno = 0;
+%}
+
+%union {
+    int vr;
+    char *id;
+    lista* l;
+};
+
+%token AND_OP OR_OP XOR_OP SHL_OP SHR_OP NOT_OP SET_OP TO_OP HEAD_OP SORT_OP TAIL_OP LENGTH_OP
+%token<vr> BROJ
+%token<id> ID ID_L
+
+%type<vr> izraz naredba vraca_broj
+%type<l> lista opcioni_elem elementi izraz_lista
+
+%left '+' '-'
+%left AND_OP
+%left OR_OP
+%left XOR_OP
+%left SHL_OP SHR_OP
+%right NOT_OP
+%left '.'
+%left '#'
+%left '('
+
+%start program
+
+%%
+program : niznaredbi 
+        ;
+        
+niznaredbi : niznaredbi naredba '\n'
+           | naredba '\n'
+           | niznaredbi '\n'
+           ;
+           
+naredba : izraz                     { ispisi($1, '\n'); }
+        | SET_OP ID TO_OP izraz     { 
+                                        if(!strcmp($2, "flag"))
+                                            heksadekadno = $4;
+                                        else
+                                            sacuvaj($2, &$4, INT);
+                                        ispisi($4, '\n');
+                                    }
+        | ID_L '=' izraz_lista      {
+                                        sacuvaj($1, $3, LISTA);
+                                        ispisi_listu($3);
+                                    }
+        | izraz_lista               { ispisi_listu($1); }
+        | SORT_OP izraz_lista       { ispisi_listu(sortiraj($2)); }
+        ;
+        
+vraca_broj : HEAD_OP izraz_lista        { $$ = $2->glava->vr; }
+           | TAIL_OP izraz_lista        { $$ = $2->rep->vr; }
+           | izraz_lista '(' BROJ ')'   { $$ = nadji_u_listi($1, $3); }
+           | LENGTH_OP izraz_lista      { $$ = duzina_liste($2); }
+           ;
+        
+izraz_lista : izraz_lista '.' izraz_lista   { $$ = nadovezi($1, $3); }
+            | lista                         { $$ = $1; }
+            | ID_L                          { $$ = (lista*) nadji($1); } 
+            | '(' izraz_lista ')'           { $$ = $2; }
+            | izraz '#' izraz_lista         { $$ = dodaj_na_poc($3, $1); }  
+            ;
+            
+lista : '[' opcioni_elem ']'    { $$ = $2; }
+      ;
+      
+opcioni_elem : elementi         { $$ = $1; }
+             |                  { $$ = nullptr; }
+             ;
+             
+elementi : elementi ',' izraz   { $$ = dodaj($1, $3); }
+         | izraz                { $$ = nova_lista($1); }  
+         ;
+    
+izraz : izraz AND_OP izraz      { $$ = $1 & $3; }
+      | izraz OR_OP izraz       { $$ = $1 | $3; }
+      | izraz XOR_OP izraz      { $$ = $1 ^ $3; }
+      | izraz SHL_OP izraz      { $$ = $1 << $3; }
+      | izraz SHR_OP izraz      { $$ = $1 >> $3; }
+      | izraz '+' izraz         { $$ = $1 + $3; }
+      | izraz '-' izraz         { $$ = $1 - $3; }
+      | NOT_OP izraz            { $$ = ~$2; } 
+      | '(' izraz ')'           { $$ = $2; }
+      | BROJ                    { $$ = $1; }
+      | ID                      {/* $$ = *(int*)nadji($1); */}  
+      | vraca_broj
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+void ispisi(int br, int novi_red){
+    if(!heksadekadno)
+        cout << br;
+    else{
+        cout << "0x";
+        
+        int pomeraji = sizeof(br) * 2 - 1;
+        unsigned int maska = 15 << (pomeraji * 4);
+        
+        int cifra = (br & maska) >> pomeraji * 4;
+        while (!cifra && pomeraji >= 0) {
+            pomeraji--;
+            maska >>= 4;
+            cifra = (br & maska) >> pomeraji * 4;
+        }
+        
+        if (pomeraji >= 0){
+            while(pomeraji >= 0){
+                if (cifra >= 0 && cifra <= 9)
+                    putchar(cifra + '0');
+                else
+                    putchar(cifra + 'A' - 10);
+                pomeraji--;
+                maska >>= 4;
+                cifra = (br & maska) >> pomeraji * 4;
+            }
+        }
+    }
+    
+    if(novi_red)
+        putchar('\n');
+    
+    fflush(stdout);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

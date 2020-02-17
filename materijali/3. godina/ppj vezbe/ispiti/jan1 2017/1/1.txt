@@ -1,0 +1,13 @@
+date rodjendan = '15.07.1994' ;
+date pismeni = '01/19/2017', usmeni = '2017-01-25', a;
+a = '18.01.2017';
+b = '01.02.2014';
+print '2017-01-19';
+print rodjendan;
+print '2017-01-19';
+print pismeni USA;
+print rodjendan ISO;
+print usmeni EUR;
+print a;
+rodjendan < pismeni;
+rodjendan == usmeni;

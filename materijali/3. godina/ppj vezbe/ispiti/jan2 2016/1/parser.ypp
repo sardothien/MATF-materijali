@@ -1,0 +1,100 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<map>
+    #include "formula.hpp"
+    using namespace std;
+        
+    extern int yylex();
+    void yyerror(string s);
+    
+    map<string, LOGIC_VAL> tablica;
+%}
+
+%union {
+    formula* formula_type;
+    std::string* str_type;
+}
+
+%token III ILI IMPL EKV TRUE_ID FALSE_ID DOD
+%token<str_type> ID
+%type<formula_type> izraz
+
+%left '!'
+%left III
+%left ILI
+%left IMPL
+%left EKV
+
+%%
+Program : Program Naredba
+        | Naredba
+        ;
+        
+Naredba : izraz '\n'            {
+                                    cout << $1->str() << endl;
+                                    delete $1;
+                                }
+        | ID DOD izraz '\n'     {
+                                    tablica[*$1] = $3->val();
+                                    delete $1;
+                                    delete $3;
+                                }
+        ;
+    
+izraz : izraz EKV izraz     {
+                                $$ = new formula($1->EKV_op(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | izraz IMPL izraz    {
+                                $$ = new formula($1->IMPL_op(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | izraz III izraz     {
+                                $$ = new formula($1->III_op(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | izraz ILI izraz     {
+                                $$ = new formula($1->ILI_op(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | '!' izraz           {
+                                $$ = new formula($2->NEG_op());
+                                delete $2;
+                            }
+      | '(' izraz ')'       {
+                                $$ = $2;
+                                delete $2;
+                            }
+      | TRUE_ID             {
+                                $$ = new formula(TRUE_VAL);
+                            }
+      | FALSE_ID            {
+                                $$ = new formula(FALSE_VAL);
+                            }
+      | ID                  {
+                                auto it = tablica.find(*$1);
+                                if(it == tablica.end())
+                                    $$ = new formula(UNDEF_VAL);
+                                else
+                                    $$ = new formula(it->second);
+                                delete $1;
+                            }
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    
+    yyparse();
+    
+    return 0;
+}

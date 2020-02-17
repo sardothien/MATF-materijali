@@ -1,0 +1,24 @@
+type podaci
+
+%podaci.m
+X=[1,2,3,5,6,7,8,10];
+f=@(x) sqrt(x);
+[X1,Y1] = tablica()
+
+X1 =
+
+     2     6     8    10
+
+
+Y1 =
+
+    1.4140    2.4490    2.8280    3.1620
+
+x=inverz(1.5)
+
+x =
+
+    2.2507
+
+
+diary off

@@ -1,0 +1,23 @@
+4 OR 1226 AND 0xF
+NOT 23 AND 0xFF
+16 SHL 4 SHR 1
+16 SHL (4 SHR 1)
+SET tmp TO 127 SHL 2
+tmp OR 1024 SHL 1
+SET flag TO NOT 0
+tmp OR 1024 SHL 1
+SET flag TO 0
+[1, 2, 3].[4, 5].[0xA, 0x10]
+SET flag TO 0x4B SHL 1
+[].[1 OR 2, tmp, 1 SHL 2]
+SET flag TO 0
+HEAD ([0xF, 12, 4] . [32, 12])
+HEAD [0xF, 12, 4] # [32, 12]
+TAIL [0xF, 12, 4] . [32, 12]
+([0xF, 12, 4].[32, 12])(1)
+[0xF, 12, 4](1) # [32, 12]
+SORT [1, 4, 2, 3] . [] . [2 + 3, 8 - 1, 6]
+LENGTH [].[].[]
+23 # [11, 22].[33, 44, 55]
+TMP = (HEAD ([0xF, 12, 4].[32, 12])) # []
+TMP . TMP . TMP

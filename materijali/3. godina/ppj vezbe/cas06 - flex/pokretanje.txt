@@ -1,0 +1,3 @@
+lexer naziv.l
+gcc -o naziv lex.yy.c
+./naziv

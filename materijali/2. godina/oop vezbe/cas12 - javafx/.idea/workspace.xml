@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f01a2881-3958-41ef-a52a-8ced3f0c0bbc" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="73" />
+    <option name="y" value="392" />
+    <option name="width" value="1215" />
+    <option name="height" value="620" />
+  </component>
+  <component name="ProjectId" id="1XIdmbtxERluktEjPqQqpcBJzvw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559054079154" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Application.RadioDugmici">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Kalkulator.Main" />
+      <module name="cas12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Kalkulator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RadioDugmici" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RadioDugmici" />
+      <module name="cas12" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="anagram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="anagram" />
+      <module name="cas12" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="helloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="helloWorld" />
+      <module name="cas12" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RadioDugmici" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.anagram" />
+        <item itemvalue="Application.helloWorld" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f01a2881-3958-41ef-a52a-8ced3f0c0bbc" name="Default Changelist" comment="" />
+      <created>1559048910325</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559048910325</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="518" y="403" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1580737731552">
+      <screen x="65" y="24" width="1215" height="1000" />
+    </state>
+    <state x="518" y="403" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/65.24.1215.1000@65.24.1215.1000" timestamp="1580737731552" />
+    <state width="1169" height="268" key="GridCell.Tab.0.bottom" timestamp="1580737828502">
+      <screen x="65" y="24" width="1215" height="1000" />
+    </state>
+    <state width="1169" height="268" key="GridCell.Tab.0.bottom/65.24.1215.1000@65.24.1215.1000" timestamp="1580737828502" />
+    <state width="1169" height="268" key="GridCell.Tab.0.center" timestamp="1580737828501">
+      <screen x="65" y="24" width="1215" height="1000" />
+    </state>
+    <state width="1169" height="268" key="GridCell.Tab.0.center/65.24.1215.1000@65.24.1215.1000" timestamp="1580737828501" />
+    <state width="1169" height="268" key="GridCell.Tab.0.left" timestamp="1580737828499">
+      <screen x="65" y="24" width="1215" height="1000" />
+    </state>
+    <state width="1169" height="268" key="GridCell.Tab.0.left/65.24.1215.1000@65.24.1215.1000" timestamp="1580737828499" />
+    <state width="1169" height="268" key="GridCell.Tab.0.right" timestamp="1580737828501">
+      <screen x="65" y="24" width="1215" height="1000" />
+    </state>
+    <state width="1169" height="268" key="GridCell.Tab.0.right/65.24.1215.1000@65.24.1215.1000" timestamp="1580737828501" />
+    <state x="335" y="339" key="com.intellij.ide.util.TipDialog" timestamp="1580737713986">
+      <screen x="65" y="24" width="1215" height="1000" />
+    </state>
+    <state x="335" y="339" key="com.intellij.ide.util.TipDialog/65.24.1215.1000@65.24.1215.1000" timestamp="1580737713986" />
+  </component>
+</project>

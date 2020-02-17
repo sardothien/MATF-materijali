@@ -1,0 +1,82 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<map>
+    #include"razlomak.hpp"
+    using namespace std;
+    
+    #define YYDEBUG 1
+    
+    void yyerror(string s);
+    extern int yylex();    
+    
+    map<string, Razlomak*> tablica;
+%}
+
+%union{
+    int vr;
+    Razlomak* r;
+    std::string *id;
+}
+
+%token PRINT DEN NOM DOUBLE EQUALS
+%token<vr> BROJ
+%token<id> ID
+
+%type<r> izraz naredba
+
+%left '+' '-'
+%left '*' '/'
+
+%%
+program : program naredba '\n'
+        | naredba '\n'
+        ;
+        
+naredba : PRINT '(' izraz ')'   { $$->ispisi(*$3); }
+        | NOM '(' izraz ')'     { cout << $3->getBr() << endl; }
+        | DEN '(' izraz ')'     { cout << $3->getIm() << endl; }
+        | ID '=' izraz          {
+                                    auto it = tablica.find(*$1);
+                                    if(it != tablica.end())
+                                        yyerror("Promenljiva je vec definisana!");
+                                    tablica[*$1] = $3;
+                                    delete $1;
+                                }
+        | DOUBLE '(' izraz ')'  { printf("%.5f\n", (float)$3->getBr() / $3->getIm()); }
+        | EQUALS '(' izraz ',' izraz ')'    {
+                                                if($3->getBr() == $5->getBr() && $3->getIm() == $5->getIm())
+                                                    cout << "True\n";
+                                                else
+                                                    cout << "False\n";
+                                            }
+        | izraz                 {}
+        ;
+        
+izraz : '[' BROJ ',' BROJ ']'   { $$ = new Razlomak($2, $4); }
+      | '[' BROJ ']'            { $$ = new Razlomak($2, 1); }
+      | '(' izraz ')'           { $$ = $2; }
+      | izraz '+' izraz         { $$->saberi(*$1, *$3); }
+      | izraz '-' izraz         { $$->oduzmi(*$1, *$3); }
+      | izraz '*' izraz         { $$->pomnozi(*$1, *$3); }
+      | izraz '/' izraz         { $$->podeli(*$1, *$3); }
+      | ID                      {
+                                    auto it = tablica.find(*$1);
+                                    if(it == tablica.end())
+                                        yyerror("Promenljiva nije definisana!");
+                                    $$ = new Razlomak(*it->second);
+                                }
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

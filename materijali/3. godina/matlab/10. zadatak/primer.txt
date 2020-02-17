@@ -1,0 +1,39 @@
+type funkcija
+
+%funkcija.m
+f=@(x) x.^5;
+I = trapez(0,1)
+
+I =
+
+    0.1732
+
+I = simps(0,1)
+
+I =
+
+    0.1667
+
+[X,Y] = vredfunk(4,1)
+
+X =
+
+     2     3     4
+
+
+Y =
+
+   10.5002  121.3438  682.5989
+
+[X,Y] = vredfunk(4,2)
+
+X =
+
+     2     3     4
+
+
+Y =
+
+   10.5976  123.4141  697.4167
+
+diary off

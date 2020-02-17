@@ -1,0 +1,79 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<vector>
+    #include<map>
+    #include"liste.hpp"
+    using namespace std;
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    
+%}
+
+%union {
+    int vr;
+    std::string *id;
+    Lista* lista_type;
+    vector<int> *vektor;
+}
+
+%token PRINT HEAD TAIL NUMBER SCALAR SORT POREDI
+%token<vr> BROJ
+%token<id> ID
+
+%type<lista_type> nizlisti lista 
+%type<vektor> nizkoef 
+
+%%
+program : program naredba
+        | naredba
+        ;
+                   
+naredba : nizlisti '\n'
+        | PRINT nizlisti ';' '\n'      
+        | HEAD nizlisti ';'  '\n'       
+        | PRINT TAIL nizlisti ';' '\n'   
+        | TAIL nizlisti ';' '\n'
+        | nizlisti '(' BROJ ')' ';' '\n'
+        | SORT nizlisti ';' '\n'
+        | NUMBER nizlisti ';' '\n'
+        | SCALAR nizlisti ';' '\n' 
+        | izraz ';' '\n'
+        | ID '=' nizlisti ';' '\n'
+        ;
+        
+nizlisti : nizlisti '.' lista       {
+                                        $$ = $1->concat(*$3);
+                                        $$->printList();
+                                    }
+         | lista
+         ;
+         
+lista : '[' nizkoef ']'     { $$ = new Lista(*$2); }
+      | '[' ']'             { $$ = new Lista(); }
+      ;
+      
+izraz : lista POREDI lista
+      ;
+      
+nizkoef : nizkoef ',' BROJ  { $1->push_back($3); }
+        | BROJ              {
+                                $$ = new vector<int>();
+                                $$->push_back($1);
+                            }
+        ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

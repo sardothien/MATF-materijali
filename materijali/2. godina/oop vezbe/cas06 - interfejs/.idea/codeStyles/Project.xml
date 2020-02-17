@@ -1,0 +1,64 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="PARAMETER_TYPE_TO_NAME">
+      <value>
+        <pair type="int" name="i" />
+        <pair type="byte" name="b" />
+        <pair type="char" name="c" />
+        <pair type="long" name="l" />
+        <pair type="short" name="i" />
+        <pair type="boolean" name="b" />
+        <pair type="double" name="v" />
+        <pair type="float" name="v" />
+        <pair type="java.lang.Object" name="o" />
+        <pair type="java.lang.String" name="s" />
+        <pair type="*Exception" name="e" />
+      </value>
+    </option>
+    <option name="LOCAL_VARIABLE_TYPE_TO_NAME">
+      <value>
+        <pair type="int" name="i" />
+        <pair type="byte" name="b" />
+        <pair type="char" name="c" />
+        <pair type="long" name="l" />
+        <pair type="short" name="i" />
+        <pair type="boolean" name="b" />
+        <pair type="double" name="v" />
+        <pair type="float" name="v" />
+        <pair type="java.lang.Object" name="o" />
+        <pair type="java.lang.String" name="s" />
+      </value>
+    </option>
+    <JavaCodeStyleSettings>
+      <option name="PARAMETER_TYPE_TO_NAME">
+        <value>
+          <pair type="int" name="i" />
+          <pair type="byte" name="b" />
+          <pair type="char" name="c" />
+          <pair type="long" name="l" />
+          <pair type="short" name="i" />
+          <pair type="boolean" name="b" />
+          <pair type="double" name="v" />
+          <pair type="float" name="v" />
+          <pair type="java.lang.Object" name="o" />
+          <pair type="java.lang.String" name="s" />
+          <pair type="*Exception" name="e" />
+        </value>
+      </option>
+      <option name="LOCAL_VARIABLE_TYPE_TO_NAME">
+        <value>
+          <pair type="int" name="i" />
+          <pair type="byte" name="b" />
+          <pair type="char" name="c" />
+          <pair type="long" name="l" />
+          <pair type="short" name="i" />
+          <pair type="boolean" name="b" />
+          <pair type="double" name="v" />
+          <pair type="float" name="v" />
+          <pair type="java.lang.Object" name="o" />
+          <pair type="java.lang.String" name="s" />
+        </value>
+      </option>
+    </JavaCodeStyleSettings>
+  </code_scheme>
+</component>

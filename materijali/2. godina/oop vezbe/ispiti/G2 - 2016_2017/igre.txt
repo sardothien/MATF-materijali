@@ -1,0 +1,5 @@
+pc, Witcher 3 - Wild Hunt, rpg, 5000, 5
+ps4, Tekken 7, borbena, 6000
+xbone, For Honor, akciona, 8000
+ps4, The Elder Scrolls V - Skyrim, rpg, 5000
+pc, PES 2017, sportska, 6000, 2

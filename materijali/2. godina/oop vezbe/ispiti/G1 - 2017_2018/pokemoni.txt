@@ -1,0 +1,6 @@
+p, charizard, 5, vatrena lopta, 20, vatreno koplje, 30
+p, mewtwo, 10, telekineticka lopta, 20, telekineticka eksplozija, 50
+p, magikarp, 3, vodeni mehur, 10, vodeni mlaz, 20
+n, snorlax, 5, zaspi, -30, sedi na protivnika, 50
+n, machoke, 12, karate udar, 20, karate sut, 40
+n, jigglypuff, 7, napad slatkoce, 20, napad zagrljajima, 30

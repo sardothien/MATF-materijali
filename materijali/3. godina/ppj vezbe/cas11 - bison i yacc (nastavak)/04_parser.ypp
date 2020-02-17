@@ -1,0 +1,145 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<vector>
+    #include<map>
+    #include"04_matrice.hpp"
+    using namespace std;
+    
+    extern int yylex();
+    void yyerror(string s);
+    void deinicijalizuj();
+    
+    map<string, Matrica*> promenljive;
+%}
+
+%union {
+    double x;
+    Matrica* m;
+    string* ime;
+    vector<double>* v;
+}
+
+%left '+' '-'
+%left '*' '.'
+%nonassoc '\''
+%right UMINUS
+
+%token<ime> ID
+%token<x> BROJ
+
+%type<m> izraz matrica niz_vrsta
+%type<v> lista_koef vrsta
+
+%start program
+
+%%
+program : naredba '\n' program {}
+          |                    {}
+          ;
+          
+naredba : ID '=' izraz      {
+                                auto it = promenljive.find(*$1);
+                                if(it != promenljive.end())
+                                    delete it->second;
+                                promenljive[*$1] = $3;
+                                cout << (*$1) << " = " << (*$3) << endl;
+                                delete $1;
+                            }
+        | ID '=' izraz ';'  {
+                                auto it = promenljive.find(*$1);
+                                if(it != promenljive.end())
+                                    delete it->second;
+                                promenljive[*$1] = $3;
+                                delete $1;
+                            }
+        ;
+
+izraz : izraz '+' izraz { 
+                            $$ = *$1 + *$3;
+                            delete $1;
+                            delete $3;
+                        }
+      | izraz '-' izraz {
+                            $$ = *$1 - *$3;
+                            delete $1;
+                            delete $3;
+                        }
+      | izraz '*' izraz {
+                            $$ = *$1 * *$3;
+                            delete $1;
+                            delete $3;
+                        }
+      | '-' izraz %prec UMINUS {
+                                    $$ = -(*$2);
+                                    delete $2;
+                               }
+      | izraz '.''*' izraz     {
+                                    $$ = $1->scalarMul(*$4);
+                                    delete $1;
+                                    delete $4;
+                               }
+      | '(' izraz ')'          { $$ = $2; }
+      | izraz '\''             {
+                                    $$ = $1->transpose();
+                                    delete $1;
+                               }
+      | ID                     {
+                                  auto it = promenljive.find(*$1);
+                                  if(it == promenljive.end())
+                                    yyerror("Nije deklarisana promenljiva!");
+                                  $$ = new Matrica(*(it->second));
+                                  delete $1;
+                               }
+      | matrica                { $$ = $1; }
+      ;
+      
+matrica : '[' niz_vrsta ']' { $$ = $2; }  
+           ;
+
+niz_vrsta : niz_vrsta ';' vrsta { 
+                                    $1->addRow(*$3);
+                                    $$ = $1;
+                                    delete $3;
+                                }
+          | vrsta               {
+                                    $$ = new Matrica();
+                                    $$->addRow(*$1);
+                                    delete $1;
+                                }
+          ;
+          
+vrsta : lista_koef { $$ = $1; }
+        ;
+        
+lista_koef : lista_koef BROJ  {
+                                $$ = $1;
+                                $$->push_back($2);
+                              }
+           | BROJ             {
+                                $$ = new vector<double>();
+                                $$->push_back($1);
+                              }
+           ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+void deinicijalizuj(){
+    for(auto i = promenljive.begin(); i != promenljive.end(); i++)
+        delete i->second;
+}
+
+int main(){
+    
+    if(yyparse() != 0)
+        yyerror("Previse tokena na ulazu!");
+        
+    deinicijalizuj();
+    
+    return 0;
+}

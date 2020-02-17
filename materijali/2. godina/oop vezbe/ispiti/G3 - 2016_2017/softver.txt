@@ -1,0 +1,8 @@
+1, Vim, 300000, c, c++
+2, Tensorflow, 1000000, c++, Biblioteka posvecena masinskom ucenju
+1, Emacs, 250000, c, c
+1, Sublime Editor, 320000, c++, JavaScript
+2, Javafx, 700000, java, Biblioteka za graficki korisnicki interfejs.
+2, Qt, 900000, c++, Biblioteka i radni okvir za programski jezik c++.
+2, Boost spirit, 650000, c++, Biblioteka za kreiranje parsera.
+2, jQuery, 600000, JavaScript, Biblioteka za jezik JavaScript. 

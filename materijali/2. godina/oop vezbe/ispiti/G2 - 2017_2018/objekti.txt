@@ -1,0 +1,7 @@
+t, Indiana Jones, 4, 5, 100
+r, Rubin, 5, 5, 15, 3
+t, Scrooge McDuck, 0, 0, 40
+r, Dijamant, 3, 4, 25, 10
+t, Ninja Collector, 3, 3, 20
+r, Ametist, 1, 5, 25, 15
+r, Smaragd, 4, 3, 30, 15

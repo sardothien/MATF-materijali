@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paketi>
+    <paket id="1">
+        <naziv>pandas</naziv>
+        <verzija>0.23.3</verzija>
+        <opis>Biblioteka za rad sa podacima.</opis>
+        <repo>github</repo>
+        <veb>pandas.pydata.org</veb>
+    </paket>
+    <paket id="2">
+        <naziv>pytorch</naziv>
+        <repo>bitbucket</repo>
+        <veb>www.pytorch.org</veb>
+        <verzija>0.4.1</verzija>
+        <opis>Biblioteka za duboko ucenje.</opis>
+    </paket>
+    <paket id="3">
+        <naziv>matplotlib</naziv>
+        <verzija>3.0.2</verzija>
+        <repo>gitlab</repo>
+        <opis>Vizuelizacija podataka.</opis>
+        <veb>www.matplotlib.org</veb>
+    </paket>
+    <paket id="4">
+        <naziv>los primer</naziv>
+        <verzija>3.0.</verzija>
+        <repo>bitbucket</repo>
+        <opis>Los Python paket.</opis>
+        <veb>www.matplotlib.</veb>
+    </paket>
+</paketi>

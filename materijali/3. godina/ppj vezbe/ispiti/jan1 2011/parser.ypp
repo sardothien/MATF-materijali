@@ -1,0 +1,108 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<map>
+    #include"razlomak.hpp"
+    using namespace std;
+    
+    #define YYDEBUG 1
+    
+    map<Razlomak, int> promenljive;
+    void yyerror(string s);
+    extern int yylex();
+%}
+
+%union {
+    int br;
+    std::string id;
+    Razlomak* r;
+}
+
+%token FRAC PRINT CHECK NUMER DENOM DOUBLE
+%token<br> BROJ
+%token<id> ID
+
+%type<r> izraz razlomak
+
+%nonassoc NAJNIZI
+%right '='
+%left '+' '-'
+%left '*' '/'
+
+%%
+program : niznaredbi
+          ;
+          
+niznaredbi : niznaredbi naredba ';'
+           | naredba ';'
+           ;
+           
+naredba : izraz         { ispisi($1); }
+        | definicija
+        | PRINT izraz   { ispisi($2); }
+        | dodela
+        | CHECK izraz '=' '=' izraz    { cout << (jednaki($2, $5) ? "True" : "False") << endl; }
+        | NUMER izraz   { cout << $2->br << endl; }
+        | DENOM izraz   { cout << $2->im << endl; }
+        | DOUBLE izraz  { cout << (double)$2->br / $2->im << endl; }
+        ;
+        
+izraz : izraz '+' izraz { $$ = saberi($1, $3); }
+      | izraz '-' izraz { $$ = oduzmi($1, $3); }
+      | izraz '*' izraz { $$ = pomnozi($1, $3); } 
+      | izraz '/' izraz { $$ = podeli($1, $3); }
+      | '(' izraz ')'   { $$ = $2; }
+      | razlomak        { $$ = $1; }
+      | ID %prec NAJNIZI {}
+      ;
+      
+razlomak : '[' BROJ ',' BROJ ']'    { $$ = novi_razl($2, $4); }
+         ;
+         
+definicija : FRAC ID '=' izraz  {
+                                    if(promenljive.find($2) != promenljive.end())
+                                        yyerror("Vec postoji!");
+                                    promenljive[$2] = $4;
+                                }
+           ;
+           
+dodela : ID '=' izraz       {
+                                if(promenljive.find($1) != promenljive.end())
+                                    yyerror("Vec deklarisana!");
+                                promenljive[$1] = $3;
+                            }
+       | ID '+' '=' izraz   {
+                                if(promenljive.find($1) != promenljive.end())
+                                    yyerror("Vec deklarisana!");
+                                saberi(promenljive[$1], $4);
+                            }
+       | ID '-' '=' izraz   {
+                                if(promenljive.find($1) != promenljive.end())
+                                    yyerror("Vec deklarisana!");
+                                oduzmi(promenljive[$1], $4);
+                            }
+       | ID '*' '=' izraz   {
+                                if(promenljive.find($1) != promenljive.end())
+                                    yyerror("Vec deklarisana!");
+                                pomnozi(promenljive[$1], $4);
+                            }
+       | ID '/' '=' izraz   {
+                                if(promenljive.find($1) != promenljive.end())
+                                    yyerror("Vec deklarisana!");
+                                podeli(promenljive[$1], $4);
+                            }
+       ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    
+    if(yyparse() == 0) 
+        cout << "Uparen je aritmeticki izraz!" << endl;
+    
+    return 0;
+}

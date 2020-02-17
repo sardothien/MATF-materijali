@@ -1,0 +1,111 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<map>
+    #include"formula.hpp"
+    using namespace std;
+    
+    #define YYDEBUG 1
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    map<string, int> tablica;
+%}
+
+%union{
+    std::string *id;
+    int vr;
+    Formula* form;
+}
+
+%token KONJ DISJ IMPL EKV NEG TRUE_T FALSE_T UNDEF_T DOD HEAD TAIL
+%token<id> ID ID_L
+%token<vr> BROJ
+
+%type<form> izraz
+
+%left KONJ
+%left DISJ
+%left IMPL
+%left EKV
+%left NEG
+
+%%
+program : program naredba
+        | naredba
+        ;
+
+naredba : ID DOD izraz '\n'     { 
+                                    tablica[*$1] = $3->vrednost(); 
+                                    delete $1;
+                                    delete $3;
+                                }
+        | izraz '\n'            { 
+                                    cout << $1->str() << endl; 
+                                    delete $1;
+                                }
+        | ID_L DOD '[' izraz_l ']' '\n'     {}
+        ;
+        
+izraz_l : izraz_l ',' izraz
+        | izraz
+        ;
+        
+izraz : izraz KONJ izraz    { 
+                                $$ = new Formula($1->konjukcija(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | izraz DISJ izraz    {
+                                $$ = new Formula($1->disjunkcija(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | izraz IMPL izraz    {
+                                $$ = new Formula($1->implikacija(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | izraz EKV izraz     {
+                                $$ = new Formula($1->ekvivalencija(*$3));
+                                delete $1;
+                                delete $3;
+                            }
+      | NEG izraz           {
+                                $$ = new Formula($2->negacija());
+                                delete $2;
+                            }
+      | '(' izraz ')'       { 
+                                $$ = $2;
+                                delete $2;
+                            }
+      | HEAD '(' izraz ')'  {}
+      | TAIL '(' izraz ')'  {}
+      | ID                  {
+                                auto it = tablica.find(*$1);
+                                if(it == tablica.end())
+                                    $$ = new Formula(-1);
+                                else
+                                    $$ = new Formula(it->second);
+                                delete $1;
+                            }
+      | TRUE_T              { $$ = new Formula(1); }
+      | FALSE_T             { $$ = new Formula(0); }
+      | UNDEF_T             { $$ = new Formula(-1); }
+      | ID_L '[' BROJ ']'   {}
+      | ID_L                {}
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

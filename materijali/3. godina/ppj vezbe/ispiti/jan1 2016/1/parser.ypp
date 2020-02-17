@@ -1,0 +1,91 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<map>
+    #include"formula.hpp"
+    using namespace std;
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    map<string, int> tablica;
+%}
+
+%union {
+    Logika* log;
+    std::string *prom;
+}
+
+%token IMPL KONJ DISJ EKV TRUE_ID FALSE_ID DOD
+%token<prom> ID
+%type<log> izraz
+
+%left '!'
+%left KONJ
+%left DISJ
+%left IMPL
+%left EKV
+
+%%
+program : program naredba
+        | naredba
+        ;
+        
+naredba : izraz '\n'    { cout << $1->str() << endl; }
+        ;
+        
+izraz : izraz KONJ izraz   {
+                                $$ = new Logika($1->KONJ_op(*$3));
+                                delete $1;
+                                delete $3;
+                           }
+      | izraz DISJ izraz   {
+                                $$ = new Logika($1->DISJ_op(*$3));
+                                delete $1;
+                                delete $3;
+                           }
+      | izraz IMPL izraz   {
+                                $$ = new Logika($1->IMPL_op(*$3));
+                                delete $1;
+                                delete $3;
+                           }
+      | izraz EKV izraz    {
+                                $$ = new Logika($1->EKV_op(*$3));
+                                delete $1;
+                                delete $3;
+                           }
+      | '!' izraz          {
+                                $$ = new Logika($2->NEG_op());
+                                delete $2;
+                           }
+      | '(' izraz ')'      { $$ = $2; delete $2; }
+      | TRUE_ID            { $$ = new Logika(1); }
+      | FALSE_ID           { $$ = new Logika(0); }
+      | ID DOD izraz       {
+                                tablica[*$1] = $3->val();
+                                delete $1;
+                                delete $3;
+                           }
+      | ID                 {
+                                auto it = tablica.find(*$1);
+                                if(it == tablica.end())
+                                    $$ = new Logika(-1);
+                                else
+                                    $$ = new Logika(it->second);
+                                delete $1;
+                           }
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    
+    yyparse();        
+        
+    return 0;
+}

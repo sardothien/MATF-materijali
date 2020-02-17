@@ -1,0 +1,46 @@
+/* DEKLARACIJE */
+
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<cstdio>
+    #include<string>
+    
+    #define YYDEBUG 1
+    
+    using namespace std;
+    
+    extern int yylex();
+    void yyerror(string s);
+%}
+
+/* deklarisemo BROJ kao token */
+%token BROJ
+/* deklarisemo aksiomu gramatike */
+%start e
+
+%%
+/* pravila kontekstno slobodne gramatike */
+e : e '+' t
+    | t
+    ;
+t : t '*' f
+    | f
+    ;
+f : '(' e ')'
+    | BROJ
+    ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    
+    if(yyparse() == 0)
+        cout << "Uparen je aritmeticki izraz!" << endl;
+
+    return 0;
+}

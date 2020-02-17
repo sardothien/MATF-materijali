@@ -1,0 +1,28 @@
+type funkcija
+
+%funkcija.m
+f=@(x) exp(x.^2);
+[I,briter]=integralt(0,1,10^(-2))
+
+I =
+
+    1.4697
+
+
+briter =
+
+     3
+
+[I,briter]=integrals(0,1,10^(-2))
+
+I =
+
+    1.4637
+
+
+briter =
+
+     1
+
+grafik(0,1)
+diary off

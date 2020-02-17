@@ -1,0 +1,56 @@
+type tablica
+
+%tablica.m
+%
+%Test: Njutn(2.5)
+%
+
+X = -3:3;
+f = @(x) x.^6;
+F = f(X);
+t = tablicaCheck()
+Tablica je ekvidistantna i vektor X je dat u strogo rastucem poretku.
+
+t =
+
+     1
+
+p = polozaj(2.5)
+
+p =
+
+     2
+
+Njutn(2.5)
+Tablica je ekvidistantna i vektor X je dat u strogo rastucem poretku.
+Tablica konacnih razlika u formatu: X, Y, konacne razlike
+    -3   729  -665   602  -540   480  -360   720
+    -2    64   -63    62   -60   120   360     0
+    -1     1    -1     2    60   480     0     0
+     0     0     1    62   540     0     0     0
+     1     1    63   602     0     0     0     0
+     2    64   665     0     0     0     0     0
+     3   729     0     0     0     0     0     0
+
+
+ans =
+
+  244.1406
+
+
+Njutn(-2.5)
+Tablica je ekvidistantna i vektor X je dat u strogo rastucem poretku.
+Tablica konacnih razlika u formatu: X, Y, konacne razlike
+    -3   729  -665   602  -540   480  -360   720
+    -2    64   -63    62   -60   120   360     0
+    -1     1    -1     2    60   480     0     0
+     0     0     1    62   540     0     0     0
+     1     1    63   602     0     0     0     0
+     2    64   665     0     0     0     0     0
+     3   729     0     0     0     0     0     0
+
+
+ans =
+
+  244.1406
+

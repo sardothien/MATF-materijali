@@ -1,0 +1,55 @@
+/* Koristimo viseznacnu gramatiku za aritmeticke izraze. */
+%{
+    #include <iostream>
+    #include <cstdlib>
+    #include <string>
+    
+    #define YYDEBUG 1
+    
+    using namespace std;
+    
+    extern int yylex();
+    void yyerror(string s);
+%}
+
+%union{
+    float vrednost;
+}
+
+%left '+' '-'
+%right '*' '/'
+%left UMINUS
+
+%type <vrednost> e
+%token <vrednost> BROJ
+%start pocetak
+
+%%
+pocetak: e { cout << "Vrednost izraza je " << $1 << endl; }
+         ;
+e : e '+' e { $$ = $1 + $3; }
+  | e '-' e { $$ = $1 - $3; }
+  | e '*' e { $$ = $1 * $3; }
+  | e '/' e { if($3 == 0) 
+                yyerror("Deljenje nulom!");
+              $$ = $1 + $3; 
+            }
+  /* dodeljujemo prioritet pravilu */
+  | '-' e %prec UMINUS { $$ = -$2; }
+  | '(' e ')'          { $$ = $2; }
+  | BROJ               { $$ = $1; }
+  ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    
+    if(yyparse() == 0)
+        cout << "Uparen je aritmeticki izraz" << endl;
+    
+    return 0;
+}

@@ -1,0 +1,4 @@
+p := True
+L := [p, !p, p <=> p, False]
+L[2] \/ L[1]
+head(L) /\ head (tail(tail (tail (L))))

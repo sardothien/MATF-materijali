@@ -1,0 +1,117 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<map>
+    #include"matrice.hpp"
+    using namespace std;
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    map<char, Matrica*> tablica;
+%}
+
+%union {
+    int vr;
+    Matrica* m;
+    vector<int> *vek;
+    char id;
+}
+
+%token DISP SIZE TPLUS TPUTA
+%token<vr> BROJ
+%token<id> ID
+
+%type<m> izraz nizvrsta
+%type<vek> vrsta nizbrojeva
+
+%left TPLUS
+%left TPUTA '*'
+%left '\''
+
+%%
+program : program naredba 
+        | naredba 
+        ;
+        
+naredba : DISP '(' izraz ')' '\n'    { $3->display(); }
+        | SIZE '(' izraz ')' '\n'    { $3->size(); }
+        | ID '=' izraz '\n'          { tablica[$1] = $3; }
+        ;
+        
+izraz : '[' nizvrsta ']'    { $$ = $2; }
+      | izraz TPUTA izraz   {
+                                if($1->getMatrica().size() != $3->getMatrica().size())
+                                    cout << "Dimenzije se ne poklapaju" << endl;
+                                else{
+                                    vector<vector<int>> m1 = $1->getMatrica();
+                                    vector<vector<int>> m2 = $3->getMatrica();
+                                    if(m1[0].size() != m2[0].size())
+                                        cout << "Dimenzije se ne poklapaju" << endl;
+                                    else
+                                        $$ = Matrica::pomnozi(*$1, *$3);
+                                }
+                            }
+      | izraz TPLUS izraz   {
+                                if($1->getMatrica().size() != $3->getMatrica().size())
+                                    cout << "Dimenzije se ne poklapaju" << endl;
+                                else{
+                                    vector<vector<int>> m1 = $1->getMatrica();
+                                    vector<vector<int>> m2 = $3->getMatrica();
+                                    if(m1[0].size() != m2[0].size())
+                                        cout << "Dimenzije se ne poklapaju" << endl;
+                                    else
+                                        $$ = Matrica::saberi(*$1, *$3);
+                                }
+                            }
+      | izraz '*' izraz     {
+                                if($1->getMatrica()[0].size() != $3->getMatrica().size())
+                                    cout << "Dimenzije se ne poklapaju" << endl;
+                                else
+                                    $$ = $1->mnozi(*$3);
+                            }
+      | izraz '\''          { $$ = $1->transponuj(); }
+      | ID                  {
+                                auto it = tablica.find($1);
+                                if(it == tablica.end())
+                                    cout << "Dimenzije se ne poklapaju" << endl;
+                                else
+                                    $$ = tablica[$1];
+                            }
+      ;
+      
+nizvrsta : nizvrsta ';' vrsta   {
+                                    $1->dodaj_vrstu(*$3);
+                                    delete $3;
+                                }
+         | vrsta                {  
+                                    Matrica* niz = new Matrica();
+                                    niz->dodaj_vrstu(*$1);
+                                    $$ = niz;
+                                    delete $1;
+                                }         
+         ;
+         
+vrsta : '[' nizbrojeva ']'      { $$ = $2; }
+      ;
+      
+nizbrojeva : nizbrojeva ',' BROJ    { $$->push_back($3); }
+           | BROJ                   { 
+                                        vector<int>* niz = new vector<int>();
+                                        niz->push_back($1);
+                                        $$ = niz;
+                                    }
+           ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

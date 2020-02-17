@@ -1,0 +1,175 @@
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<vector>
+    #include<map>
+    using namespace std;
+    
+    #define YYDEBUG 1
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    map<string, int> tablica;
+    map<string, vector<int>*> liste;
+    
+    void stampaj(int broj, int osnova);
+    void stampaj_listu(vector<int>* l);
+%}
+
+%union{
+    int vr;
+    std::string *id;
+    std::vector<int>* element;
+}
+
+%token PRINT INT_T SHL SHR JEDN RAZL LIST
+%token<vr> BROJ
+%token<id> ID ID_L
+
+%type<vr> izraz
+%type<element> lista_vr izraz_l
+
+%left JEDN RAZL
+%left '|'
+%left '^' 
+%left '&'
+%left SHL SHR
+%left '+' '-'
+%left '*' '/' '%'
+%right '~'
+%right UMINUS
+
+%%
+program : program naredba       {}
+        | naredba               {}
+        ;
+        
+naredba : INT_T ID '=' izraz ';'            {
+                                                auto it = tablica.find(*$2);
+                                                if(it != tablica.end())
+                                                    yyerror("Promenljiva je vec definisana!");
+                                                tablica[*$2] = $4;
+                                            }
+        | INT_T ID ';'                      {
+                                                auto it = tablica.find(*$2);
+                                                if(it != tablica.end())
+                                                    yyerror("Promenljiva je vec definisana!");
+                                                tablica[*$2] = 0;
+                                            }
+        | ID '=' izraz ';'                  {
+                                                auto it = tablica.find(*$1);
+                                                if(it == tablica.end())
+                                                    yyerror("Promenljiva nije definisana!");
+                                                tablica[*$1] = $3;
+                                            }
+        | PRINT '(' izraz ',' BROJ ')' ';'  { 
+                                                if($5 != 8 && $5 != 10 && $5 != 16)
+                                                    yyerror("Nepodrzana osnova!");
+                                                stampaj($3, $5);
+                                            }
+        | PRINT '(' izraz ')' ';'           {
+                                                stampaj($3, 10);
+                                            }
+        | izraz JEDN izraz ';'              {
+                                                if($1 == $3)
+                                                    cout << "True\n";
+                                                else
+                                                    cout << "False\n";
+                                            }
+        | LIST ID_L '=' izraz_l ';'         {
+                                                auto it = liste.find(*$2);
+                                                if(it != liste.end())
+                                                    yyerror("Lista je vec deklarisana!");
+                                                liste[*$2] = $4;
+                                            }
+        | PRINT '(' izraz_l ')' ';'         { stampaj_listu($3); }
+        ;
+        
+izraz : izraz '+' izraz     { $$ = $1 + $3; }
+      | izraz '-' izraz     { $$ = $1 - $3; }
+      | izraz '*' izraz     { $$ = $1 * $3; }
+      | izraz '/' izraz     { $$ = $1 / $3; }
+      | izraz '%' izraz     { $$ = $1 % $3; }
+      | izraz SHL izraz     {
+                                if($3 <= 0)
+                                    yyerror("Drugi operand mora biti veci od 0");
+                                $$ = $1 << $3;
+                            }
+      | izraz SHR izraz     { 
+                                if($3 <= 0)
+                                    yyerror("Drugi operand mora biti veci od 0");
+                                $$ = $1 >> $3; 
+                            }
+      | izraz '^' izraz     { $$ = $1 ^ $3; }
+      | izraz '&' izraz     { $$ = $1 & $3; }
+      | izraz '|' izraz     { $$ = $1 | $3; }
+      | '~' izraz           { $$ = ~$2; }
+      | '-' izraz %prec UMINUS { $$ = -$2; } 
+      | '(' izraz ')'       { $$ = $2; }
+      | BROJ                { $$ = $1; }
+      | ID                  { 
+                                auto it = tablica.find(*$1);
+                                if(it == tablica.end())
+                                    yyerror("Promenljiva nije definisana!");
+                                $$ = tablica[*$1];
+                            }
+      | ID_L '[' BROJ ']'   {
+                                auto it = liste.find(*$1);
+                                if(it == liste.end())
+                                    yyerror("Lista nije deklarisana!");
+                                $$ = (*liste[*$1])[$3];
+                                delete $1;
+                            }
+      ;
+      
+izraz_l : '[' lista_vr ']'  { $$ = $2; }
+        | ID_L              { 
+                                auto it = liste.find(*$1);
+                                if(it == liste.end())
+                                    yyerror("Lista nije deklarisana");
+                                $$ = new vector<int>(*liste[*$1]);
+                            }
+        ;
+        
+lista_vr : lista_vr ',' izraz {
+                                    $$ = $1;
+                                    $$->push_back($3);
+                              }
+         | izraz              {
+                                    $$ = new vector<int>();
+                                    $$->push_back($1);
+                              }
+         ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+void stampaj(int broj, int osnova){
+    if(osnova == 10)
+        printf("%d\n", broj);
+    else if(osnova == 8)
+        printf("%x\n", broj);
+    else if(osnova == 16)
+        printf("%o\n", broj);
+}
+
+void stampaj_listu(vector<int>* l){
+    cout << "[";
+    for(unsigned i = 0; i < l->size(); i++){
+        cout << (*l)[i];
+        if(i != l->size()-1)
+            cout << ", ";
+    }
+    cout << "]" << endl;
+}
+
+int main(){
+    yyparse();
+    
+    return 0;
+}

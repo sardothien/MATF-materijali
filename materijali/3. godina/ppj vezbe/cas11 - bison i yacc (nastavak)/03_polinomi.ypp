@@ -1,0 +1,121 @@
+%{
+    #include<iostream>
+    #include<string>
+    #include<cstdlib>
+    #include<map>
+    #include"03_polinom.hpp"
+    using namespace std;
+    
+    #define YYDEBUG 1
+    
+    extern int yylex();
+    void yyerror(string s);
+    map<string, Polinom*> promenljive;
+%}
+
+%union {
+    float vr;
+    std::string* id;
+    Polinom* poly_vr;
+}
+
+%type <poly_vr> NizKoef polinom
+
+%token <vr> BROJ
+%token <id> ID
+%token DODELA EQ NEQ
+
+%left '+' '-'
+%left '*'
+%right UMINUS
+
+%%
+program : program naredba '\n'
+         | /* eps */
+         ;
+naredba : polinom               {
+                                    $1->ispisi();
+                                    delete $1;
+                                }
+        | ID DODELA polinom     {
+                                    if(promenljive.find(*$1) != promenljive.end())
+                                        delete promenljive[*$1];
+                                    promenljive[*$1] = $3;
+                                }
+        | polinom EQ polinom    {
+                                    if($1->jednak(*$3))
+                                        cout << "True" << endl;
+                                    else
+                                        cout << "False" << endl;
+                                }
+        | polinom NEQ polinom   {
+                                    if(!$1->jednak(*$3))
+                                        cout << "True" << endl;
+                                    else
+                                        cout << "False" << endl;
+                                }
+        | polinom '[' BROJ ']'  {
+                                    cout << $1->vrednost($3) << endl;
+                                    delete $1;
+                                }
+        | /* eps */
+        ;
+polinom : polinom '+' polinom       {
+                                        $$ = saberi(*$1, *$3);
+                                        delete $1;
+                                        delete $3;
+                                    }
+        | polinom '-' polinom       {
+                                        $$ = oduzmi(*$1, *$3);
+                                        delete $1;
+                                        delete $3;
+                                    }
+        | polinom '*' polinom       {
+                                        $$ = pomnozi(*$1, *$3);
+                                        delete $1;
+                                        delete $3;
+                                    }
+        | '-' polinom %prec UMINUS  {
+                                        $$ = uminus(*$2);
+                                        delete $2;
+                                    }
+        | polinom '\''              {
+                                        $$ = $1;
+                                        $$->izvod();
+                                    }
+        | '$' polinom '|' BROJ      {
+                                        $$ = $2;
+                                        $$->integral($4);
+                                    }
+        | '(' polinom ')'           { $$ = $2; }
+        | '<' NizKoef '>'           { $$ = $2; }
+        | ID                        {
+                                        auto i = promenljive.find(*$1);
+                                        if(i != promenljive.end())
+                                            $$ = new Polinom(i->second->get_koef());
+                                        else
+                                            yyerror("Nije definisana promenljiva!");
+                                    }
+        ;
+NizKoef : NizKoef ',' BROJ  {
+                                $$ = $1;
+                                $$->dodaj($3);
+                            }
+        | BROJ              {
+                                $$ = new Polinom();
+                                $$->dodaj($1);
+                            }
+        ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+    yydebug = 0;
+    yyparse();
+    
+    return 0;
+}

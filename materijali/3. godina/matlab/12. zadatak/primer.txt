@@ -1,0 +1,17 @@
+type funkcija
+
+%funkcija.m
+f=@(x) x.^5;
+y=Runge(0.001,0.0011)
+
+y =
+
+   6.6667e-06
+
+I=zapremina(0,1,10^(-2))
+
+I =
+
+    0.2884
+
+diary off

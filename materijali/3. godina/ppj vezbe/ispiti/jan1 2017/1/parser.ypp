@@ -1,0 +1,115 @@
+/* Nedostaje pod (e) i (f) */
+
+%{
+    #include<iostream>
+    #include<cstdlib>
+    #include<string>
+    #include<map>
+    #include"datum.hpp"
+    using namespace std;
+    
+    #define YYDEBUG 1
+    
+    void yyerror(string s);
+    extern int yylex();
+    
+    map<string, Datum*> tablica;
+%}
+
+%union{
+    int vr;
+    std::string* niska;
+    Datum* datum_type;
+}
+
+%token JEDNAKO RAZLICITO DATE_T PRINT
+%token<vr> BROJ 
+%token<niska> ID EUR USA ISO
+
+%type<datum_type> datum
+
+%left JEDNAKO RAZLICITO '<' '>'
+
+%start program
+
+%%
+program : program naredba ';'
+        | naredba ';'
+        ;
+           
+naredba : DATE_T deklaracije
+        | PRINT ID              { tablica[*$2]->printDate(); }
+        | PRINT ID ISO          { tablica[*$2]->printISO(); }
+        | PRINT ID USA          { tablica[*$2]->printUSA(); }
+        | PRINT ID EUR          { tablica[*$2]->printDate(); }
+        | ID '=' '\'' datum '\''    {
+                                        auto it = tablica.find(*$1);
+                                        if(it != tablica.end()){
+                                            tablica[*$1] = $4;
+                                            delete $1;
+                                        }
+                                        else
+                                            cout << "Promenljiva nije deklarisana!\n"; 
+                                    }
+        | PRINT '\'' datum '\''     { $3->printDate(); }
+        | datum JEDNAKO datum       { 
+                                        if($1->same(*$3))
+                                            cout << "True\n";
+                                        else
+                                            cout << "False\n";
+                                    }
+        | datum RAZLICITO datum     {
+                                        if($1->same(*$3))
+                                            cout << "False\n";
+                                        else
+                                            cout << "True\n";
+                                    }
+        | datum '<' datum           {
+                                        if($1->sooner(*$3))
+                                            cout << "True\n";
+                                        else
+                                            cout << "False\n";
+                                    }
+        | datum '>' datum           {
+                                        if($1->sooner(*$3))
+                                            cout << "False\n";
+                                        else
+                                            cout << "True\n";
+                                    }
+        ;
+        
+deklaracije : deklaracije ',' deklaracija
+            | deklaracija
+            ;
+            
+deklaracija : ID                        {   
+                                            tablica[*$1] = new Datum(1, 1, 1);
+                                            delete $1;
+                                        }
+            | ID '=' '\'' datum '\''    {
+                                            tablica[*$1] = $4;
+                                            delete $1;
+                                        }
+            ;
+            
+datum : BROJ '.' BROJ '.' BROJ  { $$ = new Datum($1, $3, $5); }
+      | BROJ '/' BROJ '/' BROJ  { $$ = new Datum($1, $3, $5); }
+      | BROJ '-' BROJ '-' BROJ  { $$ = new Datum($1, $3, $5); }
+      | ID                      {   
+                                    $$ = tablica[*$1];
+                                    delete $1;
+                                }
+      ;
+%%
+
+void yyerror(string s){
+    cerr << s << endl;
+    exit(EXIT_FAILURE);
+}
+
+int main(){
+
+    yyparse();
+    
+    return 0;
+}

@@ -1,0 +1,358 @@
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: Program Naredba
+    2        | Naredba
+
+    3 Naredba: izraz '\n'
+    4        | ID DOD izraz '\n'
+
+    5 izraz: izraz EKV izraz
+    6      | izraz IMPL izraz
+    7      | izraz III izraz
+    8      | izraz ILI izraz
+    9      | '!' izraz
+   10      | '(' izraz ')'
+   11      | TRUE_ID
+   12      | FALSE_ID
+   13      | ID
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'\n' (10) 3 4
+'!' (33) 9
+'(' (40) 10
+')' (41) 10
+error (256)
+III (258) 7
+ILI (259) 8
+IMPL (260) 6
+EKV (261) 5
+TRUE_ID (262) 11
+FALSE_ID (263) 12
+DOD (264) 4
+ID (265) 4 13
+
+
+Nonterminals, with rules where they appear
+
+$accept (15)
+    on left: 0
+Program (16)
+    on left: 1 2, on right: 0 1
+Naredba (17)
+    on left: 3 4, on right: 1 2
+izraz (18)
+    on left: 5 6 7 8 9 10 11 12 13, on right: 3 4 5 6 7 8 9 10
+
+
+State 0
+
+    0 $accept: . Program $end
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 3
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    Program  go to state 6
+    Naredba  go to state 7
+    izraz    go to state 8
+
+
+State 1
+
+   11 izraz: TRUE_ID .
+
+    $default  reduce using rule 11 (izraz)
+
+
+State 2
+
+   12 izraz: FALSE_ID .
+
+    $default  reduce using rule 12 (izraz)
+
+
+State 3
+
+    4 Naredba: ID . DOD izraz '\n'
+   13 izraz: ID .
+
+    DOD  shift, and go to state 9
+
+    $default  reduce using rule 13 (izraz)
+
+
+State 4
+
+    9 izraz: '!' . izraz
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 11
+
+
+State 5
+
+   10 izraz: '(' . izraz ')'
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 12
+
+
+State 6
+
+    0 $accept: Program . $end
+    1 Program: Program . Naredba
+
+    $end      shift, and go to state 13
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 3
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    Naredba  go to state 14
+    izraz    go to state 8
+
+
+State 7
+
+    2 Program: Naredba .
+
+    $default  reduce using rule 2 (Program)
+
+
+State 8
+
+    3 Naredba: izraz . '\n'
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+
+    III   shift, and go to state 15
+    ILI   shift, and go to state 16
+    IMPL  shift, and go to state 17
+    EKV   shift, and go to state 18
+    '\n'  shift, and go to state 19
+
+
+State 9
+
+    4 Naredba: ID DOD . izraz '\n'
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 20
+
+
+State 10
+
+   13 izraz: ID .
+
+    $default  reduce using rule 13 (izraz)
+
+
+State 11
+
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+    9      | '!' izraz .
+
+    III   shift, and go to state 15
+    ILI   shift, and go to state 16
+    IMPL  shift, and go to state 17
+    EKV   shift, and go to state 18
+
+    $default  reduce using rule 9 (izraz)
+
+
+State 12
+
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+   10      | '(' izraz . ')'
+
+    III   shift, and go to state 15
+    ILI   shift, and go to state 16
+    IMPL  shift, and go to state 17
+    EKV   shift, and go to state 18
+    ')'   shift, and go to state 21
+
+
+State 13
+
+    0 $accept: Program $end .
+
+    $default  accept
+
+
+State 14
+
+    1 Program: Program Naredba .
+
+    $default  reduce using rule 1 (Program)
+
+
+State 15
+
+    7 izraz: izraz III . izraz
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 22
+
+
+State 16
+
+    8 izraz: izraz ILI . izraz
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 23
+
+
+State 17
+
+    6 izraz: izraz IMPL . izraz
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 24
+
+
+State 18
+
+    5 izraz: izraz EKV . izraz
+
+    TRUE_ID   shift, and go to state 1
+    FALSE_ID  shift, and go to state 2
+    ID        shift, and go to state 10
+    '!'       shift, and go to state 4
+    '('       shift, and go to state 5
+
+    izraz  go to state 25
+
+
+State 19
+
+    3 Naredba: izraz '\n' .
+
+    $default  reduce using rule 3 (Naredba)
+
+
+State 20
+
+    4 Naredba: ID DOD izraz . '\n'
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+
+    III   shift, and go to state 15
+    ILI   shift, and go to state 16
+    IMPL  shift, and go to state 17
+    EKV   shift, and go to state 18
+    '\n'  shift, and go to state 26
+
+
+State 21
+
+   10 izraz: '(' izraz ')' .
+
+    $default  reduce using rule 10 (izraz)
+
+
+State 22
+
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    7      | izraz III izraz .
+    8      | izraz . ILI izraz
+
+    ILI   shift, and go to state 16
+    IMPL  shift, and go to state 17
+    EKV   shift, and go to state 18
+
+    $default  reduce using rule 7 (izraz)
+
+
+State 23
+
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+    8      | izraz ILI izraz .
+
+    IMPL  shift, and go to state 17
+    EKV   shift, and go to state 18
+
+    $default  reduce using rule 8 (izraz)
+
+
+State 24
+
+    5 izraz: izraz . EKV izraz
+    6      | izraz . IMPL izraz
+    6      | izraz IMPL izraz .
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+
+    EKV  shift, and go to state 18
+
+    $default  reduce using rule 6 (izraz)
+
+
+State 25
+
+    5 izraz: izraz . EKV izraz
+    5      | izraz EKV izraz .
+    6      | izraz . IMPL izraz
+    7      | izraz . III izraz
+    8      | izraz . ILI izraz
+
+    $default  reduce using rule 5 (izraz)
+
+
+State 26
+
+    4 Naredba: ID DOD izraz '\n' .
+
+    $default  reduce using rule 4 (Naredba)

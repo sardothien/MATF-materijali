@@ -1,0 +1,5 @@
+p := True
+q := False
+p /\ q \/ s
+p \/ s \/ q
+!(q => s)

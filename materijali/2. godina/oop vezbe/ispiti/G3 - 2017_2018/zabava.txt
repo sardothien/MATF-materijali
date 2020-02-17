@@ -1,0 +1,7 @@
+f, Forrest Gump, 142, 1994, Tom Hanks, 8, 9, 7, 10, 10, 9
+p, Beat It, 259, Michael Jackson, pop, 9, 9, 10, 10
+f, The Godfather, 175, 1972, Marlon Brando, 10, 10, 6, 8, 7, 9, 9
+f, Cast Away, 143, 2000, Tom Hanks, 7, 6, 7, 8, 9, 10
+p, Thriller, 357, Michael Jackson, disco; funk, 9, 9, 10, 8, 10
+p, Rolling in the Deep, 231, Adele, pop; soul; blues, 6, 7, 5, 10, 9, 9
+f, The Shawshank Redemption, 142, 1994, Tom Robbins, 9, 9, 8, 10, 7, 8, 10

@@ -1,0 +1,78 @@
+1. Napisati regularni izraz pomocu egrep koji izdvaja sve brojeve iz fajla.
+   - egrep '[0-9]+' fajl.txt
+
+2. Konjukcija dva uslova za reuglatni izraz sa grep-om.
+   - egrep '[0-9]+' 2.txt | grep '[a-z]+' | grep '.'
+
+3. Izlistavanje fajlova cija je ekstenzija html.
+   - ls | egrep '.*\.html'
+
+4. Zamena naziva fajla iz mi17081.txt u 081/2017.txt.
+   - ls | egrep 'm[rinvml][0-9]{5}\.txt' | sed 's/m[rinvml]\([0-9]\{2\}\)\([0-9]\{3\}\)/\2\/20\1/'
+
+5. Zamena reci u fajlu.
+   - sed 's/Mina/Anim' fajl.txt      -- zamenjuje prvo pojavljivanje reci u svakoj liniji
+   - sed 's/Mina/Anim/2' fajl.txt    -- zamenjuje drugo pojavljivanje reci u svakoj liniji
+   - sed 's/Mina/Anim/g' fajl.txt    -- zamenjuje sva pojavljivanja reci u svakoj liniji
+   - sed 's/[A-Z]ina/Anim/' fajl.txt
+   - sed '1 s/Mina/Anim/' fajl.txt   -- zamenjuje prvo pojavljivanje reci samo u prvoj liniji
+   - sed -n 's/Mina/Anim/p' fajl.txt -- ispisuje samo linije u kojima ima izmena (duplo ispisuje)
+
+6. Ograditi sva velika slova zagradama.
+   - echo "Danas je Lep DaN" | sed 's/\([A-Z]\)/\(\1\)/g'
+
+7. Izbrisati liniju fajla.
+   - sed '1d' fajl.txt       -- brise prvu liniju
+   - sed '$d' fajl.txt       -- brise poslednju liniju
+   - sed '/Mina/d' fajl.txt  -- brise sve linije u kojima postoji rec Mina
+
+8. Izlistavanje direktorijuma/regularnih fajlova
+   - ls -l | grep "^d"
+   - ls -R | grep "^d"
+   - ls -l | grep "^-"
+
+9. Pronaci rec u fajlu.
+   - fgrep 'Mina' fajl.txt
+
+10. Izdvojiti studente iz datoteke nastava.html
+   - cat nastava.html \
+     | egrep '<td>[A-Z a-z]*</td><td>[0-9/]*</td>' \
+     | sed -r 's/[ \t]*<td>([A-Za-z ]*)<\/td><td>([0-9]{1,3})\/[0-9]{2}([0-9]{2})<\/td>.*/\1 mi\3\2 /' \
+     | sort \
+     | egrep -n ".*" \
+     | sed -r 's/(.*):(.*)/\1. \2/' > studenti.txt
+  
+   - egrep '<td>[a-zA-Z]+\s*[a-zA-Z]+</td><td>[0-9]{1,3}/[0-9]{4}</td>' nastava*.html -h -o \
+     | sed -r 's/<td>//g' \
+     | sed -r 's/<\/td>/ /g' \
+     | sed -r 's/([a-zA-Z]+) ([a-zA-Z]+) /\2 \1, /' \
+     | sed -r 's/([0-9]+)\/[0-9]{2}([0-9]{2})/mi\2\1/' \
+     | sort \
+     | egrep '.*' -n \
+     | sed -r 's/:/. /'
+
+11. Pretrazivanje vise fajlova isto struktuiranih.
+   - egrep -h  '<td>[A-Z a-z]*</td><td>[0-9/]*</td>' *.html \
+     | sed -r 's/[ \t]*<td>([A-Za-z ]*)<\/td><td>([0-9]{1,3})\/[0-9]{2}([0-9]{2})<\/td>.*/\1 mi\3\2 /' \
+     |sort \
+     |egrep -n ".*" \
+     | sed -r 's/(.*):(.*)/\1. \2/' >studenti.txt
+
+12. Iz html datoteka nastava.html i nastava1.html izvojiti podatke o studentima koji su upisani od 2000. godine
+    do danas i broj indeksa im je u intervalu [1, 350] bez vodecih nula. Za svakog studenta kreirati alas nalog.
+    Predpostaviti da su svi sa I smera. Izdvojiti ime, prezime i alas nalog (odvojen karakterom ','). Spisak
+    urediti rastuce po imenu i numerisati i upisati u datoteku spisak.txt.
+   - egrep '<td>[a-zA-Z]+\s*[a-zA-Z]+</td><td>[0-9]{1,3}/[0-9]{4}</td>' nastava*.html -h \
+     | sed -r 's~\s*<td>([ A-Za-z]+)</td>\s*<td>\s*([0-9]{1,3})/([0-9]{4})\s*</td>\s*~\1 \2 \3~' \
+     | sed -r 's/([0-9]{3}) [0-9]{2}([0-9]{2})/, mi\2\1/'   \
+     | sed -r 's/([0-9]{2}) [0-9]{2}([0-9]{2})/, mi\20\1/'  \
+     | sed -r 's/([0-9]) [0-9]{2}([0-9]{2})/, mi\200\1/' \
+     | sed -r 's/([A-Za-z]+)\s+([A-Za-z]+)\s+/\2 \1/' \
+     | sort \
+     | egrep -n ',' \
+     | sed -r 's/:/./' \ > spisak.txt
+
+13. Ispisuje sve linije koje sadrze rec HP. 
+   - egrep -n 'HP' fajl.txt 
+   - egrep -n 'HP' fajl.txt | wc -l    -- broj linija koje sadrze rec HP
+   - egrep -c 'HP' fajl.txt            -- broj linija koje sadrze rec HP

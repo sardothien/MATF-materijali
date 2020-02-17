@@ -1,0 +1,27 @@
+type tablica
+
+%tablica.m
+%
+%Test npr.: y = vredfunk(115)
+%
+X = [100,121,144];
+Y = [10,11,12];
+
+tablicaCheck()
+
+ans =
+
+     1
+
+y = vredfunk(115)
+Tablica podeljenih razlika u formatu: X,Y,podeljene razlike
+  100.0000   10.0000    0.0476   -0.0001
+  121.0000   11.0000    0.0435         0
+  144.0000   12.0000         0         0
+
+
+y =
+
+   10.7228
+
+diary off
