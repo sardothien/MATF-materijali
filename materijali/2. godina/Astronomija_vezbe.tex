@@ -1,0 +1,1419 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{ wasysym }
+\usepackage{blindtext}
+\usepackage{tcolorbox}
+
+
+\title{Osnove kvantnih računara}
+\author{}
+\date{}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\section{Čas 1}
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    $\sun$ Brzina svetlosti: c = $\nu$\cdot$\lambda$, $\nu$ - frekvencija, $\lambda$ - talasna dužina
+\vspace{0.1cm}\newline
+$\sun$Apsolutni indeks prelamanja: $n_a = \frac{C_0}{C_s}$, $c_0$ - brzina svetlosti u vakuumu, \newline \hspace*{0.4cm}$c_s$ - brzina svetlosti u datoj sredini
+\vspace{0.1cm}\newline
+$\sun$Relativni indeks prelamanja: $n_r = \frac{C_{s1}}{C_{s2}}$, $c_{s1}$ - brzina svetlosti u datoj sredini \hspace*{0.4cm}1, $c_{s2}$ - brzina svetlosti u datoj sredini 2
+\vspace{0.1cm}\newline
+$\sun$ Izračunavanje gubitaka: 
+\vspace{0.1cm}\newline \hspace*{0.5cm} $Loss = \frac{P_{out}}{P_{in}}$, $P_{out}$ - snaga na izlazu, $P_{in}$ - snaga na ulazu
+\vspace{0.1cm}\newline \hspace*{0.5cm} $Loss_{dB} = 10log\frac{P_{out}}{P_{in}}$
+\vspace{0.1cm}\newline
+$\sun$ $M_n = \frac{V^2}{2}$ broj modova, V$^2$ - normalizovana frekvencija
+\vspace{0.1cm}\newline \hspace*{0.4cm}$V = [\frac{2\pi a}{\lambda}]\cdot N.A.$, $a$ - radijus jezgra vlakna, N.A. - numerički otvor, \vspace{0.1cm}\newline\hspace*{0.4cm}$\lambda$ - operativna talasna dužina; za singlemode V $\leq$ 2,405
+\vspace{0.1cm}\newline
+$\sun$ $FERD = \frac{TDP}{P_{CPU}}$ - Free Energy Rate Density, TDP - The Termal Design Power
+\vspace{0.05cm}\newline
+$\sun$ $h = 6,626*10^{-34}Js$ - Plankova konstanta
+\vspace{0.05cm}\newline
+$\sun$ Q = $\frac{TDP}{h}$ - ukupan broj kvanta akcije fotona po sekundi
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}  
+
+
+
+\vspace{0.6cm}\newline
+\textbf{1.} Fotonu je potrebno 500 sekundi da sa površine Sunca doputuje do Zemlje, pri čemu pređe rastojanje od skoro 150 000 000km (1AU). Koliko vremena je potrebno fotonu da stigne do Marsa? A do Saturna? Rastojanje od Sunca do Marsa iznosi 227 900 000km, a do Saturna 1 429 000 000km. 
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+$c = \frac{s}{t}$
+\vspace{0.2cm} \newline
+\hspace*{0.4cm}$300\ 000 = \frac{227\ 900\ 000}{t_M}$ \Rightarrow t$_M$ = 760s
+\vspace{0.2cm} \newline
+\hspace*{0.4cm}$300\ 000 = \frac{1\ 429\ 000\ 000}{t_S}$ \Rightarrow t$_S$ = 4763s
+\vspace*{0.4cm}\newline
+\textbf{2.} Brzina prostiranja svetlosti u glicerinu je 204 000 $\frac{km}{s}$, a brzina prostiranja svetlosti u dijamantu je 125 000$\frac{km}{s}$. Koliki je indeks prelamanja svetlosti dijamanta u odnosu na glicerin?
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+n$_r$ = $\frac{C_G}{C_D} = \frac{204\ 000\frac{km}{s}}{125\ 000\frac{km}{s}} = 1,632$ 
+\vspace{3cm}\newline
+\textbf{3.} Relativni indeks prelamanja za staklo u odnosu na alkohol je 1,1. Ako je apsolutni indeks prelamanja alkohola 1,36, kolika je brzina prostiranja svetlosti u staklu? 
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+$n_A = \frac{C_0}{C_A} \Rightarrow c_A = \frac{C_0}{n_A} = \frac{300\ 000\frac{km}{s}}{1,36} = 220\ 588\frac{km}{s}$
+\vspace{0.2cm} \newline
+\hspace*{0.5cm}$n_r = \frac{C_A}{C_S} \Rightarrow c_S = \frac{C_A}{n_r} = \frac{220\ 588\frac{km}{s}}{1,1} = 200\ 534.5\frac{km}{s}$
+\vspace*{0.4cm}\newline
+\textbf{4.} Optički sistem čini 10km vlakna sa gubitkom od -2,5dB/km. Kolika je očekivana izlazna snaga ako je
+ulazna snaga 400mW? 
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+$Loss_{dB} = 10km*(-2,5db/km) = -25dB$
+\vspace{0.2cm} \newline
+\hspace*{0.5cm}$Loss_{dB} = 10log\frac{P_{out}}{P_{in}} \Rightarrow 10^{\frac{loss_{dB}}{10}} = \frac{P_{out}}{P_{in}} \Rightarrow 
+P_{out} = P_{in}*10^{\frac{loss_{dB}}{10}} = \vspace{0.05cm}\newline \hspace*{1.65cm} = 400mW*10^{-2,5dB} = 1,265mW$
+\vspace*{0.4cm}\newline
+\textbf{5.} Koji je maksimalni prečnik jezgra za vlakno koje radi u singlemodu na talasnoj dužini 1550nm,
+ako je N.A. 0,12?
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+$V_{max} = 2,405$ (za singlemod)
+\vspace{0.2cm} \newline
+\hspace*{0.5cm}$V = \frac{2\pi a}{\lambda}N.A. \Rightarrow a = \frac{V\lambda}{2\pi N.A.} = \frac{2,405*1550nm}{2*3,14*0,12} = 4,95\mu m$ (poluprečnik)
+\vspace{0.2cm} \newline
+\hspace*{0.5cm}\Rightarrow 2*4,9$\mu m$ = 9,9$\mu m$ (prečnik)
+\vspace*{0.4cm}\newline
+\textbf{6.} a) Core i7-880 (2010), P$_{CPU}$ = 296$mm^2$, TDP = 95W\vspace{0.2cm} \newline
+\hspace*{1cm}\Rightarrow Q = \frac{95W}{6,626*10^{-34}Js} = 14,3*10$^{34}$, \hspace*{0.4cm} FERD = $\frac{95W}{269mm^2}$ = 0,32
+\vspace{0.2cm}\newline 
+\hspace*{0.35cm} b) Core i7-990x (2011), P$_{CPU}$ = 236$mm^2$, TDP = 130W\vspace{0.2cm} \newline
+\hspace*{1cm}\Rightarrow Q = \frac{130W}{6,626*10^{-34}Js} = 19,6*10$^{34}$, \hspace*{0.4cm} FERD = $\frac{130W}{239mm^2}$ = 0,54
+\vspace{0.2cm}\newline 
+\hspace*{0.35cm} c) Core i7-3970x (2012), P$_{CPU}$ = 435$mm^2$, TDP = 150W\vspace{0.2cm} \newline
+\hspace*{1cm}\Rightarrow Q = \frac{150W}{6,626*10^{-34}Js} = 22,6*10$^{34}$, \hspace*{0.4cm} FERD = $\frac{150W}{435mm^2}$ = 0,34
+\vspace{0.2cm}\newline 
+\hspace*{0.35cm} d) Core i7-4960x (2013), P$_{CPU}$ = 256,5$mm^2$, TDP = 150W\vspace{0.2cm} \newline
+\hspace*{1cm}\Rightarrow Q = \frac{150W}{6,626*10^{-34}Js} = 22,6*10$^{34}$, \hspace*{0.4cm} FERD = $\frac{150W}{256,5mm^2}$ = 0,58
+\vspace{0.2cm}\newline 
+\hspace*{0.35cm} e) Core i7-5960x (2014), P$_{CPU}$ = 356$mm^2$, TDP = 140W\vspace{0.2cm} \newline
+\hspace*{1cm}\Rightarrow Q = \frac{140W}{6,626*10^{-34}Js} = 21,1*10$^{34}$, \hspace*{0.4cm} FERD = $\frac{140W}{256mm^2}$ = 0,39
+
+\newpage
+
+\section{Čas 2}
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+$\sun$ Unutrašnji proizvod: 
+$u\cdot V = u_1\cdot \Bar{V_1} + u_2\cdot \Bar{V_2} +...+ u_n\cdot \Bar{V_n}$
+\vspace{0.1cm}\newline
+$\sun$ Euklidska norma: $||u|| = (u\cdot u)^{1/2}$
+\vspace{0.1cm}\newline
+$\sun$ Konjugovani transponat je adjungovana matrica, $A^* = \Bar{A}^T$
+\vspace{0.1cm}\newline
+$\sun$ Kompleksna matrica je unitarna ako važi: $A^{-1} = A^T$
+\vspace{0.1cm}\newline
+$\sun$ BRA i KET su nova obeležja vektora koja je uveo Dirac i koja se odnose na kompleksne vektore. Ako u C$^n$ definišemo $|a>$ = ($\alpha_1$, $\alpha_2$,..., $\alpha_n$), onda je \newline
+$<a|$ = ($\alpha_1^*$, $\alpha_2^*$,..., $\alpha_n^*$) konjugovano kompleksni vektor.
+\vspace{0.1cm}\newline
+$\sun$ a i b su ortogonalni ako $<a|b> = 0$
+\vspace{0.1cm}\newline
+$\sun$ a je normalizovan vektor ako $<a|a> = 1$
+\vspace{0.1cm}\newline
+$\sun$ Norma vektora $|a>$ i $|b>$: $||\alpha a + \beta b|| = \alpha a + \beta b$ 
+\vspace{0.1cm}\newline
+$\sun$ Udaljenost vektora $|a>$ i $|b>$: \newline
+\hspace*{0.8cm}$d(a, b) = ||a-b|| = \sqrt{<a-b|a-b>} = \sqrt{\sum_{i=1}^n |\alpha_i - \beta_i|^2}$
+\vspace{0.1cm}\newline
+$\sun$ Kjubit: $\alpha|0> + \beta|1>$, $|\alpha|^2 + |\beta|^2 = 1$, $|0>$ = \begin{bmatrix}
+    1\\
+    0
+\end{bmatrix}, $|1>$ = \begin{bmatrix}
+    0\\
+    1
+\end{bmatrix}
+
+
+\end{tcolorbox}  
+
+
+
+\vspace{0.6cm}\newline
+\textbf{1.} Neka su $\vec{V} = (1+2i, 3-i), \vec{U} = (-2+i, 4) $ kompleksni vektori. Izračunati: 
+1) $\vec{V}$ + $\vec{U}$ \newline
+2) $(2+i) \cdot \vec{V}$ \newline
+3) $3 \cdot \vec{V} - (5-i)\cdot \vec{U}$
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+1) $\vec{V} + \vec{U} = (1+2i,\ 3-i) + (-2+i,\ 4) = (-1+3i,\ 7-i) = 
+\begin{bmatrix}
+    -1+3i \\
+    7-i \\
+\end{bmatrix}
+$
+\newline
+\hspace*{0.5cm}2) $(2+i)\vec{V} = (2+i)(1+2i,\ 3-i) = (2+4i+i+2i^2,\ 6-2i+3i-i^2) = \newline \hspace*{0.8cm}(5i,\ 7+i) = 
+\begin{bmatrix}
+    5i \\
+    7+i \\
+\end{bmatrix}$
+\newline
+\hspace*{0.5cm}3) $3\vec{V} - (5-i)\vec{U} = 3(1+2i,\ 3-i) - (5-i)(-2+i,\ 4)= \newline \hspace*{0.8cm}(3+6i,\ 9-3i) - (-10+5i+2i-i^2,\ 20-4i) = (3+6i,\ 9-3i) - \newline \hspace*{0.8cm}(-9+7i,\ 20-4i) = (12-i,\ -11+i) = 
+\begin{bmatrix}
+    12-i \\
+    -11+i \\
+\end{bmatrix}
+$
+\vspace*{0.4cm}\newline
+\textbf{2.} Pokazati da je $ S = {(i, 0, 0), (i, i, 0), (0, 0, i)}$ baza za C$^3$.
+\vspace{0.3cm}\newline
+Rešenje: \newline
+
+$c_1\vec{V_1} + c_2\vec{V_2} + c_3\vec{V_3} = (0, 0, 0)$, 
+$(c_1i, 0, 0) + (c_2i, c_2i, 0) + (0, 0, c_3i) = (0, 0, 0)$
+\vspace{0.2cm}\newline
+\hspace*{0.6cm}$c_1i + c_2i = 0$ \Rightarrow $c_1 = 0$, $c_2i = 0$ \Rightarrow $c_2 = 0$, $c_3i = 0$ \Rightarrow $c_3 = 0$
+\newline
+\hspace*{0.6cm}\Rightarrow \vec{V_1}, \vec{V_2}, \vec{V_3}\ $su linearno nezavisni$
+\vspace{0.6cm}\newline
+\textbf{3.}\ $Neka su$\ \vec{U} = (2+i, 0, 4-5i), \vec{V} = (1+i, 2+i, 0)\ $kompleksni vektori. Izračunati unutrašnji proizvod.$
+\vspace{0.4cm}\newline
+$Rešenje:$ \newline
+
+$\vec{U} \cdot \vec{V} = (2+i, 0, 4-5i)\cdot(1-i, 2-i, 0) 
+= (2+i)(1-i) + 0(2-i) + (4-5i)0 = \newline \hspace*{1.3cm}= 2-2i+i-i^2 = 3-i$
+\vspace{0.4cm}\newline
+\textbf{4.} Odrediti konjugovani transponat kompleksne matrice
+A = \begin{bmatrix}
+    3+7i & 0 \\
+    2i & 4-i \\
+\end{bmatrix}
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+$A^*$ = $\Bar{A}^T$ = $\begin{bmatrix}
+    3-7i & 0 \\
+    -2i & 4+i \\
+\end{bmatrix}^T$ = \begin{bmatrix}
+                         3-7i & -2i \\
+                          0 & 4+i \\
+                    \end{bmatrix}
+\vspace*{0.4cm}\newline
+\textbf{5.} Proveriti da li je kompleksna matrica 
+A = $\frac{1}{2}$ \begin{bmatrix}
+    1+i & 1-i \\
+    1-i & 1+i \\
+\end{bmatrix} unitarna.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+\textit{A} \cdot A$^*$ = $\frac{1}{2}$ \begin{bmatrix}
+    1+i & 1-i \\
+    1-i & 1+i \\
+\end{bmatrix} $\cdot$ $\frac{1}{2}$ $\begin{bmatrix}
+    1-i & 1+i \\
+    1+i & 1-i \\
+\end{bmatrix}^T$ = $\frac{1}{2}$ \begin{bmatrix}
+    1+i & 1-i \\
+    1-i & 1+i \\
+\end{bmatrix} $\cdot$ $\frac{1}{2}$ \begin{bmatrix}
+    1-i & 1+i \\
+    1+i & 1-i \\
+\end{bmatrix} \newline \hspace*{1.5cm}= $\frac{1}{4}$ \begin{bmatrix}
+    4 & 0 \\
+    0 & 4 \\
+\end{bmatrix} = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+\end{bmatrix} = I$_2$, jeste unitarna
+\vspace*{0.4cm}\newline
+\textbf{6.} Proveriti da li je kompleksna matrica 
+A = \begin{bmatrix}
+    \frac{1}{2} & \frac{1+i}{2} & \frac{-1}{2} \\\\
+    \frac{-i}{\sqrt{3}} & \frac{i}{\sqrt{3}} & \frac{1}{\sqrt{3}} \\\\
+    \frac{5i}{2\sqrt{15}} & \frac{3+i}{2\sqrt{15}} & \frac{4+3i}{2\sqrt{15}}\\
+\end{bmatrix} unitarna.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+$r_1 = (\frac{1}{2}, \frac{1+i}{2}, \frac{-1}{2}) \Rightarrow 
+||r_1|| = \sqrt{\frac{1}{2}\frac{1}{2} + \frac{1+i}{2}\frac{1-i}{2} +
+\frac{-1}{2}\frac{-1}{2}} = \sqrt{\frac{1}{4} + \frac{1}{2} + \frac{1}{4}} = 1$
+\newline
+\hspace*{0.5cm}$r_2 = (\frac{-i}{\sqrt{3}}, \frac{i}{\sqrt{3}}, \frac{1}{\sqrt{3}}) \Rightarrow 
+||r_2|| = \sqrt{\frac{-i}{\sqrt{3}}\frac{i}{\sqrt{3}} + \frac{i}{\sqrt{3}}\frac{-i}{\sqrt{3}} +
+\frac{1}{\sqrt{3}}\frac{1}{\sqrt{3}}} = 1$
+\newline
+\hspace*{0.5cm}$r_3 = (\frac{5i}{2\sqrt{15}}, \frac{3+i}{2\sqrt{15}}, \frac{4+3i}{2\sqrt{15}}) \Rightarrow 
+||r_3|| = \sqrt{\frac{5i}{2\sqrt{15}}\frac{-5i}{2\sqrt{15}} + \frac{3+i}{2\sqrt{15}}\frac{3-i}{2\sqrt{15}} +
+\frac{4+3i}{2\sqrt{15}}\frac{4-3i}{2\sqrt{15}}} = 1$
+\vspace{0.1cm}\newline
+\hspace*{0.5cm}\Rightarrow $r_1, r_2, r_3$ su jedinični vektori.
+\vspace{0.2cm}\newline
+\hspace*{0.5cm}$r_1 \cdot r_2 = \frac{1}{2}\frac{i}{\sqrt{3}} + \frac{1+i}{2}\frac{-i}{\sqrt{3}} + \frac{-1}{2}\frac{1}{\sqrt{3}} =
+\frac{i}{2\sqrt{3}} + \frac{-i+1}{2\sqrt{3}} - \frac{1}{2\sqrt{3}} = 0$
+\newline 
+\hspace*{0.5cm}$r_2 \cdot r_3 = \frac{-i}{\sqrt{3}}\frac{-5i}{2\sqrt{15}} + \frac{i}{\sqrt{3}}\frac{3-i}{2\sqrt{15}} + \frac{1}{\sqrt{3}}\frac{4-3i}{2\sqrt{15}} =
+\frac{-5}{6\sqrt{5}} + \frac{3i+1}{6\sqrt{5}} + \frac{4-3i}{6\sqrt{5}} = 0$
+\newline 
+\hspace*{0.5cm}$r_1 \cdot r_3 = \frac{1}{2}\frac{-5i}{2\sqrt{15}} + \frac{1+i}{2}\frac{3-i}{2\sqrt{15}} + \frac{-1}{2}\frac{4-3i}{2\sqrt{15}} =
+\frac{-5i}{4\sqrt{15}} + \frac{2i+4}{4\sqrt{15}} + \frac{3i-4}{4\sqrt{15}} = 0$
+\vspace{0.2cm}\newline
+\hspace*{0.5cm} \Rightarrow $matrica\ je\ unitarna$.
+\newline
+\textbf{7.}\ $Proveriti da li je kompleksna matrica A hermitska tj. A = A^*$.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+a) A = \begin{bmatrix}
+    1 & 3-i \\
+    3+i & i \\
+\end{bmatrix} 
+\newline 
+\hspace*{0.9cm}$A^*$ = $\begin{bmatrix}
+    1 & 3+i \\
+    3-i & -i \\
+\end{bmatrix}^T$ = \begin{bmatrix}
+    1 & 3-i \\
+    3+i & -i \\
+\end{bmatrix}  nije
+\vspace{0.2cm}\newline \hspace*{0.35cm} b) A = \begin{bmatrix}
+    0 & 3-2i \\
+    -3+i & 1 \\
+\end{bmatrix} 
+\newline 
+\hspace*{0.8cm}$A^*$ = $\begin{bmatrix}
+    0 & 3+2i \\
+    -3-i & 1 \\
+\end{bmatrix}^T$ = \begin{bmatrix}
+    0 & -3-i \\
+    3+2i & 1 \\
+\end{bmatrix}  nije
+\vspace{0.4cm}
+\vspace{0.2cm}\newline \hspace*{0.35cm}c) A = \begin{bmatrix}
+    3 & 2-i & -3i \\
+    2+i & 0 & 1-i \\
+    3i & 1+i & 0 \\
+\end{bmatrix} 
+\newline 
+\hspace*{0.8cm}$A^*$ = $\begin{bmatrix}
+    3 & 2+i & 3i \\
+    2-i & 0 & 1+i \\
+    -3i & 1-i & 0 \\
+\end{bmatrix}^T$ = \begin{bmatrix}
+     3 & 2-i & -3i \\
+    2+i & 0 & 1-i \\
+    3i & 1+i & 0 \\
+\end{bmatrix}  jeste
+\vspace{0.4cm}
+\vspace{0.2cm}\newline \hspace*{0.35cm}d) A = \begin{bmatrix}
+    -1 & 2 & 3 \\
+    2 & 0 & -1 \\
+    3 & -1 & 4 \\
+\end{bmatrix} 
+\newline 
+\hspace*{0.8cm}$A^*$ = $\begin{bmatrix}
+    -1 & 2 & 3 \\
+    2 & 0 & -1 \\
+    3 & -1 & 4 \\
+\end{bmatrix}^T$ = \begin{bmatrix}
+    -1 & 2 & 3 \\
+    2 & 0 & -1 \\
+    3 & -1 & 4 \\
+\end{bmatrix}  jeste
+\vspace*{0.4cm}\newline
+\textbf{8.} Izračunati unutrašnji proizvod 2 kompleksna vektora $|\phi> = \begin{bmatrix}
+    2\\
+    6i\\
+\end{bmatrix}, \newline |\psi> = \begin{bmatrix}
+    3\\
+    4\\
+\end{bmatrix}$.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+
+ $<\phi|\psi> = \begin{bmatrix}
+     2 & -6i\\
+ \end{bmatrix}\cdot\begin{bmatrix}
+     3\\
+     4\\
+ \end{bmatrix} = 6 - 24i$ 
+\vspace*{0.4cm}\newline
+\textbf{9.} Koji od datih kompleksnih vektora ispunjava uslov za kjubit stanje?
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+a) $|0>$
+\newline \hspace*{0.4cm}$\alpha = 1, \beta = 0 \Rightarrow |\alpha|^2 + |\beta|^2 = 1 + 0 = 1$, jeste kjubit stanje
+\vspace{0.9cm}\newline
+b) $|0> + |1>$
+\newline \hspace*{0.4cm}$\alpha = 1, \beta = 1 \Rightarrow |\alpha|^2 + |\beta|^2 = 1 + 1 = 2$, nije kjubit stanje
+\vspace{0.4cm}\newline
+c) $\frac{1}{2}|0> + \frac{1}{2}|1>$
+\newline \hspace*{0.4cm}$\alpha = \frac{1}{2}, \beta = \frac{1}{2} \Rightarrow |\alpha|^2 + |\beta|^2 = \frac{1}{4} + \frac{1}{4} = \frac{1}{2}$, nije kjubit stanje
+\vspace{0.4cm}\newline
+d) $\frac{3}{5}|0> + \frac{4}{5}|1>$
+\newline \hspace*{0.4cm}$\alpha = \frac{3}{5}, \beta = \frac{4}{5} \Rightarrow |\alpha|^2 + |\beta|^2 = \frac{9}{25} + \frac{16}{25} = 1$, jeste kjubit stanje
+\vspace{0.4cm}\newline
+e) $\frac{1}{\sqrt{2}}|0> - \frac{1}{\sqrt{2}}|1>$
+\newline \hspace*{0.4cm}$\alpha = \frac{1}{\sqrt{2}}, \beta = -\frac{1}{\sqrt{2}} \Rightarrow |\alpha|^2 + |\beta|^2 = \frac{1}{2} + \frac{1}{2} = 1$, jeste kjubit stanje
+\vspace*{0.4cm}\newline
+\textbf{10.} Predstaviti data stanja kjubita u vektorskoj formi.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+a) $|\psi> = \frac{1}{\sqrt{2}}(|0> + |1>)$
+\newline \hspace*{0.5cm}$|\psi> = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 \\
+    0 \\    
+\end{bmatrix} + \frac{1}{\sqrt{2}}\begin{bmatrix}
+    0 \\
+    1 \\
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 \\
+    1 \\
+\end{bmatrix}$
+\vspace{0.5cm}\newline 
+b) $|\psi> = \frac{1}{\sqrt{5}}|0> + \frac{2}{\sqrt{5}}|1>$
+\newline \hspace*{0.5cm}$|\psi> = \frac{1}{\sqrt{5}}\begin{bmatrix}
+    1 \\
+    0 \\    
+\end{bmatrix} + \frac{2}{\sqrt{5}}\begin{bmatrix}
+    0 \\
+    1 \\
+\end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix}
+    1 \\
+    2 \\
+\end{bmatrix}$
+\vspace{0.5cm}\newline 
+c) $|\psi> = \frac{1}{3}|0> + \frac{2\sqrt{2}}{3}|1>$
+\newline \hspace*{0.5cm}$|\psi> = \frac{1}{3}\begin{bmatrix}
+    1 \\
+    0 \\    
+\end{bmatrix} + \frac{2\sqrt{2}}{3}\begin{bmatrix}
+    0 \\
+    1 \\
+\end{bmatrix} = \frac{1}{3}\begin{bmatrix}
+    1 \\
+    2\sqrt{2} \\
+\end{bmatrix}$
+\vspace*{0.4cm}\newline
+\textbf{11.} Predstaviti data stanja kjubita u formi sume.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+a) $\frac{1}{\sqrt{2}}\begin{bmatrix}
+    i\\
+    1\\
+\end{bmatrix} = \frac{1}{\sqrt{2}}(i\begin{bmatrix}
+    1\\
+    0\\
+\end{bmatrix} + 1\begin{bmatrix}
+    0\\
+    1\\
+\end{bmatrix}) = \frac{i}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1>$
+\vspace{0.3cm} \newline
+b) $\frac{1}{\sqrt{3}}\begin{bmatrix}
+    -1\\
+    -\sqrt{2}\\
+\end{bmatrix} = \frac{1}{\sqrt{3}}(-1\begin{bmatrix}
+    1\\
+    0\\
+\end{bmatrix} - \sqrt{2}\begin{bmatrix}
+    0\\
+    1\\
+\end{bmatrix}) = \frac{-1}{\sqrt{3}}|0> - \frac{\sqrt{2}}{\sqrt{3}}|1>$
+\vspace{0.3cm} \newline
+c) $\begin{bmatrix}
+    0\\
+    1\\
+\end{bmatrix} = |1>$
+\vspace*{0.4cm}\newline
+\textbf{12.} Izračunati BRA stanje kompleksnih vektora ako je poznato KET stanje.
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+a) $|\psi> = \frac{2}{\sqrt{7}}|0> + i\sqrt{\frac{3}{7}}|1>$
+\newline \hspace*{0.5cm}$<\psi| = \frac{2}{\sqrt{7}}<0| - i\sqrt{\frac{3}{7}}<1| = (\frac{2}{\sqrt{7}}, -i\sqrt{\frac{3}{7}})$
+\vspace{0.2cm}\newline
+b) $|\psi> = \frac{1+i}{\sqrt{3}}|0> + \frac{i}{3}|1>$
+\newline \hspace*{0.5cm}$<\psi| = \frac{1-i}{\sqrt{3}}<0| - \frac{i}{\sqrt{3}}<1| = (\frac{1-i}{\sqrt{3}}, -\frac{i}{3})$
+\vspace{0.2cm}\newline
+c) $|\psi> =-i|0>$
+\newline \hspace*{0.5cm}$<\psi| = i<0| = (i, 0)$
+\vspace*{0.4cm}\newline
+\textbf{13.} Od data 3 kjubita, koji parovi su ortogonalni? $|\psi_1> = \frac{1}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1> \newline \hspace*{1.1cm}|\psi_2> = \frac{1}{\sqrt{2}}|0> - \frac{1}{\sqrt{2}}|1>,\ |\psi_3> = \frac{3i}{\sqrt{5}}|0> + \frac{1}{\sqrt{5}}|1>.$
+\vspace*{0.4cm}\newline
+Rešenje: \newline
+$<\psi_1|\psi_1> = [\frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}]\begin{bmatrix}
+    \frac{1}{\sqrt{2}}\\
+    \frac{1}{\sqrt{2}}
+\end{bmatrix} = 
+\frac{1}{2} + \frac{1}{2} = 1 $ nisu ortogonalni
+\vspace{0.3cm}\newline
+$<\psi_1|\psi_2> = [\frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}]\begin{bmatrix}
+    \frac{1}{\sqrt{2}}\\
+    -\frac{1}{\sqrt{2}}
+\end{bmatrix} = 
+\frac{1}{2} - \frac{1}{2} = 0 $ jesu ortogonalni
+\vspace{0.3cm}\newline
+$<\psi_2|\psi_2> = [\frac{1}{\sqrt{2}} \frac{-1}{\sqrt{2}}]\begin{bmatrix}
+    \frac{1}{\sqrt{2}}\\
+    -\frac{1}{\sqrt{2}}
+\end{bmatrix} = 
+\frac{1}{2} + \frac{1}{2} = 1 $ nisu ortogonalni
+\vspace{0.3cm}\newline
+$<\psi_1|\psi_3> = [\frac{1}{\sqrt{2}} \frac{1}{\sqrt{2}}]\begin{bmatrix}
+    \frac{3i}{\sqrt{5}}\\
+    \frac{1}{\sqrt{5}}
+\end{bmatrix} = 
+\frac{3i}{\sqrt{10}} + \frac{1}{\sqrt{10}} \neq 0 $ nisu ortogonalni
+\vspace{0.3cm}\newline
+$<\psi_2|\psi_3> = [\frac{1}{\sqrt{2}} \frac{-1}{\sqrt{2}}]\begin{bmatrix}
+    \frac{3i}{\sqrt{5}}\\
+    \frac{1}{\sqrt{5}}
+\end{bmatrix} = 
+\frac{3i}{\sqrt{10}} - \frac{1}{\sqrt{10}} \neq 0 $ nisu ortogonalni
+\vspace{0.3cm}\newline
+$<\psi_3|\psi_3> = [\frac{-3i}{\sqrt{5}} \frac{1}{\sqrt{5}}]\begin{bmatrix}
+    \frac{3i}{\sqrt{5}}\\
+    \frac{1}{\sqrt{5}}
+\end{bmatrix} = 
+\frac{9}{5} + \frac{1}{5} = 2 $ nisu ortogonalni
+\vspace{0.3cm}\newline
+$|\psi_3>$ nije kjubit stanje, pa za njega nismo morali da proveravamo. 
+\newpage
+
+\section{Čas 3}
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+
+$\sun$ $|\psi> = \cos{\frac{\Theta}{2}}|0> + e^{i\gamma}\sin{\frac{\Theta}{2}}|1>$, 0\leq$\Theta$\leq$\pi$, 0\leq$\gamma$ $<2\pi$
+\vspace{0.1cm}\newline
+$\sun$ z = x + iy, $|z|^2 = (x+iy)(x-iy) = x^2 + y^2$
+\vspace{0.1cm}\newline
+$\sun$ $z = r(cos\Theta + isin\Theta)$, $e^{i\Theta} = cos\Theta + isin\Theta$ \Rightarrow $z = e^{i\Theta}$
+\vspace{0.1cm}\newline
+$\sun$ Stanje složenog sistema definiše tenzorski proizvod svih članova sistema
+\newline \textit{primer}: $|\psi_1> = a|0> + b|1>, |\psi_2> = c|0> + d|1>$
+\newline \hspace*{0.8cm}$|\psi_1> \otimes |\psi_2> = ac|00> + ad|01> + bc|10> + bd|11>$
+
+\end{tcolorbox}  
+
+
+\vspace{0.4cm}\newline
+\textbf{1}. Odrediti p(0) i p(1): $|\psi> = \frac{2-i}{\sqrt{7}}|0> - \sqrt{\frac{2}{7}}|1>$.
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+\textit{I način}:\vspace{0.2cm}\newline
+\hspace*{0.8cm} p(0) = $|\alpha|^2 = \frac{2-i}{\sqrt{7}}\frac{2+i}{\sqrt{7}} = \frac{5}{7}$, \hspace{0.4cm} p(1) =  $|\beta|^2 = \frac{2}{\sqrt{7}}\frac{2}{\sqrt{7}} = \frac{2}{7}$
+\vspace{0.3cm}\newline
+\textit{II način}:\vspace{0.2cm}\newline
+\hspace*{0.8cm}$<\psi|M_0|\psi> = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & -\frac{\sqrt{2}}{\sqrt{7}}\\
+\end{bmatrix}$\begin{bmatrix}
+    1 & 0\\
+    0 & 0\\
+\end{bmatrix}\begin{bmatrix}
+    \frac{2-i}{\sqrt{7}}\\\\
+    -\frac{\sqrt{2}}{\sqrt{7}}\\
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & -\frac{\sqrt{2}}{\sqrt{7}}\\
+\end{bmatrix}\begin{bmatrix}
+    \frac{2-i}{\sqrt{7}} \\
+    0\\
+\end{bmatrix} = $\frac{5}{7}$
+\vspace{0.2cm}\newline
+\hspace*{0.8cm}$<\psi|M_1|\psi> = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & -\frac{\sqrt{2}}{\sqrt{7}}\\
+\end{bmatrix}$\begin{bmatrix}
+    0 & 0\\
+    0 & 1\\
+\end{bmatrix}\begin{bmatrix}
+    \frac{2-i}{\sqrt{7}}\\\\
+    -\frac{\sqrt{2}}{\sqrt{7}}\\
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & -\frac{\sqrt{2}}{\sqrt{7}}\\
+\end{bmatrix}\begin{bmatrix}
+    0\\
+    -\sqrt{\frac{2}{7}}
+\end{bmatrix} = $\frac{2}{7}$
+\vspace{0.4cm}\newline
+\textbf{2.} Izračunati i predstaviti u vektorskoj formi:
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) $|\psi_1> = \cos{\frac{\pi}{4}}|0> + (\cos{\pi} + i\sin{\pi})\sin{\frac{\pi}{4}}|1> = \frac{\sqrt{2}}{2}|0> - \frac{\sqrt{2}}{2}|1> = \frac{\sqrt{2}}{2}\begin{bmatrix}
+    1\\
+   -1\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+b) $|\psi_2> = \cos{\frac{-\pi}{4}}|0> + (\cos{\frac{\pi}{2}} + i\sin{\frac{\pi}{2}})\sin{\frac{-\pi}{4}}|1> = \frac{-\sqrt{2}}{2}|0>- \frac{\sqrt{2}}{2}i|1> = \frac{\sqrt{2}}{2}\begin{bmatrix}
+    1\\
+   -i\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+c) $|\psi_3> = \cos{\frac{\pi}{2}}|0> + (\cos{0} + i\sin{0})\sin{\frac{\pi}{2}}|1> = |1> = \begin{bmatrix}
+    0\\
+    1\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+d) $|\psi_4> = \cos{0}|0> + (\cos{0} + i\sin{0})\sin{0}|1> = |0> = \begin{bmatrix}
+    1\\
+    0\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+e) $|\psi_5> = \cos{\frac{\pi}{4}}|0> + (\cos{\frac{\pi}{2}} + i\sin{\frac{\pi}{2}})\sin{\frac{\pi}{4}}|1> = \frac{\sqrt{2}}{2}|0> + i\frac{\sqrt{2}}{2}|1> = \frac{\sqrt{2}}{2}\begin{bmatrix}
+    1\\
+    i\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+f) $|\psi_6> = \cos{\frac{\pi}{4}}|0> + (\cos{0} + i\sin{0})\sin{\frac{\pi}{4}}|1> = \frac{\sqrt{2}}{2}|0> + \frac{\sqrt{2}}{2}|1> = \frac{\sqrt{2}}{2}\begin{bmatrix}
+    1\\
+    1\\
+\end{bmatrix}$
+\vspace{0.4cm}\newline
+\textbf{3.} Data su stanja $|\psi_1> = \frac{1}{\sqrt{2}}|0>+\frac{1}{\sqrt{2}}|1>$, $|\psi_2> = \frac{1}{\sqrt{3}}|0>+\sqrt{\frac{2}{3}}|1>$, $|\psi_3> = \frac{1}{2}|0>+\frac{\sqrt{3}}{2}|1>$. Izračunati: \vspace{0.2cm}\newline
+ a) $|\psi_1>\otimes|\psi_2>$
+ \hspace*{1cm}b) $|\psi_1>\otimes|\psi_3>$
+ \hspace*{1cm}c) $|\psi_2>\otimes|\psi_3>$
+\vspace*{0.4cm}\newline 
+Rešenje: \vspace{0.2cm}\newline
+a) $|\psi_1>\otimes|\psi_2> = (\frac{1}{\sqrt{2}}|0>+\frac{1}{\sqrt{2}}|1>)\otimes(\frac{1}{\sqrt{3}}|0>+\sqrt{\frac{2}{3}}|1>) $
+
+= $\frac{1}{\sqrt{2}\sqrt{3}}|00> + \frac{1\sqrt{2}}{\sqrt{2}\sqrt{3}}|01> + \frac{1}{\sqrt{2}\sqrt{3}}|10> + \frac{1\sqrt{2}}{\sqrt{2}\sqrt{3}}|11>$
+\vspace{0.1cm}
+
+= $\frac{1}{\sqrt{6}}|00> + \frac{1}{\sqrt{3}}|01> + \frac{1}{\sqrt{6}}|10> + \frac{1}{\sqrt{3}}|11>$
+\vspace{0.3cm}\newline
+b) $|\psi_1>\otimes|\psi_3> = (\frac{1}{\sqrt{2}}|0>+\frac{1}{\sqrt{2}}|1>)\otimes(\frac{1}{2}|0>+\frac{\sqrt{3}}{2}|1>)$
+
+= $\frac{1}{2\sqrt{2}}|00> + \frac{\sqrt{3}}{2\sqrt{2}}|01> + \frac{1}{2\sqrt{2}}|10> + \frac{\sqrt{3}}{2\sqrt{2}}|11>$
+\vspace{0.3cm}\newline
+c) $|\psi_2>\otimes|\psi_3> = (\frac{1}{\sqrt{3}}|0>+\sqrt{\frac{2}{3}}|1>)\otimes(\frac{1}{2}|0>+\frac{\sqrt{3}}{2}|1>)$
+
+= $\frac{1}{2\sqrt{3}}|00> + \frac{1}{2}|01> + \frac{\sqrt{2}}{2\sqrt{3}}|10> + \frac{\sqrt{2}}{2}|11>$
+\vspace{0.4cm}\newline
+\textbf{4}. Normalizovati sledeca stanja: \newline
+a) $|\psi> = |00>-|01>+|10>-|11>$ \hspace*{1cm}b) $|\psi> = |0>-i|1>$\newline
+c) $|\psi> = 2|0>-|1>$ \hspace*{3.6cm}d) $|\psi> = \frac{1+i}{\sqrt{2}}|00>$
+\vspace*{0.4cm}\newline 
+Rešenje: \vspace{0.2cm}\newline
+a)$\sum|\alpha_i|^2 = 4$ \Rightarrow \sqrt{4} = 2 \Rightarrow \frac{1}{2}|00> - \frac{1}{2}|01> + \frac{1}{2}|10> - \frac{1}{2}|11>
+\vspace{0.1cm}\newline
+b)$\sum|\alpha_i|^2 = 1+(-i)i = 2$ \Rightarrow \sqrt{2} \Rightarrow \frac{1}{\sqrt{2}}|0> - \frac{i}{\sqrt{2}}|1>
+\vspace{0.1cm}\newline
+c)$\sum|\alpha_i|^2 = 5$ \Rightarrow \sqrt{5} \Rightarrow \frac{2}{\sqrt{5}}|0> - \frac{1}{\sqrt{5}}|1>
+\vspace{0.1cm}\newline
+d)$\sum|\alpha_i|^2 = \frac{(1+i)(1-i)}{2} = 1$  \Rightarrow \frac{1+i}{\sqrt{2}}|00>
+
+\newpage
+
+\section{Čas 5}
+\textbf{1.} Kjubit je meren u stanju $\ket{\Psi} = \frac{1}{\sqrt{3}}\ket{0} - \sqrt{\frac{2}{3}}\ket{1}$. Kolika je verovatnoća da u merenju dobijemo jedinicu? Kjubit je ponovo meren. Kolika je verovatnoća da ćemo dobiti nulu odnosno jedinicu ako znamo da je prvo merenje dalo rezulatat 1?
+\vspace*{0.4cm}\newline 
+Rešenje:\newline
+
+p(1) = (-\sqrt{\frac{2}{3}})$^2$ = $\frac{2}{3}$. Drugo merenje: p(1) = 1, p(0) = 0.
+
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]   
+
+Prilikom merenja kjubita mi zapravo menjamo stanje sistema. U prvom merenju merimo kjubit i rezultat merenja će biti bit! U drugom i svim kasnijim merenjima merimo bit i on će biti nepromenjen!
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}  
+
+
+
+\vspace{0.4cm}\newline
+\textbf{2.} Par kjubita u stanju $|\psi> = \frac{1}{\sqrt{3}}|00> + \frac{1}{\sqrt{3}}|01> + \frac{1}{\sqrt{6}}|10> + \frac{1}{\sqrt{6}}|11>$ je meren. \newline
+a) Ako je meren prvi kjubit, šta je p(0)?\newline
+b) Ako je rezultat merenja 0, kakvo je stanje kjubita nakon merenja?
+\vspace{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) p(0) = $(\frac{1}{\sqrt{3}})^2 + (\frac{1}{\sqrt{3}})^2 = \frac{2}{3}$ (rezultat p(0) dolazi iz ketova $|00>$ i $|01>$) \newline 
+b) p(0) = 1, p(1) = 0 \longrightarrow \frac{1}{\sqrt{6}}|10> + \frac{1}{\sqrt{6}}|11> = 0\newline
+\hspace*{0.4cm}\Rightarrow \frac{1}{\sqrt{3}}|00> + \frac{1}{\sqrt{3}}|01> je\ novo\ stanje.\ Potrebno\ je\ još\ i\ normirati\ jer\ je\ \newline
+\hspace*{0.4cm}$\sum|\alpha_i|^2$ \neq 1.\ $\sum|\alpha_i|^2 = \frac{2}{3}$ \Rightarrow
+\frac{1}{\sqrt{2}}|00> + \frac{1}{\sqrt{2}}|01>
+\vspace{0.4cm}\newline
+\textbf{3.}\ $Par kjubita u stanju$\ |$\psi> = \frac{1}{\sqrt{5}}|00> + \sqrt{\frac{2}{5}}|01> + \sqrt{\frac{2}{5}}|11>$ je meren. \newline
+a) Ako je meren drugi kjubit, šta je p(1)?\newline
+b) Ako je rezultat merenja 1, kakvo je stanje kjubita nakon merenja?
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) p(1) = $\frac{2}{5} + \frac{2}{5} = \frac{4}{5}$ (rezultat p(1) dolazi iz ketova $|01>$ i $|11>$) \newline 
+b) p(1) = 1, p(0) = 0 \newline
+\hspace*{0.4cm}\Rightarrow \sqrt{\frac{2}{5}}|01> + \sqrt{\frac{2}{5}}|11> je\ novo\ stanje.\ Potrebno\ je\ još\ i\ normirati\ jer\ je\ \newline
+\hspace*{0.4cm}$\sum|\alpha_i|^2$ \neq 1.\ $\sum|\alpha_i|^2 = \frac{4}{5}$ \Rightarrow
+\frac{\sqrt{2}}{2}|01> + \frac{\sqrt{2}}{2}|11>
+\vspace{0.4cm}\newline
+\textbf{4.}\ $Par kjubita u stanju$\ |$\psi> = \frac{1}{2}|00> + \frac{1}{2}|01> + \frac{1}{\sqrt{2}}|10>$ je meren. \newline
+a) Ako je meren drugi kjubit, šta je p(1), a šta p(0)?\newline
+b) Ako je rezultat merenja 1, kakvo je stanje kjubita nakon merenja?
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) p(1) = $\frac{1}{4}$ (rezultat p(1) dolazi iz keta $|01>$)\newline
+\hspace*{0.4cm}p(0) = $\frac{1}{4} + \frac{1}{2} = \frac{3}{4}$ (rezultat p(0) dolazi iz ketova $|00>$ i $|10>$)\newline 
+b) p(1) = 1, p(0) = 0 \newline
+\hspace*{0.4cm}\Rightarrow \frac{1}{2}|01> je\ novo\ stanje \Rightarrow $\sum|\alpha_i|^2$ \neq 1.\ $\sum|\alpha_i|^2 = \frac{1}{4}$ \Rightarrow \sqrt{\frac{1}{4}} = \frac{1}{2} \Rightarrow |01>
+\newpage
+
+\section{Čas 6}
+\textbf{Klasični jednobitni gate:} NOT gate
+\newline
+\includegraphics[scale=0.35]{001.png}
+\newline
+\textbf{Kvantni jedno-kjubitni gate:}
+\vspace{0.2cm}\newline
+\textit{NOT gate}: 
+\newline
+\hspace*{0.3cm}$\alpha|0> + \beta|1> \longrightarrow \alpha|1> + \beta|0>$,
+\hspace*{0.3cm}X = \begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix}
+\vspace{0.2cm}\newline
+\textit{Z gate}: 
+\newline 
+\hspace*{0.3cm} ostavlja $|0>$ nepromenjeno i menja znak od $|1>$
+\newline 
+\hspace*{0.3cm}
+$\alpha|0> + \beta|1> \longrightarrow \alpha|0> - \beta|1>$, \hspace*{0.3cm}Z = \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+\end{bmatrix}
+\vspace{0.2cm}\newline
+\textit{Hadamard gate}: 
+\newline 
+\hspace*{0.3cm}
+$\alpha|0> + \beta|1> \longrightarrow \alpha\frac{|0>+|1>}{\sqrt{2}} + \beta\frac{|0>-|1>}{\sqrt{2}}$, \hspace*{0.3cm}H = $\frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 & 1 \\
+    1 & -1
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+\textbf{1.} Koju operaciju obavlja gate S = \begin{bmatrix}
+    1 & 0 \\
+    0 & i \\
+\end{bmatrix}?
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+$S|0> = S\begin{bmatrix}
+    1\\
+    0
+\end{bmatrix} = \begin{bmatrix}
+    1 & 0\\
+    0 & i
+\end{bmatrix}\begin{bmatrix}
+    1\\
+    0
+\end{bmatrix} = \begin{bmatrix}
+    1\\
+    0
+\end{bmatrix}$, \hspace*{0.2cm}
+$S|1> = S\begin{bmatrix}
+    0\\
+    1
+\end{bmatrix} = \begin{bmatrix}
+    1 & 0\\
+    0 & i
+\end{bmatrix}\begin{bmatrix}
+    0\\
+    1
+\end{bmatrix} = \begin{bmatrix}
+    0\\
+    i
+\end{bmatrix}$
+\vspace{0.1cm}\newline
+\Rightarrow 
+$\alpha|0> + \beta|1> \longrightarrow \alpha|0> + i\beta|1>$
+\vspace{0.5cm}\newline
+\textbf{Kvantni dvo-kjubitni gate:}
+\vspace{0.2cm}\newline
+\textit{Controlled-NOT (CNOT) gate}:
+\newline\includegraphics[scale=0.3]{002.png}
+\vspace{2cm}\newline
+\textbf{2.} Šta je matrična reprezentacija CNOT gate-a?
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+$U|00> = |00>$ \Rightarrow $\begin{bmatrix}
+    \alpha_{11} & \alpha_{12} & \alpha_{13} &\alpha_{14}\\
+    \alpha_{21} & \alpha_{22} & \alpha_{23} &\alpha_{24}\\
+    \alpha_{31} & \alpha_{32} & \alpha_{33} &\alpha_{34}\\
+    \alpha_{41} & \alpha_{42} & \alpha_{43} &\alpha_{44}\\
+\end{bmatrix}\begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    0\\
+\end{bmatrix}$ \Rightarrow $\begin{bmatrix}
+    \alpha_{11}\\
+    \alpha_{21}\\
+    \alpha_{31}\\
+    \alpha_{41}
+\end{bmatrix} = \begin{bmatrix}
+    1\\
+    0\\
+    0\\
+    0\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+U|01> = |01>  \Rightarrow $\begin{bmatrix}
+    \alpha_{11} & \alpha_{12} & \alpha_{13} &\alpha_{14}\\
+    \alpha_{21} & \alpha_{22} & \alpha_{23} &\alpha_{24}\\
+    \alpha_{31} & \alpha_{32} & \alpha_{33} &\alpha_{34}\\
+    \alpha_{41} & \alpha_{42} & \alpha_{43} &\alpha_{44}\\
+\end{bmatrix}\begin{bmatrix}
+    0\\
+    1\\
+    0\\
+    0\\
+\end{bmatrix}$ \Rightarrow $\begin{bmatrix}
+    \alpha_{12}\\
+    \alpha_{22}\\
+    \alpha_{32}\\
+    \alpha_{42}
+\end{bmatrix} = \begin{bmatrix}
+    0\\
+    1\\
+    0\\
+    0\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+U|10> = |11>  \Rightarrow $\begin{bmatrix}
+    \alpha_{11} & \alpha_{12} & \alpha_{13} &\alpha_{14}\\
+    \alpha_{21} & \alpha_{22} & \alpha_{23} &\alpha_{24}\\
+    \alpha_{31} & \alpha_{32} & \alpha_{33} &\alpha_{34}\\
+    \alpha_{41} & \alpha_{42} & \alpha_{43} &\alpha_{44}\\
+\end{bmatrix}\begin{bmatrix}
+    0\\
+    0\\
+    1\\
+    0\\
+\end{bmatrix}$ \Rightarrow $\begin{bmatrix}
+    \alpha_{13}\\
+    \alpha_{23}\\
+    \alpha_{33}\\
+    \alpha_{43}
+\end{bmatrix} = \begin{bmatrix}
+    0\\
+    0\\
+    0\\
+    1\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+U|11> = |10>  \Rightarrow $\begin{bmatrix}
+    \alpha_{11} & \alpha_{12} & \alpha_{13} &\alpha_{14}\\
+    \alpha_{21} & \alpha_{22} & \alpha_{23} &\alpha_{24}\\
+    \alpha_{31} & \alpha_{32} & \alpha_{33} &\alpha_{34}\\
+    \alpha_{41} & \alpha_{42} & \alpha_{43} &\alpha_{44}\\
+\end{bmatrix}\begin{bmatrix}
+    0\\
+    0\\
+    0\\
+    1\\
+\end{bmatrix}$ \Rightarrow $\begin{bmatrix}
+    \alpha_{14}\\
+    \alpha_{24}\\
+    \alpha_{34}\\
+    \alpha_{44}
+\end{bmatrix} = \begin{bmatrix}
+    0\\
+    0\\
+    1\\
+    0\\
+\end{bmatrix}$
+\vspace{0.2cm}\newline
+\Rightarrow U = \begin{bmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0\\
+\end{bmatrix}
+\vspace{0.3cm}\newline
+\textbf{3.} $Šta radi sledeće kolo$?
+\newline
+\includegraphics[scale=0.3]{003.png}
+
+\begin{tcolorbox}[width=\textwidth,colback={pastelorange},outer arc=0mm,colupper=charcoal]    
+Posmatramo kolo s leva na desno i pazimo na uslovni deo! Najpre nad kjubitom A vršimo negaciju (zbog X kola). Puna tačkica na žici kjubita A spojena sa krstićem na žici kjubita B označava da je potrebno negirati kjubit B ukoliko je trenutno stanje kjubita A jedinica. Nakon toga negiramo kjubit A (zbog X kola). 
+\end{tcolorbox} 
+
+
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+$|00> \longrightarrow |10> \longrightarrow |11> \longrightarrow |01>$
+\newline
+$|01> \longrightarrow |11> \longrightarrow |10> \longrightarrow |00>$
+\newline
+$|10> \longrightarrow |00> \longrightarrow |00> \longrightarrow |10>$
+\newline
+$|11> \longrightarrow |01> \longrightarrow |01> \longrightarrow |11>$
+\newline \Rightarrow $ako je A jednako$\ |0>$, B se menja. Inače ostaje isto.$
+
+\vspace{0.4cm}\newline
+\textbf{4.} Šta radi sledeće kolo?
+\newline
+\includegraphics[scale=0.3]{004.png}
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+$|00> \longrightarrow |00> \longrightarrow |00> \longrightarrow |00>$
+\newline
+$|01> \longrightarrow |01> \longrightarrow |11> \longrightarrow |10>$
+\newline
+$|10> \longrightarrow |11> \longrightarrow |01> \longrightarrow |01>$
+\newline
+$|11> \longrightarrow |10> \longrightarrow |10> \longrightarrow |11>$
+\newline \Rightarrow |A> \longrightarrow |B>, |B> \longrightarrow |A>, "swap"
+\vspace{0.6cm}\newline
+\textit{Tofolijevo kolo}
+\vspace{0.3cm}\newline
+\includegraphics[scale=0.3]{005.png} 
+\vspace{0.2cm}\newline
+$\textbf{5.} Kako biste iskoristili Tofolijevo kolo za implementaciju NAND kola?$
+\vspace*{0.4cm}\newline
+$Rešenje:$ \vspace{0.2cm}\newline
+\includegraphics[scale=0.3]{006.png}
+\vspace{4cm}\newline
+$\textbf{6.} Kako biste iskoristili Tofolijevo kolo da napravite "kopiju"?$
+\vspace*{0.4cm}\newline
+$Rešenje:$ \vspace{0.2cm}\newline
+\includegraphics[scale=0.3]{007.png}
+\newpage
+
+\section{Čas 7 - kolokvijum od prošle godine}
+\textbf{1}. Za sledeće modele CPU-a izračunati ukupan broj kvanta akcije fotona po sekundi i FERD.\newline
+a) Core i7-7700HQ (2017), P$_{CPU} = 1176mm^2$, TDP = 45W \newline
+b) Core i7-5557Q (2015), P$_{CPU} = 133mm^2$, TDP = 28W \newline
+c) Core i7-4860HQ (2014), P$_{CPU} = 348mm^2$, TDP = 47W 
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) Q = $\frac{45W}{6,626*10^{-34}Js} = 6,79*10^{34}$, $FERD = \frac{45W}{1176mm^2} = 0,04$ \vspace{0.1cm}\newline
+b) Q = $\frac{28W}{6,626*10^{-34}Js} = 4,22*10^{34}$, $FERD = \frac{28W}{133mm^2} = 0,21$ \vspace{0.1cm}\newline
+c) Q = $\frac{47W}{6,626*10^{-34}Js} = 7,09*10^{34}$, $FERD = \frac{47W}{348mm^2} = 0,14$
+\vspace{0.4cm}\newline
+\textbf{2.} Koji od datih vektora predstavlja uslov za kjubit stanje?\newline
+a) $|\psi> = \frac{2-i}{\sqrt{13}}|0> + \frac{1+i\sqrt{3}}{\sqrt{13}}|1>$
+\vspace{0.1cm}\newline
+b) $|\psi> = \frac{1-i}{2}|0> + \frac{1+i}{2}|1>$
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) $|\alpha|^2 + |\beta|^2 = \frac{(2-i)(2+i)}{13} + \frac{(1+i\sqrt{3})(1-i\sqrt{3})}{13} = \frac{5}{13} + \frac{4}{13} = \frac{9}{13} \neq 1$ nije kjubit stanje
+\vspace{0.1cm}\newline
+b) $|\alpha|^2 + |\beta|^2 = \frac{(1-i)(1+i)}{4} + \frac{(1+i)(1-i)}{4} = \frac{2}{4} + \frac{2}{4} = 1$ jeste kjubit stanje
+\vspace{0.4cm}\newline
+\textbf{3.} Koja je verovatnoća da je izmerena 0 ili 1 u sledećim slučajevima? Koristiti operatore merenja M$_0$ i M$_1$.\newline
+a) $|\psi> = \frac{2-i}{\sqrt{7}}|0> + \sqrt{\frac{2}{7}}|1>$
+\vspace{0.1cm}\newline
+b) $|\psi> = \frac{2}{\sqrt{5}}|0> + \frac{1}{\sqrt{5}}|1>$
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+a) $<\psi|M_0|\psi> = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & \sqrt{\frac{2}{7}}
+\end{bmatrix}\begin{bmatrix}
+    1 & 0\\
+    0 & 0
+\end{bmatrix}\begin{bmatrix}
+    \frac{2-i}{\sqrt{7}}\\
+    \sqrt{\frac{2}{7}}
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & \sqrt{\frac{2}{7}}
+\end{bmatrix}\begin{bmatrix}
+    \frac{2-i}{\sqrt{7}}\\
+    0
+\end{bmatrix} = \frac{(2+i)(2-i)}{7}= \hspace*{0.4cm}= \frac{5}{7} = p(0)$
+\vspace{0.1cm}\newline
+\hspace*{0.4cm}$<\psi|M_1|\psi> = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & \sqrt{\frac{2}{7}}
+\end{bmatrix}\begin{bmatrix}
+    0 & 0\\
+    0 & 1
+\end{bmatrix}\begin{bmatrix}
+    \frac{2-i}{\sqrt{7}}\\
+    \sqrt{\frac{2}{7}}
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2+i}{\sqrt{7}} & \sqrt{\frac{2}{7}}
+\end{bmatrix}\begin{bmatrix}
+    0\\
+    \sqrt{\frac{2}{7}}
+\end{bmatrix} = \frac{2}{7} = p(1)$
+\vspace{0.1cm}\newline
+b) $<\psi|M_0|\psi> = \begin{bmatrix}
+    \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}} 
+\end{bmatrix}\begin{bmatrix}
+    1 & 0\\
+    0 & 0
+\end{bmatrix}\begin{bmatrix}
+    \frac{2}{\sqrt{5}}\\
+    \frac{1}{\sqrt{5}}
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}} 
+\end{bmatrix}\begin{bmatrix}
+    \frac{2}{\sqrt{5}}\\
+    0
+\end{bmatrix} = \frac{4}{5} = p(0)$
+\vspace{0.1cm}\newline
+\hspace*{0.4cm}$<\psi|M_1|\psi> = \begin{bmatrix}
+    \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}} 
+\end{bmatrix}\begin{bmatrix}
+    0 & 0\\
+    0 & 1
+\end{bmatrix}\begin{bmatrix}
+    \frac{2}{\sqrt{5}}\\
+    \frac{1}{\sqrt{5}} 
+\end{bmatrix} = \begin{bmatrix}
+    \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}} 
+\end{bmatrix}\begin{bmatrix}
+    0\\
+   \frac{1}{\sqrt{5}} 
+\end{bmatrix} = \frac{1}{5} = p(1)$
+\vspace{0.4cm}\newline
+\textbf{4.} Par kjubita je meren u stanju $|\psi> = \frac{2+\sqrt{3}i}{\sqrt{15}}|00> + \frac{1+\sqrt{2}i}{\sqrt{15}}|01> + \frac{2-i}{\sqrt{15}}|10> + \frac{1+i}{\sqrt{15}}|11>$. Ako je meren prvi kjubit, koja je verovatnoća da je izmereno 0? Koje je stanje sistema nakon merenja?
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+$\frac{(2+\sqrt{3}i)(2-\sqrt{3}i)}{15} + \frac{(1+\sqrt{2}i)(1-\sqrt{2}i)}{15} = \frac{7}{15} + \frac{3}{15} = \frac{10}{15} = \sum|\alpha_i|^2$ \Rightarrow \sqrt{\frac{10}{15}}
+\newline
+Normiranje \Rightarrow |$\psi> = \frac{2+\sqrt{3}i}{\sqrt{10}}|00> + \frac{1+\sqrt{2}i}{\sqrt{10}}|01>$ novo stanje sistema.
+\vspace{0.4cm}\newline
+\textbf{5.} (nije sa kolokvijuma) Kjubit je prvobitno bio u stanju $|\psi_1> = |0>$. Unitarna matrica H je dejstvovala na kjubit, $|\psi_1'> = H|\psi_1>$, H = $\frac{1}{\sqrt{2}}$\begin{bmatrix}
+    1 & 1\\
+    1 & -1
+\end{bmatrix}. Rezultujuće stanje kjubita je kombinacija stanja $|\psi_1'>$ i $|\psi_2>$, pri čemu je $|\psi_2> = \frac{1}{\sqrt{3}}|0> - \sqrt{\frac{2}{3}}|1>$. Šta je najverovatniji rezultat merenja? Koristiti merne operatore $M_{00}, M_{01}, M_{10}, M_{11}$.
+\vspace*{0.4cm}\newline
+Rešenje: \vspace{0.2cm}\newline
+$|\psi_1'> = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 & 1\\
+    1 & -1
+\end{bmatrix}\begin{bmatrix}
+    1\\
+    0
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1\\
+    1
+\end{bmatrix} = \frac{1}{\sqrt{2}}|0> + \frac{1}{\sqrt{2}}|1>$
+\vspace{0.1cm}\newline
+$|\psi> = |\psi_1'> \otimes |\psi_2> = \frac{1}{\sqrt{6}}|00> - \frac{1}{\sqrt{3}}|01> + \frac{1}{\sqrt{6}}|10> - \frac{1}{\sqrt{3}}|11>$
+\vspace{0.2cm}\newline
+M$_{00}$ = $|00><00|$ = \begin{bmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+\end{bmatrix}, M$_{01}$ = $|01><01|$ =\begin{bmatrix}
+    0 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+\end{bmatrix},\newline M$_{10}$ = $|10><10|$ =\begin{bmatrix}
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & 0\\
+\end{bmatrix},  M$_{11}$ = $|11><11|$ =\begin{bmatrix}
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+\end{bmatrix}
+\vspace{0.2cm}\newline
+p(00) = $<\psi|M_{00}|\psi> = \frac{1}{6}$\vspace{0.1cm}\newline
+p(01) = $<\psi|M_{01}|\psi> = \frac{1}{3}$\vspace{0.1cm}\newline
+p(10) = $<\psi|M_{10}|\psi> = \frac{1}{6}$\vspace{0.1cm}\newline
+p(11) = $<\psi|M_{11}|\psi> = \frac{1}{3}$\vspace{0.1cm}\newline
+\newpage
+
+\section{Čas 8}
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+$\sun$ Direktna Furijeova transformacija: 
+$$ y_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1} x_j e^{\frac{2\pi ijk}{N}}$$ i - kompleksan broj, N - broj elemenata skupa
+\vspace{0.2cm}\newline
+$\sun$ Kvantna Furijeova transformacija: 
+$$ |\psi> = \sum_{j=0}^{N-1}a_j|j> = \begin{bmatrix}
+    a_0\\
+    ...\\
+    a_{N-1}
+\end{bmatrix},\ F|\psi> = \sum_{k=0}^{N-1}b_k|k>,\ b_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1} a_j e^{\frac{2\pi ijk}{N}}$$
+F - unitarni operator
+\vspace{0.2cm}\newline
+$\sun$ Kolo kvantne Furijeove transformacije:\newline
+\hspace*{0.2cm}\includegraphics[scale=1.2]{008.jpg}
+\newline $R_k = \begin{bmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & e^\frac{2\pi i}{2^k}
+\end{bmatrix}$
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}
+\textbf{Primer} (D.F.T.): x = $\{1, 2\}$
+\newline\hspace*{0.6cm} N = 2, x$_0$ = 1, x$_1$ = 2
+\newline\hspace*{0.6cm} \textit{k = 0:} 
+$$ y_0 = \frac{1}{\sqrt{2}}\sum_{j=0}^1 x_j = \frac{1}{\sqrt{2}} + \frac{2}{\sqrt{2}} = \frac{3}{\sqrt{2}}$$
+\newline\hspace*{0.6cm} \textit{k = 1:} 
+$$ y_1 = \frac{1}{\sqrt{2}}\sum_{j=0}^1 x_j e^\frac{2\pi ij}{2}= \frac{1}{\sqrt{2}}(1 + 2e^{\pi i}) = -\frac{1}{\sqrt{2}}$$
+\vspace{0.4cm}\newline
+\textbf{Primer} (K.F.T.): $|\psi> = a_{00}|00> + a_{01}|01> + a_{10}|10> + a_{11}|11>$, N = 4
+\newline\hspace*{0.6cm}
+$$b_0 = \frac{1}{2}\sum_{j=0}^3 a_j = \frac{1}{2}(a_{00} + a_{01} + a_{10} + a_{11})$$
+$$b_1 = \frac{1}{2}\sum_{j=0}^3 a_j e^\frac{2\pi ij}{4} = \frac{1}{2}(a_{00} + a_{01}e^\frac{i\pi}{2} + a_{10}e^{i\pi} + a_{11}e^\frac{3\pi i}{2})$$
+$$b_2 = \frac{1}{2}\sum_{j=0}^3 a_j e^\frac{4\pi ij}{4} = \frac{1}{2}(a_{00} + a_{01}e^{i\pi} + a_{10}e^{2i\pi} + a_{11}e^{3\pi i})$$
+$$b_3 = \frac{1}{2}\sum_{j=0}^3 a_j e^\frac{6\pi ij}{4} = \frac{1}{2}(a_{00} + a_{01}e^\frac{3i\pi}{2} + a_{10}e^{3i\pi} + a_{11}e^\frac{9\pi i}{2})$$
+\vspace{0.4cm}\newline
+\textbf{Primer:} Napisati unitarnu matricu za sledece kolo.
+\newline
+\includegraphics[scale = 2.0]{009.jpg}
+\newline
+$|A> = U_1|I>$, $|B> = U_2|A>$, $|C> = U_3|B>$, $|Q> = U_4|C>$
+\vspace{0.3cm}\newline
+Na prvi kjubit primenjujemo H, a drugi prepisujemo:
+\newline \hspace*{0.2cm}
+$|00> \longrightarrow \frac{1}{\sqrt{2}}(|00> + |10>)$
+\newline\hspace*{0.2cm}
+$|01> \longrightarrow \frac{1}{\sqrt{2}}(|01> + |11>)$
+\newline\hspace*{0.2cm}
+$|10> \longrightarrow \frac{1}{\sqrt{2}}(|00> - |10>)$
+\newline\hspace*{0.2cm}
+$|11> \longrightarrow \frac{1}{\sqrt{2}}(|01> - |11>)$
+\newline\hspace*{0.4cm}
+$U_1|00> = \frac{1}{\sqrt{2}}(|00> + |10>) \Rightarrow \begin{bmatrix}
+    \alpha_{11}\\
+    \alpha_{21}\\
+    \alpha_{31}\\
+    \alpha_{41}
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1\\
+    0\\
+    1\\
+    0
+\end{bmatrix}$
+\newline\hspace*{0.4cm}
+$U_1|01> = \frac{1}{\sqrt{2}}(|01> + |11>) \Rightarrow \begin{bmatrix}
+    \alpha_{12}\\
+    \alpha_{22}\\
+    \alpha_{32}\\
+    \alpha_{42}
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    0\\
+    1\\
+    0\\
+    1
+\end{bmatrix}$
+\newline\hspace*{0.4cm}
+$U_1|10> = \frac{1}{\sqrt{2}}(|00> - |10>) \Rightarrow \begin{bmatrix}
+    \alpha_{13}\\
+    \alpha_{23}\\
+    \alpha_{33}\\
+    \alpha_{43}
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1\\
+    0\\
+    -1\\
+    0
+\end{bmatrix}$
+\newline\hspace*{0.4cm}
+$U_1|11> = \frac{1}{\sqrt{2}}(|01> - |11>) \Rightarrow \begin{bmatrix}
+    \alpha_{14}\\
+    \alpha_{24}\\
+    \alpha_{34}\\
+    \alpha_{44}
+\end{bmatrix} = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    0\\
+    1\\
+    0\\
+    -1
+\end{bmatrix}$
+\newline\hspace*{0.4cm}
+$U_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 & 0 & 1 & 0\\
+    0 & 1 & 0 & 1 \\
+    1 & 0 & -1 & 0\\
+    0 & 1 & 0 & -1
+\end{bmatrix}$, \hspace*{0.3cm}
+$U_2 = R_2 = \begin{bmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & i
+\end{bmatrix}$
+\vspace{0.2cm}\newline\hspace*{0.2cm}
+Na drugi kjubit primenjujemo H:\newline\hspace*{0.2cm}
+$|00> \longrightarrow \frac{1}{\sqrt{2}}(|00> + |10>)$
+\newline\hspace*{0.2cm}
+$|01> \longrightarrow \frac{1}{\sqrt{2}}(|00> - |01>)$
+\newline\hspace*{0.2cm}
+$|10> \longrightarrow \frac{1}{\sqrt{2}}(|10> + |11>)$
+\newline\hspace*{0.2cm}
+$|11> \longrightarrow \frac{1}{\sqrt{2}}(|10> - |11>)$
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+$U_3 = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 & 1 & 0 & 0\\
+    1 & -1 & 0 & 0 \\
+    0 & 0 & 1 & 1\\
+    0 & 0 & 1 & -1
+\end{bmatrix}$
+\vspace{0.4cm}\newline\hspace*{0.4cm}
+$U_4: |00> = |00>, |01> = |10>, |10> = |01>, |11> = |11>$
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+$U_4 = \begin{bmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1
+\end{bmatrix}$
+\vspace{0.5cm}\newline\hspace*{0.4cm}
+$F = U_4U_3U_2U_1 = \frac{1}{2}\begin{bmatrix}
+    1 & 1 & 1 & 1\\
+    1 & i & -1 & -i\\
+    1 & -1 & 1 & -1\\
+    1 & -i & -1 & i
+\end{bmatrix}$
+\newpage
+
+\section{Čas 9}
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+$\sun$ $F(a) = x^a mod N$ (periodicna funkcija) 
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}
+\textbf{Primer 1:} N = 15, x = 7
+\vspace{0.2cm}\newline\hspace*{0.6cm}
+a = 0: $7^0 mod 15 = 1$
+\newline\hspace*{0.6cm}
+a = 1: $7^1 mod 15 = 7$
+\newline\hspace*{0.6cm}
+a = 2: $7^2 mod 15 = 4$
+\newline\hspace*{0.6cm}
+a = 3: $7^3 mod 15 = 13$
+\newline\hspace*{0.6cm}
+a = 4: $7^4 mod 15 = 1$
+\vspace{0.4cm}\newline
+\textbf{Primer 2:} Pokazati da je 2 = 5 = 8 = 11 (mod 3) - ostatak im je svima isti pri deljenju sa 3.
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+2 = 0*3 + \textit{2}\newline\hspace*{0.4cm}
+5 = 1*3 + \textit{2}\newline\hspace*{0.4cm}
+8 = 2*3 + \textit{2}\newline\hspace*{0.4cm}
+11 = 3*3 + \textit{2}
+\vspace{0.4cm}\newline
+\textbf{Primer 3:} Izracunati $7^n mod 15$.
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+n = 1: $7^1 mod 15 = 7$
+\newline\hspace*{0.4cm}
+n = 2: $7^2 mod 15 = 4$
+\newline\hspace*{0.4cm}
+n = 3: $7^3 mod 15 = 13$
+\newline\hspace*{0.4cm}
+n = 4: $7^4 mod 15 = 1$
+\newline\hspace*{0.4cm}
+n = 5: $7^5 mod 15 = 7$
+\newline\hspace*{0.4cm}
+$\Rightarrow$ period je \textit{4}.
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+$\sun$ Algoritam za faktorizaciju broja (samo za brojeve koji su proizvod 2 prosta broja):
+\newline\hspace*{0.6cm}
+\textbf{npr. broj 15:}
+\newline\hspace*{1cm}
+Uzimamo bilo koji broj \textit{y} koji ispunjava sledece uslove:
+\newline\hspace*{1.2cm}
+$y < 15$ i y - prost broj
+\newline\hspace*{1cm}
+\textbf{npr. y = 7} $\Rightarrow$ iz prethodnog primera period R = 4
+\newline\hspace*{1cm}
+Prosti brojevi sadrzani u broju 15 su:
+\vspace{0.2cm}\newline\hspace*{1.4cm}
+$nzd(7^{R/2}+1, 15) = 5$ i $nzd(7^{R/2}-1, 15) = 3$
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+$\sun$ Primenom H na $|0>$ dobijamo $\frac{|0>+|1>}{\sqrt{2}}$
+\newline
+$\sun$ $\frac{|0>+|1>}{\sqrt{2}} \otimes \frac{|0>+|1>}{\sqrt{2}} = \frac{1}{2}(|00> + |01> + |10> + |11>)$
+\newline
+$\sun$ $\frac{|0>+|1>}{\sqrt{2}} \otimes \frac{|0>+|1>}{\sqrt{2}} \otimes \frac{|0>+|1>}{\sqrt{2}} \otimes \frac{|0>+|1>}{\sqrt{2}} = \frac{1}{\sqrt{16}}\sum_{k=0}^{15}|k>$
+\newline
+$\sun$ Nova notacija: npr. k = 7 = $|0111>$
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+$\sun$ \textit{\textbf{Šorov algoritam}}
+\vspace{0.3cm}\newline\hspace*{0.4cm}
+1. Izabrati broj kjubita tako da važi: $2^n \geq N$. \newline\hspace*{0.8cm}
+Izabrati broj \textit{y} tako da je $nzd(y, N) = 1$.
+\newline\hspace*{0.8cm}
+\textbf{npr.} N = 15, n = 4: $2^4 \geq 15$; y = 13
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+2. Inicijalizovati dva kvantna registra od po \textit{n} kjubita na nule:
+\newline\hspace*{0.8cm}
+$|\psi> = |0000>|0000> = |0>|0>$
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+3. Randomizovati prvi registar (delujemo Hadamardom):
+\newline\hspace*{0.8cm}
+$|0000>\longrightarrow \frac{1}{\sqrt{16}}(|0000>+ |0001>+ ... + |1111>) = $
+\newline\hspace*{0.8cm}
+$ = \frac{1}{\sqrt{16}}\sum_{k=0}^{15}|k>$
+\newline\hspace*{0.8cm}
+$|\psi_1> = \frac{1}{\sqrt{16}}\sum_{k=0}^{15}|k>|0>$
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+4. Izracunati $f(k) = 13^k mod 15$ nad drugim kjubitom:
+\newline\hspace*{0.8cm}
+\textit{k = 0}: f(k) = 1, \textit{k = 1}: f(k) = 13, \textit{k = 2}: f(k) = 4, \newline\hspace*{0.8cm}
+\textit{k = 3}: f(k) = 7, \textit{k = 4}: f(k) = 1, \textit{k = 5}: f(k) = 13, \newline\hspace*{0.8cm}
+\textit{k = 6}: f(k) = 4, \textit{k = 7}: f(k) = 7, \textit{k = 8}: f(k) = 1, \newline\hspace*{0.8cm}
+\textit{k = 9}: f(k) = 13, \textit{k = 10}: f(k) = 4, \textit{k = 11}: f(k) = 7, \newline\hspace*{0.8cm}
+\textit{k = 12}: f(k) = 1, \textit{k = 13}: f(k) = 13, \textit{k = 14}: f(k) = 4, \newline\hspace*{0.8cm}
+\textit{k = 15}: f(k) = 7
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+$|\psi_2> = \frac{1}{\sqrt{16}}(|0>|1> + |1>|13> + |2>|4> + |3>|7> + $ \newline\hspace*{2.1cm}
+$+ |4>|1> + |5>|13> + |6>|4> + |7>|7> +$
+\newline\hspace*{2.1cm}
+$+ |8>|1> + |9>|13> + |10>|4> + |11>|7> +$
+\newline\hspace*{2.1cm}
+$+ |12>|1> + |13>|13> + |14>|4> + |15>|7>)$
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+- kvantni računar ne vidi da je period 4 \newline\hspace*{0.4cm}
+- predpostavimo da je izmereno $|4>$. \newline\hspace*{0.6cm}
+Gledamo $|2>|4>, |6>|4>, |10>|4>, |14>|4>$: \newline\hspace*{0.7cm}
+$|\psi_3> = \frac{\sqrt{4}}{\sqrt{16}}(|2>+|6>+|10>+|14>)$ ($\sqrt{4}$ smo dodali \newline\hspace*{2.2cm}zbog normalizacije)
+\vspace{0.2cm}\newline\hspace*{0.4cm}
+5. Kvantna Furijeova transformacija:
+$$|k> \longrightarrow \frac{1}{\sqrt{16}}\sum_{u=0}^{15}e^\frac{2\pi i u k}{16}|u>$$
+\newline\hspace*{0.8cm}
+$|2> \longrightarrow \frac{1}{\sqrt{16}}\sum_{u=0}^{15}e^\frac{2\pi i u 2}{16}|u>$
+\newline\hspace*{0.8cm}
+$|6> \longrightarrow \frac{1}{\sqrt{16}}\sum_{u=0}^{15}e^\frac{2\pi i u 6}{16}|u>$
+\newline\hspace*{0.8cm}
+$|10> \longrightarrow \frac{1}{\sqrt{16}}\sum_{u=0}^{15}e^\frac{2\pi i u 10}{16}|u>$
+\newline\hspace*{0.8cm}
+$|14> \longrightarrow \frac{1}{\sqrt{16}}\sum_{u=0}^{15}e^\frac{2\pi i u 14}{16}|u>$
+\vspace{0.2cm}\newline\hspace*{0.8cm} $\Rightarrow $
+$|\psi_4> = \frac{\sqrt{4}}{\sqrt{16}}\frac{1}{\sqrt{16}}\sum_{u=0}^{15}|u>(e^\frac{2\pi i u 2}{16} + e^\frac{\pi i u 6}{16} + e^\frac{2\pi i u 10}{16} + e^\frac{2\pi i u 14}{16})$
+\newline\hspace*{2.2cm}
+$= \frac{1}{8}\sum_{u=0}^{15}|u>A_k$ jedno stanje kjubita 
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={beaublue},outer arc=0mm,colupper=charcoal]    
+- $P_k = |\frac{1}{8}A_k|^2$ verovatnoca
+\newline
+- dobijamo 4 mogucnosti sa jednakom verovatnocom: \newline\hspace*{0.8cm}
+$P_0 = P_4 = P_8 = P_{12} = \frac{1}{4}$
+\newline
+- ostali = 0
+\newline
+- \textbf{u*r = 16*k}, r - period
+\newline
+- Biramo najmanje \textit{k} tako da \textit{r} bude ceo broj.
+\newline
+- Ako je:
+\newline\hspace*{0.4cm}
+1) $|u> = |0> \Rightarrow r = 0 \Rightarrow neuspeh$
+\newline\hspace*{0.4cm}
+2) $|u> = |4> \Rightarrow r = 4k \Rightarrow za\ k = 1: \textbf{r = 4} $
+\newline\hspace*{0.4cm}
+3) $|u> = |8> \Rightarrow r = 2k \Rightarrow za\ k = 1: r = 2 \Rightarrow neuspeh$
+\newline\hspace*{0.4cm}
+4) $|u> = |12> \Rightarrow r = \frac{4}{3}k \Rightarrow za\ k = 3: \textbf{r = 4}$
+\newline
+- Verovatnoca je 1/2 da ce program biti uspesan.
+    %\blindtext[1]     
+    %\includegraphics[scale=0.5]{frogimage.png}
+\end{tcolorbox}
+\newpage
+
+\section{Čas 10}
+\textbf{1}. $|\psi_+> = \frac{1}{\sqrt{2}}(|00> + |11>)$, X = \begin{bmatrix}
+    0 & 1\\
+    1 & 0
+\end{bmatrix}. Da li su $|\psi_+>$ i $|V>$ ortogonalni? $|V>$ se dobije kada se primeni X na prvi kjubit.
+\vspace{0.4cm}\newline
+\textit{Resenje:} \vspace{0.2cm}\newline
+$X \otimes |00> = (\begin{bmatrix}
+    0 & 1\\
+    1 & 0
+\end{bmatrix}\otimes |0>)\otimes|0> = 
+(\begin{bmatrix}
+    0 & 1\\
+    1 & 0
+\end{bmatrix}\otimes \begin{bmatrix}
+    1\\
+    0
+\end{bmatrix})\otimes|0> = \begin{bmatrix}
+    0\\
+    1
+\end{bmatrix}\otimes|0> = |10>$
+\vspace{0.3cm}\newline
+$X \otimes |11> = (\begin{bmatrix}
+    0 & 1\\
+    1 & 0
+\end{bmatrix}\otimes |1>)\otimes|1> = 
+(\begin{bmatrix}
+    0 & 1\\
+    1 & 0
+\end{bmatrix}\otimes \begin{bmatrix}
+    0\\
+    1
+\end{bmatrix})\otimes|1> = \begin{bmatrix}
+    1\\
+    0
+\end{bmatrix}\otimes|1> = |01>$
+\vspace{0.2cm}\newline
+$|V> = X \otimes \frac{1}{\sqrt{2}}(|00> + |11>) = \frac{1}{\sqrt{2}}(|10> + |01>)$
+\vspace{0.3cm}\newline
+Da li su ortogonalni: $<\psi_+|V> = 0$?
+\vspace{0.2cm}\newline
+$<\psi_+|V> = \frac{1}{\sqrt{2}}(<00| + <11|)\frac{1}{\sqrt{2}}(|10> + |01>) = \frac{1}{2}(<00|10> + <00|01> + <11|10> + <11|01>) = \frac{1}{2}(0+0+0+0) = 0 \Rightarrow$ jesu 
+\vspace{0.4cm}\newline
+\textbf{2}. $|\psi_+> = \frac{1}{\sqrt{2}}(|00> + |11>)$, Z = \begin{bmatrix}
+    1 & 0\\
+    0 & -1
+\end{bmatrix}. Da li su $|\psi_+>$ i $|V>$ ortogonalni? $|V>$ se dobije kada se primeni Z na prvi kjubit.
+\vspace{0.4cm}\newline
+\textit{Resenje:} \vspace{0.2cm}\newline
+$Z \otimes |00> = (\begin{bmatrix}
+    1 & 0\\
+    0 & -1
+\end{bmatrix}\otimes |0>)\otimes|0> = 
+(\begin{bmatrix}
+    1 & 0\\
+    0 & -1
+\end{bmatrix}\otimes \begin{bmatrix}
+    1\\
+    0
+\end{bmatrix})\otimes|0> = \begin{bmatrix}
+    1\\
+    0
+\end{bmatrix}\otimes|0> = |00>$
+\vspace{0.3cm}\newline
+$Z \otimes |11> = (\begin{bmatrix}
+    1 & 0\\
+    0 & -1
+\end{bmatrix}\otimes |1>)\otimes|1> = 
+(\begin{bmatrix}
+    1 & 0\\
+    0 & -1
+\end{bmatrix}\otimes \begin{bmatrix}
+    0\\
+    1
+\end{bmatrix})\otimes|1> = \begin{bmatrix}
+    0\\
+    -1
+\end{bmatrix}\otimes|1> = -|11>$
+\vspace{0.2cm}\newline
+$|V> = Z \otimes \frac{1}{\sqrt{2}}(|00> + |11>) = \frac{1}{\sqrt{2}}(|00> - |11>)$
+\vspace{0.3cm}\newline
+Da li su ortogonalni: $<\psi_+|V> = 0$?
+\vspace{0.2cm}\newline
+$<\psi_+|V> = \frac{1}{\sqrt{2}}(<00| + <11|)\frac{1}{\sqrt{2}}(|00> - |11>) = \frac{1}{2}(<00|00> - <00|11> + <11|00> - <11|11>) = \frac{1}{2}(1-0+0-1) = 0 \Rightarrow$ jesu 
+
+
+\end{document}

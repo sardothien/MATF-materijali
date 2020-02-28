@@ -1,0 +1,1105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{ amssymb }
+\setlength{\textheight}{598pt}
+\setlength{\textwidth}{140mm}
+\setlength{\topmargin}{5pt}
+\setlength{\evensidemargin}{53pt}
+\setlength{\oddsidemargin}{10mm}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+linkcolor=blue,
+urlcolor=blue
+}
+
+\title{Relacione Baze Podataka}
+\author{Mina Milošević \\
+\href{mailto:mi17081@alas.matf.bg.ac.rs}{mi17081@alas.matf.bg.ac.rs}}
+\date{2019/2020}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\renewcommand*\contentsname{Sadržaj}
+\tableofcontents
+\newpage
+
+\section{Arhitektura}
+
+\subsection{ANSI/SPARC arhitektura}
+\textit{Arhitektura sistema baze podataka} je apstraktni opis njegovih
+komponenti i njihovih interakcija. \newline
+\textit{ANSI} - American National Standards Institute \newline
+\textit{SPARC} - System Planning and Requirements Committee
+\newline
+Prema ANSI/SPARC arhitekturi, baze podataka sadrze tri nivoa:
+\newline \hspace*{0.2cm}
+\textbf{\textit{1. Spoljašnji nivo}} - definiše način na koji
+individualni korisnik vidi podatke iz baze. Ovaj nivo je najbliži
+korisniku, jer korisnika zanima samo jedan deo cele baze gde on vidi
+samo spoljašnje slogove, ali ne i njihovu fizičku reprezentaciju u
+bazi. Svaki spoljašnji izgled je opisan spoljašnjom shemom koja se
+sastoji iz definicija svakog od različitih tipova
+slogova. Svaki korisnik ima na raspolaganju matični jezik (Java, C, 
+PL1, Cobol...) u koji se ugradjuje jezik podataka (SQL, DB2, QUEL,...)
+pomoću
+koga može da vrši operacije nad svojim delom podataka iz baze. Ovi
+jezici mogu biti čvrsto vezani, kada matični jezik ne može da se odvoji
+od jezika podataka, ili labavo vezani kada oni mogu lako i jasno da se
+razdvoje. \newline
+\textit{Jezik podataka} je kombinacija jezika za definiciju podataka
+(DDL) koji se koristi za deklarisanje ili definisanje objekata u bazi,
+i jezika za rad sa podacima (DML) koji se koristi pri radu i obradi
+objekata iz baze. 
+\newline \hspace*{0.2cm}
+\textbf{\textit{2. Konceptualni nivo}} - predstavlja ukupni
+informacioni kontekst baze podataka u obliku koji je na nešto višem
+nivou u poredjenju sa načinom kako su podaci fizički smešteni. Podaci
+se predstavljaju nezavisno i od upitnog jezika i od hardvera na kome se
+nalaze. Konceptualni izgled je definisan konceptualnom shemom koja
+sadrži definicije svakog od tipova konceptualnih slogova i zapisuje se
+pomoću konceptualnog DDL-a, bez ikakve veze sa fizičkom reprezentacijom
+tih slogova ili pristupa njima. Definicije u konceptualnoj shemi mogu
+sadržati i dodatne funkcionalnosti vezane za bezbednost i integritet
+podataka.
+\newline \hspace*{0.2cm}
+\textbf{\textit{3. Unutrašnji nivo}} - predstavlja celokupnu bazu
+podataka na niskom nivou. Sastoji se od velikog broja različitih
+unutrašnjih slogova. Unutrašnji izgled je definisan preko unutrašnje
+sheme napisane na unutrašnjem DDL-u koja sadrži ne samo definicije
+različitih slogova vec sadrži i informacije o postojanju indeksa,
+reprezentaciji sačuvanih polja, kako su fizički smešteni sačuvani
+slogovi, itd. Neki programi mogu da rade nad unutrašnjim izgledom baze
+što donosi bezbednosni rizik.
+\newline
+Osim ova 3 nivoa,
+arhitektura uključuje odredjene vrste preslikavanja:
+\newline \hspace*{0.2cm}
+- \textit{konceptualno/unutrašnje} - preslikavanje izmedju
+konceptualnog nivoa i baze tj. kako su konceptualna polja i slogovi
+predstavljeni na unutrašnjem nivou. Ako se promeni definicija sačuvane
+baze mora se promeniti i konceptualno/unutrašnje preslikavanje. Ključno
+je za nezavisnost podataka od promene fizičke strukture.
+\newline \hspace*{0.2cm}
+- \textit{spoljašnje/konceptualno} - definiše vezu izmedju spoljašnjeg
+i konceptualnog nivoa. Ključno je za nezavisnost podataka od promene
+logičke strukture.
+\newline \hspace*{0.2cm}
+- \textit{spoljašnje/spoljašnje} - definiše jedan spoljašnji pogled
+preko ostalih. Često je u relacionim sistemima.
+
+\subsection{Glavne komponente SUBP-a}
+\hspace*{0.2cm}
+1. \textit{\textbf{Podaci}} - mogu biti \textit{integrisani} i
+\textit{deljivi}. Kod deljivih
+podataka različiti korisnici pristupaju istim podacima često i u isto vreme.
+Kod integrisanih podataka bazu čini skup inače nepovazanih fajlova koji
+medjusobno gotovo da nemaju viškova (suvišnih podataka ili onih koji se
+ponavljaju).
+\newline \hspace*{0.2cm}
+2. \textit{\textbf{Hardver}} - spoljašnji memorijski uredjaji i procesori i
+glavna memorija.
+\newline \hspace*{0.2cm}
+3. \textit{\textbf{Softver}}
+- \textit{SUBP} (Sistem za upravljanje bazom podataka) i on predstavlja 
+nivo softvera koji se nalazi izmedju korisnika i fizičkih podataka u bazi,
+štiti korisnike od detalja na hardverskom nivou i upravlja svim zahtevima
+za direktan pristup bazi. Alati za razvoj aplikacija, pisanje izvestaja,
+pomoćni (utility) programi, program za upravljanje transakcijama (TP
+monitor).
+\newline \hspace*{0.2cm}
+4. \textbf{\textit{Korisnici}} - \textit{aplikativni programeri} pišu
+programe na višim programskim jezicima (Cobol, PL1, C++, Java,...) koji
+služe za pristup bazi. \textit{Krajnji korinsnici} interaktivno prisupaju
+bazi pomoću programa koji pišu aplikativni progameri. \textit{Administrator
+baze podataka} (DBA) - profesionalac u IT, formira i implementira
+kontrolne strukture, odgovoran je za implementaciju odluke administratora
+podataka kao i za rad sistema, performanse, itd. Njegovi poslovi su
+definisanje konceptualne sheme (logičko projektovanje baze), definisanje
+unutrašnje sheme (fizičko projektovanje baze) i komunikacija sa korisnicima
+(da li su im obezbedjeni svi željeni podaci, konsultacija pri projektovanju
+aplikacija, pomoć pri rešavanju problema, itd.). \textit{Administrator
+podataka} (DA) - on razume postojeće podatke i odlučuje koji podaci će
+biti čuvani u bazi. On takodje ustanovljava pravila za održavanje i rad sa
+podacima po njihovom čuvanju u bazi; nije tehničko lice već pripada
+upravljačkim strukturama.
+
+\subsection{Najvažnije funkcije SUBP-a}
+\hspace*{0.2cm}
+• definisanje podataka - SUBP treba da primi podatke u izvornom formatu i
+pretvori ih u objekte tako da on zapravo mora da ima DDL procesor ili
+kompajler da razume DDL definicije.
+\newline \hspace*{0.2cm}
+• obrada podataka - SUBP treba da rešava zahteve dohvatanja, menjanja,
+dodavanja ili brisanja podataka, zapravo mora da ima DML kompajler ili
+procesor. DML zahtevi mogu biti planirani (zahtev je poznat unapred) i
+neplanirani (zahtev nije poznat unapred).
+\newline \hspace*{0.2cm}
+• optimizacija izvršavanja upita - DML zahtevi bilo da su planirani ili ne,
+moraju proći kroz optimizaciju i potom tako optimizovani se izvršavaju pod
+kontrolom runtime menadžera.
+\newline \hspace*{0.2cm}
+• obezbedjivanje zaštite i integriteta podataka - SUBP mora da kontroliše
+zahteve korisnika i odbije svaki zahtev koji bi narušio integritet i
+bezbednost baze.
+\newline \hspace*{0.2cm}
+• obezbedjivanje konkuretnog pristupa podacima i oporavka podataka - pomoću
+TP monitora.
+\newline \hspace*{0.2cm}
+• formiranje kataloga podataka - informacije o definiciji svih objekata
+\newline \hspace*{0.2cm}
+• obezbedjivanje korinsničkog interfejsa
+\newline \hspace*{0.2cm}
+• izvodjenje drugih akcija u svrhu obezbedjivanja što efikasnijeg rada
+
+\subsection{Nezavisnost podataka u bazi podataka}
+U bazama podataka, \textbf{\textit{nezavisnost podataka}} predstavlja
+otpornost aplikacije na promene fizičke reprezentacije podataka i 
+pristupnih tehnika. Glavne karakteristike su da baza podataka treba da
+bude sposobna da se širi bez promene postojećih aplikacija kao i da u
+slučaju širenja baze ne sme da bude negativnih uticaja na postojeće
+aplikacije. Pojmovi vezani za nezavisnost podataka:
+\newline \hspace*{0.2cm}
+- sačuvano polje - najmanja jedinica podataka koja moze da se čuva
+\newline \hspace*{0.2cm}
+- sačuvani slog - skup sačuvanih polja
+\newline \hspace*{0.2cm}
+- sačuvana datoteka - skup svih trenutno postojećih pojava sačuvanih 
+slogova istog tipa
+\newline
+Aspekti sačuvanih reprezentacija koji mogu da budu predmet promena od
+strane DBA:
+\newline \hspace*{0.2cm}
+- reprezentacija brojčanih podataka \hspace*{0.7cm}
+- reprezentacija znakovnih podataka
+\newline \hspace*{0.2cm}
+- jednice za brojčane podatke \hspace*{1.65cm}
+- kodiranje podataka
+
+\subsection{Prednosti rada sa bazom podataka u odnosu na rad sa podacima
+koji se nalaze u datotekama}
+\hspace*{0.2cm}
+• \textit{\textbf{Podaci mogu biti deljeni}} - deljeni znači da ne samo da
+aplikacije mogu da dele podatke u okviru baze, već i da mogu biti pisane
+nove aplikacije koje će raditi sa istim podacima.
+\newline \hspace*{0.2cm}
+• \textit{\textbf{Smanjenje redundantnosti podataka}} - u sistemima koji
+nisu baze podataka svaka aplikacija ima svoje privatne fajlove što može
+dovesti do mnogo ponavljanja medju podacima i bespotrebnog trošenja
+memorije.
+\newline \hspace*{0.2cm}
+• \textbf{\textit{Izbegavanje nekonzistentnosti}} - povezano sa prethodnim
+\newline \hspace*{0.2cm}
+• \textit{\textbf{Podrška za transakcioni rad}} - ako korisnik traži da se
+izvrše dve transakcije odjednom, sistem može da garantuje da su se ili obe
+izvršile ili nijedna.
+\newline \hspace*{0.2cm}
+• \textit{\textbf{Održavanje integriteta}} - ako imamo redundantnost
+podataka, može da se desi da prilikom reažuiranja ažuriramo jedan podatak,
+a ne drugi, čime baza neće vraćati validne podatke kada joj se pristupi.
+Rešenje je da kada reažuriramo jedan, automatski će biti reažuirana i sva
+ostala ponavljanja i SUBP garantuje da korisnik neće videti redundantnost
+podataka.
+\newline \hspace*{0.2cm}
+• \textit{\textbf{Bezbednost}} - konfliktnim zahtevima i standardima se 
+bavi DBA koji bira na koji način će rešiti ove slučajeve u cilju što
+optimalnijeg sistema.
+
+\subsection{Prednosti relacionog modela u odnosu na hijerarhijski i mrežni}
+Osnovna prednost relacionog modela u odnosu na hijerarhijski i mrežni je
+u tome što se u potpunosti oslanja na matematiku, konkretnije na relacionu
+algebru, čime je omogućena računarska podrška, razvoj specifičnog 
+softvera i obrada uz zagarantovanu konzistentnost podataka i rezultata.
+
+\subsection{Utility programi. Programi koji rade sa unutrašnjim izgledom
+baze podataka.}
+\textbf{\textit{Utility programi}} - programi koji služe da pomognu DBA sa
+različitim administrativnim poslovima. Oni mogu da rade na spoljašnjem
+nivou i to su aplikacije specijalne namene, i unutrašnjem nivou i deo su
+servera. U praksi su nam potrebni ovakvi programi najčešće
+za kreiranje inicijalne verzije baze od regularnih podataka, za
+reorganizovanje podataka u bazi, za statističke rutine (računaju statistiku
+performansi baze: velicina fajlova, I/O brojači,...) i analizu statističkih podataka.
+\newline
+Utility programi: load, copy, import, reorg, recover, runstats, check,...
+
+\newpage
+
+\section{Uvod u relacione baze podataka}
+\subsection{Aspekti relacionog modela podataka}
+Intuitivno, \textbf{\textit{relacioni model}} predstavlja jedan način
+gledanja na podatke (preko tabela) i sadrži pravila za rad sa 
+tim podacima
+(izdvajanje, spajanje,...).
+\newline \hspace*{0.2cm}
+1) \textit{Aspekt strukture} - svi podaci u bazi se korisniku prikazuju
+isključivo u obliku tabela
+\newline \hspace*{0.2cm}
+2) \textit{Aspekt integriteta} - tabele zadovoljavaju izvesna ograničenja
+(primarni i spoljasnji ključevi,...)
+\newline \hspace*{0.2cm}
+3) \textit{Aspekt obrade} - operatori koji su na raspolaganju korisnicima
+za obradu tabela su takvi da izvode tabele iz tabele.
+
+\subsection{Karakteristike relacione baze podataka}
+Relacioni sistemi zahtevaju samo da se baza prikaže korisniku u obliku
+tabele. Način smeštanja i čuvanja na medijumu nije specifičan. 
+Informacioni pristup: celokupan informacioni kontekst baze se prikazuje
+na tačno jedan način kao eksplicitne vrednosti u pozicijama vrsta i
+kolona tabele. Posledica: nema pokazivača koji medjusobno povezuju
+tabele (mogu da postoje na fizičkom nivou). Rezultat primene svakog
+operatora je tabela. Rezultat primene operatora je istog tipa kao i
+njegov argument. Sve operacije se primenjuju na ceo skup istovremeno.
+\newline
+Relacioni model se sastoji od:
+\newline \hspace*{0.2cm}1. otvorenog skupa skalarnih tipova
+\newline \hspace*{0.2cm}2. generatora relacionih tipova i njihove
+odgovarajuće interpretacije
+\newline \hspace*{0.2cm}3. mogućnost definisanja relacionih
+promenljivih za generisane relacione tipove
+\newline \hspace*{0.2cm}4. operacije relacione dodele kojom se
+dodeljuju relacione vrednosti definisanim relacionim promenljivim
+\newline \hspace*{0.2cm}5. otvorenog skupa opštih relacionih operatora
+za izvodjenje relacionih vrednosti iz drugih relacionih vrednosti
+(relaciona algebra i račun)
+
+\subsection{Terminologija}
+Codd je pri formulisanju principa relacionih baza uveo novu 
+terminologiju:
+\newline \hspace*{0.2cm}• relacija - matematički termin za tabelu
+\newline \hspace*{0.2cm}• torka - red u tabeli
+\newline \hspace*{0.2cm}• atribut - kolona u tabeli
+\newline \hspace*{0.2cm}• kardinalnost- broj torki
+\newline \hspace*{0.2cm}• stepen - broj atributa
+\newline \hspace*{0.2cm}• domen - skup važećih vrednosti/tipova
+\newline \hspace*{0.2cm}• primarni ključ - atribut ili kombinacija atributa koja jedinstveno
+identifikuje tabelu
+
+\subsection{Osobine transakcije}
+\textit{\textbf{Transakcija}} je logička jedinica posla koja obično
+uključuje više operacija nad bazom. \newline \hspace*{0.2cm}
+1. \textit{Atomičnost} - garantuje se da će se izvršiti ili sve što se
+nalazi u transakciji ili ništa od toga.
+\newline \hspace*{0.2cm}
+2. \textit{Trajnost} - garantuje se da će po uspešnom izvršavanju
+(COMMIT-a) sve promene ostati trajno zapamćene u bazi, bez obzira na
+kasnije eventualne padove sistema.
+\newline \hspace*{0.2cm}
+3. \textit{Izolovanost} - transakcije su medjusobno izolovane u smislu
+da su efekti izvršavanja jedne transakcije nevidljivi za drugu
+transakciju sve do izvršavanja COMMIT naredbe.
+\newline \hspace*{0.2cm}
+4. Izvršavanje isprepletanog (u smislu početka i kraja) skupa
+transakcija će obično biti \textit{serijalizovano} u smislu da se
+dobija isti rezultat kao da se te iste transakcije izvršavaju jedna po
+jedna u unapred neodredjenom redosledu izvršavanja.
+
+\subsection{Relacija i njene osobine}
+Neka je dat skup od \textit{n} tipova ili domena, T$_i, i={1, n}$, 
+pri čemu ne moraju svi tipovi da budu medjusobno različiti. R je 
+\textit{\textbf{relacija}} nad tim tipovima ako se sastoji od 
+dva dela, zaglavlja i tela. \textit{Zaglavlje} je skup od 
+\textit{n} atributa oblika A$_i$ = T$_i$, gde su A$_i$ imena atributa
+relacije R. \textit{Telo} je skup od \textit{m} torki \textit{t}, gde
+je \textit{t} skup komponenti oblika A$_i$:V$_i$, u kojima je V$_i$
+vrednost tipa T$_i$. \newline
+Osobine:
+\newline \hspace*{0.2cm}- nema ponovljenih torki
+\newline \hspace*{0.2cm}- torke su neuredjene
+\newline \hspace*{0.2cm}- atributi su neuredjeni
+\newline \hspace*{0.2cm}- svaka torka sadrži tačno jednu vrednot za svaki atribut
+\vspace{0.2cm}\newline
+Relacija i tabela nisu jednake jer tabela može da sadrži duplikate, 
+redovi u tabeli su uredjeni od vrha ka dnu i kolone u tabeli su
+uredjene s leva u desno.
+\newline
+Relacija koja ima prazan skup torki - neprazno zaglavlje i prazno telo.
+Relacija koja ima praznu torku - prazno zaglavlje i telo sa jednom
+torkom bez komponenti
+
+\newpage
+
+\section{Relaciona algebra i relacioni račun}
+
+\subsection{Relacioni operatori}
+Codd je originalno predložio 8 operatora: restrikcija (selekcija),
+projekcija, proizvod, unija, presek, razlika, (prirodno) spajanje,
+deljenje. \newline
+Kasnije su dodati operatori: promena imena, poluspajanje, polurazlika,
+ekskluzivna unija, proširenje, slika relacije, operatori agregata,
+sumarizacija... \newline
+Minimalni skup operatora cine: restrikcija (selekcija), projekcija,
+prozivod, unija, razlika.
+
+\subsection{Relaciono zatvorenje. Relaciona kompletnost}
+Osobina da su argumenti i rezultati primene bilo kog relacionog
+operatora takodje relacije se naziva \textbf{\textit{relaciono
+zatvorenje}}. Posledica relacionog zatvorenja je mogućnost pisanja
+ugnježdenih relacionih izraza tj. relacionih izraza čiji su operandi
+takodje relacioni izrazi. Treba obezbediti da i novodobijene relacije
+imaju odgovarajuće zaglavlje i telo bez obzira da li su  u pitanju 
+osnovne ili izvedene relacije.
+\newline
+Jezik je \textbf{\textit{relaciono kompletan}} ako je moćan isto kao i
+algebra, tj. ako bilo koja relacija predstavljiva u algebri može da se
+predstavi i u tom jeziku. 
+\newline
+SQL je relaciono kompletan, jer postoje SQL izrazi
+za svaki od 5 primitivnih operatora relacione algebre.
+
+\subsection{SQL ekvivalenti osnovnih operatore relacione algebre}
+\hspace*{1.8cm}\textit{Algebra} \hspace*{5cm} \textit{SQL}
+\newline \hspace*{1cm}
+A WHERE P \hspace*{3cm} SELECT * FROM A WHERE P
+\newline \hspace*{1cm}
+A $\{x, y, ... , z\}$ \hspace*{2.5cm} SELECT DISTINCT x, y, ..., z FROM A
+\newline \hspace*{1cm}
+A TIMES B \hspace*{4.5cm} A CROSS JOIN B
+\newline \hspace*{1cm}
+A UNION B \hspace*{1cm} SELECT * FROM A UNION SELECT * FROM B
+\newline \hspace*{1cm}
+A MINUS B \hspace*{0.8cm} SELECT * FROM A EXCEPT SELECT * FROM B
+\newline \hspace*{1cm}
+A RENAME x AS y \hspace*{2.5cm} SELECT x AS y FROM A
+
+\subsection{Kodov algoritam redukcije}
+Kodov algoritam redukcije je prikaz da je relaciona algebra moćna koliko 
+i relacioni račun i obratno.
+
+\subsection{Relacioni operatori poluspajanja i polurazlike pomoću osnovnih
+Kodovih operatora}
+Operator poluspajanja možemo izraziti preko projekcije i prirodnog spajanja:
+\newline
+$$r1\ MATCHING\ r2\ =\ (r1\ JOIN\ r2)\{H1\}$$
+gde je $\{H1\}$ zaglavlje relacije r1.
+\newline
+Iz poluspajanja i razlike mozemo izvesti polurazliku kao:
+$$r1\ NOT\ MATCHING\ r2\ =\ r1\ MINUS\ (r1\ MATCHING\ r2)$$
+
+\newpage
+
+\section{SQL}
+
+\subsection{Domen u SQL-u} 
+\textit{\textbf{Domen}} je u SQL-u prost, korisnički definisan imenovan
+objekat koji se može koristiti kao alternativa za predefinisan tip
+podatka nad kojim se definiše. Može imati default
+vrednost i jedno ili više ograničenja. Može biti ugradjen (Integer,
+Char...) ili korisnički definisan (Ime, Indeks...). SQL podržava 8
+relacionih domena: brojevi, niske karaktera, niske bitova, datumi, 
+vremena, kombinacija datuma i vremena, intervali godina/mesec,
+intervali dan/vreme.
+
+\subsection{Primarni i strani ključevi}
+Kandidat za ključ relacije predstavlja podskup atributa X te relacije,
+ako vazi: \newline
+\hspace*{0.2cm}- \textit{pravilo jedinstvenosti}: ne postoje dve torke
+u relaciji R koje imaju iste vrednosti za X
+\newline \hspace*{0.2cm}- \textit{pravilo minimalnosti}: ne postoje
+pravi podksup skupa X koji zadovoljava pravilo jedinstvenosti.
+\vspace{0.2cm} \newline 
+Vrste kljuceva su:
+\newline \hspace*{0.2cm}- \textit{primarni ključ}: jedan od kandidata
+za ključ
+\newline \hspace*{0.2cm}- \textit{alternativni ključevi}: ostali
+kandidati
+\newline \hspace*{0.2cm}- \textit{spoljašnji (strani) ključ}: skup
+atributa jednog relvar-a R2 čije vrednosti treba da
+odgovaraju vrednostima nekog kandidata za ključ nekog relvar-a R1
+\newline \hspace*{0.2cm}- \textit{superključ}: nadskup kandidata za
+ključ; poseduje jedinstvenost, ali ne i minimalnost.
+
+\subsection{Ograničenja integriteta}
+Postoje ograničenja stanja i ograničenja prelaza. \newline
+\textbf{\textit{Ograničenja stanja}} definišu prihvatljiva
+stanja u bazi i ona se dele na \textit{ograničenja baze} koja se odnose
+na vrednosti koje je dozvoljeno čuvati u bazi (tj. koje se odnose na
+dve ili više različitih relacija), \textit{ograničenja relacija}
+(relvar-a) kojima se zadaje ograničenje na vrednost pojedinačne
+relacije (relvar-a) koje se proverava pri ažuriranju te relacije,
+\textit{ograničenja atributa} koja predstavljaju ograničenja na skup
+dozvoljenih vrednosti datog atributa i \\ \textit{ograničenja tipa}
+koja predstavljaju definiciju skupova vrednosti koji čine dati tip.
+\vspace{0.2cm}\newline
+\underline{Primeri:}
+a) Ograničenje baze
+\begin{verbatim}
+                CONSTRAINT BAZA1
+                FORALL DOSIJE D FORALL ISPIT I
+                IS_EMPTY (( D JOIN I )
+                WHERE I.INDEKS > 20150000
+                AND I.INDEKS = D.INDEKS
+                AND GODINA_ROKA=GODINA_ROKA(2015);
+\end{verbatim}
+\hspace*{1.3cm}
+b) Ograničenje relacije
+\begin{verbatim}
+                CONSTRAINT REL1
+                IF NOT ( IS_EMPTY ( PREDMET ) ) THEN
+                COUNT ( PREDMET
+                WHERE SIFRA= SIFRA (’R270’)) > 0
+                END IF;
+\end{verbatim}
+\vspace{1.5cm}
+\hspace*{1.3cm} 
+c) Ograničenje atributa
+\begin{verbatim}
+                VAR PREDMET BASE RELATION {
+                    ID_PREDMETA INTEGER,
+                    SIFRA
+                    SIFRA ,
+                    NAZIV
+                    NAZIV ,
+                    BODOVI
+                    SMALLINT
+                }
+\end{verbatim}
+\hspace*{1.3cm} 
+d) Ograničenje tipa
+\begin{verbatim}
+                TYPE POINT POSSREP
+                CARTESIAN (X RATIONAL, Y RATIONAL)
+                CONSTRAINT ABS
+                (THE_X (POINT)) <= 100.0 AND
+                ABS(THE_Y (POINT)) <= 100.0 ;
+\end{verbatim}
+\hspace*{1.3cm} 
+d) Ograničenje prelaza na primeru studentske baze: student ne može da
+sluša neki \\ \hspace*{1.9cm}predmet koji nije na tom smeru
+
+\subsection{Referencijalni integritet}
+Relacija koja sadrži primarne ključeve se naziva roditelj relacija, a
+relacija koja sadrži spoljašnje ključeve koji se referišu na
+roditelj relaciju se naziva dete relacija.
+\textit{\textbf{Referencijalni integritet}} - baza ne sme da sadrži
+neuparene vrednosti spoljašnjih ključeva.
+\newline \hspace*{0.2cm}• Relvar-i koji nemaju kandidate za ključ (tj.
+sadrže duple slogove) se ponašaju nepredvidivo u pojedinim situacijama
+\newline \hspace*{0.2cm}• Sistem koji ne poseduje znanje o kandidatima
+za ključ ponekad pokazuje karakteristike koje nisu “čisto relacione”.
+\newline Definicija stranog ključa:
+\begin{verbatim}
+    FOREIGN KEY lista atributa
+    REFERENCES ime relvar-a
+\end{verbatim}
+\textit{\textbf{Referencijalni ciklus}} je specijalni slučaj
+referencijalnog integriteta kod koga roditelj tabela i dete tabela
+predstavljaju istu tabelu, ili se, u slučaju da u referencijalnom nizu
+postoji više tabela, poslednja tabela referencijalnog niza referise na
+prvu tabelu. Ako u ciklusu učestvuje samo jedna tabela tada se on može
+formirati naredbom CREATE TABLE. U suprotnom, naredba koja je neophodna
+za formiranje referncijalnog ciklusa je ALTER TABLE pomoću koje se
+definišu spoljašnji ključevi kojima se zatvara referencijalni ciklus.
+$$T_n \rightarrow T_{n-1} \rightarrow T_{n-2} \rightarrow ...
+\rightarrow T_1 \rightarrow T_n$$
+
+\subsection{Pravila referencijalne akcije}
+Ova pravila mozemo da primenjujemo pri\textit{ create table} ili
+\textit{alter table} navodeći opcije \textit{on delete [pravilo]} ili
+\textit{on update [pravilo]}. Ova pravila će biti primenjivana na
+redove dete tabele koja je spoljašnjim ključem povezana sa roditelj
+tabelom. \newline
+Pri brisanju postoje pravila:
+\newline \hspace*{0.2cm}- NO ACTION(default)
+\newline \hspace*{0.2cm}- RESTRICT- CASCADE
+\newline \hspace*{0.2cm}- SET NULL
+\newline \underline{NO ACTION i RESTRICT} - ako je specificirano neko
+od ova dva pravila, prijavi se greška i nijedan red nije obrisan.
+\newline \underline{CASCADE} - kada se obriše red u roditelj tabeli,
+svi redovi dete tabele povezani sa roditelj tabelom se takodje brišu.
+\newline \underline{SET NULL}  - kada se obriše red u roditelj tabeli,
+svi redovi dete tabele povezane sa roditelj tabelom su postavljeni na
+NULL (ako je moguće njihove vrednosti postaviti na NULL).
+\newline
+Pravlila za azuriranje su:
+\newline \hspace*{0.2cm}- NO ACTION(default)
+\newline \hspace*{0.2cm}- RESTRICT
+\newline \underline{NO ACTION} - je default, a jedina alternativa je
+\underline{RESTRICT}. Razlika izmedju RESTRICT i NO ACTION je u tome
+što se RESTRICT primenjuje pre bilo kojih drugih referencijalnih
+ograničenja za menjanje kao što su CASCADE i SET NULL, dok se NO ACTION
+primenjuje posle svih drugih referencijalnih ograničenja. Pri
+prijavljivanju greške za NO ACTION i RESTRICT biće drugačiji SQLSTATE.
+\newline
+Kod unošenja nemamo dodatne naredbe, pravilo za unošenje je takvo da
+ako se nešto unosi u roditelj tabelu, nikada neće biti uneseno u dete
+tabelu koja je povezana sa roditelj tabelom osim ako već postoji
+vrednost u odgovarajućim kolonama povezanim sa roditelj tabelom.
+
+\subsection{Dodatne mogućnosti}
+Objekti u DB2 nad kojima se primenjuje DDL: memorijske grupe, baze 
+podataka, tabele, sheme, prostori za čuvanje tabela, funkcije, pul 
+bafera, alias i sinonimi, okidači, katanci, pogledi, indeksi, 
+planovi i paketi, log datoteke... 
+\vspace{0.2cm} \newline
+\textbf{Naredbe za definisanje podataka (DDL):}
+\newline CREATE - formira nove objekte. Sintaksa: CREATE 
+$<$objekat$>$ ... Objekti na koje može da se primeni: memorijske 
+grupe, baze podataka, sheme, prostori za čuvanje tabela, tabele, 
+pogledi, korisnički definisane funkcije, pul bafera, aliasi i 
+sinonimi, okidači, planovi i paketi, indeksi, serveri...
+\newline ALTER - menja karakteristike postojećih objekata. 
+Sintaksa: ALTER $<$objekat$>$ ... Objekti na koje može da se 
+primeni: memorijske grupe, particije baze podataka, tabele, 
+pogledi, prostori za čuvanje tabela, pula bafera, nadimci, serveri,
+sekvence, indeksi, korisnički definisane funkcije i tipovi..
+\newline DROP - koristi se za fizičko brisanje objekata na tekućem 
+serveru. Svi objekti koji direktno ili indirektno zavise od 
+obrisanih objekata se takodje brišu. Sintaksa: DROP 
+$<$objekat$>$...
+\newline DECLARE - slična CREATE naredbi sem što se koristi za 
+formiranje privremenih tabela koje se koriste jedino za vreme 
+tekuće sesije. Koristi se u svrhu optimizacije. Jedini objekat koji
+može da se deklariše je tabela 
+koja se upisuje u privremeni prostor za čuvanje tabela korisnika. 
+Sintaksa: DECLARE $<$objekat$>$ ...
+\vspace{0.2cm} \newline
+\textbf{Naredbe za obradu podataka (DML):}
+\newline SELECT - prikazuje rezultat SQL upita
+\newline INSERT - unosi vrednosti u tabelu (pogled). Sintaksa: 
+\newline \hspace*{1,2cm} INSERT INTO $<$objekat$>$ 
+VALUES/WITH/$<$puna select naredba$>$ ...
+\newline UPDATE - ažurira postojeće vrednosti. Sintaksa: UPDATE 
+$<$objekat$>$ SET...
+\newline DELETE - prazni sadržaj objekata. Sintaksa: DELETE 
+$<$objekat$>$ [WHERE uslov]
+\newline MERGE - ažurira ciljni objekat na osnovu podataka iz 
+izvornih objekata. Sintaksa: MERGE $<$objekat$>$ USING...
+
+\subsection{Pogledi}
+Relacioni sistemi podržavaju \textbf{poglede} - imenovane relvar-e.
+Vrednost pogleda je rezultat izvršavanja odredjenog relacionog 
+izraza u tom trenutku. Relacioni izraz se navodi pri formiranju 
+pogleda. Sistem pretvara upit naveden pri formiranju pogleda u 
+ekvivalentan upit nad osnovnim relvar-ima. Pretvaranje se vrši 
+supstitucijom koja je moguća na osnovu osobine relacionog 
+zatvorenja. Pogled može da bude definisan i nad drugim pogledom, a 
+ne samo nad osnovnim relvar-om.
+\newline
+Sintaksa naredbe za formiranje pogleda:
+\newline
+$$VAR <ime\ relvar-a> VIEW <relacioni\ izraz> <lista\ kandidata\ za\
+ključeve>$$[RESTRICT/CASCADE]
+\vspace{0.2cm} \newline • lista kandidata za ključeve može biti i
+prazna ako pogled može da nasledi kandidate za ključeve.
+\newline • RESTRICT/CASCADE - može ali ne mora da postoji
+\vspace{0.2cm} \newline
+Sintaksa naredbe za brisanje pogleda:
+$$DROP\ VAR <ime\ relvar-a>$$
+Definicija pogleda kombinuje spoljašnju šemu, preslikavanje izmedju
+spoljašnjeg i konceptualnog nivoa (sadrži izgled spoljašnjeg objekta
+i opis kako se on preslikava na konceptualni nivo),
+spoljašnje-spoljašnje preslikavanje.
+\vspace{0.2cm} \newline
+Funkcije pogleda: obezbedjuju automatsku zaštitu za skrivene
+podatke; omogućuju da različiti korisnici istovremeno vide iste
+podatke na različite načine; uprošćavaju složene operacije;
+omogućuju logičku nezavisnost podataka.
+\newline
+Logička nezavisnost podataka: proširenje relacije baze ne sme da ima
+efekat na izvršavanje aplikativnih programa; restruktuiranje baze ne
+sme da ima efekat na postojeće aplikativne programe; nova i stara
+baza treba da budu informaciono ekvivalentne.
+\vspace{0.2cm} \newline
+Operacija čitanja podataka preko pogleda se konvertuje u
+ekvivalentnu operaciju nad osnovnim relvar-ima - materijalizacija
+relacije koja je trenutna vrednost pogleda i sustitucija relacionog
+izraza u drugom relacionom izrazu. Semantika pogleda se definiše
+preko materijalizacije relacija. Sve operacije sa čitanjem podataka
+preko pogleda bi trebalo da rade korektno, ali u praksi to nije
+slučaj, pogotovu ako se pogledi ne materijalizuju.
+\vspace{0.2cm} \newline
+Zlatno pravilo se primenjuje i na poglede tj. ažuriranje pogleda ne
+sme da naruši ograničenja integriteta nad pogledima. Ograničenje
+integriteta nad pogledima su izvedena iz ograničenja integriteta
+osnovnih relvar-a.
+\newline
+Ako je D baza, V pogled nad D i X funkcija nad D kojom se definiše
+pogled V, tada za dati pogled V = X(D) i operaciju ažuriranja U nad
+V, potrebno je odrediti operaciju ažuriranja U$_1$ nad D tako da
+važi U(X(D)) = X (U$_1$(D)). Moguće je da postoji više operacija
+U$_$1, pitanje je koju odabrati. Codd-ov pristup: definisanje
+pogleda koji mogu da se ažuriraju. Date-in pristup: svi pogledi mogu
+da se ažuriraju. Operacije ažuriranja se izvode izbegavanjem
+ograničenja integriteta u medjukoracima ažuriranja - ažuriranje se
+izvodi kao brisanje postojećih i unošenje novih podataka.
+\vspace{0.2cm} \newline
+SQL podrška:
+\newline CREATE VIEW naredba
+\newline CREATE [OR REPLACE] VIEW $<$ime pogleda$>$ AS $<$izraz nad
+tabelom$>$ [WITH \newline [$<$kvalifikator$>$] CHECK OPTION]
+\newline DROP VIEW $<$ime pogleda$>$
+\vspace{0.2cm} \newline 
+Podrška za ažuriranje pogleda je vrlo ograničena. Jedini
+pogledi koji se smatraju mogućim za ažuriranje su pogledi koji su
+izvedeni iz jedne osnovne tabele preko kombinacija restrikcije i
+projekcije. U SQL/92 pogled može da se ažurira ako važi: izraz kojim
+se definiše pogled je \textit{select} izraz koji ne sadrži JOIN,
+UNION, INTERSECT ili EXCEPT; \textit{select} klauzula ne sadrži
+ključnu reč DISTINCT; svaka \textit{select} stavka sadrži
+kvalifikovano ime koje predstavlja referencu na kolonu osnovne
+tabele; \textit{from} klauzula sadrži referencu na tačno jednu
+tabelu koja je ili osnovna tabela ili pogled koji može da se
+ažurira; \textit{where} klauzula \textit{select} izraza ne sadrži
+podupit u kome se \textit{from} klauzula referiše na istu tabelu kao
+i \textit{from} klauzula u \textit{select} izrazu na najvišem nivou;
+\textit{select} izraz ne sadrži \textit{group by} niti
+\textit{having} klauzulu.
+
+\subsection{OLAP}
+\textit{\textbf{OLAP}} (online analytical processing) - interaktivni
+proces formiranja, upravljanja, analiziranja i prikaza podataka.
+Obično se podaci sa kojima se radi posmatraju i sa njima se
+upravlja kao da se čuvaju u višedimenzionalnom nizu.
+\newline
+Proces analize zahteva odredjenu \textit{agregaciju podataka},
+obično na različite načine i prema različitim grupisanjima.
+Problemi: pravljenje više sličnih ali neznatno različitih upita je
+dosadno i zamorno za korisnika; izvršavanje svih upita može da bude
+jako skupa operacija. Sa više nivoa agregacije u jednom upitu se
+olakšava posao korisniku i nudi se mogućnost da se sve agregacije
+izračunaju mnogo efikasnije.
+\newline
+OLAP softverski paketi često prikazuju rezultate ne u obliku SQL
+tabela, već u obliku ukrštenih tabela. \textit{\textbf{Ukrštena
+tabela}} je višedimenziona tabela koja sadrži vrednosti zavisnih
+atributa i koja je indeksirana sa ključnim atributima SQL tabela.
+
+\newpage
+
+\section{Normalizacija i funkcionalne zavisnosti}
+
+\subsection{Definicija funkcionalne zavisnosti}
+\textbf{DEF1} Neka je R relacija i neka su X i Y proizvoljni
+podskupovi atributa iz R. Tada \textit{Y funkcionalno zavisi od X}
+(X funkcionalno odredjuje Y), u oznaci X $\rightarrow$ Y, akko je
+svakoj važećoj vrednosti torke X u R pridružena tačno jedna vrednost 
+Y iz R.
+$$ \exists f : f(X) = Y $$
+\textbf{DEF2} \textit{Funkcionalna zavisnost} u relaciji R je
+tvrdjenje oblika "Ako su dve torke od R identične na svim atributima
+A$_1$,..., A$_n$ tada moraju da imaju iste vrednosti i u ostalim
+atributima B$_1$,..., B$_m$". Dve torke su identične ako su im
+identične vrednosti respektivnih komponenata.
+\vspace{0.2cm} \newline
+\textbf{DEF} Podskup atributa X $\subseteq$ R relacije R je kandidat za ključ relacije R ako važi: 
+$$ \forall Y : Y = R\setminus X \Longrightarrow X \rightarrow Y $$
+$$ \nexists Z, W : (Z\in X) \wedge (W = R \setminus Z) \wedge
+(Z \rightarrow W) $$
+Superključ relacije R je skup atributa koji uključuje kao podskup bar
+jedan kandidat za ključ relacije R.
+\newline
+Svaka funkcionalna zavisnost predstavlja ograničenje integriteta.
+Posledica je da svaki atribut relacije funkcionalno zavisi od nekog
+kandidata za ključ. Funkcionalna zavisnost ne zavisi od trenutne
+vrednosti relvar-a.
+\newline
+Dva skupa funkcionalnih zavisnosti S i T nad relacijom R su
+ekvivalentni ako je skup instanci relacije R koji zadovoljava S
+jednak skupu instanci relacije R koji zadovoljava T. U opštem
+slučaju, skup S funkcionalne zavisnosti se izvodi iz skupa T
+funkcionalne zavisnosti ako svaka instanca relacije koja zadovoljava
+sve FZ iz T takodje zadovoljava sve FZ iz S. Posledica je da su dva
+skupa FZ S i T ekvivalentni akko se svaka FZ u S izvodi iz FZ u T i
+obrnuto.
+
+\subsection{Pravila i zatvorenje}
+\textbf{DEF} (\textit{Dekompozicija}) FZ A$_1$,...,A$_n \rightarrow
+$ B$_1$,...,B$_m$ je ekvivalentna sa skupom FZ 
+$$ A_1,A_2,...,A_n \rightarrow B_1  $$
+$$ A_1,A_2,...,A_n \rightarrow B_2 $$
+$$ ... $$
+$$ A_1,A_2,...,A_n \rightarrow B_m $$
+\textbf{DEF} (\textit{Kompozicija}) Skup FZ
+$$ A_1,A_2,...,A_n \rightarrow B_1  $$
+$$ A_1,A_2,...,A_n \rightarrow B_2 $$
+$$ ... $$
+$$ A_1,A_2,...,A_n \rightarrow B_m $$
+je ekvivalentan sa FZ A$_1$,...,A$_n \rightarrow $ B$_1$,...,B$_m$
+\vspace{0.8cm} \newline
+\textbf{DEF} \textit{Trivijalna zavisnost} je FZ koja ne može a da
+ne bude zadovoljena za bilo koji skup vrednosti u relaciji. 
+$Y \subseteq X \Rightarrow FZ\ X \rightarrow Y $ je trivijalna.
+\vspace{0.2cm} \newline
+\textbf{DEF} Neka je S skup FZ nad relacijom R. Skup svih FZ koje
+mogu da se izvedu iz skupa S FZ se naziva \textit{zatvorenje} od S i
+označava se sa $\{S\}^+$.
+\newline
+Posledica je da su dva skupa funcionalnih zavisnosti S i T nad
+relacijom R ekvivalentni ako važi $\{S\}^+ = \{T\}^+$.
+\newline
+Zatvorenje $\{S\}^+$ skupa FZ S može da se odredi primenom pravila
+(Armstrongovim aksiomama) kojima se nove FZ izvode iz postojećih.
+Neka su A, B i C proizvoljni podskupovi atributa relacije R. Tada 
+važe pravila:
+$$ Refleksivnost:\ B \subseteq A \Rightarrow A \rightarrow B $$
+$$ Prosirenje:\ A \rightarrow B \Rightarrow AC \rightarrow BC $$
+$$ Tranzitivnost: A \rightarrow B \wedge B \rightarrow C \Rightarrow 
+A \rightarrow C $$
+Iz prethodna tri se mogu izvesti dodatna pravila:
+$$ Samoodredjenje: A \rightarrow A $$
+$$ Dekompozicija: A \rightarrow BC \Rightarrow A \rightarrow B \wedge
+A \rightarrow C $$
+$$ Unija: A \rightarrow B \wedge A \rightarrow C \Rightarrow A 
+\rightarrow BC $$
+$$ Kompozicija: A \rightarrow B \wedge C \rightarrow D \Rightarrow
+AC \rightarrow BD $$
+$$ Opsta\ teorema\ unifikacije: A \rightarrow B \wedge C \rightarrow
+D \Rightarrow A \cup (C-B) \rightarrow BD $$
+Algoritam za računanje zatvorenja skupa FZ F:
+\newline
+\hspace*{0.4cm}Inicijalno F$^+$ = F; \newline
+\hspace*{0.4cm}\textbf{repeat} \newline
+\hspace*{0.8cm}za svaku FZ f $\in$ F$^+$ \newline
+\hspace*{1.4cm}primeniti refleksivnost i proširenje na f \newline
+\hspace*{1.4cm}dodati dobijene FZ u F$^+$ \newline
+\hspace*{0.8cm}za svaki par FZ (f$_1$, f$_2$) $\in$ F$^+$ \newline
+\hspace*{1.4cm}ako f$_1$ i f$_2$ mogu da se kombinuju pomoću
+tranzitivnosti \newline
+\hspace*{1.8cm}tada dodati dobijenu FZ u F$^+$ \newline
+\hspace*{0.4cm}\textbf{until} više ne bude promena u F$^+$
+\vspace{0.2cm}\newline
+Često treba izračunati da li data FZ pripada zatvorenju skupa FZ. U
+praksi se odredjivanje zatvorenja FZ relativno retko radi. Da bi
+odredili da li je K nadključ treba odrediti skup atributa relacije R
+koji funkcionalno zavisi od K. Ako je skup atributa K nadključ, tada
+K funkcionalno odredjuje sve atribute u R. K je nadključ akko je
+$\{K\}^+$ od K jednako skupu svih atributa relacije R. 
+\vspace{0.1cm} \newline
+\textbf{DEF} Neka je A = $\{A_1, A_2,...,A_n\}$ skup atributa
+relacije R i S skup FZ nad R. \textit{Zatvorenje} skupa atributa A u
+odnosu na skup S FZ je skup atributa B takvih da svaka relacija koja
+zadovoljava sve FZ u skupu S zadovoljava i FZ $A_1,A_2,...,A_n
+\rightarrow B$.
+\newline
+Zatvorenje skupa atributa A se označava sa $\{A\}^+$. Uvek važi da su
+svi pojedinačni atributi iz A u $\{A\}^+$.
+\vspace{0.1cm} \newline
+Neka je A = $\{A_1,...,A_n\}$ skup atributa i S skup FZ. Algoritam za
+odredjivanje zatvorenja $\{A\}^+$ je: \newline
+1. Izvršiti dekompoziciju svih FZ tako da imaju samo jedan atribut na
+desnoj strani. \newline
+2. Neka je X skup atributa koji predstavlja zatvorenje. Inicijalno X
+= $\{A_1,A_2,...,A_n\}$ \newline
+3. Tražiti FZ oblika $B_1,B_2,...,B_m \rightarrow C$ takve da
+$\forall i:B_i \subset X \wedge C \nsubseteq X$. Dodati C u X.
+Ponavljati pretragu sve dok ima promena skupa X. \newline
+4. Ukoliko ne postoji atribut koji bi mogao da se doda skupu X, tada
+je X = $\{A_1,A_2,...,A_n\}^+$ 
+\newpage
+Ako su S$_1$ i S$_2$ dva skupa FZ i ako je svaka FZ iz S$_1$
+uključena u S$_2$ tj. ako je $\{S_1\}^+$ podskup od $\{S_2\}^+$, tada
+je S$_2$ pokrivač za S$_1$. Ako je S$_1$ pokrivač od S$_2$ i S$_2$
+pokrivač od S$_1$, tada su S$_1$ i S$_2$ ekvivalentni. Ako RSUBP
+obezbedi FZ u S$_2$, tada će automatski biti obezbedjene i FZ u
+S$_1$.
+\vspace{0.2cm} \newline
+\textbf{DEF} FZ $X \rightarrow Y$ u skupu S funkcionalnih zavisnosti
+je \textit{levo-nereducibilna} ako iz X ne može da se ukloni ni jedan
+atribut bez promene zatvorenja $\{S\}^+$. \newline
+Nadključ K je kandidat za ključ relacije R akko je njen nereducibilni
+nadključ. \newline
+\textbf{DEF} Skup FZ je \textit{nereducibilan} ako:
+\newline \hspace*{0.4cm}• desna strana svake FZ u S sadrži tačno
+jedan atribut
+\newline \hspace*{0.4cm}• leva strana svake FZ je levo nereducibilna
+\newline \hspace*{0.4cm}• ni jedna FZ ne može da se ukloni iz S bez
+promene $\{S\}^+$
+\newline Skup FZ koji zadovoljava prethodna pravila se naziva i
+minimalan ili kanonički.
+\vspace{0.2cm} \newline Algoritam za nalaženje nereducibilnog skupa S
+FZ:
+\newline \hspace*{0.4cm}• koristeći pravilo dekompozicije prepisati
+sve FZ u S tako da desna strana sadrži tačno jedan atribut
+\newline \hspace*{0.4cm}• eliminisati sve redundantne FZ iz skupa
+funkcionalnih zavisnosti dobijenih prethodnim postupkom
+\vspace{0.2cm} \newline
+Neka se relacija R sa skupom S FZ projektuje na relaciju 
+$R_1 = \pi \{R\}$. Koje FZ su važeće u R$_1$? Odredjuje se
+\textit{projekcija} FZ S koja sadrži sve FZ takve da:
+\newline \hspace*{0.4cm}• mogu da se izvedu iz S
+\newline \hspace*{0.4cm}• uključuju jedino atribute iz R$_1$
+\newline Algoritam:
+\newline \hspace*{0.4cm}• neka je T skup FZ u R$_1$. Inicijalno T =
+$\emptyset$
+\newline \hspace*{0.4cm}• $\forall X \subseteq R_1$ odrediti
+$\{X\}^+$ u odnosu na FZ u S. Atributi koji su u R ali ne i u R$_1$
+mogu da se koriste u izračunavanju $\{X\}^+$. Dodati u T sve
+netrivijalne FZ $X \rightarrow A$ takve da $A \subset \{X\}^+ \wedge
+A \subset R_1$
+\newline \hspace*{0.4cm}• odredjuje se minimalni skup T na sledeći
+način: ako postoji $F \subset T$ koja može da se izvede iz drugih FZ
+u T, ukloniti FZ F. Neka je $Y \rightarrow B$ FZ u T sa najmanje dva
+atributa u Y i neka je Z dobijeno iz Y uklanjanjem jednog od
+atributa. Ako $Z \rightarrow B$ može da se izvede iz FZ u T
+(uključujući $Y \rightarrow B$), tada se $Y \rightarrow B$ zamenjuje
+sa $Z \rightarrow B$. Ponoviti prethodne korake sve dok ima promena u
+T. 
+
+\subsection{Normalizacija}
+U logičko projektovanje baza spada: normalizacija -
+korišćenje ideja o normalizaciji radi razbijanja velikih u
+male relacije, i semantičko modeliranje - upotreba modela
+entiteta i odnosi radi formiranja velikih relacija.
+\newline
+\textit{\textbf{Normalizacija}} je proces zamene relacija
+skupom relacija koje su u pogodnijem obliku. Svrha
+normalizacije je izbegavanje redundantnosti i pojedinih
+anomalija ažuriranja. U procesu normalizacije operator
+projekcije se više puta primenjuje na datu relaciju na takav
+način da spajanjem projekcija može da se dodje do početne
+relacije. Na taj način, proces normalizacije je reverzibilan
+i čuva informacije tj. uvek je moguće da se uzme izlaz iz
+procesa i preslika unazad do ulaza. Postoji 6 normanih formi, van toga su relacije koje nisu realizovane.
+\newpage
+
+\subsection{Normalne forme}
+\textbf{DEF} Relvar je u \textit{1NF} akko u svakoj važećoj
+vrednosti tog relvar-a svaka torka sadrži tačno jednu
+vrednost za svaki atribut (vrednosti atributa su uvek
+atomične).
+\vspace{0.2cm}\newline
+Nereducibilna funkcionalna zavisnost: Ako $A \rightarrow B$ i
+uklanjanje bilo kog atributa iz A povlači da $A \rightarrow
+B$ postaje netačno, tada je B nereducibilno zavisno od A.
+Nereducibilna definicija podrazumeva postojanje samo jednog
+kandidata za ključ koji je istovremeno i primarni ključ.
+\newline
+\textbf{DEF} Relvar je u \textit{2NF} akko je u 1NF i svaki
+neključni
+atribut nereducibilno zavisan od primarnog ključa.
+\vspace{0.2cm}\newline
+\textbf{DEF1} Relvar je u \textit{3NF} akko je u 2NF i svaki
+neključni atribut je netranzitivno zavisan od primarnog
+ključa (ne zavisi od atributa drugih neključeva). 
+\newline
+Prethodne definicije podrazumevaju postojanje samo jednog
+kandidata za ključ koji je istovremeno i primarni ključ.
+Posledica je da su neključni atributi uzajamno nezavisni.
+\newline
+\textbf{DEF2} Relvar R je u \textit{3NF} akko za svaku FZ: 
+$A_1A_2...A_n \rightarrow B_1B_2...B_m$ koja nije trivijalna
+važi:
+\newline \hspace*{0.4cm}• $\{A_1A_2...A_n\}$ je superključ
+ili
+\newline \hspace*{0.4cm}• svaki atribut $B_1B_2...B_m \notin
+\{A_1A_2...A_n\}$ je element nekog (ne obavezno istog)
+kandidata za ključ
+\newline
+Kodova originalna definicija 3NF nije uzimala u obzir
+slučajeve kada relacija: ima više od jednog kandidata za
+ključ; kandidat za ključ je kompozitan; kompozitni kandidati
+za ključeve se preklapaju. Ovi slučajevi su obuhvaćeni
+Bojs-Kodovom normalnom formom.
+\vspace{0.2cm} \newline
+\textbf{DEF} Relvar je u \textit{BCNF} akko je u 3NF i svaka
+netrivijalna levo-nereducibilna FZ ima kandidat za ključ
+(superključ) kao svoju levu stranu (jedini kandidati za ključ
+su leve strane FZ). 
+\newline
+Relvar je u BCNF akko su jedini kandidati za ključ leve
+strane FZ.
+\newline
+Poželjne osobine pri redukciji:
+\newline \hspace*{0.4cm}• eliminacija anomalija
+\newline \hspace*{0.4cm}• mogućnost rekonstrukcije 
+informacija
+\newline \hspace*{0.4cm}• očuvanje FZ
+\newline
+Pravila:
+\newline \hspace*{0.4cm}• sve FZ polaznog skupa moraju da
+budu očuvane (direktno ili mogućim izvodjenjem iz skupa
+relacija dobijenih dekompozicijom)
+\newline \hspace*{0.4cm}• ako u novodobijenim projekcijama
+nastalim razbijanjem osnovne relacije postoji zajednički
+atribut, on mora da bude ključ u bar jednoj od novodobijenih
+relacija
+\newline
+Algoritam za dekompoziciju relacije R u BCNF:
+\newline \hspace*{0.4cm}1. proveriti da li je relacija R u
+BCNF. Ako jeste, proces je završen i $\{R\}$ je rešenje
+\newline \hspace*{0.4cm}2. ako FZ $X \rightarrow Y$ narušava
+BCNF, tada za nove relacije uzeti $R_1 = \{X\}^+$ i \newline
+$R_2 = \{X\} \cup (R - \{X\}^+)$
+\newline \hspace*{0.4cm}3. odrediti skup FZ za relacije $R_1$
+i $R_2$
+\newline \hspace*{0.4cm}4. primeniti rekurzivno algoritam na
+relacije $R_1$ i $R_2$, uzimajući uniju svih dekompozicija
+kao rešenje
+\vspace{0.2cm}\newline
+\textbf{DEF} Neka je R relvar i neka su A, B i C podskupovi
+atributa od R. Kaže se da je B \textit{višeznačno zavisno} od
+A, u oznaci $A \rightarrow\rightarrow B$ akko u svakoj
+mogućoj važećoj vrednosti od R, skup vrednosti B koji se
+uparuje sa parom (vrednost A, vrednost C) zavisi jedino od
+vrednosti A i nezavisan je od vrednosti C.
+\vspace{0.2cm}\newline
+\textbf{DEF} Relvar R je u \textit{4NF} akko je u BCNF i
+svaki put kada postoje podsupovi A i B atributa od R takvi da
+je zadovoljena netrivijalna višeznačna zavisnost 
+$A \rightarrow\rightarrow B$, tada su svi atributi od R
+takodje funkcionalno zavisni od A.
+\newline
+VZ $A \rightarrow\rightarrow B$ je
+trivijalna ako je ili A nadskup od B ili $A \cap B$ sadrži
+sve atribute od R.
+\newline
+Neka je R relvar i neka su A, B,..., Z podskupovi atributa od
+R. Tada R zadovoljava \textit{zavisnost spajanja}
+$*\{A,B,...,Z\}$ akko je R u 4NF i svaka moguća važeća
+vrednost u R je jednaka spajanju njenih projekcija na A,
+B,..., Z.
+\vspace{0.2cm}\newline
+\textbf{DEF} Relvar je u \textit{5NF}
+(projekcija-spajanje-NF) akko je R u 4NF i svaka netrivijalna
+zavisnost spajanja koja važi u R je posledica kandidata za
+ključ u R, gde je: zavisnost spajanja u R trivijalna akko je
+najmanje jedan od A,B,...,Z skup svih atributa R, i zavisnost
+spajanja u R je posledica kandidata za ključ relvar-a R akko
+je svaki od A,B,...,Z nadključ za R.
+
+\subsection{Proces normalizacije}
+Normalizacija dovodi do mnogo sitnih relacija, što je
+nepoželjno. Nekada se zbog toga ne ide do kraja, već se
+duplikati ostave, zbog efikasnosti.
+\newline 
+Relaciona promenljiva R je:
+\newline \hspace*{0.4cm}1) normalizovana akko je u 1NF
+\newline \hspace*{0.4cm}2) u 2NF akko za svaki ključ K u R i
+svaki neključni atribut A iz R FZ $K \rightarrow \{Y\}$ koja
+važi u R je nereducibilna (tj. K je minimalni ključ)
+\newline \hspace*{0.4cm}3) u 3NF akko svaka netrivijalna FZ
+$X \rightarrow Y$ koja važi u R ili je X superključ ili je
+podskup ključa
+\newline \hspace*{0.4cm}4) u BCNF akko u svakoj netrivijalnoj
+FZ $X \rightarrow Y$ koja važi u R, X je superkluč
+\vspace{0.3cm} \newline
+Proces normalizacije:
+\newline \hspace*{0.4cm}1. uzeti projekcije originalnog
+relvar-a u 1NF radi eliminisanja FZ koje nisu nereducibilne.
+Dobijeni skup relvar-a je u 2NF.
+\newline \hspace*{0.4cm}2. uzeti projekcije u 2NF radi
+eliminisanja tranzitivnih zavisnosti. Dobijeni skup relvar-a
+je u 3NF.
+\newline \hspace*{0.4cm}3. uzeti projekcije relvar-a u 3NF
+radi eliminisanja preostalih FZ u kojima na levoj strani nije
+kandidat za ključ. DObijeni skup relvar-a je u BCNF.
+\newline \hspace*{0.4cm}4. uzeti projekcije relvar-a u BCNF
+radi eliminisanja VZ koje nisu u FZ. DObijeni skup relvar-a
+je u 4NF.
+\newline \hspace*{0.4cm}5. uzeti projekcije relvar-a koji su
+u 4NF i eliminisati ZS koje ne slede iz kandidata za
+ključ(eve). Dobijeni skup relvar-a je u 5NF.
+\vspace{0.2cm}\newline
+U praksi se često ne sprovodi puna normalizacija zbog dobrih
+performansi. Puna normalizacija dovodi do velikog broja
+logički razdvojenih relvar-a. Veliki broj razdvojenih
+relvar-a znači veliki broj razdvojenih datoteka u kojima se
+čuvaju. Veliki broj datoteka znači veliki broj U/I operacija.
+U praksi se normalizacija najčešće sprovodi do 3NF.
+\newpage
+
+\section{Sigurnost podataka i autorizacija}
+\textit{\textbf{Sigurnost}} - zaštita podataka od
+neautorizovanih korisnika (zaštita protiv neautorizovanog
+pristupa, promene ili uništenja).
+\newline
+\textit{\textbf{Integritet}} - zaštita podataka protiv
+autorizovanih korisnika (obezbedjenje ispravnosti i korektnosti
+podataka)
+\newline
+Sličnosti izmedju sigurnosti i integriteta: 
+\newline \hspace*{0.4cm} • sistem mora da bude
+svestan izvesnih ograničenja koje korisnici ne smeju da prekrše
+\newline \hspace*{0.4cm} • ograničenja moraju da budu zadata (od
+strane DBA) u nekom jeziku
+\newline \hspace*{0.4cm} • ograničenja moraju da budu
+evidentirana u sistemskom katalogu (rečniku podataka)
+\newline \hspace*{0.4cm} • SBP mora da vrši nadzor nad
+operacijama korisnika.
+\newline
+Aspekti problema sigurnosti:
+\newline \hspace*{0.4cm} • pravni, socijalni i etički  
+\newline \hspace*{0.4cm} • fizička kontrola
+\newline \hspace*{0.4cm} • politička pitanja
+\newline \hspace*{0.4cm} • operativni problemi
+\newline \hspace*{0.4cm} • hardverska kontrola
+\newline \hspace*{0.4cm} • podrška operativnog sistema
+\newline \hspace*{0.4cm} • problemi vezani za same baze podataka
+\newline
+Jedinica podataka na koju se osigurava: baza podataka, relvar,
+pojedinčna torka ili vrednost atributa, aliasi, indeksi, šeme,
+paketi, prostori za čuvanje tabela...
+
+\subsection{Sigurnost u SQL-u}
+Sigurnost se obično zapisuje preko kontrolne matrice pristupa -
+predstavljanje po korisnicima, po objektima, po dozvoli za
+pristup. Postoje dva mehanizma koja su nezavisno jedan od drugog
+uključeni u sistem zaštite:
+\newline \hspace*{0.4cm} 1. \textit{pogledi} koji mogu da se
+koriste za sakrivanje osetljivih podataka od neautorizovanih
+korisnika
+\newline \hspace*{0.4cm} 2. \textit{podsistem za autorizaciju}
+koji dopušta korisniku sa odredjenim pravima pristupa da ta
+prava selektivno i dinamički prenosi na druge korisnike i/ili da
+preneta prava povuče. Da bi korisnik izvršio bilo kakvu
+operaciju nad nekim objektom on mora da poseduje
+dozvolu/autorizaciju za tu operaciju nad tim objektom. Tipovi i
+vrste dozvola nisu isti kod svih SUBP. Sistemski administrator
+je inicijalni vlasnik svih dozvola. Davanje dozvola se vrši
+GRANT naredbom, a povlačenje REVOKE naredbom.
+\vspace{0.2cm} \newline
+Sintaksa GRANT naredbe za dozvole nad tabelama ili pogledima:
+\newline
+$$GRANT\ dozvola\ [ON\ [tip]\ objekat]\ TO\ korisnik,$$
+\textit{dozvola} je lista jedne ili više vrsta dozvola,
+razdvojenim zarezima ili fraza ALL PRIVILEGES ili ALL koja
+označava sve privilegije koje se mogu dati GRANT naredbom.
+Dozvole koje se odnose na osnovne tabele i poglede: CONTROL,
+DELETE, INSERT, SELECT, UPDATE (mogu da se navedu pojedinačne
+kolone). Dozvole koje se odnose samo na osnovne tabele: ALTER
+(dozvola za izvršavanjem ALTER TABLE nad tabelom), INDEX
+(dozvola za izvršavanje CREATE INDEX nad tabelom), REFERENCES
+(dozvola za formiranje/brisanje spoljašnjeg ključa koji referiše
+tu tabelu kao roditelj tabelu)
+\newline
+\textit{korisnik} je lista korisnika razdvojenih zarezima ili
+PUBLIC za sve korisnike
+\newline
+\textit{objekat} je lista imena jednog ili više objekata koji su
+svi istog tipa, razdvojenih zarezima
+\newline
+\textit{tip} označava tip objekta; ako se izostavi podrazumeva 
+se TABLE
+\newline
+\textit{ON} se ne upotrebljava kada se daje dozvola za sistemske
+privilegije
+\newline
+Ako korisnik K1 želi da prenese dozvolu D korisniku K2, to može
+da uradi: naredbom GRANT dozvola...; naredbom GRANT dozvola...
+WITH GRANT OPTION čime omogućuje korisniku K2 da dalje
+distribuira dozvolu koja mu je preneta.
+\vspace{0.2cm} \newline
+Sintaksa REVOKE naredbe za dozvole nad tabelama ili pogledima:
+$$REVOKE\ dozvola\ [ON\ [tip]\ objekat]\ FROM\ korisnik\ [BY\ 
+ALL]$$
+Povlačenje dozvole za nekog korisnika uzrokuje da svi
+planovi/paketi zasnovani na toj dozvoli postanu neispravni i
+uzrokuju automatsko vezivanje/ponovno vezivanje prilikom
+pozivanja takvog plana/paketa. Nije moguće ukinuti UPDATE
+dozvolu samo za pojedine kolone.
+\vspace{0.2cm} \newline
+Ostali aspekti sigurnosti:
+\newline \hspace*{0.4cm} • kompletan sistem treba da bude
+zaštićen
+\newline \hspace*{0.4cm} • ne pretpostavljati da je sistem
+zaštite savršen
+\newline \hspace*{0.4cm} • voditi evidenciju o prijavljivanju na
+bazu
+
+
+
+\end{document}
