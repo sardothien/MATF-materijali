@@ -18,6 +18,10 @@ $(document).ready(function(){
     $("#rgmat").hide();
     $("#unmmat").hide();
     $("#rbpmat").hide();
+    $("#ppmat").hide();
+    $("#statmat").hide();
+    $("#ip1mat").hide();
+    $("#vimat").hide();
 
     $("#p1").on("click", function(){
         $("#p1mat").slideToggle("slow");
@@ -89,6 +93,22 @@ $(document).ready(function(){
 
     $("#unm").on("click", function(){
         $("#unmmat").slideToggle("slow");
+    });
+
+    $("#pp").on("click", function(){
+        $("#ppmat").slideToggle("slow");
+    });
+
+    $("#stat").on("click", function(){
+        $("#statmat").slideToggle("slow");
+    });
+
+    $("#ip1").on("click", function(){
+        $("#ip1mat").slideToggle("slow");
+    });
+
+    $("#vi").on("click", function(){
+        $("#vimat").slideToggle("slow");
     });
 
 });
