@@ -1,0 +1,172 @@
+\documentclass[a4paper]{article}
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8x,utf8]{inputenc} % make weird characters work
+\usepackage[serbian]{babel}
+\usepackage[cm]{fullpage}
+\date{}
+
+\textwidth 18.5cm \textheight 26.5cm
+\evensidemargin -1cm
+\oddsidemargin -1cm
+\topmargin -1.5cm
+
+\pagestyle{empty}
+\begin{document}
+
+\noindent Ime, prezime, broj indeksa: \underline{Mina Milošević, 81/2017} \\
+
+\center{Programske paradigme --- Lambda račun, vežba}
+
+\begin{enumerate}
+\item Izvesti normalni oblik primenom odgovarajućih redukcija na termove (prikazati postupak):
+\begin{enumerate}
+\item $(\lambda k.k \cdot k+1)((\lambda j.j+1)2) \rightarrow
+(\lambda k.k \cdot k+1)(2+1) \rightarrow (\lambda k.k \cdot k+1)3 \rightarrow
+(3 \cdot 3 + 1) \rightarrow 10$  \vspace*{4mm}\\
+
+\item $(\lambda m.2 \cdot m+3)((\lambda n.n-2)10) \rightarrow 
+(\lambda m.2 \cdot m+3)(10-2) \rightarrow (\lambda m.2 \cdot m+3)8 \rightarrow
+(2 \cdot 8 + 3) \rightarrow 19$ \vspace*{4mm}\\
+
+\item $(\lambda k.k \; (k \; 10))(\lambda x.x-2) \rightarrow 
+(\lambda x.x-2)((\lambda x.x-2)10) \rightarrow (\lambda x.x-2)(10-2) \rightarrow
+(\lambda x.x-2)8 \rightarrow 8-2 \rightarrow 6$ \vspace*{4mm} \\
+
+\item $(\lambda p.p \; (p \;(p \; 10)))(\lambda q.q+1) \rightarrow 
+(\lambda q.q+1)((\lambda q.q+1)((\lambda q.q+1)10)) \rightarrow
+(\lambda q.q+1)((\lambda q.q+1)(10+1)) \rightarrow$ \vspace*{3mm}\\
+$(\lambda q.q+1)((\lambda q.q+1)11) \rightarrow
+(\lambda q.q+1)(11+1) \rightarrow (\lambda q.q+1)12 \rightarrow 12 + 1 
+\rightarrow 13$ \vspace*{4mm}\\
+
+\item $((\lambda kmn.k \cdot m+n)2)3 \rightarrow 
+((\lambda k.(\lambda mn.k \cdot m+n))2)3 \rightarrow
+(\lambda mn.2 \cdot m + n)3 \rightarrow
+(\lambda m.(\lambda n.2 \cdot m + n))3 \rightarrow$  \vspace*{3mm}\\
+$ (\lambda n.2 \cdot 3 + n) \rightarrow (\lambda n.6 + n) $ \vspace*{4mm}\\
+
+\item $(((\lambda ijk.i \cdot j+k)2)3)4 \rightarrow 
+(((\lambda i.(\lambda jk.i \cdot j + k))2)3)4 \rightarrow
+((\lambda jk.2 \cdot j + k)3)4 \rightarrow
+((\lambda j.(\lambda k.2 \cdot j + k))3)4 \rightarrow$  \vspace*{3mm}\\
+$ (\lambda k.2 \cdot 3 + k)4 \rightarrow 2 \cdot 3 + 4 \rightarrow 10 $
+\vspace*{4mm}\\
+
+\item $(\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)) \rightarrow
+(\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)) \rightarrow 10$ 
+\vspace*{4mm}\\
+
+\item $(\lambda k.k \cdot k+1)((\lambda j.j+1)((\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)))) \rightarrow (\lambda k.k \cdot k+1)((\lambda j.j+1)10)
+\rightarrow (\lambda k.k \cdot k+1)(10+1) \rightarrow $\vspace*{3mm}\\
+$(\lambda k.k \cdot k+1)11 \rightarrow 11 \cdot 11 + 1 \rightarrow 122$ 
+\vspace*{4mm}\\
+
+\item $(\lambda x.x \; (x \; 5))((\lambda ab.a+2\cdot b)3) \rightarrow
+(\lambda x.x \; (x \; 5))(\lambda b.3+2\cdot b) \rightarrow
+(\lambda b.3+2\cdot b)((\lambda b.3+2\cdot b)5) \rightarrow 
+(\lambda b.3+2\cdot b)(3+2 \cdot 5)$ \vspace*{3mm}\\
+$ \rightarrow (\lambda b.3+2\cdot b)13 \rightarrow 3 + 2 \cdot 13
+\rightarrow 29$ \vspace*{4mm}\\
+
+\item $(\lambda x.x \; (x \; 1))(((\lambda abc.a+b \cdot c)2)4) \rightarrow
+(\lambda x.x \; (x \; 1))((\lambda bc.2+b \cdot c)4) \rightarrow
+(\lambda x.x \; (x \; 1))(\lambda c.2+4 \cdot c) \rightarrow$ \vspace*{3mm} \\
+$(\lambda c.2+4 \cdot c)((\lambda c.2+4 \cdot c)1) \rightarrow
+(\lambda c.2+4 \cdot c)(2+4 \cdot 1) \rightarrow (\lambda c.2+4 \cdot c)6
+\rightarrow 2 + 4 \cdot 6 \rightarrow 26$ \vspace*{4mm} \\
+	
+\item $(\lambda x.x \; (x \; 1))((((\lambda abcd.a+b \cdot c-d)2)4)1) \rightarrow
+(\lambda x.x \; (x \; 1))(((\lambda bcd.2+b \cdot c-d)4)1) \rightarrow$
+\vspace*{3mm} \\
+$(\lambda x.x \; (x \; 1))((\lambda cd.2+4 \cdot c-d)1) \rightarrow
+(\lambda x.x \; (x \; 1))(\lambda d.2+4 \cdot 1-d) \rightarrow
+(\lambda d.6-d)((\lambda d.6-d)1) \rightarrow $ \vspace*{3mm} \\
+$(\lambda d.6-d)(6-1) \rightarrow (\lambda d.6-d)5 \rightarrow
+6-5 \rightarrow 1$ \vspace*{4mm} \\
+
+\end{enumerate}
+
+\newpage
+\item Izvesti normalni oblik primenom redukcija u \textbf{normalnom poretku} na termove (prikazati postupak):
+
+\begin{enumerate}
+\item $(\lambda k.k \cdot k+1)((\lambda j.j+1)2) \rightarrow 
+((\lambda j.j+1)2) \cdot ((\lambda j.j+1)2) + 1 \rightarrow
+(2+1) \cdot (2+1) + 1 \rightarrow 3 \cdot 3 + 1 \rightarrow 10$  \vspace*{4mm}\\
+
+\item $(\lambda m.2 \cdot m+3)((\lambda n.n-2)10) \rightarrow
+2 \cdot ((\lambda n.n-2)10) + 3 \rightarrow 
+2 \cdot (10-2) + 3 \rightarrow 2 \cdot 8 + 3 \rightarrow 19$ \vspace*{4mm}\\
+
+\item $(\lambda k.k \; (k \; 10))(\lambda x.x-2) \rightarrow
+(\lambda x.x-2)((\lambda x.x-2)10) \rightarrow
+((\lambda x.x-2)10) - 2 \rightarrow (10-2) -2 \rightarrow 6$ \vspace*{4mm} \\
+
+\item $(\lambda p.p \; (p \;(p \; 10)))(\lambda q.q+1) \rightarrow
+(\lambda q.q+1)((\lambda q.q+1)((\lambda q.q+1)10)) \rightarrow
+(\lambda q.q+1)(((\lambda q.q+1)10) + 1) \rightarrow$  \vspace*{3mm}\\
+$ (((\lambda q.q+1)10) + 1) + 1 \rightarrow ((10+1)+1)+1 \rightarrow 13$
+\vspace*{4mm}\\
+
+\item $((\lambda kmn.k \cdot m+n)2)3 \rightarrow
+(\lambda mn.2 \cdot m+n)3 \rightarrow \lambda n.2 \cdot 3+n \rightarrow 
+\lambda n.6+n$ \vspace*{4mm}\\
+
+\item $(((\lambda ijk.i \cdot j+k)2)3)4 \rightarrow
+((\lambda jk.2 \cdot j+k)3)4 \rightarrow (\lambda k.2 \cdot 3+k)4 \rightarrow
+(2 \cdot 3+4) \rightarrow 6 + 4 \rightarrow 10$ \vspace*{4mm}\\
+
+\item $(\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)) \rightarrow 10$
+\vspace*{4mm}\\
+
+\item $(\lambda k.k \cdot k+1)((\lambda j.j+1)((\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)))) \rightarrow $ \vspace*{3mm}\\
+$((\lambda j.j+1)((\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)))) \cdot 
+((\lambda j.j+1)((\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)))) + 1
+\rightarrow $ \vspace*{3mm}\\
+$ (((\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)))+1) \cdot
+(((\lambda x.10)((\lambda x. x \; x)(\lambda x. x \; x)))+1) + 1 \rightarrow$
+\vspace*{3mm}\\
+$ (10+1) \cdot (10+1) +1 \rightarrow 11 \cdot 11 + 1 \rightarrow 122 $
+\vspace*{4mm}\\
+
+\item $(\lambda x.x \; (x \; 5))((\lambda ab.a+2\cdot b)3) \rightarrow
+((\lambda ab.a+2\cdot b)3)(((\lambda ab.a+2\cdot b)3)5) \rightarrow
+(\lambda b.3+2\cdot b)(((\lambda ab.a+2\cdot b)3)5) \rightarrow$ \vspace*{3mm}\\
+$ 3 + 2 \cdot (((\lambda ab.a+2\cdot b)3)5) \rightarrow
+3 + 2 \cdot ((\lambda b.3+2 \cdot b)5) \rightarrow
+3 + 2 \cdot (3+2 \cdot 5) \rightarrow 29$ \vspace*{4mm}\\
+
+\item $(\lambda x.x \; (x \; 1))(((\lambda abc.a+b \cdot c)2)4) \rightarrow
+(((\lambda abc.a+b \cdot c)2)4)((((\lambda abc.a+b \cdot c)2)4)1) \rightarrow
+$ \vspace*{3mm} \\
+$((\lambda bc.2+b \cdot c)4)((((\lambda abc.a+b \cdot c)2)4)1) \rightarrow
+(\lambda c.2+4 \cdot c)((((\lambda abc.a+b \cdot c)2)4)1) \rightarrow$ 
+\vspace*{3mm} \\
+$ 2 + 4 \cdot ((((\lambda abc.a+b \cdot c)2)4)1) \rightarrow
+2 + 4 \cdot (((\lambda bc.2+b \cdot c)4)1) \rightarrow
+2 + 4 \cdot ((\lambda c.2+4 \cdot c)1) \rightarrow$ \vspace*{3mm} \\
+$ 2 + 4 \cdot (2+4 \cdot 1) \rightarrow 2 + 4 \cdot 6 \rightarrow 26$
+\vspace*{4mm}\\
+	
+\item $(\lambda x.x \; (x \; 1))((((\lambda abcd.a+b \cdot c-d)2)4)1) \rightarrow
+((((\lambda abcd.a+b \cdot c-d)2)4)1)(((((\lambda abcd.a+b \cdot c-d)2)4)1)1) 
+\rightarrow$ \vspace*{3mm} \\
+$ (((\lambda bcd.2+b \cdot c-d)4)1)(((((\lambda abcd.a+b \cdot c-d)2)4)1)1) 
+\rightarrow
+((\lambda cd.2+4 \cdot c-d)1)(((((\lambda abcd.a+b \cdot c-d)2)4)1)1)$
+\vspace*{3mm} \\
+$ \rightarrow (\lambda d.2+4 \cdot 1-d)(((((\lambda abcd.a+b \cdot c-d)2)4)1)1) 
+\rightarrow
+2 + 4 \cdot 1 - (((((\lambda abcd.a+b \cdot c-d)2)4)1)1) \rightarrow$
+\vspace*{3mm} \\
+$ 2 + 4 \cdot 1 - ((((\lambda bcd.2+b \cdot c-d)4)1)1) \rightarrow
+2 + 4 \cdot 1 - (((\lambda cd.2+4 \cdot c-d)1)1) \rightarrow
+2 + 4 \cdot 1 - ((\lambda d.2+4 \cdot 1-d)1)$ \vspace*{3mm} \\
+$ \rightarrow 2 + 4 \cdot 1 - (2+4 \cdot 1-1) \rightarrow
+2 + 4 \cdot 1 - 5 \rightarrow 1$
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
