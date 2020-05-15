@@ -9,7 +9,7 @@ object MainLogPoruke {
 
     val ctx = new SparkContext(conf)
 
-    val poruke = ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/log.txt")
+    val poruke = ctx.textFile("log.txt")
         // gledamo samo linije koje pocinju tagom i mora da sadrzi "java"
         .filter(linija => (linija.startsWith("[warn]") || linija.startsWith("[info]")
                          || linija.startsWith("[error]")) && linija.contains("java"))

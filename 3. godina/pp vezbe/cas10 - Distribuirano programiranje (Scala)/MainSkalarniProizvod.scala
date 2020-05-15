@@ -9,11 +9,11 @@ object MainSkalarniProizvod {
 
     val ctx = new SparkContext(conf)
 
-    val v1RDD = ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/vektor1.txt")
+    val v1RDD = ctx.textFile("vektor1.txt")
       .flatMap(_.split(", *"))
       .map(_.toInt)
 
-    val v2RDD = ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/vektor2.txt")
+    val v2RDD = ctx.textFile("vektor2.txt")
       .flatMap(_.split(", *"))
       .map(_.toInt)
 
