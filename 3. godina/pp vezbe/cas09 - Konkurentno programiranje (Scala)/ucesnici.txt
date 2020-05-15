@@ -1,0 +1,33 @@
+16
+Petar Misic
+450
+Jana Ilic
+310
+Zika Rinic
+800
+Maja Josipovic
+640
+Ranko Jovic
+520
+Ana Gagic
+440
+Luka Popovic
+850
+Nikola Milentijevic
+390
+Milena Tamic
+530
+Viktor Tomic
+860
+Filip Rusic
+430
+Emir Jankovic
+540
+Valentina Ilic
+550
+Milica Radic
+530
+Ognjen Vesic
+690
+Zorana Dimic
+890

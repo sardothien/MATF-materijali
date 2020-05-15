@@ -1,0 +1,17 @@
+tresnje 20
+kruske 13
+kajsije 18
+tresnje 23
+sljive 24
+tresnje 11
+sljive 19
+kruske 17
+kajsije 17
+kruske 25
+sljive 27
+tresnje 9
+kajsije 14
+sljive 23
+kajsije 14
+sljive 13
+kruske 17

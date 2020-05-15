@@ -1,0 +1,8 @@
+Google Chrome   , 4020  , 30
+Windows Defender , 10 , 1  , sys
+Steam , 121 ,  5
+VLC   , 912  , 10
+explorer.exe , 32 , 2  , sys
+Avast Antivirus , 123  , 5
+Windows update , 92 , 21  , sys
+Steam update , 9 , 11

@@ -1,0 +1,4 @@
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/home/mina/Downloads/programske%20paradigme/vezbe/cas11%20-%20Distribuirano%20programiranje%20(Scala)/2019_jun2/"), "root-2019_jun2")...
+[debug] Done updating ProjectRef(uri("file:/home/mina/Downloads/programske%20paradigme/vezbe/cas11%20-%20Distribuirano%20programiranje%20(Scala)/2019_jun2/"), "root-2019_jun2")
+[warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.

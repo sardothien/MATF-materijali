@@ -1,0 +1,4 @@
+.ui fajlove prevodimo u Python kod:
+-> pyuic5 ui_fajl.ui -o ime.py -x
+
+-> man pyuic5

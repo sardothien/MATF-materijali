@@ -1,0 +1,32 @@
+Tottenham-WBA
+1.31 5.0 11.5
+Swansea-Arsenal
+8.0 4.65 1.41
+West Ham-Crystal Palace
+2.05 3.5 2.55
+Leicester-Chelsea
+6.0 3.9 1.57
+Everton-Man City
+4.2 3.70 1.85
+Man Utd-Liverpool
+2.1 3.55 3.4
+Liverpool-Swansea
+1.2 6.5 13
+Stoke-Man Utd
+6.0 3.7 1.62
+WBA-Sunderland
+1.75 3.65 4.75
+Man City-Tottenham
+2.0 3.55 3.7
+Southampton-Leicester
+1.92 3.4 4.2
+Arsenal-Burnley
+1.2 6.5 14
+Chelsea-Hull
+1.18 7 15
+Crystal Palace-Everton
+3.1 3.3 2.3
+Watford-Middlesbrough
+4.2 3.1 3.2
+Hull-Bournemouth
+2.9 3.4 2.4

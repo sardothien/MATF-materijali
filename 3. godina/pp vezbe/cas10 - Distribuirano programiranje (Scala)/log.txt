@@ -1,0 +1,1871 @@
+$ sbt/sbt assembly
+Launching sbt from sbt/sbt-launch-0.12.4.jar
+[info] Loading project definition from /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/project/project
+[info] Loading project definition from /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/project
+[info] Set current project to root (in build file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/)
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}core...
+[info] Resolving org.apache.derby#derby;10.4.2.0 ...
+[info] Done updating.
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}graphx...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}streaming...
+[info] Resolving org.apache.spark#spark-core_2.10;0.9.1 ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}mllib...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}bagel...
+[info] Resolving commons-io#commons-io;2.4 ...
+[info] Done updating.
+[info] Resolving commons-io#commons-io;2.4 ...
+[info] Done updating.
+[info] Resolving commons-io#commons-io;2.4 ...
+[info] Done updating.
+[info] Resolving org.eclipse.jetty#jetty-server;7.6.8.v20121106 ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}repl...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving io.netty#netty-all;4.0.13.Final ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}external-twitter...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}external-mqtt...
+[info] Resolving commons-io#commons-io;2.4 ...
+[info] Done updating.
+[info] Resolving io.netty#netty-all;4.0.13.Final ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}external-zeromq...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving io.netty#netty-all;4.0.13.Final ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}external-kafka...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving org.eclipse.jetty#jetty-server;7.6.8.v20121106 ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}external-flume...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving org.eclipse.jetty#jetty-server;7.6.8.v20121106 ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}tools...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving io.netty#netty-all;4.0.13.Final ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}assembly...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving com.ning#compress-lzf;1.0.0 ...
+[info] Compiling 297 Scala sources and 17 Java sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/core/target/scala-2.10/classes...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving org.scala-lang#scala-library;2.10.3 ...
+[info] Updating {file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/}examples...
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[info] Resolving org.mockito#mockito-all;1.8.5 ...
+[info] Done updating.
+[warn] there were 56 feature warning(s); re-run with -feature for details
+[warn] one warning found
+[warn] Note: Some input files use unchecked or unsafe operations.
+[warn] Note: Recompile with -Xlint:unchecked for details.
+[info] Compiling 31 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/graphx/target/scala-2.10/classes...
+[info] Compiling 27 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/mllib/target/scala-2.10/classes...
+[info] Compiling 52 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/streaming/target/scala-2.10/classes...
+[info] Compiling 1 Scala source to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/bagel/target/scala-2.10/classes...
+[warn] there were 1 feature warning(s); re-run with -feature for details
+[warn] one warning found
+[warn] there were 11 feature warning(s); re-run with -feature for details
+[warn] one warning found
+[info] Compiling 13 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/repl/target/scala-2.10/classes...
+[warn] there were 6 feature warning(s); re-run with -feature for details
+[warn] one warning found
+[info] Compiling 2 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/external/zeromq/target/scala-2.10/classes...
+[info] Compiling 2 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/external/flume/target/scala-2.10/classes...
+[info] Compiling 2 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/external/mqtt/target/scala-2.10/classes...
+[info] Compiling 1 Scala source to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/tools/target/scala-2.10/classes...
+[info] Compiling 2 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/external/twitter/target/scala-2.10/classes...
+[info] Compiling 2 Scala sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/external/kafka/target/scala-2.10/classes...
+[info] Compiling 44 Scala sources and 14 Java sources to /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/examples/target/scala-2.10/classes...
+[warn] there were 1 feature warning(s); re-run with -feature for details
+[warn] one warning found
+[info] Including: hadoop-client-1.0.4.jar
+[info] Including: lift-json_2.10-2.5.1.jar
+[info] Including: scala-reflect-2.10.3.jar
+[info] Including: hadoop-core-1.0.4.jar
+[info] Including: scala-compiler.jar
+[info] Including: mesos-0.13.0.jar
+[info] Including: minlog-1.2.jar
+[info] Including: netty-all-4.0.13.Final.jar
+[info] Including: objenesis-1.2.jar
+[info] Including: oro-2.0.8.jar
+[info] Including: paranamer-2.4.1.jar
+[info] Including: protobuf-java-2.4.1-shaded.jar
+[info] Including: protobuf-java-2.4.1.jar
+[info] Including: reflectasm-1.07-shaded.jar
+[info] Including: avro-ipc-1.7.4.jar
+[info] Including: chill-java-0.3.1.jar
+[info] Including: chill_2.10-0.3.1.jar
+[info] Including: scalap-2.10.0.jar
+[info] Including: colt-1.2.0.jar
+[info] Including: hsqldb-1.8.0.10.jar
+[info] Including: jackson-annotations-2.2.2.jar
+[info] Including: jackson-core-2.2.2.jar
+[info] Including: commons-beanutils-1.7.0.jar
+[info] Including: servlet-api-2.5-20081211.jar
+[info] Including: jackson-core-asl-1.8.8.jar
+[info] Including: commons-beanutils-core-1.8.0.jar
+[info] Including: slf4j-api-1.7.5.jar
+[info] Including: commons-codec-1.4.jar
+[info] Including: jackson-databind-2.2.2.jar
+[info] Including: slf4j-log4j12-1.7.2.jar
+[info] Including: stream-2.5.1.jar
+[info] Including: commons-collections-3.2.1.jar
+[info] Including: uncommons-maths-1.2.2a.jar
+[info] Including: velocity-1.7.jar
+[info] Including: commons-compress-1.4.1.jar
+[info] Including: xmlenc-0.52.jar
+[info] Including: xz-1.0.jar
+[info] Including: jackson-mapper-asl-1.8.8.jar
+[info] Including: zookeeper-3.4.5.jar
+[info] Including: commons-configuration-1.6.jar
+[info] Including: commons-daemon-1.0.10.jar
+[info] Including: commons-digester-1.8.jar
+[info] Including: commons-el-1.0.jar
+[info] Including: javax.servlet-2.5.0.v201103041518.jar
+[info] Including: jets3t-0.7.1.jar
+[info] Including: commons-httpclient-3.1.jar
+[info] Including: metrics-graphite-3.0.0.jar
+[info] Including: metrics-json-3.0.0.jar
+[info] Including: config-1.0.2.jar
+[info] Including: metrics-jvm-3.0.0.jar
+[info] Including: netty-3.6.6.Final.jar
+[info] Including: jetty-6.1.26.jar
+[info] Including: commons-io-2.4.jar
+[info] Including: guava-14.0.1.jar
+[info] Including: commons-lang-2.4.jar
+[info] Including: jetty-continuation-7.6.8.v20121106.jar
+[info] Including: jetty-http-7.6.8.v20121106.jar
+[info] Including: jetty-io-7.6.8.v20121106.jar
+[info] Including: commons-logging-1.1.1.jar
+[info] Including: commons-math-2.1.jar
+[info] Including: jetty-server-7.6.8.v20121106.jar
+[info] Including: jetty-util-6.1.26.jar
+[info] Including: snappy-java-1.0.5.jar
+[info] Including: jetty-util-7.6.8.v20121106.jar
+[info] Including: akka-actor_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: jline-0.9.94.jar
+[info] Including: commons-net-1.4.1.jar
+[info] Including: jsr305-1.3.9.jar
+[info] Including: junit-3.8.1.jar
+[info] Including: concurrent-1.3.4.jar
+[info] Including: kryo-2.21.jar
+[info] Including: log4j-1.2.17.jar
+[info] Including: metrics-core-3.0.0.jar
+[info] Including: fastutil-6.5.7.jar
+[info] Including: akka-remote_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: akka-slf4j_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: compress-lzf-1.0.0.jar
+[info] Including: asm-4.0.jar
+[info] Including: asm-commons-4.0.jar
+[info] Including: asm-tree-4.0.jar
+[info] Including: avro-1.7.4.jar
+[info] Including: scala-library.jar
+[warn] there were 1 feature warning(s); re-run with -feature for details
+[warn] one warning found
+[info] Including: chill-java-0.3.1.jar
+[info] Including: chill_2.10-0.3.1.jar
+[info] Including: hadoop-core-1.0.4.jar
+[info] Including: colt-1.2.0.jar
+[info] Including: scala-compiler.jar
+[info] Including: commons-beanutils-1.7.0.jar
+[info] Including: commons-beanutils-core-1.8.0.jar
+[info] Including: commons-codec-1.4.jar
+[info] Including: jetty-6.1.26.jar
+[info] Including: lift-json_2.10-2.5.1.jar
+[info] Including: commons-collections-3.2.1.jar
+[info] Including: jetty-continuation-7.6.8.v20121106.jar
+[info] Including: jetty-http-7.6.8.v20121106.jar
+[info] Including: jetty-io-7.6.8.v20121106.jar
+[info] Including: jetty-server-7.6.8.v20121106.jar
+[info] Including: mesos-0.13.0.jar
+[info] Including: jetty-util-6.1.26.jar
+[info] Including: commons-compress-1.4.1.jar
+[info] Including: minlog-1.2.jar
+[info] Including: jetty-util-7.6.8.v20121106.jar
+[info] Including: netty-all-4.0.13.Final.jar
+[info] Including: commons-configuration-1.6.jar
+[info] Including: jline-0.9.94.jar
+[info] Including: jline-2.10.3.jar
+[info] Including: jsr305-1.3.9.jar
+[info] Including: commons-daemon-1.0.10.jar
+[info] Including: commons-digester-1.8.jar
+[info] Including: commons-el-1.0.jar
+[info] Including: junit-3.8.1.jar
+[info] Including: metrics-graphite-3.0.0.jar
+[info] Including: metrics-json-3.0.0.jar
+[info] Including: commons-httpclient-3.1.jar
+[info] Including: metrics-jvm-3.0.0.jar
+[info] Including: netty-3.6.6.Final.jar
+[info] Including: hsqldb-1.8.0.10.jar
+[info] Including: commons-io-2.4.jar
+[info] Including: objenesis-1.2.jar
+[info] Including: commons-lang-2.4.jar
+[info] Including: oro-2.0.8.jar
+[info] Including: paranamer-2.4.1.jar
+[info] Including: protobuf-java-2.4.1-shaded.jar
+[info] Including: jackson-annotations-2.2.2.jar
+[info] Including: commons-logging-1.1.1.jar
+[info] Including: jackson-core-2.2.2.jar
+[info] Including: commons-math-2.1.jar
+[info] Including: jackson-core-asl-1.8.8.jar
+[info] Including: protobuf-java-2.4.1.jar
+[info] Including: jackson-databind-2.2.2.jar
+[info] Including: snappy-java-1.0.5.jar
+[info] Including: py4j-0.8.1.jar
+[info] Including: reflectasm-1.07-shaded.jar
+[info] Including: akka-actor_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: scala-reflect-2.10.3.jar
+[info] Including: commons-math3-3.2.jar
+[info] Including: jackson-mapper-asl-1.8.8.jar
+[info] Including: jansi-1.4.jar
+[info] Including: javax.servlet-2.5.0.v201103041518.jar
+[info] Including: jblas-1.2.3.jar
+[info] Including: commons-net-1.4.1.jar
+[info] Including: concurrent-1.3.4.jar
+[info] Including: fastutil-6.5.7.jar
+[info] Including: asm-4.0.jar
+[info] Including: asm-commons-4.0.jar
+[info] Including: asm-tree-4.0.jar
+[info] Including: avro-1.7.4.jar
+[info] Including: jets3t-0.7.1.jar
+[info] Including: scalap-2.10.0.jar
+[info] Including: avro-ipc-1.7.4.jar
+[info] Including: config-1.0.2.jar
+[info] Including: guava-14.0.1.jar
+[info] Including: servlet-api-2.5-20081211.jar
+[info] Including: slf4j-api-1.7.5.jar
+[info] Including: slf4j-log4j12-1.7.2.jar
+[info] Including: stream-2.5.1.jar
+[info] Including: uncommons-maths-1.2.2a.jar
+[info] Including: velocity-1.7.jar
+[info] Including: xmlenc-0.52.jar
+[info] Including: xz-1.0.jar
+[info] Including: zookeeper-3.4.5.jar
+[info] Including: kryo-2.21.jar
+[info] Including: akka-remote_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: log4j-1.2.17.jar
+[info] Including: metrics-core-3.0.0.jar
+[info] Including: scala-compiler.jar
+[info] Including: akka-slf4j_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: compress-lzf-1.0.0.jar
+[info] Including: jackson-databind-2.2.2.jar
+[info] Including: jackson-jaxrs-1.7.1.jar
+[info] Including: jackson-mapper-asl-1.9.2.jar
+[info] Including: jackson-xc-1.7.1.jar
+[info] Including: jamm-0.2.5.jar
+[info] Including: jamon-runtime-2.3.1.jar
+[info] Including: jasper-compiler-5.5.23.jar
+[info] Including: scala-library.jar
+[info] Including: jasper-runtime-5.5.23.jar
+[info] Including: javax.servlet-2.5.0.v201103041518.jar
+[info] Including: jaxb-api-2.1.jar
+[info] Including: jaxb-impl-2.2.3-1.jar
+[info] Including: jbcrypt-0.3m.jar
+[info] Including: jblas-1.2.3.jar
+[info] Including: jets3t-0.7.1.jar
+[info] Including: jetty-6.1.26.jar
+[info] Including: jetty-continuation-7.6.8.v20121106.jar
+[info] Including: jetty-http-7.6.8.v20121106.jar
+[info] Including: jetty-io-7.6.8.v20121106.jar
+[info] Including: jetty-server-7.6.8.v20121106.jar
+[info] Including: jetty-util-6.1.26.jar
+[info] Including: jetty-util-7.6.8.v20121106.jar
+[info] Including: jline-0.9.94.jar
+[info] Including: jna-3.0.9.jar
+[info] Including: jnr-constants-0.8.2.jar
+[info] Including: jruby-complete-1.6.5.jar
+[info] Including: mesos-0.13.0.jar
+[info] Including: metrics-annotation-2.2.0.jar
+[info] Including: metrics-core-2.2.0.jar
+[info] Including: minlog-1.2.jar
+[info] Including: mqtt-client-0.4.0.jar
+[info] Including: netty-all-4.0.13.Final.jar
+[info] Including: objenesis-1.2.jar
+[info] Including: oro-2.0.8.jar
+[info] Including: paranamer-2.4.1.jar
+[info] Including: protobuf-java-2.4.1-shaded.jar
+[info] Including: protobuf-java-2.4.1.jar
+[info] Including: hadoop-client-1.0.4.jar
+[info] Including: metrics-jvm-3.0.0.jar
+[info] Including: chill-java-0.3.1.jar
+[info] Including: netty-3.6.6.Final.jar
+[info] Including: chill_2.10-0.3.1.jar
+[info] Including: reflectasm-1.07-shaded.jar
+[info] Including: colt-1.2.0.jar
+[info] Including: scala-reflect-2.10.3.jar
+[info] Including: snappy-java-1.0.5.jar
+[info] Including: commons-beanutils-1.7.0.jar
+[info] Including: scala-library.jar
+[info] Including: JavaEWAH-0.6.6.jar
+[info] Including: commons-beanutils-core-1.8.0.jar
+[info] Including: activation-1.1.jar
+[info] Including: akka-actor_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: commons-cli-1.2.jar
+[info] Including: commons-codec-1.4.jar
+[info] Including: commons-collections-3.2.1.jar
+[info] Including: commons-compress-1.4.1.jar
+[info] Including: commons-configuration-1.6.jar
+[info] Including: commons-daemon-1.0.10.jar
+[info] Including: commons-digester-1.8.jar
+[info] Including: commons-el-1.0.jar
+[info] Including: commons-httpclient-3.1.jar
+[info] Including: scalap-2.10.0.jar
+[info] Including: commons-io-2.4.jar
+[info] Including: commons-lang-2.6.jar
+[info] Including: commons-logging-1.1.1.jar
+[info] Including: commons-math-2.1.jar
+[info] Including: algebird-core_2.10-0.1.11.jar
+[info] Including: servlet-api-2.5-20110124.jar
+[info] Including: servlet-api-2.5-6.1.14.jar
+[info] Including: slf4j-api-1.7.5.jar
+[info] Including: slf4j-log4j12-1.7.2.jar
+[info] Including: slf4j-simple-1.6.4.jar
+[info] Including: snakeyaml-1.6.jar
+[info] Including: snaptree-0.1.jar
+[info] Including: commons-math3-3.2.jar
+[info] Including: stax-api-1.0-2.jar
+[info] Including: stax-api-1.0.1.jar
+[info] Including: antlr-2.7.7.jar
+[info] Including: stream-2.5.1.jar
+[info] Including: stringtemplate-3.2.1.jar
+[info] Including: twitter4j-core-3.0.3.jar
+[info] Including: antlr-3.2.jar
+[info] Including: twitter4j-stream-3.0.3.jar
+[info] Including: uncommons-maths-1.2.2a.jar
+[info] Including: velocity-1.7.jar
+[info] Including: antlr-runtime-3.2.jar
+[info] Including: asm-4.0.jar
+[info] Including: asm-commons-4.0.jar
+[info] Including: asm-tree-4.0.jar
+[info] Including: xmlenc-0.52.jar
+[info] Including: avro-1.7.4.jar
+[info] Including: xz-1.0.jar
+[info] Including: zeromq-scala-binding_2.10-0.0.7.jar
+[info] Including: commons-net-1.4.1.jar
+[info] Including: zkclient-0.1.jar
+[info] Including: zkclient-0.3.jar
+[info] Including: avro-ipc-1.7.4.jar
+[info] Including: concurrent-1.3.4.jar
+[info] Including: zookeeper-3.4.5.jar
+[info] Including: cassandra-all-1.2.6.jar
+[info] Including: core-3.1.1.jar
+[info] Including: jersey-core-1.8.jar
+[info] Including: jersey-json-1.8.jar
+[info] Including: jersey-server-1.8.jar
+[info] Including: akka-remote_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: jettison-1.1.jar
+[info] Including: kryo-2.21.jar
+[info] Including: log4j-1.2.17.jar
+[info] Including: cassandra-thrift-1.2.6.jar
+[info] Including: akka-slf4j_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: fastutil-6.5.7.jar
+[info] Including: akka-zeromq_2.10-2.2.3-shaded-protobuf.jar
+[info] Including: metrics-core-3.0.0.jar
+[info] Including: metrics-graphite-3.0.0.jar
+[info] Including: metrics-json-3.0.0.jar
+[info] Including: compress-lzf-1.0.0.jar
+[info] Including: config-1.0.2.jar
+[info] Including: guava-14.0.1.jar
+[info] Including: json-simple-1.1.jar
+[info] Including: jsp-2.1-6.1.14.jar
+[info] Including: jsp-api-2.1-6.1.14.jar
+[info] Including: jsr305-1.3.9.jar
+[info] Including: junit-3.8.1.jar
+[info] Including: kafka_2.10-0.8.0.jar
+[info] Including: libthrift-0.8.0.jar
+[info] Including: lift-json_2.10-2.5.1.jar
+[info] Including: lz4-1.1.0.jar
+[info] Including: flume-ng-sdk-1.2.0.jar
+[info] Including: hadoop-client-1.0.4.jar
+[info] Including: hadoop-core-1.0.4.jar
+[info] Including: hbase-0.94.6.jar
+[info] Including: high-scale-lib-1.1.2.jar
+[info] Including: hsqldb-1.8.0.10.jar
+[info] Including: httpclient-4.1.2.jar
+[info] Including: httpcore-4.1.3.jar
+[info] Including: jackson-annotations-2.2.2.jar
+[info] Including: jackson-core-2.2.2.jar
+[info] Including: jackson-core-asl-1.9.2.jar
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/SingleThreadModel.class' with strategy 'first'
+[warn] Merging 'javax/servlet/RequestDispatcher.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FloatArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ResultSetIterator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/SunReflectionFactorySerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtils.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Label.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisSerializer.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/MethodVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$EntrySet.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassVisitor.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/FieldVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/PropertyUtilsBean.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextAttributeEvent.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassReader.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/minlog/Log$Logger.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertingWrapDynaBean.class' with strategy 'first'
+[warn] Merging 'META-INF/ASL2.0' with strategy 'first'
+[warn] Merging 'javax/servlet/http/NoBodyResponse.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/BigIntegerLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/AccessibleInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_2.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/xml.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/Buffer.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FloatConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DoubleLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectStreamClassInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/XMLSchema.dtd' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/ObjectInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/IntegerConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/Objenesis.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestListener.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionEvent.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/SunReflectionFactoryInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletResponse.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/IntegerArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlDateLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionBindingListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/NullInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaClass.class' with strategy 'first'
+[warn] Merging 'META-INF/NOTICE.txt' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/minlog/Log.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MethodUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/IntegerLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlTimeLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiatorBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ShortConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean$Descriptor.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/SerializingInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/StdInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContext.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/Converter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaProperty.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13SerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectInputStreamInstantiator$MockStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConstructorUtils.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletRequest.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/AccessClassLoader.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ClassConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextListener.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Opcodes.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanAccessLanguageException.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiatorBase$DummyStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/CharacterArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/jrockit/JRockitLegacyInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConvertUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MappedPropertyDescriptor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletResponseWrapper.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJSerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/NoBodyOutputStream.class' with strategy 'first'
+[warn] Merging 'javax/servlet/FilterConfig.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionActivationListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/perc/PercSerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtils.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Frame.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/JDBCDynaClass.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FileConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/UnavailableException.class' with strategy 'first'
+[warn] Merging 'META-INF/NOTICE' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectInputStreamInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaBean.class' with strategy 'first'
+[warn] Merging 'META-INF/MANIFEST.MF' with strategy 'discard'
+[warn] Merging 'javax/servlet/resources/j2ee_1_4.xsd' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_3.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaMap.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSession.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/FieldWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/BigDecimalLocaleConverter.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Type.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/StringLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletInputStream.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Item.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/AnnotationWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DateLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletResponse.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MutableDynaClass.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Edge.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BigDecimalConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/StringConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/ByteLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/Cookie.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/RowSetDynaClass.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlTimestampLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BigIntegerConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/Servlet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$KeySet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean$1.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/MethodWriter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisHelper.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Handler.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Handle.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/perc/PercInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/WrapDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_5.xsd' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13InstantiatorBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/NestedNullException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/LocalStrings.properties' with strategy 'first'
+[warn] Merging 'javax/servlet/http/LocalStrings.properties' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$CollectionView$CollectionViewIterator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlTimestampConverter.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/FieldAccess.class' with strategy 'first'
+[warn] Merging 'META-INF/DEPENDENCIES' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ByteArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/StringArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/DoubleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletResponseWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MethodUtils$MethodDescriptor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletOutputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/AbstractArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/WrapDynaBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/DoubleArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/ShortLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/jsp_2_0.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ShortArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BooleanConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ContextClassLoaderLocal.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequest.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConversionException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_web_services_1_1.xsd' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Attribute.class' with strategy 'first'
+[warn] Merging 'log4j.properties' with strategy 'discard'
+[warn] Merging 'META-INF/ECLIPSEF.SF' with strategy 'discard'
+[warn] Merging 'javax/servlet/Filter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/LongConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/CharacterConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisStd.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlDateConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BasicDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestAttributeEvent.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ResultSetDynaClass.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/ConstructorAccess.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/InstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'META-INF/INDEX.LIST' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/MethodAccess.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_4.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtilsBean$1.class' with strategy 'first'
+[warn] Merging 'reference.conf' with strategy 'concat'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13Instantiator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/SerializationInstantiatorHelper.class' with strategy 'first'
+[warn] Merging 'about.html' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletConfig.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/BaseInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletException.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/PropertyUtils.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionContext.class' with strategy 'first'
+[warn] Merging 'META-INF/LICENSE.txt' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BooleanArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtilsBean.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_web_services_client_1_1.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$Values.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlTimeConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/GenericServlet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtils$Descriptor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertUtilsBean.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassWriter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/datatypes.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/URLConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletRequestWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/LongArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/ArrayStack.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ByteVector.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BasicDynaBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$CollectionView.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConvertUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/LongLocaleConverter.class' with strategy 'first'
+[warn] Merging 'rootdoc.txt' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ByteConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ConstructorInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServlet.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/jrockit/JRockit131Instantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DecimalLocaleConverter.class' with strategy 'first'
+[warn] Merging 'META-INF/LICENSE' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionBindingEvent.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/AnnotationVisitor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/BufferUnderflowException.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/NewInstanceInstantiator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/FilterChain.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/BaseLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$1.class' with strategy 'first'
+[warn] Strategy 'concat' was applied to a file
+[warn] Strategy 'discard' was applied to 3 files
+[warn] Strategy 'first' was applied to 213 files
+[info] Checking every *.class/*.jar file's SHA-1.
+[info] SHA-1: 40f311add1ecda50bcbe24294169cc8bc2d1883f
+[info] Packaging /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/tools/target/scala-2.10/spark-tools-assembly-0.9.1.jar ...
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/SingleThreadModel.class' with strategy 'first'
+[warn] Merging 'javax/servlet/RequestDispatcher.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi$1.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FloatArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiConsole$1.class' with strategy 'first'
+[warn] Merging 'META-INF/native/osx/libjansi.jnilib' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ResultSetIterator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/SunReflectionFactorySerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtils.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Label.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisSerializer.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/MethodVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$EntrySet.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassVisitor.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/FieldVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/PropertyUtilsBean.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextAttributeEvent.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassReader.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/minlog/Log$Logger.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertingWrapDynaBean.class' with strategy 'first'
+[warn] Merging 'META-INF/ASL2.0' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiOutputStream.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/NoBodyResponse.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/BigIntegerLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/AccessibleInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_2.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/xml.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/Buffer.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi$Attribute.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FloatConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DoubleLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectStreamClassInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/XMLSchema.dtd' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/ObjectInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/IntegerConverter.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiRenderer.class' with strategy 'first'
+[warn] Merging 'org/objenesis/Objenesis.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestListener.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionEvent.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/SunReflectionFactoryInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletResponse.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/IntegerArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi$2.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlDateLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiConsole.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionBindingListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/NullInstantiator.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiRenderer$Code.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaClass.class' with strategy 'first'
+[warn] Merging 'META-INF/NOTICE.txt' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/minlog/Log.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MethodUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/IntegerLocaleConverter.class' with strategy 'first'
+[warn] Merging 'META-INF/native/linux64/libjansi.so' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlTimeLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiatorBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ShortConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean$Descriptor.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/SerializingInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/StdInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContext.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/Converter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaProperty.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13SerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectInputStreamInstantiator$MockStream.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiString.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConstructorUtils.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletRequest.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/AccessClassLoader.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ClassConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextListener.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Opcodes.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanAccessLanguageException.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiatorBase$DummyStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/CharacterArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/jrockit/JRockitLegacyInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConvertUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MappedPropertyDescriptor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletResponseWrapper.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJSerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/NoBodyOutputStream.class' with strategy 'first'
+[warn] Merging 'javax/servlet/FilterConfig.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionActivationListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/perc/PercSerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtils.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Frame.class' with strategy 'first'
+[warn] Merging 'org/fusesource/hawtjni/runtime/Callback.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/JDBCDynaClass.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FileConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/UnavailableException.class' with strategy 'first'
+[warn] Merging 'META-INF/NOTICE' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectInputStreamInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaBean.class' with strategy 'first'
+[warn] Merging 'META-INF/MANIFEST.MF' with strategy 'discard'
+[warn] Merging 'javax/servlet/resources/j2ee_1_4.xsd' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_3.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaMap.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSession.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/FieldWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/BigDecimalLocaleConverter.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Type.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/StringLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletInputStream.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Item.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/AnnotationWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DateLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletResponse.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MutableDynaClass.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Edge.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BigDecimalConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/StringConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/ByteLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/Cookie.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/RowSetDynaClass.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlTimestampLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BigIntegerConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/Servlet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$KeySet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean$1.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/MethodWriter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisHelper.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Handler.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Handle.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/perc/PercInstantiator.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/internal/Kernel32$COORD.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/WrapDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_5.xsd' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13InstantiatorBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/NestedNullException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/LocalStrings.properties' with strategy 'first'
+[warn] Merging 'javax/servlet/http/LocalStrings.properties' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$CollectionView$CollectionViewIterator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlTimestampConverter.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/FieldAccess.class' with strategy 'first'
+[warn] Merging 'META-INF/DEPENDENCIES' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ByteArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/StringArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/internal/WindowsSupport.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/WindowsAnsiOutputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/DoubleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletResponseWrapper.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/internal/Kernel32$CONSOLE_SCREEN_BUFFER_INFO.class' with strategy 'first'
+[warn] Merging 'META-INF/native/windows32/jansi.dll' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MethodUtils$MethodDescriptor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletOutputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/AbstractArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/WrapDynaBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/DoubleArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/ShortLocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/jsp_2_0.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ShortArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BooleanConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ContextClassLoaderLocal.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequest.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/internal/CLibrary.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConversionException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_web_services_1_1.xsd' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Attribute.class' with strategy 'first'
+[warn] Merging 'META-INF/native/linux32/libjansi.so' with strategy 'first'
+[warn] Merging 'log4j.properties' with strategy 'discard'
+[warn] Merging 'META-INF/ECLIPSEF.SF' with strategy 'discard'
+[warn] Merging 'javax/servlet/Filter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/LongConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/CharacterConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisStd.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlDateConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BasicDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestAttributeEvent.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ResultSetDynaClass.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/ConstructorAccess.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/InstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'META-INF/INDEX.LIST' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/MethodAccess.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_4.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtilsBean$1.class' with strategy 'first'
+[warn] Merging 'reference.conf' with strategy 'concat'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13Instantiator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/SerializationInstantiatorHelper.class' with strategy 'first'
+[warn] Merging 'about.html' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletConfig.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/BaseInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletException.class' with strategy 'first'
+[warn] Merging 'org/fusesource/hawtjni/runtime/Library.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/PropertyUtils.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionContext.class' with strategy 'first'
+[warn] Merging 'META-INF/LICENSE.txt' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BooleanArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtilsBean.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_web_services_client_1_1.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$Values.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlTimeConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/GenericServlet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtils$Descriptor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertUtilsBean.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassWriter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/datatypes.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/URLConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletRequestWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.class' with strategy 'first'
+[warn] Merging 'META-INF/native/windows64/jansi.dll' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/LongArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/ArrayStack.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi$Erase.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ByteVector.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BasicDynaBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$CollectionView.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConvertUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/LongLocaleConverter.class' with strategy 'first'
+[warn] Merging 'rootdoc.txt' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ByteConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ConstructorInstantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServlet.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/jrockit/JRockit131Instantiator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/AnsiRenderWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DecimalLocaleConverter.class' with strategy 'first'
+[warn] Merging 'META-INF/LICENSE' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionBindingEvent.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/AnnotationVisitor.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi$NoAnsi.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/internal/Kernel32$SMALL_RECT.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/internal/Kernel32.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/BufferUnderflowException.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/NewInstanceInstantiator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/FilterChain.class' with strategy 'first'
+[warn] Merging 'org/fusesource/jansi/Ansi$Color.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/BaseLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$1.class' with strategy 'first'
+[warn] Strategy 'concat' was applied to a file
+[warn] Strategy 'discard' was applied to 3 files
+[warn] Strategy 'first' was applied to 241 files
+[info] Checking every *.class/*.jar file's SHA-1.
+[info] SHA-1: 4a4cfcadf8aeab6b34c420e140a8ff9df3f11c20
+[info] Packaging /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/assembly/target/scala-2.10/spark-assembly-0.9.1-hadoop1.0.4.jar ...
+[warn] Merging 'com/kenai/constantine/platform/sunos/Sysconf.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Errno.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiator.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/RLIMIT.class' with strategy 'first'
+[warn] Merging 'javax/servlet/SingleThreadModel.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/Fcntl.class' with strategy 'first'
+[warn] Merging 'META-INF/maven/jline/jline/pom.xml' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/Platform$2.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$ChildInfo.class' with strategy 'first'
+[warn] Merging 'javax/servlet/RequestDispatcher.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Dumper$DumpVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/security/SecurityClassLoad.class' with strategy 'first'
+[warn] Merging 'org/slf4j/impl/StaticMarkerBinder.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/SocketOption.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/NetworkUtil.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/util/ArrayStack.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FloatArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/GatewayThread.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/ConstantResolver$UnknownConstant.class' with strategy 'first'
+[warn] Merging 'jline/CandidateListCompletionHandler.properties' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$IncludeDirective.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/NodeTuple.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseDocumentContent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/DocumentStartToken.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/serializer/Serializer.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/Token$ID.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/windows/Errno.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/JavaBeanDumper.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/util/ZkPathUtil.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/FactoryConfigurationError.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspFactoryImpl$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectDocumentStart.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlOmap.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ResultSetIterator.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/SunReflectionFactorySerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFirstBlockSequenceItem.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/SocketOption.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/Options.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/web-jsptaglibrary_2_0.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtils.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Label.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/SocketLevel.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisSerializer.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/MethodVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$EntrySet.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/EmitterState.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/OpenFlags.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/FieldVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentArray.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Sysconf.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/PropertyUtilsBean.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/WaitFlags.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextAttributeEvent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseBlockSequenceFirstEntry.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/IZkChildListener.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/RLIM.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'jline/Terminal.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$TagHandlerInfo.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELParser$Char.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlTimestamp.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassReader.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/windows/Errno$StringTable.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Validator.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/ServletResponseWrapperInclude.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/EmitterException.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/Representer$RepresentJavaBean.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/DocumentEndToken.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/TCP.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELFunctionMapper.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/minlog/Log$Logger.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertingWrapDynaBean.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/util/XMLEventAllocator.class' with strategy 'first'
+[warn] Merging 'jline/Completor.class' with strategy 'first'
+[warn] Merging 'META-INF/ASL2.0' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagFileProcessor$TagFileDirectiveVisitor$NameEntry.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/DumperOptions$LineBreak.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Signal.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Fcntl.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/Characters.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$UninterpretedTag.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/XMLEncodingDetector$RewindableInputStream.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/AliasToken.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectNothing.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/NoBodyResponse.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/jspxml.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/BigIntegerLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/Production.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkInterruptedException.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/CustomClassLoaderConstructor.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkEventThread.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl.class' with strategy 'first'
+[warn] Merging 'jline/CompletionHandler.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/OpenFlags.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectBlockMappingValue.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/AccessibleInstantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Construct.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Fcntl.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_2.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/xml.xsd' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/DumperOptions.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$IncludeAction.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/ConstantSet.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$1.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/Buffer.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/Namespace.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentNumber.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/JasperException.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$11.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FloatConverter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/DocumentEndEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELParser.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/RLIMIT.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DoubleLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/BlockSequenceStartToken.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$ParamAction.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELParser$1.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$9.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/XMLEncodingDetector.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlSeq.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/RLIM.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectStreamClassInstantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/AbstractConstruct.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLStreamException.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/EmbeddedServletOptions.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Dumper.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/XMLSchema.dtd' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Mark$IncludeState.class' with strategy 'first'
+[warn] Merging 'jline/ClassNameCompletor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$CustomTag.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/ObjectInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/SymbolTable$Entry.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspSourceDependent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/XMLString.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/Constant.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowSequenceEntryMappingKey.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ErrorHandler.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspFragmentHelper.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/SmapUtil$SDEInstaller.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/IntegerConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$JspOutput.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/DumperOptions$FlowStyle.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/TreeNode.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Scriptlet.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/Errno$StringTable.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/StreamStartEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/ProtectedFunctionMapper$1.class' with strategy 'first'
+[warn] Merging 'org/objenesis/Objenesis.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/TCP.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$UseBean.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/TagHandlerPool.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/PRIO.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Constructor$1.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestListener.class' with strategy 'first'
+[warn] Merging 'org/apache/cassandra/thrift/TFramedTransportFactory.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELParser$Token.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PerThreadTagHandlerPool.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/SunReflectionFactoryInstantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/BlockEndToken.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Localizer.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/Platform.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletResponse.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/IntegerArrayConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/TCP.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/introspector/Property.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Nodes.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/MappingNode.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/PRIO.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspDocumentParser.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/BaseRepresenter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlDateLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagFileProcessor$TagFileLoaderVisitor.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/serialize/ZkSerializer.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionBindingListener.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/serialize/SerializableSerializer.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/SocketOption.class' with strategy 'first'
+[warn] Merging 'META-INF/maven/org.yaml/snakeyaml/pom.xml' with strategy 'first'
+[warn] Merging 'plugin.properties' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/DistributedQueue.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/RLIMIT.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFirstDocumentStart.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/NullInstantiator.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/PRIO.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/ScalarAnalysis.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode$Root.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlBinary.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFlowMappingKey.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLEventFactory.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/servlet/JspCServletContext.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$AttributeGenerator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseIndentlessSequenceEntry.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/PRIO.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaClass.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$7.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$2.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/SocketLevel.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLInputFactory.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/BlockEntryToken.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/NameInfo.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/SocketOption.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/UCSReader.class' with strategy 'first'
+[warn] Merging 'jline/SimpleCompletor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/util/SimplePool.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ScriptingVariabler$ScriptingVariableVisitor.class' with strategy 'first'
+[warn] Merging 'META-INF/NOTICE.txt' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Signal.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/Represent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/scanner/ScannerException.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/OpenFlags.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$1TagHandlerPoolVisitor.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$11.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/Gateway.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/minlog/Log.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/DumperOptions$Version.class' with strategy 'first'
+[warn] Merging 'jline/ArgumentCompletor$WhitespaceArgumentDelimiter.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/NotationDeclaration.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/reader/UnicodeReader.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MethodUtils.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/SocketLevel.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/IntegerLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlTimeLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$4.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/HttpJspBase.class' with strategy 'first'
+[warn] Merging 'jline/ArgumentCompletor$ArgumentDelimiter.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/EndDocument.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$PlugIn.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/util/ZkPathUtil$PathFilter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseDocumentEnd.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/PageDataImpl.class' with strategy 'first'
+[warn] Merging 'jline/CandidateCycleCompletionHandler.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectDocumentEnd.class' with strategy 'first'
+[warn] Merging 'jline/windowsbindings.properties' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode$Text.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentNull.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/RLIM.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/scanner/Scanner.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkException$1.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/INAddr.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PerThreadTagHandlerPool$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlFloat.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiatorBase.class' with strategy 'first'
+[warn] Merging 'jline/WindowsTerminal$ReplayPrefixOneCharInputStream.class' with strategy 'first'
+[warn] Merging 'jline/SimpleCompletor$SimpleCompletorFilter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFirstFlowMappingKey.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspWriterImpl.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$8.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$9.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ShortConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean$Descriptor.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/SerializingInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/error/MarkedYAMLException.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/OpenFlags.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$ScriptingElement.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/StdInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Validator$ValidateVisitor$NamedAttributeVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/Event.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/SmapStratum.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContext.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ScriptingVariabler$CustomTagCounter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/Converter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/SmapStratum$LineInfo.class' with strategy 'first'
+[warn] Merging 'META-INF/services/javax.ws.rs.ext.MessageBodyWriter' with strategy 'filterDistinctLines'
+[warn] Merging 'org/apache/commons/beanutils/DynaProperty.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ScriptingVariabler.class' with strategy 'first'
+[warn] Merging 'META-INF/maven/jline/jline/pom.properties' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$5.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13SerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionListener.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/StartElement.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/composer/ComposerException.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFirstBlockMappingKey.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectInputStreamInstantiator$MockStream.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Shutdown.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/ProtectedFunctionMapper$3.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConstructorUtils.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletRequest.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/scanner/ScannerImpl$Chomping.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/Sysconf.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Constructor$ConstructScalar.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/AccessClassLoader.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/INAddr.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/SocketLevel.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Validator$TagExtraInfoVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ClassConverter.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextListener.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Expression.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Constructor$ConstructSequence.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Opcodes.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/DocumentStartEvent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/FlowSequenceEndToken.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanAccessLanguageException.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspUtil$ValidAttribute.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$JspElement.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/StreamFilter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJInstantiatorBase$DummyStream.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/Fcntl.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/RLIMIT.class' with strategy 'first'
+[warn] Merging 'jline/ArgumentCompletor$ArgumentList.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/jsp_2_0.xsd' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/SmapGenerator.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/EndElement.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/PRIO.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/CharacterArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/jrockit/JRockitLegacyInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConvertUtils.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowMappingKey.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentBoolean.class' with strategy 'first'
+[warn] Merging 'META-INF/maven/org.yaml/snakeyaml/pom.properties' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/SmapUtil.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/INAddr.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MappedPropertyDescriptor.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/Signal.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Parser.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkMarshallingError.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletResponseWrapper.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/NameInfo.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/Errno.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/InMemoryConnection.class' with strategy 'first'
+[warn] Merging 'jline/CursorBuffer.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/JavaBeanLoader.class' with strategy 'first'
+[warn] Merging 'jline/UnsupportedTerminal$1.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/XMLEvent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/KeyToken.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/IPProto.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/gcj/GCJSerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkServer.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELParser$QuotedString.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/NoBodyOutputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/servlet/JspServletWrapper.class' with strategy 'first'
+[warn] Merging 'javax/servlet/FilterConfig.class' with strategy 'first'
+[warn] Merging 'jline/WindowsTerminal.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$GenerateVisitor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionActivationListener.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/perc/PercSerializationInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$FragmentHelperClass$Fragment.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspFactoryImpl.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertUtils.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentByteArray.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLStreamWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$InvokeAction.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Frame.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/IPProto.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Collector.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/JDBCDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/FactoryFinder.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/FileConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Sysconf.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLEventReader.class' with strategy 'first'
+[warn] Merging 'javax/servlet/UnavailableException.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLResolver.class' with strategy 'first'
+[warn] Merging 'META-INF/NOTICE' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/RLIMIT.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowSequenceEntryMappingValue.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/CollectionStartEvent.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ObjectInputStreamInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/DynaBean.class' with strategy 'first'
+[warn] Merging 'META-INF/MANIFEST.MF' with strategy 'discard'
+[warn] Merging 'org/yaml/snakeyaml/tokens/FlowEntryToken.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_1_4.xsd' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_3.dtd' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$1.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaMap.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ParserController.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/apache/cassandra/thrift/ITransportFactory.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSession.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/FactoryFinder$ClassLoaderFinder.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/Representer.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Sysconf.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$GenBuffer.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/FieldWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagFileProcessor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ImplicitTagLibraryInfo.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Fcntl.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ServletWriter.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkException.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/WaitFlags.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/IPProto.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLOutputFactory.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectBlockMappingKey.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/SymbolTable.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/BigDecimalLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/slf4j/impl/StaticMDCBinder.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFlowMappingValue.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$FallBackAction.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/FactoryFinder$1.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Type.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/ConstantResolver.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/DefaultErrorHandler.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspRuntimeLibrary$PrivilegedIntrospectHelper.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextEvent.class' with strategy 'first'
+[warn] Merging 'jline/UnixTerminal.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/StringLocaleConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Signal.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/IZkStateListener.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletInputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagLibraryInfoImpl.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/TCP.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/servlet/JasperLoader.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Item.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/reader/StreamReader.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/EntityReference.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectBlockSequenceItem.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/AnnotationWriter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/Platform$1.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspRuntimeContext.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Validator$DirectiveVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentEnum.class' with strategy 'first'
+[warn] Merging 'org/slf4j/impl/StaticLoggerBinder.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$5.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/OpenFlags.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DateLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspDocumentParser$EnableDTDValidationException.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/Location.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletResponse.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/UTF8Reader.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspWriterImpl$1.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'jline/ConsoleReaderInputStream$ConsoleEnumeration.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspContextWrapper.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/Signal.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkLock.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFlowSequenceItem.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$ForwardAction.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/SocketOption.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MutableDynaClass.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Edge.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BigDecimalConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$FragmentHelperClass.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TextOptimizer$TextCatVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/serializer/SerializerException.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/StringConverter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/error/Mark.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/jsp_2_1.xsd' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/windows/LastError$StringTable.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/EventFilter.class' with strategy 'first'
+[warn] Merging 'jline/ConsoleReaderInputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/ByteLocaleConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Sysconf.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/NameInfo.class' with strategy 'first'
+[warn] Merging 'jline/ANSIBuffer.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/scanner/SimpleKey.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/ProtectedFunctionMapper$4.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$2.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/MyErrorHandler.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/Cookie.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/ConstantSet$ConstantIterator.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/PageDataImpl$SecondPassVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/RowSetDynaClass.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/GatewayThread$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/ScalarNode.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$TagDirective.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentDate.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/IPProto.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkEventThread$ZkEvent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/resolver/Resolver$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowSequenceEntryMappingEnd.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/SqlTimestampLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/ASCIIReader.class' with strategy 'first'
+[warn] Merging 'jline/ConsoleReaderInputStream$ConsoleLineInputStream.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/Sock.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BigIntegerConverter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFirstFlowSequenceItem.class' with strategy 'first'
+[warn] Merging 'javax/servlet/Servlet.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/MappingStartEvent.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/Shutdown.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$KeySet.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean$1.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/MethodWriter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisHelper.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/ProcessingInstruction.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ErrorDispatcher.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JasperTagInfo.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$JspText.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/NodeId.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/OpenFlags.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/Parser.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Handler.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/scanner/Constant.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Handle.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/WaitFlags.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/perc/PercInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TldLocationsCache.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Errno.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/FlowMappingStartToken.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentSet.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/util/EventReaderDelegate.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/resolver/Resolver.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/WrapDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_5.xsd' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$10.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/OpenFlags.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectFlowMappingSimpleValue.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$1.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13InstantiatorBase.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowMappingEmptyValue.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentList.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/NestedNullException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/LocalStrings.properties' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Constructor$ConstructMapping.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/DumperOptions$ScalarStyle.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/LocalStrings.properties' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$CollectionView$CollectionViewIterator.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/web-jsptaglibrary_1_2.dtd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlTimestampConverter.class' with strategy 'first'
+[warn] Merging 'jline/CandidateListCompletionHandler.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/Dumper.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/FieldAccess.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELFunctionMapper$ELFunctionVisitor.class' with strategy 'first'
+[warn] Merging 'META-INF/DEPENDENCIES' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/BodyContentImpl.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseBlockNode.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/MyEntityResolver.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ByteArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/PageInfo.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/StringArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/Holder.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'jline/ArgumentCompletor.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$8.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Errno$StringTable.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/BeanRepository.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/Signal.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/DoubleConverter.class' with strategy 'first'
+[warn] Merging 'jline/jline32.dll' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletResponseWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/JspC.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkNodeExistsException.class' with strategy 'first'
+[warn] Merging 'jline/MultiCompletor.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/Shutdown.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/MethodUtils$MethodDescriptor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/ProtectedFunctionMapper.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Constructor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$1.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletOutputStream.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/PageDataImpl$FirstPassVisitor.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/WaitFlags.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/Shutdown.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/AbstractArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagFileProcessor$TagFileDirectiveVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/WrapDynaBean.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/IPProto.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode$Nodes.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$1.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/Fcntl.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/DoubleArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/ShortLocaleConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/SocketOption.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/jsp_2_0.xsd' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/web-jsptaglibrary_2_1.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ShortArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisBase.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BooleanConverter.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/Comment.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/TypeDescription.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ContextClassLoaderLocal.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode$Function.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/serialize/BytesPushThroughSerializer.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/BlockMappingStartToken.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequest.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$3.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/ParserUtils.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentMap.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/DirectiveToken.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConversionException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_web_services_1_1.xsd' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$7.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/ScalarEvent.class' with strategy 'first'
+[warn] Merging 'jline/UnsupportedTerminal.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Errno.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/util/ZkPathUtil$PathFilter$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/Token.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/Attribute.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$NamedAttribute.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Shutdown.class' with strategy 'first'
+[warn] Merging 'log4j.properties' with strategy 'discard'
+[warn] Merging 'META-INF/ECLIPSEF.SF' with strategy 'discard'
+[warn] Merging 'javax/servlet/Filter.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/DistributedQueue$Element.class' with strategy 'first'
+[warn] Merging 'jline/WindowsTerminal$1.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/WaitFlags.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/JspCompilationContext.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/RLIM.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectBlockMappingSimpleValue.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELParser$Id.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/util/Queue.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/LongConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/Errno.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$AttributeDirective.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlSet.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/util/StreamReaderDelegate.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlStr.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/CharacterConverter.class' with strategy 'first'
+[warn] Merging 'jline/History.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/TCP.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisStd.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlDateConverter.class' with strategy 'first'
+[warn] Merging 'META-INF/jersey-module-version' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BasicDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestAttributeEvent.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Errno$StringTable.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/PRIO.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JavacErrorDetail.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpUtils.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagPluginManager.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/DataUpdater.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ResultSetDynaClass.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/NameInfo.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseImplicitDocumentStart.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/ConstructorAccess.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/InstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/EncodingMap.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Fcntl.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/servlet/JspServlet.class' with strategy 'first'
+[warn] Merging 'META-INF/INDEX.LIST' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/Sysconf.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/PRIO.class' with strategy 'first'
+[warn] Merging 'jline/NullCompletor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/ConstructorException.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/TCP.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$VariableDirective.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagPluginManager$TagPluginContextImpl.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/IZkDataListener.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$TaglibDirective.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/FlowMappingEndToken.class' with strategy 'first'
+[warn] Merging 'jline/UnixTerminal$ReplayPrefixOneCharInputStream.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/BaseConstructor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode$ELText.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/MethodAccess.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/windows/LastError.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagConstants.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$10.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/web-app_2_4.xsd' with strategy 'first'
+[warn] Merging 'jline/ConsoleRunner.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtilsBean$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/BaseConstructor$RecursiveTuple.class' with strategy 'first'
+[warn] Merging 'jline/jline64.dll' with strategy 'first'
+[warn] Merging 'jline/ConsoleReader.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$4.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ContentWatcher.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspFactoryImpl$PrivilegedReleasePageContext.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/StreamStartToken.class' with strategy 'first'
+[warn] Merging 'reference.conf' with strategy 'concat'
+[warn] Merging 'org/yaml/snakeyaml/events/Event$ID.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/sun/Sun13Instantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowMappingFirstKey.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseBlockMappingKey.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/SerializationInstantiatorHelper.class' with strategy 'first'
+[warn] Merging 'about.html' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/EntityDeclaration.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/resolver/ResolverTuple.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseStreamStart.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/SequenceEndEvent.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/SocketLevel.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/ImplicitTuple.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/INAddr.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/windows/OpenFlags.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/INAddr.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletConfig.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseBlockSequenceEntry.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowSequenceFirstEntry.class' with strategy 'first'
+[warn] Merging 'org/objenesis/strategy/BaseInstantiatorStrategy.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/CollectionNode.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$6.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/StreamEndToken.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/RLIMIT.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletException.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkBadVersionException.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkTimeoutException.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$JspAttribute.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/PropertyUtils.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionContext.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlNull.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/javaee_web_services_client_1_2.xsd' with strategy 'first'
+[warn] Merging 'META-INF/LICENSE.txt' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/BooleanArrayConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BeanUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlInt.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/j2ee_web_services_client_1_1.xsd' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$Values.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Declaration.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/SqlTimeConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/RLIMIT.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/serializer/Serializer$1.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLStreamConstants.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/WaitFlags.class' with strategy 'first'
+[warn] Merging 'javax/servlet/GenericServlet.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TagPluginManager$1.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/IPProto.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/Sock.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleBeanUtils$Descriptor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/TagTuple.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/introspector/MethodProperty.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspConfig.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaBean.class' with strategy 'first'
+[warn] Merging 'jline/SimpleCompletor$NoOpFilter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/util/SystemLogHandler.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/ConvertUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/composer/Composer.class' with strategy 'first'
+[warn] Merging 'jline/ConsoleOperations.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Shutdown.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/TextOptimizer.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/GatewayThread$2.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/ScalarToken.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/IZkConnection.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PageContextImpl$6.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/InMemoryConnection$EventThread.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowSequenceEntry.class' with strategy 'first'
+[warn] Merging 'META-INF/services/javax.ws.rs.ext.MessageBodyReader' with strategy 'filterDistinctLines'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$12.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspRuntimeLibrary.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Validator$ValidateVisitor.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkConnection.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseFlowMappingValue.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Sock.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/darwin/TCP.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/DTD.class' with strategy 'first'
+[warn] Merging 'jline/ANSIBuffer$ANSICodes.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/ProtectedFunctionMapper$2.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ClassWriter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Errno.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/datatypes.dtd' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Signal.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/URLConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/XMLChar.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Mark.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Sock.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServletRequestWrapper.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/FloatLocaleConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/RLIM.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/SequenceStartEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/LongArrayConverter.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/INAddr.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/ArrayStack.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/SmapUtil$SmapGenVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/TagToken.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Comment.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/WaitFlags.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ZkClient$3.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/MappingEndEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/Constants.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/ByteVector.class' with strategy 'first'
+[warn] Merging 'jline/keybindings.properties' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/CollectionEndEvent.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionAttributeListener.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$PageDirective.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/BasicDynaBean.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/ValueToken.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$JspRoot.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$DoBodyAction.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspReader.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/tagplugin/TagPlugin.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/RLIM.class' with strategy 'first'
+[warn] Merging 'jline/UnixTerminal$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/reader/ReaderException.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/scanner/ScannerImpl.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseDocumentStart.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$CollectionView.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/SocketOption.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/IPProto.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/SocketLevel.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Collector$CollectVisitor.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/LocaleConvertUtilsBean.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/AnchorToken.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$ELExpression.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/LongLocaleConverter.class' with strategy 'first'
+[warn] Merging 'rootdoc.txt' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/converters/ByteConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/StreamEndEvent.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/ConstructorInstantiator.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/SocketLevel.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/Errno$StringTable.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseBlockMappingFirstKey.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpServlet.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$ParamsAction.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/StartDocument.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructUndefined.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/Sock.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/jrockit/JRockit131Instantiator.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/Yaml.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/representer/SafeRepresenter$RepresentString.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/IDefaultNameSpace.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/tokens/FlowSequenceStartToken.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$TemplateText.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/tagplugin/TagPluginContext.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/Errno.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/util/FastDateFormat.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/ProtocolFamily.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLEventWriter.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Visitor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/javaee_5.xsd' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/AliasEvent.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectDocumentRoot.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletRequestAttributeListener.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/NameInfo.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$GetProperty.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Generator$1DeclarationVisitor.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/INAddr.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/sunos/Sock.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/converters/DecimalLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/Constructor$ConstructYamlObject.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/SequenceNode.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlPairs.class' with strategy 'first'
+[warn] Merging 'META-INF/LICENSE' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/JspUtil.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/ExceptionUtil.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/LazyDynaClass.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/web-jsptaglibrary_1_1.dtd' with strategy 'first'
+[warn] Merging 'jline/FileNameCompletor.class' with strategy 'first'
+[warn] Merging 'javax/servlet/http/HttpSessionBindingEvent.class' with strategy 'first'
+[warn] Merging 'com/esotericsoftware/reflectasm/shaded/org/objectweb/asm/AnnotationVisitor.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserException.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/Errno$StringTable.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/Tag.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/AddressFamily.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/xmlparser/XMLStringBuffer.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/util/XMLEventConsumer.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Compiler.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/events/Attribute.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Shutdown.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/events/NodeEvent.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$Root.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$SetProperty.class' with strategy 'first'
+[warn] Merging 'javax/servlet/ServletContextAttributeListener.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/windows/Signal.class' with strategy 'first'
+[warn] Merging 'javax/servlet/resources/jsp_2_1.xsd' with strategy 'first'
+[warn] Merging 'org/apache/jasper/security/SecurityUtil.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/introspector/FieldProperty.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/BufferUnderflowException.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/openbsd/RLIM.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/parser/ParserImpl$ParseBlockMappingValue.class' with strategy 'first'
+[warn] Merging 'org/objenesis/instantiator/basic/NewInstanceInstantiator.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Validator$1.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/linux/Sock.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/FactoryFinder$ClassLoaderFinderConcrete.class' with strategy 'first'
+[warn] Merging 'org/I0Itec/zkclient/exception/ZkNoNodeException.class' with strategy 'first'
+[warn] Merging 'javax/servlet/jsp/resources/jspxml.xsd' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/error/YAMLException.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/Node$JspBody.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/freebsd/NameInfo.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/Loader.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/JspFactoryImpl$PrivilegedGetPageContext.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ErrorDispatcher$ErrorVisitor.class' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLReporter.class' with strategy 'first'
+[warn] Merging 'org/objenesis/ObjenesisException.class' with strategy 'first'
+[warn] Merging 'LICENSE' with strategy 'first'
+[warn] Merging 'javax/xml/stream/XMLStreamReader.class' with strategy 'first'
+[warn] Merging 'javax/servlet/FilterChain.class' with strategy 'first'
+[warn] Merging 'com/kenai/constantine/platform/fake/NameInfo.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/nodes/Node.class' with strategy 'first'
+[warn] Merging 'jline/ArgumentCompletor$AbstractArgumentDelimiter.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlMap.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/compiler/ELNode$Visitor.class' with strategy 'first'
+[warn] Merging 'org/apache/jasper/runtime/PerThreadTagHandlerPool$PerThreadData.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/beanutils/locale/BaseLocaleConverter.class' with strategy 'first'
+[warn] Merging 'org/apache/commons/collections/FastHashMap$1.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/constructor/SafeConstructor$ConstructYamlBool.class' with strategy 'first'
+[warn] Merging 'org/yaml/snakeyaml/emitter/Emitter$ExpectStreamStart.class' with strategy 'first'
+[warn] Strategy 'concat' was applied to a file
+[warn] Strategy 'discard' was applied to 3 files
+[warn] Strategy 'filterDistinctLines' was applied to 2 files
+[warn] Strategy 'first' was applied to 876 files[error] 14/04/18 20:08:58 INFO slf4j.Slf4jLogger: Slf4jLogger started
+[error] 14/04/18 20:08:58 INFO Remoting: Starting remoting
+[error] 14/04/18 20:08:58 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://spark@192.168.1.82:53690]
+[error] 14/04/18 20:08:58 INFO Remoting: Remoting now listens on addresses: [akka.tcp://spark@192.168.1.82:53690]
+[error] 14/04/18 20:08:58 INFO spark.SparkEnv: Registering BlockManagerMaster
+[error] 14/04/18 20:08:58 INFO storage.DiskBlockManager: Created local directory at /var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/spark-local-20140418200858-aeb0
+[error] 14/04/18 20:08:58 INFO storage.MemoryStore: MemoryStore started with capacity 1838.2 MB.
+[error] 14/04/18 20:08:58 INFO network.ConnectionManager: Bound socket to port 53691 with id = ConnectionManagerId(192.168.1.82,53691)
+[error] 14/04/18 20:08:58 INFO storage.BlockManagerMaster: Trying to register BlockManager
+[error] 14/04/18 20:08:58 INFO storage.BlockManagerMasterActor$BlockManagerInfo: Registering block manager 192.168.1.82:53691 with 1838.2 MB RAM
+[error] 14/04/18 20:08:58 INFO storage.BlockManagerMaster: Registered BlockManager
+[error] 14/04/18 20:08:58 INFO spark.HttpServer: Starting HTTP Server
+[error] 14/04/18 20:08:58 INFO server.Server: jetty-7.6.8.v20121106
+[error] 14/04/18 20:08:58 INFO server.AbstractConnector: Started SocketConnector@0.0.0.0:53692
+[error] 14/04/18 20:08:58 INFO broadcast.HttpBroadcast: Broadcast server started at http://192.168.1.82:53692
+[error] 14/04/18 20:08:58 INFO spark.SparkEnv: Registering MapOutputTracker
+[error] 14/04/18 20:08:58 INFO spark.HttpFileServer: HTTP File server directory is /var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/spark-9f661740-5a63-46ba-be02-614793974796
+[error] 14/04/18 20:08:58 INFO spark.HttpServer: Starting HTTP Server
+[error] 14/04/18 20:08:58 INFO server.Server: jetty-7.6.8.v20121106
+[error] 14/04/18 20:08:58 INFO server.AbstractConnector: Started SocketConnector@0.0.0.0:53693
+[error] 14/04/18 20:08:59 INFO server.Server: jetty-7.6.8.v20121106
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/storage/rdd,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/storage,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/stages/stage,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/stages/pool,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/stages,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/environment,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/executors,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/metrics/json,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/static,null}
+[error] 14/04/18 20:08:59 INFO handler.ContextHandler: started o.e.j.s.h.ContextHandler{/,null}
+[error] 14/04/18 20:08:59 INFO server.AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
+[error] 14/04/18 20:08:59 INFO ui.SparkUI: Started Spark Web UI at http://192.168.1.82:4040
+[error] 2014-04-18 20:08:59.190 java[4843:1003] Unable to load realm info from SCDynamicStore
+[error] 14/04/18 20:08:59 INFO spark.SparkContext: Added JAR target/scala-2.10/simple-project_2.10-1.0.jar at http://192.168.1.82:53693/jars/simple-project_2.10-1.0.jar with timestamp 1397876939274
+[error] 14/04/18 20:08:59 INFO storage.MemoryStore: ensureFreeSpace(35456) called with curMem=0, maxMem=1927505510
+[error] 14/04/18 20:08:59 INFO storage.MemoryStore: Block broadcast_0 stored as values to memory (estimated size 34.6 KB, free 1838.2 MB)
+[error] 14/04/18 20:08:59 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[error] 14/04/18 20:08:59 WARN snappy.LoadSnappy: Snappy native library not loaded
+[error] 14/04/18 20:08:59 INFO mapred.FileInputFormat: Total input paths to process : 1
+[error] 14/04/18 20:08:59 INFO spark.SparkContext: Starting job: count at SimpleScala.scala:12
+[error] 14/04/18 20:08:59 INFO scheduler.DAGScheduler: Got job 0 (count at SimpleScala.scala:12) with 2 output partitions (allowLocal=false)
+[error] 14/04/18 20:08:59 INFO scheduler.DAGScheduler: Final stage: Stage 0 (count at SimpleScala.scala:12)
+[error] 14/04/18 20:08:59 INFO scheduler.DAGScheduler: Parents of final stage: List()
+[error] 14/04/18 20:08:59 INFO scheduler.DAGScheduler: Missing parents: List()
+[error] 14/04/18 20:08:59 INFO scheduler.DAGScheduler: Submitting Stage 0 (FilteredRDD[2] at filter at SimpleScala.scala:12), which has no missing parents
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Submitting 2 missing tasks from Stage 0 (FilteredRDD[2] at filter at SimpleScala.scala:12)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 2 tasks
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Starting task 0.0:0 as TID 0 on executor localhost: localhost (PROCESS_LOCAL)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Serialized task 0.0:0 as 1709 bytes in 12 ms
+[error] 14/04/18 20:09:00 INFO executor.Executor: Running task ID 0
+[error] 14/04/18 20:09:00 INFO executor.Executor: Fetching http://192.168.1.82:53693/jars/simple-project_2.10-1.0.jar with timestamp 1397876939274
+[error] 14/04/18 20:09:00 INFO util.Utils: Fetching http://192.168.1.82:53693/jars/simple-project_2.10-1.0.jar to /var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/fetchFileTemp7177528962051482979.tmp
+[error] 14/04/18 20:09:00 INFO executor.Executor: Adding file:/var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/spark-4ffc3b75-565d-4ed5-9cec-d9d9fb3682dc/simple-project_2.10-1.0.jar to class loader
+[error] 14/04/18 20:09:00 INFO storage.BlockManager: Found block broadcast_0 locally
+[error] 14/04/18 20:09:00 INFO spark.CacheManager: Partition rdd_1_0 not found, computing it
+[error] 14/04/18 20:09:00 INFO rdd.HadoopRDD: Input split: file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/README.md:0+1949
+[error] 14/04/18 20:09:00 INFO storage.MemoryStore: ensureFreeSpace(6960) called with curMem=35456, maxMem=1927505510
+[error] 14/04/18 20:09:00 INFO storage.MemoryStore: Block rdd_1_0 stored as values to memory (estimated size 6.8 KB, free 1838.2 MB)
+[error] 14/04/18 20:09:00 INFO storage.BlockManagerMasterActor$BlockManagerInfo: Added rdd_1_0 in memory on 192.168.1.82:53691 (size: 6.8 KB, free: 1838.2 MB)
+[error] 14/04/18 20:09:00 INFO storage.BlockManagerMaster: Updated info of block rdd_1_0
+[error] 14/04/18 20:09:00 INFO executor.Executor: Serialized size of result for 0 is 563
+[error] 14/04/18 20:09:00 INFO executor.Executor: Sending result for 0 directly to driver
+[error] 14/04/18 20:09:00 INFO executor.Executor: Finished task ID 0
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Starting task 0.0:1 as TID 1 on executor localhost: localhost (PROCESS_LOCAL)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Serialized task 0.0:1 as 1709 bytes in 1 ms
+[error] 14/04/18 20:09:00 INFO executor.Executor: Running task ID 1
+[error] 14/04/18 20:09:00 INFO storage.BlockManager: Found block broadcast_0 locally
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Finished TID 0 in 224 ms on localhost (progress: 1/2)
+[error] 14/04/18 20:09:00 INFO spark.CacheManager: Partition rdd_1_1 not found, computing it
+[error] 14/04/18 20:09:00 INFO rdd.HadoopRDD: Input split: file:/Users/ceteri/opt/spark-0.9.1-bin-hadoop2/README.md:1949+1950
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Completed ResultTask(0, 0)
+[error] 14/04/18 20:09:00 INFO storage.MemoryStore: ensureFreeSpace(6624) called with curMem=42416, maxMem=1927505510
+[error] 14/04/18 20:09:00 INFO storage.MemoryStore: Block rdd_1_1 stored as values to memory (estimated size 6.5 KB, free 1838.2 MB)
+[error] 14/04/18 20:09:00 INFO storage.BlockManagerMasterActor$BlockManagerInfo: Added rdd_1_1 in memory on 192.168.1.82:53691 (size: 6.5 KB, free: 1838.2 MB)
+[error] 14/04/18 20:09:00 INFO storage.BlockManagerMaster: Updated info of block rdd_1_1
+[error] 14/04/18 20:09:00 INFO executor.Executor: Serialized size of result for 1 is 563
+[error] 14/04/18 20:09:00 INFO executor.Executor: Sending result for 1 directly to driver
+[error] 14/04/18 20:09:00 INFO executor.Executor: Finished task ID 1
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Completed ResultTask(0, 1)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Finished TID 1 in 33 ms on localhost (progress: 2/2)
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Stage 0 (count at SimpleScala.scala:12) finished in 0.274 s
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+[error] 14/04/18 20:09:00 INFO spark.SparkContext: Job finished: count at SimpleScala.scala:12, took 0.406805 s
+[error] 14/04/18 20:09:00 INFO spark.SparkContext: Starting job: count at SimpleScala.scala:13
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Got job 1 (count at SimpleScala.scala:13) with 2 output partitions (allowLocal=false)
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Final stage: Stage 1 (count at SimpleScala.scala:13)
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Parents of final stage: List()
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Missing parents: List()
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Submitting Stage 1 (FilteredRDD[3] at filter at SimpleScala.scala:13), which has no missing parents
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Submitting 2 missing tasks from Stage 1 (FilteredRDD[3] at filter at SimpleScala.scala:13)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSchedulerImpl: Adding task set 1.0 with 2 tasks
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Starting task 1.0:0 as TID 2 on executor localhost: localhost (PROCESS_LOCAL)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Serialized task 1.0:0 as 1713 bytes in 1 ms
+[error] 14/04/18 20:09:00 INFO executor.Executor: Running task ID 2
+[error] 14/04/18 20:09:00 INFO storage.BlockManager: Found block broadcast_0 locally
+[error] 14/04/18 20:09:00 INFO storage.BlockManager: Found block rdd_1_0 locally
+[error] 14/04/18 20:09:00 INFO executor.Executor: Serialized size of result for 2 is 563
+[error] 14/04/18 20:09:00 INFO executor.Executor: Sending result for 2 directly to driver
+[error] 14/04/18 20:09:00 INFO executor.Executor: Finished task ID 2
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Starting task 1.0:1 as TID 3 on executor localhost: localhost (PROCESS_LOCAL)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Serialized task 1.0:1 as 1713 bytes in 0 ms
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Completed ResultTask(1, 0)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Finished TID 2 in 18 ms on localhost (progress: 1/2)
+[error] 14/04/18 20:09:00 INFO executor.Executor: Running task ID 3
+[error] 14/04/18 20:09:00 INFO storage.BlockManager: Found block broadcast_0 locally
+[error] 14/04/18 20:09:00 INFO storage.BlockManager: Found block rdd_1_1 locally
+[error] 14/04/18 20:09:00 INFO executor.Executor: Serialized size of result for 3 is 563
+[error] 14/04/18 20:09:00 INFO executor.Executor: Sending result for 3 directly to driver
+[error] 14/04/18 20:09:00 INFO executor.Executor: Finished task ID 3
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSetManager: Finished TID 3 in 8 ms on localhost (progress: 2/2)
+[error] 14/04/18 20:09:00 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Completed ResultTask(1, 1)
+[error] 14/04/18 20:09:00 INFO scheduler.DAGScheduler: Stage 1 (count at SimpleScala.scala:13) finished in 0.025 s
+[error] 14/04/18 20:09:00 INFO spark.SparkContext: Job finished: count at SimpleScala.scala:13, took 0.034238 s
+[info] Checking every *.class/*.jar file's SHA-1.
+[info] SHA-1: fba764b51524ded2a109e8e7567aa758e455d5b8
+[info] Packaging /Users/ceteri/opt/spark-0.9.1-bin-hadoop2/examples/target/scala-2.10/spark-examples-assembly-0.9.1.jar ...
+[info] Done packaging.
+[info] Done packaging.
+[info] Done packaging.
+[success] Total time: 293 s, completed Apr 18, 2014 7:53:29 PM

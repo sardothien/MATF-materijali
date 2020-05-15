@@ -1,0 +1,394 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Simple Project 1.0
+[INFO] ------------------------------------------------------------------------
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-client/2.2.0/hadoop-client-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-client/2.2.0/hadoop-client-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-client/2.2.0/hadoop-client-2.2.0.pom (11 KB at 75.0 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-project-dist/2.2.0/hadoop-project-dist-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-project-dist/2.2.0/hadoop-project-dist-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-project-dist/2.2.0/hadoop-project-dist-2.2.0.pom (18 KB at 176.2 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-project/2.2.0/hadoop-project-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-project/2.2.0/hadoop-project-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-project/2.2.0/hadoop-project-2.2.0.pom (37 KB at 332.9 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-main/2.2.0/hadoop-main-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-main/2.2.0/hadoop-main-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-main/2.2.0/hadoop-main-2.2.0.pom (17 KB at 210.1 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.pom (27 KB at 312.4 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.pom (3 KB at 35.3 KB/sec)
+Downloading: http://repo.akka.io/releases/org/slf4j/slf4j-log4j12/1.7.5/slf4j-log4j12-1.7.5.pom
+Downloading: http://repo.maven.apache.org/maven2/org/slf4j/slf4j-log4j12/1.7.5/slf4j-log4j12-1.7.5.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/slf4j/slf4j-log4j12/1.7.5/slf4j-log4j12-1.7.5.pom (2 KB at 22.3 KB/sec)
+Downloading: http://repo.akka.io/releases/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.pom
+Downloading: http://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.pom (9 KB at 98.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.pom (7 KB at 95.3 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.pom (24 KB at 260.7 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.pom (5 KB at 60.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client/2.2.0/hadoop-mapreduce-client-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client/2.2.0/hadoop-mapreduce-client-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client/2.2.0/hadoop-mapreduce-client-2.2.0.pom (7 KB at 81.7 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.pom (4 KB at 41.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.pom (5 KB at 65.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn/2.2.0/hadoop-yarn-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn/2.2.0/hadoop-yarn-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn/2.2.0/hadoop-yarn-2.2.0.pom (7 KB at 91.0 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.pom (3 KB at 41.8 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-test-framework/jersey-test-framework-grizzly2/1.9/jersey-test-framework-grizzly2-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-grizzly2/1.9/jersey-test-framework-grizzly2-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-grizzly2/1.9/jersey-test-framework-grizzly2-1.9.pom (7 KB at 72.4 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-test-framework/1.9/jersey-test-framework-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/1.9/jersey-test-framework-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/1.9/jersey-test-framework-1.9.pom (3 KB at 42.1 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-project/1.9/jersey-project-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-project/1.9/jersey-project-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-project/1.9/jersey-project-1.9.pom (18 KB at 200.7 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.pom (7 KB at 87.8 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-server/1.9/jersey-server-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-server/1.9/jersey-server-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-server/1.9/jersey-server-1.9.pom (12 KB at 152.6 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-core/1.9/jersey-core-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-core/1.9/jersey-core-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-core/1.9/jersey-core-1.9.pom (11 KB at 115.3 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.pom (7 KB at 69.1 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.pom (6 KB at 73.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.pom
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.pom (5 KB at 56.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-project/2.1.2/grizzly-project-2.1.2.pom
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-project/2.1.2/grizzly-project-2.1.2.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-project/2.1.2/grizzly-project-2.1.2.pom (17 KB at 206.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.pom
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.pom (7 KB at 74.6 KB/sec)
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.pom
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.pom (5 KB at 60.7 KB/sec)
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.pom
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.pom (4 KB at 44.6 KB/sec)
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.pom
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.pom (7 KB at 87.3 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-json/1.9/jersey-json-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-json/1.9/jersey-json-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-json/1.9/jersey-json-1.9.pom (11 KB at 98.9 KB/sec)
+Downloading: http://repo.akka.io/releases/org/codehaus/jackson/jackson-core-asl/1.8.3/jackson-core-asl-1.8.3.pom
+Downloading: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-core-asl/1.8.3/jackson-core-asl-1.8.3.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-core-asl/1.8.3/jackson-core-asl-1.8.3.pom (1016 B at 13.4 KB/sec)
+Downloading: http://repo.akka.io/releases/org/codehaus/jackson/jackson-mapper-asl/1.8.3/jackson-mapper-asl-1.8.3.pom
+Downloading: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.8.3/jackson-mapper-asl-1.8.3.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.8.3/jackson-mapper-asl-1.8.3.pom (2 KB at 15.5 KB/sec)
+Downloading: http://repo.akka.io/releases/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.pom
+Downloading: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.pom (2 KB at 23.2 KB/sec)
+Downloading: http://repo.akka.io/releases/org/codehaus/jackson/jackson-xc/1.8.3/jackson-xc-1.8.3.pom
+Downloading: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-xc/1.8.3/jackson-xc-1.8.3.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-xc/1.8.3/jackson-xc-1.8.3.pom (2 KB at 23.9 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.pom (8 KB at 97.4 KB/sec)
+Downloading: http://repo.akka.io/releases/com/sun/jersey/contribs/jersey-contribs/1.9/jersey-contribs-1.9.pom
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-contribs/1.9/jersey-contribs-1.9.pom
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-contribs/1.9/jersey-contribs-1.9.pom (5 KB at 55.6 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-client/2.2.0/hadoop-yarn-client-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-client/2.2.0/hadoop-yarn-client-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-client/2.2.0/hadoop-yarn-client-2.2.0.pom (2 KB at 25.2 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.pom (4 KB at 39.1 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.pom (4 KB at 47.3 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-server/2.2.0/hadoop-yarn-server-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server/2.2.0/hadoop-yarn-server-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server/2.2.0/hadoop-yarn-server-2.2.0.pom (2 KB at 25.6 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.pom (2 KB at 23.4 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.pom (6 KB at 72.2 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-server-nodemanager/2.2.0/hadoop-yarn-server-nodemanager-2.2.0.pom
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-nodemanager/2.2.0/hadoop-yarn-server-nodemanager-2.2.0.pom
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-nodemanager/2.2.0/hadoop-yarn-server-nodemanager-2.2.0.pom (8 KB at 92.9 KB/sec)
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-client/2.2.0/hadoop-client-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-client/2.2.0/hadoop-yarn-client-2.2.0.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-test-framework/jersey-test-framework-grizzly2/1.9/jersey-test-framework-grizzly2-1.9.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.jar
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.jar
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.jar
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.jar
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.jar
+Downloading: http://repo.akka.io/releases/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.jar
+Downloading: http://repo.akka.io/releases/org/glassfish/javax.servlet/3.1/javax.servlet-3.1.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-server/1.9/jersey-server-1.9.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-core/1.9/jersey-core-1.9.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/jersey-json/1.9/jersey-json-1.9.jar
+Downloading: http://repo.akka.io/releases/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.jar
+Downloading: http://repo.akka.io/releases/org/codehaus/jackson/jackson-xc/1.8.3/jackson-xc-1.8.3.jar
+Downloading: http://repo.akka.io/releases/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.jar
+Downloading: http://repo.akka.io/releases/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.jar
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-client/2.2.0/hadoop-client-2.2.0.jar
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.jar
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.jar
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.jar
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-client/2.2.0/hadoop-client-2.2.0.jar (3 KB at 28.4 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.jar (49 KB at 59.4 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-client/2.2.0/hadoop-yarn-client-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-client/2.2.0/hadoop-yarn-client-2.2.0.jar (93 KB at 157.1 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-grizzly2/1.9/jersey-test-framework-grizzly2-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-grizzly2/1.9/jersey-test-framework-grizzly2-1.9.jar (13 KB at 84.5 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.jar (28 KB at 142.2 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.jar (641 KB at 316.1 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.jar (18 KB at 75.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.jar (128 KB at 199.4 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.jar (471 KB at 195.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.jar (248 KB at 206.1 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.jar (194 KB at 152.4 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.jar (8 KB at 45.3 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/javax.servlet/3.1/javax.servlet-3.1.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.jar (675 KB at 390.3 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-server/1.9/jersey-server-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/javax.servlet/3.1/javax.servlet-3.1.jar (82 KB at 192.9 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-core/1.9/jersey-core-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.jar (330 KB at 173.6 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-json/1.9/jersey-json-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-server/1.9/jersey-server-1.9.jar (697 KB at 355.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-json/1.9/jersey-json-1.9.jar (145 KB at 210.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-xc/1.8.3/jackson-xc-1.8.3.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-core/1.9/jersey-core-1.9.jar (448 KB at 195.5 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-xc/1.8.3/jackson-xc-1.8.3.jar (32 KB at 116.5 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.jar (15 KB at 125.6 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.jar (18 KB at 36.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.jar (22 KB at 191.2 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.jar (172 KB at 285.7 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.jar (2672 KB at 283.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.jar (35 KB at 119.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.jar (17 KB at 115.4 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.jar (1272 KB at 315.9 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.jar (1421 KB at 260.2 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.jar (1132 KB at 191.7 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.jar (5120 KB at 363.7 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/contribs/jersey-guice/1.9/jersey-guice-1.9.jar (15 KB at 125.6 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.8.3/jackson-jaxrs-1.8.3.jar (18 KB at 36.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-shuffle/2.2.0/hadoop-mapreduce-client-shuffle-2.2.0.jar (22 KB at 191.2 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-server-common/2.2.0/hadoop-yarn-server-common-2.2.0.jar (172 KB at 285.7 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.jar (2672 KB at 283.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-jobclient/2.2.0/hadoop-mapreduce-client-jobclient-2.2.0.jar (35 KB at 119.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.jar (17 KB at 115.4 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-common/2.2.0/hadoop-yarn-common-2.2.0.jar (1272 KB at 315.9 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/2.2.0/hadoop-mapreduce-client-core-2.2.0.jar (1421 KB at 260.2 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-yarn-api/2.2.0/hadoop-yarn-api-2.2.0.jar (1132 KB at 191.7 KB/sec)
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-test-framework/jersey-test-framework-core/1.9/jersey-test-framework-core-1.9.jar (28 KB at 142.2 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-common/2.2.0/hadoop-mapreduce-client-common-2.2.0.jar (641 KB at 316.1 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-grizzly2/1.9/jersey-grizzly2-1.9.jar (18 KB at 75.8 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/com/sun/jersey/jersey-client/1.9/jersey-client-1.9.jar (128 KB at 199.4 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-app/2.2.0/hadoop-mapreduce-client-app-2.2.0.jar (471 KB at 195.0 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.jar (248 KB at 206.1 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.jar
+Downloaded: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.jar (194 KB at 152.4 KB/sec)
+Downloading: http://repo.maven.apache.org/maven2/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.jar
+[INFO]
+[INFO] --- maven-clean-plugin:2.4.1:clean (default-clean) @ simple-project ---
+[INFO] Deleting /Users/ceteri/src/databricks/target
+[INFO]
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ simple-project ---
+[debug] execute contextualize
+[WARNING] Using platform encoding (MacRoman actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/ceteri/src/databricks/src/main/resources
+[INFO]
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ simple-project ---
+[WARNING] File encoding has not been set, using platform encoding MacRoman, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /Users/ceteri/src/databricks/target/classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ simple-project ---
+[debug] execute contextualize
+[WARNING] Using platform encoding (MacRoman actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/ceteri/src/databricks/src/test/resources
+[INFO]
+[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ simple-project ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ simple-project ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /Users/ceteri/src/databricks/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+[INFO] --- maven-jar-plugin:2.3.2:jar (default-jar) @ simple-project ---
+[INFO] Building jar: /Users/ceteri/src/databricks/target/simple-project-1.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 26.217s
+[INFO] Finished at: Fri Apr 18 16:46:18 PDT 2014
+[INFO] Final Memory: 22M/81M
+[INFO] ------------------------------------------------------------------------
+
+$ mvn exec:java -Dexec.mainClass="SimpleApp"
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Simple Project 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] >>> exec-maven-plugin:1.2.1:java (default-cli) @ simple-project >>>
+[INFO]
+[INFO] <<< exec-maven-plugin:1.2.1:java (default-cli) @ simple-project <<<
+[INFO]
+[INFO] --- exec-maven-plugin:1.2.1:java (default-cli) @ simple-project ---
+log4j:WARN No appenders could be found for logger (akka.event.slf4j.Slf4jLogger).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+14/04/18 16:46:47 INFO SparkEnv: Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+14/04/18 16:46:47 INFO SparkEnv: Registering BlockManagerMaster
+14/04/18 16:46:47 INFO DiskBlockManager: Created local directory at /var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/spark-local-20140418164647-fde6
+14/04/18 16:46:47 INFO MemoryStore: MemoryStore started with capacity 74.4 MB.
+14/04/18 16:46:47 INFO ConnectionManager: Bound socket to port 52011 with id = ConnectionManagerId(192.168.1.82,52011)
+14/04/18 16:46:47 INFO BlockManagerMaster: Trying to register BlockManager
+14/04/18 16:46:47 INFO BlockManagerMasterActor$BlockManagerInfo: Registering block manager 192.168.1.82:52011 with 74.4 MB RAM
+14/04/18 16:46:47 INFO BlockManagerMaster: Registered BlockManager
+14/04/18 16:46:47 INFO HttpServer: Starting HTTP Server
+14/04/18 16:46:47 INFO HttpBroadcast: Broadcast server started at http://192.168.1.82:52012
+14/04/18 16:46:47 INFO SparkEnv: Registering MapOutputTracker
+14/04/18 16:46:47 INFO HttpFileServer: HTTP File server directory is /var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/spark-d34c30b4-212f-45c9-86a6-bc5631bc0336
+14/04/18 16:46:47 INFO HttpServer: Starting HTTP Server
+14/04/18 16:46:47 INFO SparkUI: Started Spark Web UI at http://192.168.1.82:4040
+2014-04-18 16:46:48.160 java[4296:b107] Unable to load realm info from SCDynamicStore
+14/04/18 16:46:48 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+14/04/18 16:46:48 INFO SparkContext: Added JAR target/simple-project-1.0.jar at http://192.168.1.82:52013/jars/simple-project-1.0.jar with timestamp 1397864808261
+14/04/18 16:46:48 INFO MemoryStore: ensureFreeSpace(146579) called with curMem=0, maxMem=77974732
+14/04/18 16:46:48 INFO MemoryStore: Block broadcast_0 stored as values to memory (estimated size 143.1 KB, free 74.2 MB)
+14/04/18 16:46:48 INFO FileInputFormat: Total input paths to process : 1
+14/04/18 16:46:48 INFO SparkContext: Starting job: count at SimpleApp.java:12
+14/04/18 16:46:48 INFO DAGScheduler: Got job 0 (count at SimpleApp.java:12) with 1 output partitions (allowLocal=false)
+14/04/18 16:46:48 INFO DAGScheduler: Final stage: Stage 0 (count at SimpleApp.java:12)
+14/04/18 16:46:48 INFO DAGScheduler: Parents of final stage: List()
+14/04/18 16:46:48 INFO DAGScheduler: Missing parents: List()
+14/04/18 16:46:48 INFO DAGScheduler: Submitting Stage 0 (FilteredRDD[2] at filter at SimpleApp.java:12), which has no missing parents
+14/04/18 16:46:49 INFO DAGScheduler: Submitting 1 missing tasks from Stage 0 (FilteredRDD[2] at filter at SimpleApp.java:12)
+14/04/18 16:46:49 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+14/04/18 16:46:49 INFO TaskSetManager: Starting task 0.0:0 as TID 0 on executor localhost: localhost (PROCESS_LOCAL)
+14/04/18 16:46:49 INFO TaskSetManager: Serialized task 0.0:0 as 1764 bytes in 4 ms
+14/04/18 16:46:49 INFO Executor: Running task ID 0
+14/04/18 16:46:49 INFO Executor: Fetching http://192.168.1.82:52013/jars/simple-project-1.0.jar with timestamp 1397864808261
+14/04/18 16:46:49 INFO Utils: Fetching http://192.168.1.82:52013/jars/simple-project-1.0.jar to /var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/fetchFileTemp3218601157793492774.tmp
+14/04/18 16:46:49 INFO Executor: Adding file:/var/folders/bl/zrtbg3cd57lfsgzzllhnxxjc0000gn/T/spark-08247f44-168c-4fe2-8b10-a7cca716ad72/simple-project-1.0.jar to class loader
+14/04/18 16:46:49 INFO BlockManager: Found block broadcast_0 locally
+14/04/18 16:46:49 INFO CacheManager: Partition rdd_1_0 not found, computing it
+14/04/18 16:46:49 INFO HadoopRDD: Input split: file:/Users/ceteri/src/databricks/README.md:0+3899
+14/04/18 16:46:49 INFO MemoryStore: ensureFreeSpace(13536) called with curMem=146579, maxMem=77974732
+14/04/18 16:46:49 INFO MemoryStore: Block rdd_1_0 stored as values to memory (estimated size 13.2 KB, free 74.2 MB)
+14/04/18 16:46:49 INFO BlockManagerMasterActor$BlockManagerInfo: Added rdd_1_0 in memory on 192.168.1.82:52011 (size: 13.2 KB, free: 74.3 MB)
+14/04/18 16:46:49 INFO BlockManagerMaster: Updated info of block rdd_1_0
+14/04/18 16:46:49 INFO Executor: Serialized size of result for 0 is 563
+14/04/18 16:46:49 INFO Executor: Sending result for 0 directly to driver
+14/04/18 16:46:49 INFO Executor: Finished task ID 0
+14/04/18 16:46:49 INFO TaskSetManager: Finished TID 0 in 183 ms on localhost (progress: 1/1)
+14/04/18 16:46:49 INFO DAGScheduler: Completed ResultTask(0, 0)
+14/04/18 16:46:49 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+14/04/18 16:46:49 INFO DAGScheduler: Stage 0 (count at SimpleApp.java:12) finished in 0.197 s
+14/04/18 16:46:49 INFO SparkContext: Job finished: count at SimpleApp.java:12, took 0.28696 s
+14/04/18 16:46:49 INFO SparkContext: Starting job: count at SimpleApp.java:16
+14/04/18 16:46:49 INFO DAGScheduler: Got job 1 (count at SimpleApp.java:16) with 1 output partitions (allowLocal=false)
+14/04/18 16:46:49 INFO DAGScheduler: Final stage: Stage 1 (count at SimpleApp.java:16)
+14/04/18 16:46:49 INFO DAGScheduler: Parents of final stage: List()
+14/04/18 16:46:49 INFO DAGScheduler: Missing parents: List()
+14/04/18 16:46:49 INFO DAGScheduler: Submitting Stage 1 (FilteredRDD[3] at filter at SimpleApp.java:16), which has no missing parents
+14/04/18 16:46:49 INFO DAGScheduler: Submitting 1 missing tasks from Stage 1 (FilteredRDD[3] at filter at SimpleApp.java:16)
+14/04/18 16:46:49 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks
+14/04/18 16:46:49 INFO TaskSetManager: Starting task 1.0:0 as TID 1 on executor localhost: localhost (PROCESS_LOCAL)
+14/04/18 16:46:49 INFO TaskSetManager: Serialized task 1.0:0 as 1763 bytes in 0 ms
+14/04/18 16:46:49 INFO Executor: Running task ID 1
+14/04/18 16:46:49 INFO BlockManager: Found block broadcast_0 locally
+14/04/18 16:46:49 INFO BlockManager: Found block rdd_1_0 locally
+14/04/18 16:46:49 INFO Executor: Serialized size of result for 1 is 563
+14/04/18 16:46:49 INFO Executor: Sending result for 1 directly to driver
+14/04/18 16:46:49 INFO Executor: Finished task ID 1
+14/04/18 16:46:49 INFO DAGScheduler: Completed ResultTask(1, 0)
+14/04/18 16:46:49 INFO TaskSetManager: Finished TID 1 in 9 ms on localhost (progress: 1/1)
+14/04/18 16:46:49 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+14/04/18 16:46:49 INFO DAGScheduler: Stage 1 (count at SimpleApp.java:16) finished in 0.010 s
+14/04/18 16:46:49 INFO SparkContext: Job finished: count at SimpleApp.java:16, took 0.044174 s
+Lines with a: 62, lines with b: 35
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.204s
+[INFO] Finished at: Fri Apr 18 16:46:49 PDT 2014
+[INFO] Final Memory: 11M/81M
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,84 @@
+Neke jednostavne funkcije viseg reda:
+    * map :: (a -> b) -> [a] -> [b] 
+        primenjuje funkciju (a -> b) na listu elemenata tipa a;
+        moze se reci da transformise listu koristeci datu funkciju
+        ili da selektuje finalni rezultat.
+        Primer: 
+            map (\t -> t + 1) [1, 2, 3] -- vraca [2,3,4] 
+            map (+1) [1, 2, 3] -- vraca [2,3,4]
+            map fst [(1 ,2), (3,4)] -- vraca [1,3] 
+            
+    * filter :: (a -> Bool) -> [a] -> [a]
+        filtrira listu koristeci predikat (a -> Bool) - svi elementi
+        za koje taj predikat vrati True se nalaze u rezultatu.
+        Primer: 
+            filter (\t -> t > 2) [1, 2, 3] -- vraca [3] 
+            filter (>2) [1, 2, 3] -- vraca [3] 
+            
+    * all :: (a -> Bool) -> [a] -> Bool * 
+        proverava da li svi elementi date liste zadovoljavaju predikat;
+        * tip nije bas ovakav ako se proveri u ghci , razlog je zato sto
+        je all jos vise genericki - radi ne samo za liste nego za bilo
+        koji tip koja pripada odredjenoj klasi (Foldable - definisani foldl
+        i foldr).
+        Primer: 
+            all (\t -> t < 2) [1, 2, 3] -- vraca False
+            all (<5) [1, 2, 3] -- vraca True 
+            
+    * any :: (a -> Bool) -> [a] -> Bool 
+        slicno kao all samo sto vraca True ako neki od elemenata zadovoljava
+        predikat.
+        Primer: 
+            any (\t -> t < 2) [1, 2, 3] -- vraca True 
+            any (>5) [1, 2, 3] -- vraca False
+
+    * Funkcija zip pravi listu torki od dve liste tako sto spaja elemente 
+      prve liste sa elementima druge liste
+
+    * Funkcija filter ocekuje predikat , tj funkciju tipa: a -> Bool
+
+Dodatne funkcije viseg reda za rad sa listama:
+    * any uslov lista - vraca True ako postoji element u listi koji 
+      zadovoljava uslov, False inace
+    * all uslov lista - vraca True ako svi elementi u listi zadovoljavaju
+      uslov, False inace 
+    * takeWhile uslov lista - izdvaja jedan po jedan element liste sve dok
+      ne stigne do elementa koji ne zadovoljava uslov 
+    * dropWhile uslov lista - izbacuje jedan po jedan element liste sve dok
+      ne stigne do elementa koji ne zadovoljava uslov 
+    * sum lista - sabira elemente liste 
+    * product lista - mnozi elemente liste 
+    * reverse lista - obrce listu 
+    * unzip - razdvaja listu parova u liste ciji su elementi prvi, odnosno drugi
+      elementi parova 
+    * concat lista - spaja liste iz liste listi u jednu listu 
+    * elem e lista - vraca True ako e postoji u listi, False inace 
+    * replicate n x - kopira broj x n puta
+
+    * foldl :: (b -> a -> b) -> b -> [a] -> b (#) 
+    * foldr :: (a -> b -> b) -> b -> [a] -> b 
+        (izraz fold cemo koristiti kad je nebitno o kojem tacno fold-u je rec);
+        pocevsi od binarne funkcije, pocetne vrednosti (akumulator) i kolekcije,
+        fold primenjuje funkciju redom na elemente kolekcije i akumulator i
+        rezultat primene funkcije postaje novi akumulator ("reduce" (Python));
+        razlike izmedju foldl i foldr: 
+            - foldl radi sleva na desno (normalni poredak) 
+            - foldr radi zdesna na levo (obrnuti poredak) 
+            - NAPOMENA: primetimo da nije isti redosled akumulatora i elementa! 
+            
+        Primer za foldl: 
+            funkcija: (+) ; acc: 0 ; kolekcija: [1, 2, 3, 4, 5] 
+                koraci koje foldl radi:
+                     0 + 1 = 1 -- 0 je acc, 1 je trenutni element, 1 postaje acc 
+                     1 + 2 = 3 -- 1 je acc, 2 je trenutni element, 3 postaje acc 
+                     3 + 3 = 6 -- 3 je acc, 3 je trenutni element, 6 postaje acc 
+                     6 + 4 = 10 -- 6 je acc, 4 je trenutni element, 10 postaje acc 
+                     10 + 5 = 10 -- 10 je acc, 5 je trenutni element, 15 postaje acc
+                     -- nema vise elemenata, rezultat foldl-a je 15
+                     
+        postoje i varijante foldl1/foldr1 u slucajevima kada za akumulator zelimo
+        da uzmemo prvi/poslednji element kolekcije
+        (#) slicno kao all i any, i fold je genericki, radi ne samo za liste;
+            potpis iznad je pojednostavljen da bi bilo lakse razumevanje.
+
+Kompozicija funkcija: (f . g) x <-> f (g x)

@@ -1,0 +1,44 @@
+Janko 1000 
+WBA-Sunderland
+x 
+Man City-Tottenham
+1 
+Crystal Palace-Everton
+2
+Hull-Bournemouth
+1
+Arsenal-Burnley
+1
+Zika 4000
+Watford-Middlesbrough
+x
+Leicester-Chelsea
+x
+Swansea-Arsenal
+x
+Tottenham-WBA
+1
+Stoke-Man Utd
+1
+Jovan 9000
+Everton-Man City
+2
+Chelsea-Hull
+x
+Arsenal-Burnley
+1
+Southampton-Leicester
+2
+Liverpool-Swansea
+2
+Ivan 7500
+West Ham-Crystal Palace
+1
+Leicester-Chelsea
+1
+Watford-Middlesbrough
+x
+Liverpool-Swansea
+2
+Man Utd-Liverpool
+x

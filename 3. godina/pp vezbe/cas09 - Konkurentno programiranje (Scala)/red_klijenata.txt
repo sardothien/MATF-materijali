@@ -1,0 +1,10 @@
+Marko 12000
+Jelena 56000
+Ivan 54200
+Filip 31000
+Petar 49700
+Danka 43800
+Sanja 90000
+Goran 40000
+Natasa 32000
+Zoran 49200
