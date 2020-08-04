@@ -27,7 +27,7 @@ print(prosek, type(prosek))
 print(prosek.keys())
 print(prosek.values())
 print('Milan' in prosek)
-print('Milose' in prosek)
+print('Milos' in prosek)
 
 # Torke
 voce = ('apple', 'orange', 'banana', 'pear', 'kiwi')

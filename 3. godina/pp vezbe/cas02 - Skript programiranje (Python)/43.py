@@ -1,4 +1,4 @@
-# U datotecu dat.json se nalaze podaci o tackam. Napisati
+# U datoteci dat.json se nalaze podaci o tackam. Napisati
 # program koji ucitava podatke o tackama iz datoteke i sortira
 # ih po udaljenosti od koordinatnog pocetka. Na standardni
 # izlaz ispisati podatke pre i posle sortiranja.

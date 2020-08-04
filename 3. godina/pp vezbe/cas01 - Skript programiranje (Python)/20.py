@@ -5,8 +5,10 @@ lista = []
 
 while True:
     unos = input()
+
     if unos == 'quit':
         break
+
     lista.append(unos)
 
 skup = set(lista)

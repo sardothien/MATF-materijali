@@ -1,6 +1,6 @@
 {- Napisati funkciju broj lista koja vraca broj odredjen ciframa
    koje se nalaze u listi citajuci ih sa pocetka ka kraju liste i 
-   funkciju brojObrnut lista koja vraca broj odrefjen ciframa koje 
+   funkciju brojObrnut lista koja vraca broj odredjen ciframa koje 
    se nalaze u listi citajuci ih sa kraja ka pocetku liste. -}
 
 broj [] = 0

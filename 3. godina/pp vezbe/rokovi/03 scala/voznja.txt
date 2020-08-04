@@ -1,0 +1,16 @@
+Petar 1.2
+Jana 2.1
+Zika 0.4
+Maja 0.7
+Ranko 1.5
+Ana 1.9
+Luka 0.6
+Nikola 0.7
+Milena 1.3
+Viktor 1.8
+Filip 0.5
+Emir 1.5
+Valentina 3.1 
+Milica 2.4
+Ognjen 2.7
+Zorana 1.6

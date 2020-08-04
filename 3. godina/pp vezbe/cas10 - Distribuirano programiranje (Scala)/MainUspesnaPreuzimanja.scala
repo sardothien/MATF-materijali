@@ -9,7 +9,7 @@ object MainUspesnaPreuzimanja {
 
     val ctx = new SparkContext(conf)
 
-    val preuzimanja = ctx.textFile("mavenLog.txt")
+    val preuzimanja = ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/mavenLog.txt")
         .cache()
 
     val zapocetaPreuzimanja = preuzimanja

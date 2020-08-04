@@ -44,7 +44,7 @@ class Berac(drvoredi : ConcurrentLinkedQueue[(String, Int)], skladiste : AtomicI
 object MainBerba {
   def main(args: Array[String]): Unit = {
 
-    val sc1 = new Scanner(new File("drvoredi.txt"))
+    val sc1 = new Scanner(new File(drvoredi.txt"))
     val sc2 = new Scanner(System.in)
 
     val skladiste = new AtomicIntegerArray(4)

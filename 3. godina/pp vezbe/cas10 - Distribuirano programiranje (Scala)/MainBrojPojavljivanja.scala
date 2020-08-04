@@ -9,7 +9,7 @@ object MainBrojPojavljivanja {
 
     val ctx = new SparkContext(conf)
 
-    ctx.textFile("knjiga.txt")
+    ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/knjiga.txt")
         .flatMap(_.split(" +"))
         .map(rec => (rec, 1))
         .reduceByKey(_+_) // sabiramo brojeve pojavljivanja

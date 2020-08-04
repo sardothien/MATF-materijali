@@ -63,7 +63,7 @@ object MainBanka {
     print("Broj sluzbenica: ")
     val sluzbeniceBr : Int = sc.nextInt()
 
-    val scFile : Scanner = new Scanner(new File("red_klijenata.txt"))
+    val scFile : Scanner = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/red_klijenata.txt"))
 
     // ConcurrentLinkedQueue - operacije bezbedne za konkurentni scenario
     val redKlijenata = new ConcurrentLinkedDeque[Klijent]()

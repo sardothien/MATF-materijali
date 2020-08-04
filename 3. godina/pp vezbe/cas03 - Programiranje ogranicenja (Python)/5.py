@@ -8,7 +8,7 @@ import constraint
 problem = constraint.Problem()
 
 problem.addVariable('X', range(1, 91))
-problem.addVariable('Y', range(2, 60, 2))
+problem.addVariable('Y', range(2, 61, 2))
 
 domenZ = []
 for i in range(1, 11):

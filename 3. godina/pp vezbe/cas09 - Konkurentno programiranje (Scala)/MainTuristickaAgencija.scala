@@ -33,7 +33,7 @@ class Ucesnik(ime: String, cena: Int, dobitnici: Array[String]) extends Thread{
 object MainTuristickaAgencija {
   def main(args: Array[String]): Unit = {
 
-    val sc = new Scanner(new File("ucesnici.txt"))
+    val sc = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/ucesnici.txt"))
 
     val dobitnici = new Array[String](5)
     val n = sc.nextInt()

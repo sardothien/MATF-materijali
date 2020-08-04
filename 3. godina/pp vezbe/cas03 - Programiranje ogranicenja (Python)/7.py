@@ -10,7 +10,7 @@ problem = constraint.Problem()
 
 problem.addVariable('X', range(1,11))
 problem.addVariable('Y', range(1,52,2))
-problem.addVariable('Z', range(1, 101, 10))
+problem.addVariable('Z', range(10, 101, 10))
 
 domenW = []
 for i in range(1,11):

@@ -26,9 +26,9 @@ object MainMatrice {
   def main(args: Array[String]): Unit = {
     println("------------ MATRIX MUL ---------------")
 
-    val sc1 : Scanner = new Scanner(new File("matrica1.txt"))
-    val sc2 : Scanner = new Scanner(new File("matrica2.txt"))
-    val pw : PrintWriter = new PrintWriter(new File("rezultat.txt"))
+    val sc1 : Scanner = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/matrica1.txt"))
+    val sc2 : Scanner = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/matrica2.txt"))
+    val pw : PrintWriter = new PrintWriter(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/rezultat.txt"))
 
     // Dimenzije
     // (n, m1) x (m2, k)

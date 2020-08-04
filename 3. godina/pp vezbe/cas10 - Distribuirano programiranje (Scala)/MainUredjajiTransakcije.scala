@@ -10,7 +10,7 @@ object MainUredjajiTransakcije {
 
     val ctx = new SparkContext(conf)
 
-    ctx.textFile("uredjaji.txt")
+    ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/uredjaji.txt")
         .map(linija => {
           val niz = linija.split("\\s+")
           (niz(0), niz.drop(1).mkString(" "))

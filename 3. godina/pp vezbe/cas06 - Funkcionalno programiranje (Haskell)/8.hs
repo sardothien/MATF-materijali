@@ -1,4 +1,4 @@
-{- Definisati rekuryivnu funkciju list_elem x l 
+{- Definisati rekurzivnu funkciju list_elem x l 
    koja proverava da li lista l sadrzi dati element x.
    Dodatno, definisati prethodnu funkciju koriscenjem
    funkcija or i map. -}

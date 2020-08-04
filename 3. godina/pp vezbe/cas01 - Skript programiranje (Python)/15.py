@@ -8,8 +8,10 @@ buffer = []
 i = 0
 while True:
     unos = input()
+
     if unos == 'quit':
         break
+
     buffer.append(unos)
     
     i += 1

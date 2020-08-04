@@ -7,7 +7,7 @@ def prazna(x, y, z):
     pass
 
 def kvadrat(x):
-    "Funkcija vraca kvadrat broj"
+    "Funkcija vraca kvadrat broja"
     return x**2
 
 def translacija(x):

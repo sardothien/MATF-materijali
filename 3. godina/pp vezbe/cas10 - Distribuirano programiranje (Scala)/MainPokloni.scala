@@ -11,7 +11,7 @@ object MainPokloni {
 
     val ctx = new SparkContext(conf)
 
-    val dobitnici = ctx.textFile("zaposleni.txt")
+    val dobitnici = ctx.textFile("/home/mina/Downloads/programske paradigme/vezbe/cas10 - Distribuirano programiranje (Scala)/zaposleni.txt")
         .filter(_.contains("IT_PROG"))
         .map(linija => {
           val niz = linija.split(" ")

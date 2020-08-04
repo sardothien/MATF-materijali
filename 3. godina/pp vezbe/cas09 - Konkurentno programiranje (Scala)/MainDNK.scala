@@ -35,7 +35,7 @@ object MainDNK {
   def main(args: Array[String]): Unit = {
     println("--------- DNK Counter ---------")
 
-    val sc1 : Scanner = new Scanner(new File("bio_podaci.txt"))
+    val sc1 : Scanner = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/bio_podaci.txt"))
     val sc2 : Scanner = new Scanner(System.in)
 
     println("Broj procesora na sistemu je: " + Runtime.getRuntime.availableProcessors())

@@ -47,8 +47,8 @@ object MainKladionica {
 
     println("-------- KLADIONICA ------------")
 
-    val sc1 : Scanner = new Scanner(new File("utakmice.txt"))
-    val sc2 : Scanner = new Scanner(new File("kladionicari.txt"))
+    val sc1 : Scanner = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/utakmice.txt"))
+    val sc2 : Scanner = new Scanner(new File("/home/mina/Downloads/programske paradigme/vezbe/cas09 - Konkurentno programiranje (Scala)/kladionicari.txt"))
 
     // Utakmice
     // torke su azurabilne
