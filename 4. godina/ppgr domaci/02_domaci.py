@@ -90,6 +90,24 @@ plt.plot(xd, yd)
 plt.legend(['original', 'slika'])
 plt.show()
 
+# Za DLT i modifikovani DLT
+
+# originalne tacke
+src_points = [[-3, -1, 1],
+              [3, -1, 1],
+              [1, 1, 1],
+              [-1, 1, 1],
+              [3, 2, 1],
+              [-1, 2, 1]]
+
+# slike tacaka
+dst_points = [[-2, -1, 1],
+              [2, -1, 1],
+              [2, 1, 1],
+              [-2, 1, 1],
+              [1, 1, 1],
+              [-1, -1, 1]]
+
 """***DLT ALGORITAM***"""
 
 def dlt(src_p, dst_p):
@@ -142,3 +160,58 @@ print(P_dlt.round())
 P_dlt.round() == P_naive.round()
 
 """***MODIFIKOVANI DLT ALGORITAM***"""
+
+import math
+
+def normalization(src_p):
+    
+    # teziste sistema tacaka C(x, y)
+    x = sum([p[0]/p[2] for p in src_p]) / len(src_p)
+    y = sum([p[1]/p[2] for p in src_p]) / len(src_p)
+    
+    # srednje rastojanje
+    r = 0.0
+
+    for i in range(len(src_p)):
+        # translacija u koordinatni pocetak
+        tmp1 = float(src_p[i][0]/src_p[i][2]) - x
+        tmp2 = float(src_p[i][1]/src_p[i][2]) - y
+
+        r = r + math.sqrt(tmp1**2 + tmp2**2)
+
+    r = r / float(len(src_p))
+
+    # skaliranje
+    S = float(math.sqrt(2)) / r
+
+    # vracamo matricu normalizacije 
+    return np.array([[S, 0, -S*x], [0, S, -S*y], [0, 0, 1]])
+
+def dlt_normalized(src_p, dst_p):
+
+    # transformacije
+    T = normalization(src_p)
+    T_prim = normalization(dst_p)
+
+    # normalizovane tacke
+    M_line = T.dot(np.transpose(src_p))
+    M_prim = T_prim.dot(np.transpose(dst_p))
+
+    M_line = np.transpose(M_line)
+    M_prim = np.transpose(M_prim)
+
+    P_line = dlt(M_line, M_prim)
+
+    P = (np.linalg.inv(T_prim)).dot(P_line).dot(T)
+
+    return P
+
+P_dlt_norm = dlt_normalized(src_points, dst_points)
+print(P_dlt_norm.round())
+
+"""***Poredjenje DLT i modifikovanog DLT algoritma***"""
+
+P_dlt_norm = (P_dlt_norm / P_dlt_norm[0, 0]) * P_dlt[0,0]
+print(P_dlt_norm.round())
+
+P_dlt_norm.round() == P_dlt.round()
