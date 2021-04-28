@@ -194,59 +194,273 @@ LLVM implementira kompletan tok kompilacije:
     \item \textit{Back-end} - različite arhitekture (alat llc)
 \end{itemize}
 Na primer, korisnik može da kreira svoj front-end, i da ga poveže na LLVM, koji će mu dodati middle-end i back-end za izabran postojeći front-end/back-end; da isprobava promene na nivou middle-end-a; za novu arhitekturu obezbedi back-end, i da koristi Clang i postojeći middle-end.
-
-
-
+\newpage
 
 \section{LLVM projekti}
+\noindent
+LLVM - kompajlerska infrastruktura sa velikim brojem pomoćnih alata, podržanih arhitektura, sa interfejsima ka ostvarivanju različitih analiza i optimizacija. \\
+Dva osnovna podprojekta LLVM-a su:
+\begin{itemize}
+    \item \textit{LLVM Core libraries} - obezbeđuju moderni optimizator koji ne zavisi od izvornog koda niti od ciljne arhitekture, kao i podršku za generisanje koda za puno popularnih CPU-a. Ove biblioteke koriste posebnu reprezentaciju koda koja se naziva LLVM međureprezentacija.
+    \item \textit{Clang} - LLVM-ov C/C++/Objective-C kompilator, koji ima za cilj efikasnu kompilaciju, veoma detaljnu dijagnostiku, obezbeđivanje platforme za izgradnju različitih alata koji rade na nivou izvornog koda. Clang Static Analyzer i Clang-tidy su alati koji automatski pronalaze greške u kodu.
+\end{itemize}
+Ostali LLVM projekti:
+\begin{itemize}
+    \item \textit{LLDB} - LLVM debager (nove generacije). Izgrađen je kao skup ponovno upotrebljivih komponenti koje koriste postojeće biblioteke LLVM projekta. Veoma je vremenski i memorijski efikasan, efikasniji od GDB-a po nekim kriterijumima.
+    \item \textit{libc++ i libc++ ABI} - standardna biblioteka. Pružaju efikasnu i u skladu sa standardom implementaciju C++ standardnih biblioteka, uključujući punu podršku za C++11 i C++14.
+    \item \textit{compiler-rt} - podrška za različite run-time izazove. Sastoji se od nekoliko manjih podprojekata, uključujući builtins, sanitizer runtimes, profile.
+    \item \textit{MLIR} - nova međureprezentacija. Ima za cilj da smanji cenu izgradnje novih kompajlera i da pomogne u povezivanju postojećih kompajlera, kao i da unapredi kompilaciju koja ima za cilj heterogen hardver. Omogućava dizajn i implementaciju generatora koda, translatora i optimizatora različitih nivoa apstrakcije. 
+    \item \textit{OpenMP} - podrška za Open Multi-Processing kod. Obezbeđuje runtime podršku za korišćenje OpenMP konstrukta u okviru Clang-a.
+    \item \textit{polly} - optimizator petlji i upotrebe podataka, kao i infrastruktura za optimizaciju u okviru LLVM-a. U projektu se koristi apstraktna matematička reprezentacija za analizu i optimizaciju pristupa memoriji programa. Trenutno izvodi klasične transformacije petlji, posebno razdvajanje (tiling) i spajanje (fusion) petlji.
+    \item \textit{libclc} - standardna biblioteka za OpenCL. OpenCL je okvir za pisanje paralelnih programa koji se mogu izvršavati na heterogenim platformama. OpenCL pruža standardni interfejs za paralelno izračunavanje korišćenjem paralelizma zadataka i paralelizma podataka.
+    \item \textit{klee} - simboličko izvršavanje koda. Implementira simboličku virtuelnu mašinu koja ima za cilj automatsko generisanje testova i pronalaženje grešaka u kodu. Koristi dokazivač teorema za evaluaciju putanji i uslova ispravnosti.
+    \item \textit{lld} - LLVM linker. Zamena za sistemske linkere koja bi trebalo da radi brže.
+\end{itemize}
+\newpage
 
 \section{LLVM prednji deo}
+\noindent
+\textit{\textbf{Prednji deo}} (front-end) - prevođenje i analiza izvornog koda programa napisanih u višim programskim jezicima u LLVM-ovu međureprezentaciju. Prevođenje obuhvata leksičku, sintaksičku i semantičku analizu, a završava se fazom generisanja LLVM-ovog međukoda. \\
+\textit{Clang} je prednji deo kompajlera koji prevodi C-olike jezike u srednju reprezentaciju. Deo je paketnih sistema za skidanje programa na većini BSD i GNU/Linux distribucija. Često se Clang spominje kao kompajler ne uzimajući u obzir da je on samo prednji deo kompajlera i da se ispod njega nalazi moćan optimizator i generator koda.
+Clang je dizajniran tako da bude memorijski efikasan, da ispisuje jasne, pouzdane i korisne poruke o greškama i upozorenjima. Takođe on pruža čist API tako da se on može koristiti u drugim projektima.
+\begin{itemize}
+    \item \textit{LibClang} - ceo sistem LLVM-a je organizovan kao skup biblioteka, pa tako imamo i biblioteku libClang koja treba da se uključi ako želimo da korisimo API kompajlera Clang.
+    \item \textit{Clang Plugins} - omogućavaju pokretanje dodatnih akcija na ASTu kao deo kompilacije. Plugins su dinamičke biblioteke koje se učitavaju u fazi izvršavanja i lako se integrišu u okruženje za izgradnju koda.
+    \item \textit{LibTooling} - C++ interfejs koji ima za cilj da omogući pisanje samostalnih alata.
+\end{itemize}
 
 \section{LLVM srednji deo. LLVM-ov međukod}
-
+\noindent
+\textit{\textbf{Središnji deo}} (middle-end) obuhvata skup mašinski nezavisnih optimizacija koje se izvršavaju nad LLVM-ovom međureprezentacijom. LLVM-ova međureprezentacija predstavlja sponu između prednjeg i zadnjeg dela kompilatora.
+LLVM-ov međukod može biti predstavljen pomoću narednih, međusobno ekvivalentnih formi:
+\begin{itemize}
+    \item memorijska reprezentacija (in-memory) - implicitna forma međukoda, smeštena u radnoj memoriji računara
+    \item bitkod reprezentacija (bitcode) - prostorno efikasna reprezentacija, smeštena u datotekama ekstenzije bc
+    \item pseudo-asemblerska reprezentacija (pseudo-assembly) - lako čitljiva, smeštena u datotekama ekstenzije ll
+\end{itemize}
+LLVM-ov međukod organizovan je u hijerarhijsku strukturu koja se sastoji od nekoliko važnih entiteta. Sadržaj datoteke u kojoj se nalazi međukod definiše \textit{modul}, koji predstavlja najviši entitet hijerarhije. Modul odgovara jednoj jedinici prevođenja i sačinjen je od proizvoljnog broja funkcija i drugih entiteta.
+Funkcije konceptualno odgovaraju funkcijama programskog jezika C. Naredni entitet u hijerarhiji predstavljaju \textit{osnovni blokovi}, od kojih je sačinjena svaka funkcija. Osnovni blok predstavlja najduži niz troadresnih instrukcija koje se izvršavaju sekvencijalno. Važnu karakteristiku osnovnog bloka predstavlja činjenica da se u njega može uskočiti jedino sa početka, a iskočiti jedino sa kraja istog. Hijerarhijski najniže entitete predstavljaju same \textit{instrukcije}.
+Instrukcije su slične RISC instrukcijama, ali sa ključnim dodatnim informacijama koje omogućavaju efektivne analize. \\
+Najvažnije jezičke osobine srednje reprezentacije su: poseduje svojstvo jednog statičkog dodeljivanja koje omogućava lakšu i efikasniju optimizaciju koda; instrukcije za obradu podataka su troadresne; poseduje neograničen broj registara.
+ 
 \section{LLVM srednji deo. Alat opt i LLVM prolazi}
+\noindent
+\textit{\textbf{Alat opt}} vrši analizu i optimizaciju koda. Kao ulazni fajl, očekuje LLVM-IR kod (.llformat ili .bc format) i onda pokreće specifičnu optimizaciju ili vrši analizu koda, u zavnosti od ulaznih opcija (ukoliko je zadata ulazna opcija -analyze vrši se analiza koda). Ukoliko opcija -analyze nije zadata, opt pokušava da proizvede optimizovan izlazni kod.
+Svaka optimizacija je zadata u vidu prolaza kroz kod i moguće je korišćenjem alata opt pokrenuti izabrane optimizacije u odabranom redosledu. Da bi se pokrenula neka konkretna optimizacija, navodi se ime odgovarajućeg prolaza $-\{passname\}$. Redosled pojavljivanja opcija u komandnoj liniji određuje redosled kojim će prolazi biti izvršeni. Neke transformacije zahtevaju da su pre njih izvršene odgovarajuće analize i da su prikupljeni potrebni podaci. \\
+\textit{\textbf{Prolazi}} mogu da rade analizu \textit{Analysis Passes} ili optimizaciju \textit{Transformation Passes}. Postoje i prolazi koji omogućavaju dobijanje raznih važnih informacija, npr. informacija koje su bitne za razvoj drugih prolaza ili prolazi koji upsuju modul u odgovarajući bitcode. Ovi prolazi se zovu \textit{Utility Passes}.
+Da biste napisali neku optimizaciju/prolaz potrebno je da - znate šta želite da vaš prolaz uradi; da znate na koji način zavisite od analiza programa koje vrše neki drugi prolazi; da znate na koji način utičete na analize programa koje su već izvršene. Svi prolazi su podklase apstraktne klase \textit{Pass} - definiše virtuelne metode koje svi prolazi treba da implementiraju. Svi prolazi imaju neka svoja pravila šta mogu/ne mogu da rade i kako moraju da se ponašaju.
+\textit{PassManager} ima ulogu da obezbedi ispravno pokretanje prolaza, tj. da obezbedi da su ispoštovane njihove međusobne zavisnosti, kao i da optimizuje redosled pozivanja prolaza. Zbog toga svaki prolaz mora da obezbedi informacije koji su prolazi pre njega neophodni i šta je od postojećih informacija narušeno nakon datog prolaza. PassManager obezbeđuje deljenje rezultata analize - pokušava da izbegne ponovno računanje analiza uvek kada je to moguće.
+Bitno je da nakon svakog prolaza mora da se ostavi IR u validnom stanju.
 
 \section{LLVM zadnji deo}
+\noindent
+\textit{\textbf{Zadnji deo}} (backend) - generisanje mašinskog koda za navedenu ciljnu arhitekturu, na osnovu prosleđenog LLVM-ovog međukoda, vrši se u zadnjem delu infrastrukture. Takođe, u ovom delu se vrše mnoge mašinski zavisne optimizacije. Neke od trenutno podržanih arhitektura su: MIPS, ARM, x86, SPARC. Osnovni alat zadnjeg dela je llc - kompajler koji prevodi LLVM bitcode u asemblerski fajl. 
+Da bi se ostvarila podrška za novi hardver, potrebno je:
+\begin{itemize}
+    \item Poznavati LLVM-IR, jer zadnji deo počinje obradu nad IR-om
+    \item Poznavati tehnike pisanja prolaza
+    \item Poznavati \textit{td} format - recizira način definisanja karakteristika ciljne arhitekture sa ciljem bržeg i jednostavnijeg automatskog generisanja odgovarajućih C++ klasa i metoda. Sintaksa liči na generičko programiranje u C++-u.
+    \item Poznavati algoritme koji se koriste u fazi generisanja koda: izbor instrukcija, redosled instrukcija, SSA-zasnovane optimizacije, alokacija registara, ubacivanje prologa/epiloga funkcija, kasne optimizacije na mašinskom kodu i emitovanje koda (za svaku od prethodnih faza postoji skup klasa koje treba poznavati i predefinisati).
+\end{itemize}
 
 \section{Semantička analiza. Ime, doseg i tabela simbola. Operacije nad tabelom simbola}
+\noindent
+\textit{Semantičkom analizom} proverava se, na primer:
+\begin{itemize}
+    \item Da li su svi identifikatori deklarisani na mestima na kojima se upotrebljavaju?
+    \item Da li se poštuju navedeni tipovi podataka?
+    \item Da li su odnosi nasleđivanja u objektno orijetnisanim jezicima korektni?
+    \item Da li se klase definišu samo jednom?
+    \item Da li se metode sa istim potpisom u klasama definišu samo jednom?
+\end{itemize}
+Izazovi semantičke analize: odbaciti što više nekorektnih programa; prihvatiti što više korektnih programa; uraditi to brzo; prikupiti i druge korisne informacije o programu koje su potrebne za kasnije faze. \\
+Dve vrste semantičke analize: \textit{Scope-Checking} (provera dosega) i \textit{Type-Checking} (provera tipova). \\
+Isto \textit{ime} u programu može da referiše na više različitih stvari. \\
+\textit{Doseg} nekog objekta je skup lokacija u programu gde se uvedeno ime može koristiti za imenovanje datog objekta. Uvođenje nove promenljive u doseg može da sakrije 
+ime neke prethodne promenljive. Na koji način pratimo vidljivost promenljivih?
+Za to postoji \textit{tabela simbola} (symbol table). \\
+Tabela simbola je preslikavanje koje za svako ime određuje čemu to ime konkretno odgovara. Kako se izvršava semantička analiza, tabela simbola se osvežava i menja. \\
+\textit{\textbf{Operacije nad tabelom simbola}}. Tabela simbola je tipično implementirana kao stek kataloga (mapa). Svaka mapa odgovara jednom konkretnom dosegu. Osnovne operacije su: \textit{push scope} (ulazak u novi doseg), \textit{pop scope} (napuštanje dosega, izbacivanje svih deklaracija koje je doseg sadržao), \textit{insert symbol} (ubacivanje novog unosa u tabelu tekućeg dosega) i \textit{lookup symbol} (traženje čemu neko konkretno ime odgovara). \\
+Da bi se obradio deo programa koji kreira neki doseg potrebno je ući u doseg, dodati sve deklarisane promenljive u tabelu simbola, obraditi telo bloka/funkcije/klase i izaći iz dosega.
 
 \section{Doseg i tabela simbola u OOP. Određivanje dosega kod nasleđivanja. Razrešavanje višeznačnosti}
+\noindent
+Doseg izvedene klase obično čuva link na doseg njene bazne klase. Traženje polja klase prolazi kroz lanac dosega i zaustavlja se kada se pronađe odgovarajući identifikator ili kada se pojavi semantička greška. \\
+Kod nasleđivanja je potrebno održavati još jednu tabelu pokazivača koja pokazuje na stek dosega. Kada se traži vrednost u okviru specifičnog dosega, počinje se pretraga od tog konkretnog dosega. Neki jezici omogućavaju skakanje do proizvoljne bazne klase (npr. C++). \\
+\textit{Pojednostavljena pravila dosega za C++}. U okviru klase, pretraži celu hijejrhiju da pronađeš koji skupovi imena se tu mogu naći (koristeći standardnu pretragu dosega). Ako se pronađe samo jedno odgovarajuće ime, onda je pretraga završena bez dvosmislenosti. Ako se pronađe više nego jedno odgovarajuće ime, onda je pretraga dvosmislena i mora se zahtevati razrešavanje pretrage. U suprotnom, počni ponovo pretragu ali van klase.
 
 \section{Određivanje dosega. Dinamički dosezi}
+\noindent
+Neki jezici koriste dinamičko određivanje dosega, koje se sprovodi u fazi izvršavanja: ime odgovara varijabli sa tim imenom koja je najbliže ugnježdena u fazi izvršavanja. \\
+Primeri jezika sa dinamičkim dosezima: Perl, Common Lisp. Implementacija dinamičkih dosega uključuje čuvanje tabele simbola u fazi izvršavanja. Obično je to manje efikasno od statičkog određivanja dosega jer kompajleri ne mogu da hardkoduju lokacije promenljivih već imena moraju da razrešavaju u fazi izvršavanja.
 
 \section{Pravila za određivanje tipova u izrazima}
+\noindent
+Notacija tipova zavisi od programskog jezika ali uključuje: skup vrednosti i skup operacija nad tim vrednostima. Greška u radu sa tipovima se javlja onda kada se primenjuje operacija nad vrednostima koje ne podržavaju tu operaciju. Vrste provere tipova:
+\begin{itemize}
+    \item Statička provera tipova - analizira program u fazi kompilacije kako bi pokazao da nema grešaka u tipovima. Nikada ne dozvoliti da se nešto loše desi u fazi izvršavanja
+    \item Dinamička provera tipova - proveriti operacije u fazi izvršavanja, neposredno pre konkretnog izvršavanja. Preciznije od statičkog određivanja tipova, ali manje efikasno
+    \item Bez analize tipova
+\end{itemize}
+Pravila koja definišu šta je dozvoljena operacija nad tipovima formiraju \textit{sistem tipova}. U jako tipiziranim jezici svi tipovi moraju da se poklapaju. U slabo tipiziranim jezicima mogu se desiti greške u tipovima u fazi izvršavanja. Jako tipizirani jezici su robusni, ali slabo tipizirani jezici su obično brži. \\
+Dva osnovna koraka statičkog zaključivanja tipova: zaključivanje tipa za svaki izraz na osnovu tipova komponenti izraza i potvrđivanje da se tipovi izraza u određenom kontekstu poklapaju sa očekivanim. Ovi koraci se često kombinuju u jednom prolazu. \\
+Kako odrediti tip izraza? Ovaj proces odgovara logičkom zaključivanju: počinjemo od skupa aksioma i onda primenjujemo pravila zaključivanja da bi odredili tip izraza. Mnogi sistemi tipova se mogu posmatrati kao sistemi za dokazivanje. \\
+\textbf{Jednostavna pravila zaključivanja:}
+\begin{enumerate}
+    \item Ako je x promenljiva koja ima tip t, izraz x ima tip t
+    \item Ako je e celobrojna konstanta, onda e ima tip int
+    \item Ako operandi e1 i e2 izraza e1+e2 imaju tip int i int, onda i izraz e1+e2 ima tip int
+\end{enumerate}
+Ovakav zapis treba da se formalizuje i skrati. Aksiome i pravila zaključivanja mogu se zapisati na sledeći način: $\frac{Preduslov}{Postuslov}$. Ako je preduslov tačan, možemo da zaključimo postuslov. \\
+Početne aksiome: $\frac{}{\vdash\ true\ :\ bool}$ i $\frac{}{\vdash\ false\ :\ bool}$. \\ Jednostavnija pravila: $\frac{i\ is\ an\ integer\ constant}{\vdash\ i\ :\ int}$, 
+$\frac{s\ is\ a\ string\ constant}{\vdash\ s\ :\ string}$, 
+$\frac{d\ is\ a\ double\ constant}{\vdash\ d\ :\ double}$. \\
+Složenija pravila: $\frac{\vdash\ e1\ :\ int, \vdash\ e2\ :\ int}{\vdash\ e1+e2\ :\ int}$,
+$\frac{\vdash\ e1\ :\ double, \vdash\ e2\ :\ double}{\vdash\ e1+e2\ :\ double}$. \\
+Ovakve definicije su precizne i ne zavise od bilo koje konkretne implementacije. Daju maksimalnu fleksibilnost za implementaciju: provera tipova se može implementirati bilo kako sve dok prati zadata pravila. Ovako zadata pravila omogućavaju formalno dokazivanje svojstva ispravnosti programa. \\
+Potrebno je da ojačamo naša pravila zaključivanja sa kontekstom tako da se pamti u kojim situacijama su rezultati validni. Dodavanje dosega: $S \vdash\ e\ :\ T$. U dosegu S, izraz e ima tip T. Tipove sada dokazujemo relativno za doseg u kojem se nalazimo.
 
 \section{Tipovi i nasleđivanje. Tip null}
+\noindent
+Potrebno je ubaciti nasleđivanje u sistem tipova. Važno je uzeti u obzir oblik hijerarhije klasa. Osobine nasleđivanja i konvertovanja:
+\begin{itemize}
+    \item Svaki tip nasleđuje samog sebe (refleksivnost)
+    \item Ako A nasleđuje B i ako B nasleđuje C, onda i A nasleđuje C (tranzitivnost) \item Ako A nasleđuje B i ako B nasleđuje A, onda su A i B istog tipa (antisimetričnost) 
+    \item Ako A nasleđuje B, onda se objekat klase A može pretvoriti (konvertovati) u objekat klase B (A $\leq$ B)
+    \item Svaki tip se može pretvoriti (konvertovati) u samog sebe (refleksivnost) - A $\leq$ A
+    \item Ako se A može pretvoriti u B i ako se B može pretvoriti u C, onda se i A može pretvoriti u C (tranzitivnost) - A $\leq$ B i B $\leq$ C povlači A $\leq$ C
+    \item Ako se A može pretvoriti u B i ako se B može pretvoriti u A, onda su A i B istog tipa (antisimetričnost) - A $\leq$ B i B $\leq$ A povlači A = B
+    \item Ako je A osnovni tip ili niz, A se može pretvoriti samo u samog sebe
+\end{itemize}
+\textit{\textbf{Tip null.}} Definišemo novi tip koji odgovara literalu \textit{null}. Definišemo da važi da je null tip $\leq$ A za svaki klasni tip A. Ovaj tip obično nije dostupan programerima, već se koristi samo interno u okviru sistema tipova. 
 
 \section{Određivanje tipova kod ternarnog operatora}
+\noindent
+Ternarni uslovni operator $?$ izračunava izraz i vraća jednu od dve vrednosti. Može se koristiti sa osnovnim tipovim, a može se koristiti i sa nasleđivanjem. \\
+Gornja granica za dva tipa A i B je tip C takav da važi: $A \leq C$ i $B \leq C$. Najmanja gornja granica za tipove A i B je tip C takav da važi: C je gornja granica za A i B; ako je C' gornja granica za A i B, onda je $C \leq C'$. Kada postoji najmanja gornja granica za A i B, to označavamo sa $A \vee B$.
+Minimalno gornje ograničenje tipova A i B je tip C takav da važi: C je gornje ograničenje za A i B; ako je C' gornje ograničenje od A i B, onda ne važi da je C' $\textless$ C (dakle, C' ako je uporedivo, ne sme da bude manje, ali ne mora da bude uporedivo sa C).
+Minimalno gornje ograničenje ne mora da bude jedinstveno. Najmanje gornje ograničenje mora da bude minimalno gornje ograničenje, ali ne važi obratno. \\
+Hijerarhija tipova u višestrukom nasleđivanju više nema drvoliku strukturu. Dve klase mogu da nemaju najmanje gornje ograničenje.
 
 \section{Pravila za određivanje tipova u naredbama}
+\noindent
+Ideja: proširiti sistem izvođenja zaključaka tako da modeluje naredbe. Kažemo da je $S \vdash WF(stmt)$ ako je naredba $stmt$ dobro formirana u dosegu S. Sistem tipova je zadovoljen ako za svaku funkciju $f$ sa telom B koji je u dosegu S, možemo da pokažemo da važi $S \vdash WF(B)$. 
+\begin{itemize}
+    \item Pravilo za break: $\frac{S\ is\ in\ a\ for\ or\ while\ loop}{S \vdash WF(break;)}$
+    \item Pravilo za petlje: $\frac{S\ \vdash\ expr\ :\ bool,\ S'\ is\ the\ scope\ inside\ the\ loop,\ S'\ \vdash\ WF(stmt)}{S\ \vdash\ WF(while\ (expr)\ stmt)}$
+    \item Pravilo za blokovske naredbe: $\frac{S'\ is\ the\ scope\ formed\ by\ adding\ decls\ to\ S,\ S'\ \vdash\ WF(stmt)}{S\ \vdash\ WF(\{decls\ stmt\})}$
+    \item Pravilo za return: 
+    $\frac{S\ is\ in\ a\ function\ returning\ T,\ S\ \vdash\ expr\ :\ T',\ T' leq T}{S\ \vdash\ WF(return\ expr;)}$ ili
+    $\frac{S\ is\ in\ a\ function\ returning\ void}{S\ \vdash\ WF(return;)}$
+\end{itemize}
 
 \section{Tipovi i propagiranje greške}
+\noindent
+Kako proveriti da li je program ispravno formiran? Proći rekurzivno kroz AST stablo, za svaku naredbu proveri tip svakog podizraza koji sadrži - prijavi grešku ako ne može tip da se dodeli izrazu, prijavi grešku ako je pogrešan tip dodeljen izrazu. \\
+Statička greška tipova se dešava kada ne možemo da dokažemo da izraz ima odgovarajući tip. Greške u tipovima se lako propagiraju. U sistem tipova uvodimo novi tip koji predstavlja grešku. Ovaj tip je manji od svih drugih tipova i označava se sa $\bot$. Nekada se zove i bottom tip. Po definiciji, važi $\bot \leq A$, za svako A. Kada otkriješ tip Error, pretvaraj se kao da je dokazan izraz tipa $\bot$. Potrebno je samo unaprediti pravila zaključivanja tako da sadrže $\bot$.\\
+U semantičkom analizatoru neophodno je da postoji neka vrsta oporavka od greške, kako bi mogla da se nastavi dalje analiza. Jedan vid oporavljanja od grešaka je tip Error koji smo uveli, ali postoje i drugi slučajevi koje treba rešiti, npr. poziv nepostojeće funkcije, deklaracija promenljive nekog neispravnog tipa... Ne postoje ispravni i pogrešni odgovori na ova pitanja, već samo bolji i lošiji izbor.
 
 \section{Preopterećivanje funkcija}
+\noindent
+Preopterećivanje funkcija - više funkcija sa istim imenom ali različitim argumentima. U fazi kompilacije, analizom tipova argumenata, potrebno je odrediti koju funkciju treba pozvati. U slučaju da ne može da se odredi funkcija koja se najbolje uklapa, treba prijaviti grešku. \\
+\textbf{Jednostavno preopterećivanje}. Počinjemo od skupa preopterećenih funkcija. Najpre izfiltriramo funkcije koje se ne poklapaju i tako dobijamo skup kandidata ili skup potencijalno primenljivih metoda. Ako je skup prazan, prijavi grešku. Ako skup sadrži samo jednu funkciju, izaberi nju. Ako skup sadrži više funkcija izaberi najbolju.\\
+Kako odrediti najbolje poklapanje? Ako postoji više od jednog izbora, izaberi funkciju koja najspecifičnije odgovara datom pozivu. Ako imamo dve funkcije koje su kandidati, A i B, sa argumentima $A_1, A_2,...,A_n$ i $B_1,B_2,...,B_n$, kažemo da je $A\textless: B$ ako važi $A_i \leq B_i$ za svako $i \in \{1,2,...,n\}$.
+Relacija $\textless:$ je parcijalno uređenje. Funkcija A je najbolji izbor ako za svaku drugu funkciju B koja je kandidat za izbor važi $A\textless: B$ (tj. ona je bar onoliko dobra koliko i svaki drugi izbor). Ako postoji najbolji izbor (ili najbolje poklapanje), onda se bira ta funkcija. U suprotnom, poziv je višesmislen i to mora nekako da se razreši. \\
+\textbf{Preopterećivanje u kontekstu variadic funkcija.} Prva opcija: smatraj poziv višesmislenim. Druga opcija: smatraj boljom funkciju koja nije variadic - funkcija koja je specifično dizajnirana da podrži neki konkretan skup argumenata je verovatno bolji izbor od one koja je dizajnirana da može da podrži proizvoljno mnogo parametara. \\
+\textbf{Hijerarhijsko preopterećivanje funkcija.} Ideja: Napraviti hijerarhiju funkcija kandidata. Konceptualno to je vrlo slično dosezima. Počni sa najnižim nivoom hijerarhije, i traži u okviru njega poklapanje. Ako pronađeš jedinstveno poklapanje, izaberi ga. Ako pronađeš višestruka poklapanja, prijavi višesmislenost. Ako ne pronađeš poklapanje, idi na naredni nivo u hijerarhiji.
 
-\section{Kompletnost i saglasnost sistema tipova. Kovarijanta povratnog tipa. Kovarijanta po argumentu funkcije. Kotravarijanta po argumentu funkcije.}
+\section{Kompletnost i saglasnost sistema tipova. Kovarijanta povratnog tipa. Kovarijanta po argumentu funkcije. Kontravarijanta po argumentu funkcije.}
+\noindent
+Idealan sistem tipova je kompletan (potpun) i saglasan. \textit{Kompletnost} (potpunost) - ako se program može ispravno izvršiti (sistem tipova kaže da je on ispravan u smislu tipova). \textit{Saglasnost} - ako sistem tipova kaže da je program ispravan (onda važi da se program može ispravno izvršiti). Za većinu programskih jezika, nemoguće je ostvariti i potpunost i saglasnost. \\
+Teško je napraviti dobar sistem tipova, tj. lako je napraviti pravila koja su nesaglasna, a često je nemoguće prihvatiti sve ispravne programe. Da bi se izgradio dobar statički sistem za proveru tipova obično je cilj da se napravi jezik koji je što ”kompletniji” a da pritom ima saglasan sistem pravila za proveru tipova.
+Saglasnost se može obezbediti dokazivanjem narednog svojstva za svaki izraz E: $DynamicType(E)\leq StaticType(E)$. 
+Statički sistemi tipova mogu nekada da odbiju program koji bi se mogao ispravno izvršiti (zato što nisu u mogućnosti da dokažu odsustvo greške u tipovima). Takav sistem tipova naziva se nekompletan (nepotpun). \\
+\textbf{Kovarijanta po povratnom tipu.} Neka funkcija A predefiniše funkciju B, ali neka se ove funkcije razlikuju po povratnom tipu: funkcije A i B su kovarijante po povratnom tipu ukoliko se tipovi argumenata poklapaju, a povratni tip funkcije A se može pretvoriti (konvertovati) u povratni tip funkcije B. Kovarijante povratnog tipa su bezbedne, tj. pravilo koje definiše tipove je i dalje saglasno jer je sa kovarijantom povratnog tipa obezbeđeno važenje uslova $DynamicType(E)\leq StaticType(E)$.\\
+\textbf{Kovarijanta po argumentu.} Neka funkcija A predefiniše funkciju B, ali neka se ove funkcije razlikuju po bar jednom argumentu: funkcija A je kovarijanta po argumentu funkciji B ukoliko se argumenti funkcija poklapaju ili se neki argumenti funkcije A mogu pretvoriti u odgovarajuće argumente funkcije B.
+Dozvoliti potklasi da napravi restrikciju tipa svog parametra funkcije je suštinski nebezbedno! Pozivi kroz baznu klasu mogu da pošalju objekat pogrešnog tipa. \\
+\textbf{Kontravarijanta po argumentu.} Neka važi $C_a \leq C_b \leq C_c$, tj. neka je $C_c$ bazna klasa za klasu $C_b$, a $C_b$ bazna klasa za klasu $C_a$. Neka funkcija A (klase $C_a$) predefiniše funkciju B (klase $C_b$), ali neka se razlikuju tipovi arugmenata, tj. funkcija A je kontravarijanta po argumentu funkciji B ukoliko A ima za argument tip superklase $C_c$ umesto tip $C_b$.
+Kontravarijante po argumentima su bezbedne. Intuitivno, kada zovemo tu funkciju kroz baznu klasu, funkcija će prihvatiti bilo šta što bi bazna klasa već prihvatila. Ipak, većina jezika ne podržava kontravarijante po argumentima jer povećavaju kompleksnost kompajlera i specifikacije jezika i povećavaju kompleksnost proveravanja predefinisanih metoda.
 
 \section{Izvršno okruženje i podaci. Enkodiranje osnovnih tipova, nizova i višedimenzionih nizova}
+\noindent
+Izvršno okruženje predstavlja skup struktura podataka koje se održavaju u fazi izvršavanja sa ciljem omogućavanja koncepata jezika visokog nivoa. Zavisi od osobina izvornog i ciljnog jezika. \\
+\textit{\textbf{Enkodiranje osnovnih tipova.}} Osnovni celobrojni tipovi (byte, char, short, int, long, unsigned i sl.) se obično preslikavaju direktno u odgovarajuće mašinske tipove. Osnovni realni tipovi (float, double, long double) se takođe obično preslikavaju u odgovarajuće mašinske tipove. Pokazivači se obično implementiraju kao celobrojni tip koji čuva memorijske adrese. Veličina celobrojnih tipova zavisi od arhitekture računara. \\
+\textit{\textbf{Nizovi.}} C stil - elementi su jedan za drugim u memoriji. Java stil - elementi su jedan za drugim, s tim što je prvi element broj elemenata niza. D stil - elementi su jedan za drugim, s tim što svaki element čuva pokazivač na prvi element i na element posle poslednjeg elementa. \\
+\textit{\textbf{Višedimenzioni nizovi.}} Obično se predstavljaju kao nizovi nizova. Oblik zavisi od nizova koji se koriste.
 
 \section{Izvršno okruženje i funkcije. Aktivaciono stablo. Zatvorenja i korutine. Stek izvršavanja}
+\noindent
+Pozivi funkcija se obično implementiraju korišćenjem steka aktivacionih slogova. Poziv funkcije gura novi aktivacioni slog na stek. Povratak iz funkije skida aktivacioni slog sa vrha steka.\\
+\textit{\textbf{Aktivaciono stablo}} je stablo struktura koje predstavljaju sve pozive funkcija prilikom nekog konkretnog izvršavanja programa. Zavisi od ponašanja programa, ne može se uvek odrediti u fazi kompilacije. Statički ekvivalent je graf poziva funkcija. Svaki aktivacioni slog čuva kontrolni link prema aktivacionom slogu koji ga je inicirao. Aktivaciono stablo je špageti stek. \\
+Da li možemo uvek da optimizujemo špageti stek? Pretpostavke: jednom kada se funkcija vrati, njen aktivacioni slog ne može da bude ponovo referenciran; svaki aktivacioni slog je ili završio izvršavanje ili je predak tekućeg aktivionog sloga. Ove pretpostavke ne moraju uvek da budu tačne.\\
+Jednom kada se funkcija vrati, njen aktivacioni slog ne može da bude ponovo referenciran. Ova pretpostavka ne važi za zatvorenja. \\
+\textit{\textbf{Zatvorenje}} Z je ugneždena funkcija u funkciju F koja ima mogućnost pristupa slobodnim promenljivama iz funkcije F, pri čemu je funkcija F završila sa svojim izvršavanjem. Osnovne karakteristike zatvorenja su: to je ugneždena funkcija, ona ima pristup slobodnim promenljivama iz spoljašnjeg dosega i ona je vraćena kao povratna vrednost funkcije u koju je ugneždena. Jezici koji podržavaju zatvorenja obično nemaju stek izvršavanja. \\
+\textit{Kontrolni link} funkcije je pokazivač na funkciju koja ju je pozvala, koristi se da odredi gde se izvršavanje nastavlja kada funkcija završi sa radom.\\
+\textit{Pristupni link} funkcije je pokazivač prema aktivacionom slogu u kojem je funkcija kreirana. Koriste ga ugneždene funkcije da odrede lokaciju promenljivih u spoljašnjem dosegu. \\
+\textit{\textbf{Korutine}} su funkcije koje, kada se pozovu, urade deo posla, i onda vraćaju kontrolu pozivajućoj funkciji, ali mogu da kasnije ponovo nastave sa radom od tog istog mesta. Pretpostavka 2 ne važi za korutine. Korutine često ne mogu da budu implementirane preko steka izvršavanja. \\
+\textit{\textbf{Stek izvršavanja.}} Svaki aktivacioni slog mora da čuva: sve svoje parametre, sve svoje lokalne promenljive i sve privremene promenljive uvedene sa IR generatorom. Logički izgled stek okvira obično kreira IR generator. Ovaj izgled obično ignoriše detalje o mašinski specifičnim konvencijama poziva funkcija. Fizički izgled stek okvira kreira generator koda. On je zasnovan na logićkom izgledu koji postavlja IR generator i uključuje fram pointer-e, caller-saved registre i slične detalje. \\
+\textit{IR pozivna konvencija.} Pozivaoc je odgovoran za stavljanje na stek i skidanje sa steka prostora za argumente pozivajuće funkcije. Pozivajuća funkcija je odgovorna za stavljanje i skidanje sa steka svojih lokalnih promenljivih i privremenih promenljivih.\\
+\textit{Prenos prametara}. Dva česta pristupa - call-by-value i call-by-reference.
 
-\section{Izvršno okruženje i objekti. Strukture, objekti i nasleđivanje}
+\section{Izvršno okruženje i objekti. Strukture, objekti i nasle-đivanje}
+\noindent
+Implementacija objekata je veoma složena - veoma je teško napraviti izražajan i efikasan objektno-orijentisan jezik. Koncepti koje je teško implementirati efikasno su: dinamičko raspoređivanje, interfejs i višestruko nasleđivanje i dinamička provera tipova.\\
+\textit{\textbf{Struktura}} - tip koji sadrži kolekciju imenovanih vrednosti. Najčešći pristup, postaviti svako polje da leži redom kojim su polja deklarisana. Jednom kada se objekat postavi u memoriju, on je samo serija bajtova. Potrebno je znati gde tražiti neko konkretno polje. Ideja: čuvati internu tabelu u okviru kompajlera koja sadrži pomeraje za svako polje. Da bi se pronašlo željeno polje, počni od osnovne adrese objekta i pomeri je unapred za odgovarajući pomeraj.\\
+\textit{\textbf{Jednostruko nasleđivanje.}} Pojednostavljeno, izgled memorije za izvedenu klasu D je zadat kao izgled memorije za baznu klasu B za kojom sledi izgled memorije za preostale članove klase D tj. pokazivač na baznu klasu koji pokazuje na D idalje vidi objekat B na početku memorije. Operacije koje se izvode na objektu D kroz pokazivač na objekat B su garantovano ispravne, nema potrebe da se proverava na šta tačno B dinamički ukazuje.
 
 \section{Izvršno okruženje i funkcije članice klasa. Pokazivač this i dinamičko određivanje poziva}
+\noindent
+\textit{\textbf{Funkcije članice klasa}} su kao i obične funkcije, ali sadrže dve komplikacije: kako znati za koji objekat je funkcija vezana i kako znati koju funkciju pozvati u fazi izvršavanja? U okviru funkcije članice klase, ime \textit{this} se koristi za tekući objekat. Ova informacija treba da se iskomunicira funkciji. Ideja: tretiraj \textit{this} kao implicitni prvi parametar funkcije. Svaka funkcija koja ima n-argumenata će u stvarnosti imati n+1 argument pri čemu je prvi parametar pokazivač \textit{this}.\\
+\textit{\textbf{Pokazivač this.}} Kada se generiše kod, za poziv funkcije članice prosleđuje se još jedan parametar \textit{this} koji predstavlja odgovarajući objekat. U okviru funkcije članice, \textit{this} je samo još jedan parametar funkcije. Kada se implicitno referiše na neko polje od \textit{this}, koristi se ovaj dodatni parametar kao objekat u kojem treba da se traži odgovarajuće polje.\\
+\textit{\textbf{Dinamičko određivanje poziva}} - znači da odabir poziva funkcije u fazi izvršavanja u zavisnosti od tekućeg dinamičkog tipa objekta. Ideja: u fazi kompilacije napravi listu svih klasa i generiši kod. Ova ideja ima nekoliko ozbiljnih problema: veoma je spora i nije uvek ostvarivo rešenje. Umesto toga, ideja je da se za funkcije napravi sličan pristup kao za podatke.
 
 \section{Tabela virtulenih funkcija i tabela metoda. Višestruko nasleđivanje i interfejsi}
+\noindent
+\textit{\textbf{Tabela virtuelnih funkcija}} (vtable) je niz pokazivača na implementacije funkcija članica neke klase. Da bi se pozvala funkcija članica klase: odredi statički indeks u virtuelnoj tabeli, prati pokazivač koji se nalazi na tom indeksu u okviru vtable objekta da bi došao do koda funkcije, pozovi tu funkciju. Prednosti: vreme da se odredi funkcija koja će biti pozvana je O(1). Mane: objekti su veći jer svaki objekat mora da ima prostor da skladišti O(M) pokazivača, M je broj funkcija članica. Zbog toga kreiranje postaje sporije. \\
+\textit{Dinamička rešavanja u O(1)}. Kreira se jedinstvena instanca vtable za svaku klasu. Svaki objekat čuva pokazivač na svoj vtable. Svaki objekat može da prati taj pokazivač u O(1) i može da prati index u tabeli u vremenu
+O(1). Povećava se veličina objekta za O(1). Ovo rešenje se koristi u većini C++ i Java implementacija.
+Za prethodno rešenje napravljene su implicitne pretpostavke o jeziku koje dozvoljavaju da vtable radi korektno: svi metodi su poznati statički i jednostruko nasleđivanje. Neki programski jezici ne mogu da rade sa virtuelnim tabelama (PHP).\\
+Opšti okvir nasleđivanja: svaki objekat čuva pokazivač na deskriptor svoje klase; svaki deskriptor klase čuva pokazivač na tabelu metoda i pokazivač na deskriptor bazne klase; da bi se pozvao metod; prati pokazivač do tabele metoda, ako metod postoji pozovi ga, inače navigiraj na baznu klasu i ponovi postupak.\\
+\textit{\textbf{Višestruko nasleđivanje i interfejsi}} - komplikuju izgled virtuelne tabele jer zahtevaju da metodi imaju konzistentne pozicije kroz sve virtuelne tabele: može da se desi da virtuelna tabela ima neiskorišćene unose. Zbog toga, prilikom višestrukog nasleđivanja ili interfejsa, obično se ne koriste čiste virtuelne tabele. Postoje različiti načini da se ovo efikasno implementira, jedan način je hibridni pristup: korišćenje virtuelnih tabela za standardno nasleđivanje, a za interfejse koristiti opisani metod zasnovan na poređenju stringova. 
 
 \section{Implementiranje dinamičkih provera tipova}
+\noindent
+Mnogi jezici imaju potrebu za nekom vrstom provere dinamičkih tipova. Ono što možemo da želimo da odredimo je da li je dinamički tip pretvoriv u neki drugi tip. Kako to implementirati? \\
+Implementirati da svaka virtuelna tabela čuva i pokazivač na svoju osnovnu klasu. Provera da li se objekat može pretvoriti u neki tip S u fazi izvršavanja se svodi na praćenje pokazivača na roditelja u okviru virtuelne tabele sve dok se ne naiđe na tip S ili dok se ne dođe do tipa koji nema roditelja. Vreme izvršavanja ove provere je O(d) gde je d dubina hijerarhije klasa. Da li se ovo može uraditi brže? \\
+Postoji ideja provere pretvorivosti objekata u vremenu O(1), pod pretpostavkom da postoji konstantan i ne previše veliki broj klasa u hijerarhiji, kao i da su svi tipovi poznati statički. Ideja je zasnovana na činjenici: objekat koji je statički tipa A je u fazi izvršavanja tipa B samo ako je A pretvorivo u B tj. A $\leq$ B.\\
+\textit{Dinamičko određivanje tipova kroz proste brojeve.} Dodeli svakoj klasi jedinstven prost broj. Postavi ključ svake klase da bude proizvod njenog prostog broja i svih prostih brojeva njenih nadklasa. Da bi se proverilo u fazi izvršavanja da li se objekat može pretvoriti u tip T: pogledaj ključ objekta; ako je ključ od T deljiv sa ključem objekta, onda se objekat može konvertovati u T; inače, ne može. Ako se proizvod dva prosta broja može smestiti u integer, ova provera se može uraditi u vremenu O(1).
 
 \section{Troadresni kod. Aritmetičke i bulovske operacije. Kontrola toka}
+\noindent
+Troadresni kod - međureprezentacija visokog nivao u kojoj svaka operacija ima najviše tri operanda. U trenutku generisanja troadresnog koda nije bitno misliti na njegovu optimizaciju. Evaluacija izraza sa više od tri podizraza zahteva uvođenje privremenih promenljivih.\\
+\textit{\textbf{Aritmetičke i bulovkse operacije.}} Dozvoljeni operatori su +, -, *, /, $\%$. Bulovske promenljive se predstavljaju kao celobrojne vrednosti koje mogu imati vrednost nula ili vrednost različitu od nule. Pored aritmetičkih operatora, podržavamo i $\textless$, ==, $||$ i $\&\&$.\\
+\textit{\textbf{Kontrola toka.}} Imenovane labele označavaju određene delove koda na koje se može skočiti. Mogu postojati razne instrukcije za kontrolu toka. Goto label; - bezuslovni skok, ifZ value goto label; - uslovni skok.
 
 \section{Troadresni kod. Funkcije i stek okviri}
+\noindent
+Funkcije se sastoje iz četiri dela: 
+\begin{itemize}
+    \item labela koja označava početak funkcije
+    \item instrukcija \textit{BeginFunc N;} koja rezerviše N bajtova za lokalne i privremene promenljive
+    \item telo funkcije
+    \item instrukcija \textit{EndFunc;} koja obeležava kraj funkcije, kada se do nje dođe ona je zadužena da počisti stek okvir i da vrati kontrolu na odgovarajuće mesto (vraća prostor koji je rezervisan sa \textit{BeginFunc N;})
+\end{itemize}
+Funkcija pozivaoc je odgovorna za smeštanje argumenata funkcije na stek. Pozvana funkcija je odgovorna za smeštanje svojih lokalnih i privremenih promenljivih.
+Jedan parametar je gurnut na stek od strane pozivaoca korišćenjem instrukcije \textit{PushParam var;}. Prester je oslobođen od strane pozivaoca korišćenjem instrukcije \textit{PopParams N;}.\\
+Da bi se implementirao stek, potrebno je znati gde se nalaze lokalne promenljive, parametri i privremene promenljive. One se čuvaju u odnosu na \textit{frame pointer fp}. \\
+Interno, procesor ima specijalni registar koji se naziva brojač instrukcija (PC) koji čuva adresu naredne instrukcije koja treba da se izvrši. Kad kod funkcije završi sa radom, potrebno je da se PC podesi tako da se nastavi izvršavanje funkcije tamo gde je ono bilo prekinuto. Parametri počinju od adrese fp+4 i rastu naviše. Lokalne i privremene promenljive počinju od adrese fp-8 i rastu naniže.
+Globalne promenljive počinju od adrese gp+0 i rastu naviše.
 
 \section{Troadresni kod za objekte. Dinamičko razrešavanje poziva}
+\noindent
+Adresa virtuelne tabele objekta može da se referencira kroz ime dodeljeno virtuelnoj tabeli, obično je to ime isto kao ime objekta npr $\textunderscore t0 = Base;$. Kada se kreira objekat, mora prvo da se postavi pokazivač na virtuelnu tabelu. Instrukcija $ACall$ može da se koristi za poziv metoda kada je za njega dat pokazivač na prvu instrukciju.
 
 \section{Algoritam generisanja troadresnog koda}
+\noindent
+U ovom stadijumu kompilacije, imamo na raspolaganju AST koji je anotiran sa informacijama o dosegu i informacijama o tipovima. Da bi se generisao TAC, potrebno je još jednom obići rekurzivno AST - generiši TAC za svaki podizraz ili podnaredbu; koristeći generisani TAC za podizraze/naredbe, generiši TAC za kompletne izraze i naredbe.\\
+\textit{\textbf{Generisanje TAC-a za izraze.}} Definiši funkciju $cgen(expr)$ koja generiše TAC koji računa izraz, čuva njenu vrednost u privremenoj promenljivoj i vraća ime te promenljive. Definiši $cgen(expr)$ direktno za atomičke izraze. Definiši $cgen(expr)$ rekurzivno za složene izraze.\\
+\textit{\textbf{Generisanje TAC-a za naredbe.}} Možemo proširiti funkciju $cgen$ tako da radi sa naredbama. Za razliku od $cgen$ za izraze, $cgen$ za naredbe ne vraća ime privremene promenljive koja čuva vrednost.
+
 
 \section{Optimizacije međukoda. Graf kontrole toka}
 
