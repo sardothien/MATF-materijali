@@ -460,32 +460,137 @@ Adresa virtuelne tabele objekta može da se referencira kroz ime dodeljeno virtu
 U ovom stadijumu kompilacije, imamo na raspolaganju AST koji je anotiran sa informacijama o dosegu i informacijama o tipovima. Da bi se generisao TAC, potrebno je još jednom obići rekurzivno AST - generiši TAC za svaki podizraz ili podnaredbu; koristeći generisani TAC za podizraze/naredbe, generiši TAC za kompletne izraze i naredbe.\\
 \textit{\textbf{Generisanje TAC-a za izraze.}} Definiši funkciju $cgen(expr)$ koja generiše TAC koji računa izraz, čuva njenu vrednost u privremenoj promenljivoj i vraća ime te promenljive. Definiši $cgen(expr)$ direktno za atomičke izraze. Definiši $cgen(expr)$ rekurzivno za složene izraze.\\
 \textit{\textbf{Generisanje TAC-a za naredbe.}} Možemo proširiti funkciju $cgen$ tako da radi sa naredbama. Za razliku od $cgen$ za izraze, $cgen$ za naredbe ne vraća ime privremene promenljive koja čuva vrednost.
-
+\newpage
 
 \section{Optimizacije međukoda. Graf kontrole toka}
+\noindent
+Cilj optimizacije je da se poboljša kod generisan u prethodnom koraku. To je najvažniji i najkompleksniji deo modernog kompajlera. Razlozi za optimizaciju:
+\begin{itemize}
+    \item prilikom generisanja koda uvodi se redundantnost
+    \item programeri često ne razmišljaju o efikasnosti koda
+\end{itemize}
+Termin optimizacija označava traženje optimalnog koda za zadati program. Ovaj problem je, u opštem slučaju, neodlučiv. Zapravo, cilj je poboljšanje međureprezentacije, a ne njegova optimizacija. Karakteristike dobrog optimizatora: ne sme da suštinski promeni ponašanje programa; treba da proizvede što efikasniji kod; ne treba da koristi puno vremena. I dobri optimizatori nekada uvedu grešku u kod. Optimizatori nekada promaše da urade neku jednostavnu optimizaciju. \\
+Optimizatori mogu da pokušaju da poboljšaju kod u skladu sa različitim željenim osobinama. Želimo da optimizujemo:
+\begin{itemize}
+    \item \textit{vreme izvršavanja} - napraviti program da bude što brži, na račun memorije i energije
+    \item \textit{upotreba memorije} - napraviti što manji program, na račun vremena izvršavanja i energije
+    \item \textit{upotreba energije} - napraviti program da troši što manje energije, biranjem jednostavnih instrukcija, na račun brzine izvršavanja i memorije
+\end{itemize}
+Optimizacija međukoda sprovodi pojednostavljivanja koja su validna za sve arhitekture, dok optimizacija koda pokušava da unapredi performanse na osnovu karakteristika ciljne arhitekture računara. \\
+\textit{\textbf{Graf kontrole toka}} je graf koji sadrži osnovne blokove funkcije. Svaka ivica iz jednog osnovnog bloka do drugog označava da kontrola izvršavanja može da ide od kraja prvog do početka drugog bloka. Postoje i dva čvora koji označavaju početak i kraj funkcije. Lokalna optimizacija radi u okviru jednog osnovnog bloka. Globalna optimizacija radi na grafu kontrole toka funkcije. Međuproceduralna optimizacija radi na celokupnom grafu kontrole toka koji prati pozive funkcija i njihovu međusobnu interakciju.
 
 \section{Lokalne optimizacije međukoda. Eliminacija zajedničkih podizraza. Prenos kopiranja. Eliminacija mrtvog koda}
+\noindent
+\textit{\textbf{Eliminacija zajedničkih podizraza.}} Ako imamo dve dodele promenljivama: $v1 = a\ op\ b,$ $..., v2 = a\ op\ b$, tako da se vrednosti promenljivih $v1, a\ i\ b$ ne menjaju između ove dve dodele, onda možemo da prepišemo kod na sledeći način: $v1 = a\ op\ b, ..., v2 = v1$. Na ovaj način se eliminiše bespotrebno izračunavanje i pravi se prostor za kasnije optimizacije. \\
+\textit{\textbf{Prenos kopiranja.}} Ako imamo dodelu $v1 = v2$, onda sve dok $v1$ i $v2$ nemaju ponovo dodeljene neke nove vrednosti, možemo da zapišemo izraze oblika: $a = ...v1...$ kao $a = ...v2...$, pod uslovom da je takvo prezapisivanje u redu. \\
+\textit{\textbf{Eliminacija mrtvog koda.}} Dodela promenljivoj $v$ se naziva mrtva dodela ako se vrednost te promenljive nigde kasnije ne koristi. Eliminacija mrtvog koda uklanja mrtve dodele iz  međureprezentacije. Utvrđivanje da li je dodela mrtva zavisi od toga kojim promenljivama se dodeljuju vrednosti i gde se ta dodela vrši.
 
 \section{Implementacija lokalnih optimizacija. Analiza dostupnih izraza. Analiza živosti}
+\noindent
+Mnoge optimizacije su moguće samo ako se obezbedi odgovarajuća analiza ponašanja programa. \\
+\textbf{\textit{Analiza dostupnih izraza.}} I eliminacija zajedničkih podizraza i prenos kopiranja zavise od analize dostupnih izraza u programu. Izraz se naziva dostupan ako neka promenljiva u programu čuva vrednost tog izraza. U okviru eliminacije zajedničkih izraza, zamenjujemo dostupni izraz sa promenljivom koja nosi tu vrednost. U prenosu kopiranja, menjamo korišćenje promenljive sa dostupnim izrazom koji ona koristi.\\
+$\rightarrow$ smer: unapred; domen: skup izraza dodeljenih promenljivama; funckije prenosa: za dati skup dodela V i naredbu a=b+c, ukloni iz V svaki izraz koji koristi $a$ kao podizraz i dodaj u V izraz a=b+c; početne vrednosti: prazan skup izraza. \\
+\textit{\textbf{Analiza živosti.}} Analiza koja odgovara eliminaciji mrtvog koda se naziva analiza živosti. Promenljiva je živa u nekoj tački programa ako se kasnije u programu njena vrednost čita pre nego što se u nju nešto novo upiše.
+Eliminacija mrtvog koda radi tako što sračunava živost svake promenljive i onda eliminiše dodele mrtvim promenljivama. Da bi znali koja promenljiva će biti korišćena u nekoj tački programa, iteriramo kroz sve naredbe osnovnog bloka u obrnutom redosledu. Inicijalno, neki mali skup vrednosti se zna da će biti živ.\\
+$\rightarrow$ smer: unazad; domen: skup promenljivih; funckije prenosa: za dati skup promenljivih i naredbu a=b+c, ukloni $a$ iz V i dodaj u V promenljive $b$ i $c$; početne vrednosti: zavisi od semantike jezika. 
 
 \section{Lokalna analiza - formalno}
+\noindent
+U okviru lokalne analize imamo tri suštinska pitanja:
+\begin{enumerate}
+    \item U kom smeru se vrši analiza?
+    \item Na koji način ažuriramo informacije prilikom obrade pojedinačne naredbe?
+    \item Koje informacije imamo inicijalno?
+\end{enumerate}
+Lokalna analiza osnovnog bloka se definiše kao uređena četvorka (D, V, F, I) gde je: D smer (unapred ili unazad), V skup vrednosti koje program ima u svakoj tački, F familija funkcija prenosa koje definišu značenje svakog izraza kao funkciju $f : V \rightarrow V$, I početna informacija na vrhu (ili dnu) osnovnog bloka.
 
 \section{Globalne optimizacije. Glavni izazovi}
+\noindent
+\textit{\textbf{Globalna analiza}} je analiza koja radi na grafu kontrole toka. Mnoge optimizacija zasnovane na lokalnoj analizi mogu da se sprovedu i globalno. Neke optimizacije ne mogu da se sprovedu lokalno već mogu samo globalno. Primeri: globalna eliminacija mrtvog koda, globalno kopiranje konstanti, parcijalna eliminacija redudantnosti. \\
+\textit{\textbf{Glavni izazovi.}} U okviru globalne analize, svaka naredba može imati više prethodnika. Globalna analiza mora imati neku vrstu kombinovanja informacija od svih prethodnika osnovnog bloka. U okviru globalne analize, može postojati puno puteva kroz CFG. Može da bude potrebno da se ponovo izračunaju vrednosti više puta. Treba biti oprezan kako se ne bi desilo da se upadne u beskonačnu petlju. U okviru globalne analize sa petljama, svaki blok može da zavisi od svakog drugog bloka. Da bismo ovo rešili, moramo da dodelimo nekakve početne vrednosti svim blokovima CFGa.
 
 \section{Globalna analiza živosti}
+\noindent
+Na početku, postavi IN[s]=$\{\}$ za svaku naredbu $s$. Postavi IN[exit] na skup promenljivih za koje se zna da su žive na izlazu. Ponavljaj sve dok ima promena: za svaku naredbu $s$ oblika $a=b+c$, u bilo kom redosledu obilaska - postavi OUT[s] na skup unije od IN[p] za svaki sledbenik $p$ od naredbe $s$, i postavi IN[s] na $(OUT[s]-a)\cup \{b,c\}$.\\
+Da li je ovakav algoritam dobar? Da bi pokazali korektnost, potrebno je da pokažemo da se algoritam zaustavlja i da kada se zaustavi daje saglasno rešenje:
+\begin{enumerate}
+    \item Kada se pronađe da je neka promenljiva živa u nekom delu programa, to uvek važi. Postoji konačno mnogo promenljivih i konačno mnogo mesta na kojima promenljive mogu da postanu žive.
+    \item Svako pojedinačno pravila, primenjeno na neki skup, korektno ažurira živost skupa. Kada se računa unija dva skupa živih promenljivih, promenljiva je živa samo ako je bila živa na nekoj putanji koja vodi do naredbe.
+\end{enumerate}
 
 \section{Polumreže sa operatorom spajanja}
+\noindent
+\textit{\textbf{Polumreža sa operatorom spajanja}} je uređenje definisano na skupu elemenata. Svaka dva elementa imaju spajanje koje je najveći element koji je manji od oba elementa. Intuitivno, spajanje dva elementa predstavlja kombinovanje informacija od ta dva elementa i to je nekakva uopštenija informacija od informacija koje su bile početne. Postoji jedinstven element na vrhu koji se naziva $top$, koji je veći od svih drugih elemenata. Element na vrhu predstavlja "nema informacija".\\
+Polumreža sa operatorom spajanja je uređeni par $(D, \wedge)$ gde je: D skup koji označava domen elemenata, a $\wedge$ operator spajanja koji je idempotentan ($x \wedge x = x$), komutativan ($x \wedge y = y \wedge x$) i asocijativan 
+($(x \wedge y) \wedge z = x \wedge (y \wedge z)$). Ako važi $x \wedge y = z$, kažemo da je $z$ spajanje (ili najveća donja granica) za $x$ i $y$. Svaka polumreža sa operatorom spajanja ima element na vrhu koji se označava sa $\top$, takav da je $\top \wedge x = x, \forall x$. \\
+Polumreže prirodno rešavaju veliki broj problema na koje nailazimo u globalnoj analizi. Kako kombinujemo informacije iz različitih osnovnih blokova? Koristimo operator spajanja. Koju vrednost dajemo kao početnu vrednost svakom bloku? Vrednost $top$. Kako znamo da će se algoritam završiti? Zapravo, to ne možemo još uvek da garantujemo: potrebno je da postoje odgovarajuće osobine polumreže (konačna visina) kao i funkcije spajanja (monotona funkcija).
 
 \section{Algoritmi globalne analize međukoda}
+\noindent
+Globalna analiza je petorka $(D, V, \wedge, F, I)$ pri čemu je: D smer (napred, nazad), V skup vrednosti, $\wedge$ operator spajanja na ovim vrednostima, F skup funkcija prenosa $f : V \rightarrow V$, a I početno stanje. \\
+\textit{\textbf{Algoritam globalne analize:}} Pretpostavimo da je $(D, V, \wedge, F, I)$ analiza unapred. Postavi OUT[s]=$\top$, za svaku naredbu $s$. Postavi OUT[begin]=I. Ponavljaj sve dok ima izmena: za svaku naredbu $s$ sa prethodnicima $p_1,..., p_n$ - postavi $IN[s]=OUT[p_1] \wedge ... \wedge OUT[p_n]$ i postavi $OUT[s]=f_s(IN[s])$; redosled iteracija nije važan.\\
+Ova vrsta analize naziva se okvir toka podataka.
 
 \section{Generisanje koda. Izazovi alokacije registara. Naivni algoritam}
+\noindent
+\textit{\textbf{Generisanje koda.}} Ciljevi: izabrati odgovarajuće mašinske instrukcije za svaku IR instrukciju; podeliti reusrse mažine; implementirati detalje niskog nivoa izvršnog okruženja. Postoji velika razlika u brzini i veličini memorije. RAM je brza ali veoma skupa, hard disk je jeftin ali veoma spor. Osnovna ideja je dobiti najbolje iz svih svetova korišćenjem različitih vrsta memorije.\\
+Izazovi generisanja koda je da se objekti postave na takav način koji maksimizuje prednosti memorijske hijerarhije. Dodatno, to je potrebno uraditi potpuno automatski tj. bez pomoći programera.\\
+Većina mašina ima skup registara koji su predviđeni za memorijske lokacije. Alokacija registara je proces dodele varijable registru i upravljanje transferom podataka iz i u registre. \\
+\textit{\textbf{Izazovi alokacije registara:}}
+\begin{itemize}
+    \item \textit{Mali broj registara} - obično je neuporedivo manji broj registara nego broj promenljivih koje se koriste u IRu. Potrebno je naći način da se registri ponovo koriste uvek kada je to moguće.
+    \item \textit{Registri su komplikovani} - kod x86 svaki registar se sastoji od više manjih registara i oni se ne mogu koristiti istovremeno; neke instrukcije moraju svoje rezultate da upišu u neke konkretne registre pa to utiče da je upotreba registara ograničena i izborom instrukcija. MIPS: neki registri su rezervisani za neke specijalne namene.
+\end{itemize}
+\textit{\textbf{Naivni algoritam za alokaciju registara.}} Ideja: sačuvaj svaku vrednost u memoriji, učitaj je samo onda kada je potrebna. Generiši kod na sledeći način:
+\begin{enumerate}
+    \item generiši instrukciju učitavanja iz memorije u registar
+    \item generiši kod da izvršiš izračunavanje nad registrima
+    \item generiši instrukciju upisivanja rezultata nazad u memoriju
+\end{enumerate}
+Mane: jako je neefikasan (ogroman broj učitavanja i upisivanja u memoriju; gubi se vreme i prostor za vrednosti koje bi mogle da budu samo u registrima; neprihvatljiv pristup za kompajlere).\\
+Prednosti: jednostavnost (može da prevede svaki deo IR koda direktno u asembler u jednom prolazu; ne mora da brine da će ostati bez dovoljno registara; ne mora da brine o pozivima funkcija ili o registrima specijalne namene; dobar je samo ako nam je potreban prototip kompajlera koji radi).
 
-\section{Alokacija registara. Linarno skeniranje. Razlivanje registara}
+\section{Alokacija registara. Linearno skeniranje. Razlivanje registara}
+\noindent
+Cilj: Pokušaj da držiš u registrima koliko god promenljivih možeš. Ta ideja bi trebala da smanji broj čitanja/pisanja u memoriju i uopšte ukupno korišćenje memorije. \\
+U svakoj tački programa svaka varijabla mora da bude na istoj lokaciji. U svakoj tački programa, svaki registar sadrži najviše jednu živu promenljivu. \\
+Promenljiva je živa u nekoj tački u programu ako se njena vrednost ćita pre nego što se u nju ponovo nešto upiše. Živost promenljivih se može pronaći korišćenjem globalne analize živosti. Živi opseg promenljive je skup tačaka u programu u kojim je promenljiva živa. Živ interval promenljive je najmanji interval IR koda koji sadrži sve žove opsege promenljive. Živ interval je osobina IR koda. \\
+Ako su dati živi intervali promenljivih u programu, možemo alocirati registre koristeći jednostavan pohlepni algoritam. Ideja: prati koji registri su slobodni u svakoj tački. Kada živi interval počne, daj promenljivoj slobodan registar. Kada se živi interval završi, oslobodi odgovarajući registar.\\
+Ako za promenljivu $v$ ne postoji slobodan registar, onda je potrebno njenu vrednost \textit{prosuti}. Kada je promenljiva prosuta, ona se čuva u memoriji umesto u registru. Kada nam treba registar za promenljivu koja je bila prosuta potrebno je da:
+\begin{enumerate}
+    \item iselimo neki postojeći registar u memoriju
+    \item u taj registar učitamo vrednost prosute promenljive
+    \item kada završimo, sadržaj registra vraćamo u memoriju i u taj registar vraćamo originalnu vrednost koja je tu bila
+\end{enumerate}
+Razlivanje je sporo, ali ponekad neophodno. \\
+Prednosti: veoma je efikasan (izvršava se u linearnom vremenu); daje dosta kvalitetan kod; alokacija radi u jednom prolazu; često se koristi za JIT kompajlere.\\
+Mane: neprecizan je zbog toga što koristi intervale, a ne opsege; postoje bolje tehnike.
 
 \section{Alokacija registara. Bojenje grafova. Čajtinov algoritam}
+\noindent
+Graf međusobne zavisnosti registara je neusmeren graf gde važi:
+\begin{itemize}
+    \item svaki čbor je jedna promenljiva
+    \item postoji ivica između dve promenljive koje su žive istovremeno u nekoj tački programa
+    \item alokacija registara se svodi na dodelu svakoj promenljivoj različitog registra u odnosu na njegove susede
+\end{itemize}
+Opisani problem je ekvivalentan problemu bojenja grafova, koji je NP-težak ako ima bar tri registra. Ne postoji algoritam u polinomnom vremenu koji rešava ovaj problem.\\
+\textit{\textbf{Čajtinov algoritam.}} Pretpostavimo da pokušavamo da obojimo graf sa $k$ boja. Pronađi čvor sa manje od $k$ ivica. Ako obrišemo ovaj čvor iz grafa i obojimo ono što preostane, možemo da nađemo bojenje i za ovaj čvor kada ga dodamo nazad (sa manje od $k$ suseda, neka boja je sigurno iskorišćena).\\
+Ako ne možemo da pronađemo čvor sa manje od $k$ suseda, ona biramo proizvoljni čvor i beležimo ga kao "problematičan". Kada vrćamo taj čvor, možda će biti moguće da mu se dodeli ispravna boja. U suprotnom, taj čvor će biti prosut u memoriju.\\
+Prednosti: za mnoge CFG-ove, pronalazi odlične dodele promenljivih registrima; pošto se promenljive razlikuju po korišćenju, proizvede se precizan graf međusobne zavisnosti registara; često se koristi u kompajlerima.\\
+Mane: Osnovni pristup se zasniva na NP teškom problemu bojenja grafova; heuristika može da dovede do patološke dodele najgoreg slučaja.
+\newpage
 
 \section{Raspoređivanje instrukcija. Graf zavisnosti podataka}
+\noindent
+Zbog procesorskog pipelining-a, redosled u kojem se instrukcije izvršavaju može da utiče na performanse. \textit{\textbf{Raspoređivanje instrukcija}} je pravljenje rasporeda instrukcija sa ciljem da se poboljšaju performanse. Svi dobri kompajleri imaju neku vrstu podrške za raspoređivanje instrukcija.\\
+Zavisnost među podacima u mašinskom kodu je skup instrukcija čije ponašanje zavisi jedno od druge. Intuitivno, skup instrukcija koje ne mogu da se poređaju na drugačiji način. Postoje tri vrste zavisnosti: čitanje nakon pisanja, pisanje nakon čitanja, pisanje nakon pisanja.\\
+\textit{\textbf{Graf zavisnosti podataka}} prikazuje zavisnosti podataka u okviru osnovnog bloka. To je direktan aciklični graf. Direktan, jer uvek jedna instrukcija zavisi od druge. Acikličan, jer nisu moguće ciklične zavisnosti. Mogu se rasporediti instrukcije u okviru osnovnog bloka u bilo kom redosledu sve dok se ne raspodele instrukcije tako da neka instrukcija prethodi svom roditelju. Ideja: napravi topološko sortiranje zavisnosti podataka i poređaj instrukcije u tom redosledu.\\
+Problem: može postojati puno ispravnih topoloških uređenja grafa zavisnosti podataka. U opštem slučaju, pronalaženje najboljeg rasporeda instrukcija je NP-težak problem.
 
 \section{Optimizacije koda zasnovane na upotrebi keša}
+\noindent
+\textit{\textbf{Upotreba keša}} se zasniva na dve vrste lokalnosti: vremenska i prostorna. Vremenska: ako je nekoj memoriji skoro pristupano, verovatno će joj biti ponovo pristupano uskoro. Prostorna: ako je nekoj memoriji skoro pristupano, verovatno će i njeni susedni objekti biti takođe uskoro korišćeni. Većina keš memorija je dizajnirano da iskoristi ove lokalnosti tako što se u kešu drže skoro adresirani objekti i tako što se u keš ubacuje i sadržaj memorije u blizini.\\
+Programeri obično pišu kod bez razumevanja o posledicama lokalnosti jer jezici ne prikazuju detalje memorije. Neki kompajleri su sposobni da prepišu kod tako da se lokalnost iskoristi. Primer takve optimizacije je preraspoređivanje petlji.
 
 \end{document}
