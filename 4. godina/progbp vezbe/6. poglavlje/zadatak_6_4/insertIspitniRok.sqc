@@ -1,0 +1,73 @@
+/* C/SQL program insertIspitniRok koji unosi novi ispitni rok 
+ * za mesec mart u 2021. godini. Postaviti istek vremena za 
+ * zahtevanje katanaca na 5 sekundi. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int waitForLock(const char *msg);
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL SET CURRENT LOCK TIMEOUT 5;
+    checkSQL("Lock 5");
+    
+    for(;;){
+        EXEC SQL
+            INSERT INTO DA.ISPITNIROK
+            VALUES  (2021, 'Mar21', 'Mart 2021', '03/01/2022', '03/11/2022');
+        
+        if(waitForLock("Insert"))
+            continue;
+            
+        checkSQL("Insert");
+        
+        if(SQLCODE == 0)
+            break;
+    }
+    
+    EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+    checkSQL("Lock NULL");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}
+
+int waitForLock(const char *msg){
+    if(-913 <= SQLCODE && SQLCODE <= -911){
+        printf("[%s]\n", msg);
+        EXEC SQL ROLLBACK;
+        checkSQL("Rollback");
+        return 1;
+    }
+    
+    return 0;
+}

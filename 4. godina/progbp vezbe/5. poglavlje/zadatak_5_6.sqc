@@ -1,0 +1,120 @@
+/* Napisati C/SQL program koji izračunava statistiku polaganja predmeta 
+ * po ispitnim rokovima i te podatke upisuje u tabelu STATISTIKAPOLAGANJA. 
+ * Program prvo ispisuje procenat položenih ispita u odnosu na ukupan broj
+ * polaganih ispita za predmete po ispitnim rokovima, ali samo za one predmete 
+ * u ispitnom rokovima koji nemaju statistiku, pa zatim beleži izračunatu 
+ * statistiku. Nakon unosa polaganja, pitati korisnika da li želi da poništi 
+ * zabeleženu statistiku, ali omogućiti da se sačuva informacija o tome da 
+ * je statistika zabeležena (tj. da kolona USPESNOST bude NULL). Cela obrada
+ * jednog predmeta u jednom ispitnom roku predstavlja jednu transakciju. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 id;
+char oznaka[21];
+short skGodina;
+double uspesnost;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL
+        DECLARE cStatistika CURSOR WITH HOLD FOR
+        SELECT SKGODINA, OZNAKAROKA, IDPREDMETA, 
+               SUM(CASE
+                    WHEN OCENA > 5 AND STATUS = 'o' THEN 1.0
+                    ELSE 0.0
+                   END
+                ) / COUNT(*) * 100.0 AS USPESNOST
+        FROM DA.ISPIT I
+        WHERE NOT EXISTS (SELECT *
+                          FROM DA.STATISTIKAPOLAGANJA SP
+                          WHERE SP.SKGODINA = I.SKGODINA
+                            AND SP.OZNAKAROKA = I.OZNAKAROKA
+                            AND SP.IDPREDMETA = I.IDPREDMETA)
+        GROUP BY SKGODINA, OZNAKAROKA, IDPREDMETA
+        ORDER BY IDPREDMETA, SKGODINA, OZNAKAROKA DESC;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cStatistika;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cStatistika
+            INTO :skGodina, :oznaka, :id, :uspesnost;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        EXEC SQL 
+            INSERT INTO DA.STATISTIKAPOLAGANJA
+            VALUES (:skGodina, :oznaka, :id, NULL);
+        checkSQL("Insert");
+        
+        EXEC SQL SAVEPOINT tacka_cuvanja ON ROLLBACK RETAIN CURSORS;
+        checkSQL("Savepoint");
+        
+        EXEC SQL 
+            UPDATE DA.STATISTIKAPOLAGANJA
+            SET USPESNOST = :uspesnost
+            WHERE SKGODINA = :skGodina 
+                AND OZNAKAROKA = :oznaka
+                AND IDPREDMETA = :id;
+        checkSQL("Update");
+        
+        printf("%d - %s %hd - %lf\n", id, oznaka, skGodina, uspesnost);
+        
+        printf("Da li zelite da ponistite unos statistike? [d/n]\n");
+        char odgovor = getchar();
+        getchar();
+        
+        if(odgovor == 'd'){
+            EXEC SQL ROLLBACK TO SAVEPOINT tacka_cuvanja;
+            checkSQL("Rollback");
+            
+            printf("Uspesno ponistavanje\n");
+        }
+        
+        EXEC SQL COMMIT;
+        checkSQL("Commmit");
+    }
+    
+    EXEC SQL 
+        CLOSE cStatistika;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

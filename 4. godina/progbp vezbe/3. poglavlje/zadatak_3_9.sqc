@@ -1,0 +1,88 @@
+/* Napisati C/SQL program koji se za sve studente smera Informatika 
+ * ažurira u tabeli ISPIT prvi položen ispit (ukoliko ima položenih 
+ * ispita za tog studenta) tako što povećava ocenu za 1 (ukoliko je
+ * ocena bila 5 ili 10 ostavlja je nepromenjenu). */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char ime[51];
+char prezime[51];
+short ocena;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    // dodati uslov da je sa smera Informatika
+    EXEC SQL
+        DECLARE cIspiti CURSOR FOR
+        SELECT (SELECT IME FROM DA.DOSIJE D WHERE D.INDEKS = I.INDEKS),
+               (SELECT PREZIME FROM DA.DOSIJE D WHERE D.INDEKS = I.INDEKS),
+               OCENA
+        FROM DA.ISPIT I 
+        WHERE OCENA > 5 AND OCENA < 10 AND STATUS = 'o'
+            AND DATPOLAGANJA IN (SELECT MIN(DATPOLAGANJA)
+                                 FROM DA.ISPIT I1
+                                 WHERE I1.INDEKS = I.INDEKS)
+        FOR UPDATE OF OCENA;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cIspiti;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cIspiti
+            INTO :ime, :prezime, :ocena;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%s %s - %hd\n", ime, prezime, ocena);
+        
+        EXEC SQL 
+            UPDATE DA.ISPIT
+            SET OCENA = OCENA + 1
+            WHERE CURRENT OF cIspiti;
+        checkSQL("Update");
+        
+        printf("Uspeh\n\n");
+    }
+    
+    EXEC SQL 
+        CLOSE cIspiti;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

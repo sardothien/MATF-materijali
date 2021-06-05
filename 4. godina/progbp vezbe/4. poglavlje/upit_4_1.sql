@@ -1,0 +1,2 @@
+UPDATE  DA.PREDMET
+SET     ESPB = ESPB + 1;

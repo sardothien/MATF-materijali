@@ -1,0 +1,56 @@
+/* Napisati C/SQL program kojim se, za sve položene ispite čiji se
+ * naziv predmeta unosi sa standardnog ulaza, ocena uvećava za 1. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char naziv[151];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+    
+    printf("Unesite naziv predmeta:\n");
+    fgets(naziv, sizeof(naziv), stdin);
+    naziv[strcspn(naziv, "\n")] = '\0';
+
+    EXEC SQL
+        UPDATE DA.ISPIT
+        SET OCENA = OCENA + 1
+        WHERE OCENA > 5 AND OCENA < 10 AND STATUS = 'o'
+            AND IDPREDMETA IN (SELECT ID
+                               FROM DA.PREDMET
+                               WHERE NAZIV = :naziv
+                              );
+    checkSQL("Update");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

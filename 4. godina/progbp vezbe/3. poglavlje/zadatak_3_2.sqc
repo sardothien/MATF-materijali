@@ -1,0 +1,92 @@
+/* Napisati C/SQL program kojim se za uneti broj indeksa studenta
+ * ispisuju podaci (naziv predmeta, datum polaganja i ocena) za 
+ * sve ispite koje je on položio. Nakon toga, ispisati prosek ocena 
+ * tog studenta. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 indeks;
+char naziv[151];
+char datPolaganja[11];
+short datPolaganjaInd;
+short ocena;
+short ocenaInd;
+double prosek;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    printf("Uneti broj indeksa:\n");
+    scanf("%d", &indeks);
+    
+    EXEC SQL
+        DECLARE cPolozeniIspiti CURSOR FOR
+        SELECT NAZIV, DATPOLAGANJA, OCENA
+        FROM DA.ISPIT I JOIN DA.PREDMET P 
+            ON I.IDPREDMETA = P.ID
+        WHERE OCENA > 5 AND STATUS = 'o' AND INDEKS = :indeks;
+    checkSQL("Declare");
+    
+    EXEC SQL
+        OPEN cPolozeniIspiti;
+    checkSQL("Open");
+    
+    for(;;) {
+        EXEC SQL
+            FETCH cPolozeniIspiti
+            INTO :naziv, :datPolaganja :datPolaganjaInd, :ocena :ocenaInd;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100){
+            break;
+        }
+        
+        printf("%s - %s - %hd\n", naziv, datPolaganja<0 ? "null" : datPolaganja, 
+                                         ocenaInd<0 ? -1 : ocena);
+    }
+    
+    EXEC SQL
+        CLOSE cPolozeniIspiti;
+    checkSQL("Close");
+    
+    EXEC SQL
+        SELECT AVG(OCENA*1.0)
+        INTO :prosek
+        FROM DA.ISPIT
+        WHERE OCENA > 5 AND STATUS = 'o' AND INDEKS = :indeks;
+    checkSQL("Select");
+    
+    printf("Prosek: %lf\n", prosek);
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

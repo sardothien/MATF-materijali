@@ -1,0 +1,148 @@
+/* Napisati C/SQL program koji za svaki studijski program pita 
+ * korisnika da li želi da promeni obim ESPB bodova na tom studijskom
+ * programu. Ukoliko korisnik odgovori potvrdno, aplikacija zahteva od 
+ * korisnika da unese novi broj bodova nakon čega se vrši izmena podataka.
+ * Napisati program tako da može da radi u višekorisničkom okruženju. 
+ * Postaviti istek vremena za zahtevanje katanaca na 5 sekundi.
+ * Pokrenuti dve instance aplikacije. Uveriti se da dok jedna aplikacija 
+ * obrađuje tekući studijski program, druga aplikacija ne može da dobije 
+ * katanac nad odgovarajućim slogom. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char naziv[201];
+short espb;
+sqlint32 id;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int waitForLock(const char *msg);
+
+sqlint32 identifikatori[1000];
+unsigned brIdentifikatora = 0u;
+
+int obradjenSP(sqlint32 id){
+    unsigned i;
+    for(i = 0u; i < brIdentifikatora; i++){
+        if(identifikatori[i] == id)
+            return 1;
+    }
+    return 0;
+}
+
+void zapisiKaoObradjen(sqlint32 id){
+    identifikatori[brIdentifikatora] = id;
+    brIdentifikatora++;
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL 
+        SET CURRENT LOCK TIMEOUT 5;
+    checkSQL("Lock 5");
+    
+    EXEC SQL 
+        DECLARE cStudProg CURSOR WITH HOLD FOR
+        SELECT NAZIV, OBIMESPB, ID
+        FROM DA.STUDIJSKIPROGRAM
+        FOR UPDATE OF OBIMESPB;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cStudProg;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cStudProg
+            INTO :naziv, :espb, :id;
+        
+        if(waitForLock("Fetch"))
+            continue;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        if(obradjenSP(id))
+            continue;
+        
+        printf("%s - %hd\n", naziv, espb);
+        printf("Da li zelite da promenite broj ESPB? [d/n]\n");
+        char odgovor = getchar();
+        getchar();
+        if(odgovor == 'd'){
+            printf("Unesite novi broj poena:\n");
+            scanf("%hd", &espb);
+            getchar();
+            
+            EXEC SQL 
+                UPDATE DA.STUDIJSKIPROGRAM
+                SET OBIMESPB = :espb
+                WHERE CURRENT OF cStudProg;
+                
+            if(waitForLock("Update"))
+                continue;
+            checkSQL("Update");
+            
+            printf("Uspesno azuriranje bodova\n");
+        }
+        
+        EXEC SQL COMMIT;
+        checkSQL("Commit");
+        
+        zapisiKaoObradjen(id);
+    }
+    
+    EXEC SQL 
+        CLOSE cStudProg;
+    checkSQL("Close");
+    
+    EXEC SQL 
+        SET CURRENT LOCK TIMEOUT NULL;
+    checkSQL("Lock NULL");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}
+
+int waitForLock(const char *msg){
+    if(-913 <= SQLCODE && SQLCODE <= -911){
+        printf("[%s]\n", msg);
+        EXEC SQL ROLLBACK;
+        checkSQL("Rollback");
+        EXEC SQL OPEN cStudProg;
+        checkSQL("Open");
+        return 1;
+    }
+    return 0;
+}

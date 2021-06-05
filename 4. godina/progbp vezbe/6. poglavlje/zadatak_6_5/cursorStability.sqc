@@ -1,0 +1,80 @@
+/* C/SQL program cursorStability koji dva puta ispisuje informacije 
+ * o godini, oznaci, nazivu i periodu prijavljivanja za svaki ispitni 
+ * rok u 2021. godini. Dozvoljeno je da se prilikom drugog ispisivanja
+ * pojave novi redovi i da budu vidljive izmene pročitanih redova, 
+ * ali ne i nepotvrđene izmene. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char oznaka[21];
+char naziv[31];
+short skGodina;
+char datPocetka[11];
+char datKraja[11];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL
+        DECLARE cIspitniRokovi CURSOR FOR
+        SELECT SKGODINA, OZNAKAROKA, NAZIV, DATPOCETKA, DATKRAJA
+        FROM DA.ISPITNIROK
+        WHERE SKGODINA = 2021
+        FOR READ ONLY
+        WITH CS;
+    checkSQL("Declare");
+    
+    for(int i = 0; i < 2; i++){
+        EXEC SQL 
+            OPEN cIspitniRokovi;
+        checkSQL("Open");
+        
+        for(;;){
+            EXEC SQL 
+                FETCH cIspitniRokovi
+                INTO :skGodina, :oznaka, :naziv, :datPocetka, :datKraja;
+            checkSQL("Fetch");
+            
+            if(SQLCODE == 100)
+                break;
+            
+            printf("%hd - %s - %s (%s - %s)\n", skGodina, oznaka, naziv, datPocetka, datKraja);
+        }
+        
+        EXEC SQL
+            CLOSE cIspitniRokovi;
+        checkSQL("Close");
+    }
+        
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

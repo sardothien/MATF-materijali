@@ -1,0 +1,71 @@
+/* Napisati C/SQL program koji ispisuje sve napomene koje se 
+ * nalaze u tabeli ISPIT, navodeći i broj indeksa studenata.
+ * (Videti napomenu iznad zadatka 3.6 za kreiranje kolone NAPOMENA.) */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char napomena[101];
+short napomenaInd;
+sqlint32 indeks;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL 
+        DECLARE cNapomene CURSOR FOR
+        SELECT NAPOMENA, INDEKS
+        FROM DA.ISPIT;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cNapomene;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL
+            FETCH cNapomene
+            INTO :napomena :napomenaInd, :indeks;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%d - %s\n", indeks, napomenaInd < 0 ? "/" : napomena);
+    }
+    
+    EXEC SQL 
+        CLOSE cNapomene;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

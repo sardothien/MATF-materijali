@@ -1,0 +1,72 @@
+/* C/SQL program updateIspitniRok koji za svaki ispitni
+ * rok u 2021. godini produžava period prijavljivanja 
+ * za 3 dana. Postaviti istek vremena za zahtevanje 
+ * katanaca na 5 sekundi. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int waitForLock(const char *msg){
+    if(-913 <= SQLCODE && SQLCODE <= -911){
+        printf("[%s]\n", msg);
+        EXEC SQL ROLLBACK;
+        checkSQL("Rollback");
+        return 1;
+    }
+    return 0;
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL SET CURRENT LOCK TIMEOUT 5;
+    checkSQL("Lock 5");
+    
+    for(;;){
+        EXEC SQL 
+            UPDATE DA.ISPITNIROK 
+            SET DATKRAJA = DATKRAJA + 3 DAYS
+            WHERE SKGODINA = 2021;
+            
+        if(waitForLock("Update"))
+            continue;
+        
+        checkSQL("Update");
+        
+        if(SQLCODE == 100)
+            break;
+    }
+    
+    EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+    checkSQL("Lock NULL");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

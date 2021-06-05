@@ -1,0 +1,100 @@
+/* Napisati C/SQL program kojim se za sve studente studijskog programa
+ * Informatika briše prvi položen ispit (ukoliko ima položenih ispita
+ * tog studenta). Za svako obrisano polaganje ispisati: indeks, ime
+ * i prezime studenta, datum polaganja i naziv predmeta. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 indeks;
+char ime[51];
+char prezime[51];
+char datum [11];
+char naziv[151];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL
+        DECLARE cPrviIspiti CURSOR FOR
+        WITH POMOCNA AS (
+            SELECT I.INDEKS, MIN(DATPOLAGANJA) AS DATUMPRVOG
+            FROM DA.ISPIT I JOIN DA.DOSIJE D 
+                    ON D.INDEKS = I.INDEKS 
+                JOIN DA.STUDIJSKIPROGRAM S 
+                    ON S.ID = D.IDPROGRAMA
+            WHERE S.NAZIV = 'Informatika' 
+                AND OCENA > 5 AND STATUS = 'o'
+            GROUP BY I.INDEKS
+            HAVING MIN(DATPOLAGANJA) IS NOT NULL
+        )
+        SELECT I.INDEKS, 
+               (SELECT IME FROM DA.DOSIJE D WHERE D.INDEKS = I.INDEKS),
+               (SELECT PREZIME FROM DA.DOSIJE D WHERE D.INDEKS = I.INDEKS),
+               I.DATPOLAGANJA,
+               (SELECT NAZIV FROM DA.PREDMET P WHERE P.ID = I.IDPREDMETA)
+        FROM DA.ISPIT I 
+        WHERE EXISTS (SELECT  *
+                      FROM POMOCNA PO 
+                      WHERE PO.INDEKS = I.INDEKS
+                        AND PO.DATUMPRVOG = I.DATPOLAGANJA);
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cPrviIspiti;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL
+            FETCH cPrviIspiti
+            INTO :indeks, :ime, :prezime, :datum, :naziv;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%d - %s %s - %s - %s\n", indeks, ime, prezime, datum, naziv);
+        
+        EXEC SQL
+            DELETE FROM DA.ISPIT
+            WHERE CURRENT OF cPrviIspiti;
+        checkSQL("Delete");
+        
+        printf("Uspeh\n");
+    }
+    
+    EXEC SQL
+        CLOSE cPrviIspiti;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

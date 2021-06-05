@@ -1,0 +1,113 @@
+/* Napisati C/SQL program koji za svaki predmet koji se ne 
+ * nalazi u tabeli OBRADJENIPREDMETI izlistava njegov naziv 
+ * i ESPB. Korisniku se nudi opcija da poveća broj bodova 
+ * za 1. Obrada 5 uzastopnih predmeta predstavlja jednu 
+ * transakciju. Nakon svakog 5. predmeta pitati korisnika 
+ * da li želi da nastavi sa daljim izmenama. Ukoliko ne želi,
+ * program se prekida. U suprotnom, nastaviti sa daljom obradom
+ * predmeta. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char naziv[151];
+short espb;
+sqlint32 id;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL 
+        DECLARE cPredmeti CURSOR WITH HOLD FOR
+        SELECT NAZIV, ESPB, ID
+        FROM DA.PREDMET
+        WHERE ID NOT IN (SELECT IDPREDMETA
+                         FROM DA.OBRADJENIPREDMETI)
+        FOR UPDATE OF ESPB;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cPredmeti;
+    checkSQL("Open");
+    
+    int brObradjenih = 0;
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cPredmeti
+            INTO :naziv, :espb, :id;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%s - %hd\n", naziv, espb);
+        
+        printf("Da li zelite da uvecate broj ESPB za 1? [d/n]\n");
+        char odg = getchar();
+        getchar();
+        if(odg == 'd'){
+            EXEC SQL 
+                UPDATE DA.PREDMET
+                SET ESPB = ESPB + 1
+                WHERE CURRENT OF cPredmeti;
+            checkSQL("Update");
+            
+            printf("Uspesno azuriranje");
+        }
+        
+        EXEC SQL
+            INSERT INTO DA.OBRADJENIPREDMETI
+            VALUES (:id);
+        checkSQL("Insert");
+        
+        ++brObradjenih;
+        if(brObradjenih == 5){
+            EXEC SQL COMMIT;
+            checkSQL("Commit");
+            
+            brObradjenih = 0;
+            
+            printf("Da li zelite da nastavite sa daljim izmenama? [d/n]\n");
+            char odgovor = getchar();
+            getchar();
+            if(odgovor == 'n')
+                break;
+        }
+    }
+    
+    EXEC SQL 
+        CLOSE cPredmeti;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

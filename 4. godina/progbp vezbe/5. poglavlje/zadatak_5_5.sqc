@@ -1,0 +1,172 @@
+/* Napisati C/SQL program koji zahteva od korisnika da unese 
+ * broj obaveznih ispitnih rokova u 2021. godini. Program 
+ * zatim unosi za svaki mesec, počevši od januara 2021. godine,
+ * po jedan ispitni rok, pa ispisuje sve ispitne rokove. Program
+ * zatim pita korisnika da li želi da poništi unos ispitnih rokova 
+ * koji nisu obavezni. Ukoliko korisnik odgovori potvrdno, poništiti
+ * unos neobaveznih ispitnih rokova. U suprotnom, potvrditi sve izmene.
+ * Ispisati sve ispitne rokove ponovo. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+int brRokova;
+
+struct final {
+    sqlint32 skGodina;
+    char oznaka[21];
+    char naziv[31];
+    char datPocetka[11];
+    char datKraja[11];
+} rokovi;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+void pripremiNizRokova(struct final niz[], const int n);
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    printf("Unesite broj obaveznih rokova u 2021.:\n");
+    scanf("%d", &brRokova);
+    
+    struct final rokoviNiz[12];
+    const int n = sizeof(rokoviNiz) / sizeof(struct final);
+    pripremiNizRokova(rokoviNiz, n);
+    
+    EXEC SQL 
+        DECLARE cRokovi CURSOR WITH HOLD FOR
+        SELECT SKGODINA, OZNAKAROKA, NAZIV, DATPOCETKA, DATKRAJA
+        FROM DA.ISPITNIROK;
+    checkSQL("Declare");
+    
+    int i;
+    for(i = 0; i < brRokova; ++i) {
+        rokovi.skGodina = rokoviNiz[i].skGodina;
+        strcpy(rokovi.oznaka, rokoviNiz[i].oznaka);
+        strcpy(rokovi.naziv, rokoviNiz[i].naziv);
+        strcpy(rokovi.datPocetka, rokoviNiz[i].datPocetka);
+        strcpy(rokovi.datKraja, rokoviNiz[i].datKraja);
+            
+        EXEC SQL 
+            INSERT INTO DA.ISPITNIROK
+            VALUES (:rokovi);
+        checkSQL("Insert 1");
+    }
+
+    EXEC SQL SAVEPOINT tacka_cuvanja ON ROLLBACK RETAIN CURSORS;
+    checkSQL("Savepoint");
+    
+    for (; i < n; ++i) {
+        rokovi.skGodina = rokoviNiz[i].skGodina;
+        strcpy(rokovi.oznaka, rokoviNiz[i].oznaka);
+        strcpy(rokovi.naziv, rokoviNiz[i].naziv);
+        strcpy(rokovi.datPocetka, rokoviNiz[i].datPocetka);
+        strcpy(rokovi.datKraja, rokoviNiz[i].datKraja);
+        
+        EXEC SQL 
+            INSERT INTO DA.ISPITNIROK
+            VALUES (:rokovi);
+        checkSQL("Insert 2");
+    }
+    
+    EXEC SQL 
+        OPEN cRokovi;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cRokovi
+            INTO :rokovi;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%5.5d  %7.7s  %18.18s  %10.10s  %10.10s\n", 
+               rokovi.skGodina, rokovi.oznaka, rokovi.naziv,
+               rokovi.datPocetka, rokovi.datKraja);
+    }
+    
+    EXEC SQL 
+        CLOSE cRokovi;
+    checkSQL("Close");
+    
+    printf("Da li zelite da ponistite unos neobaveznih ispitnih rokova? [d/n]\n");
+    char odgovor = getchar();
+    if(odgovor == 'd') {
+        EXEC SQL ROLLBACK TO SAVEPOINT tacka_cuvanja;
+        checkSQL("Rollback");
+    }
+    else {
+        EXEC SQL COMMIT;
+        checkSQL("Commit");
+    }
+    
+    EXEC SQL 
+        OPEN cRokovi;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cRokovi
+            INTO :rokovi;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%5.5d  %7.7s  %18.18s  %10.10s  %10.10s\n", 
+               rokovi.skGodina, rokovi.oznaka, rokovi.naziv,
+               rokovi.datPocetka, rokovi.datKraja);
+    }
+    
+    EXEC SQL 
+        CLOSE cRokovi;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}
+
+void pripremiNizRokova(struct final niz[], const int n) {
+    const char *meseci[] = {
+        "Januar", "Februar", "Mart", "April",
+        "Maj", "Jun", "Jul", "Avgust", "Septembar",
+        "Oktobar", "Novembar", "Decembar"
+    };
+    
+    for(int i = 0; i < n; ++i) {
+        niz[i].skGodina = 2021;
+        sprintf(niz[i].oznaka, "%.3s 21", meseci[i]);
+        sprintf(niz[i].naziv, "%s 2021", meseci[i]);
+        sprintf(niz[i].datPocetka, "%2.2d/01/2021", i+1);
+        sprintf(niz[i].datKraja, "%2.2d/10/2021", i+1);
+    }
+}

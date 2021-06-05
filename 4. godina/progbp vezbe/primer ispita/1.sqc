@@ -1,0 +1,173 @@
+/* Napisati C/SQL aplikaciju koja prvo pita korisnika da li želi da obriše
+ * sve informacije iz tabele DA.PRAKSA. Ukoliko je odgovor potvrdan, 
+ * dinamičkom SQL naredbom izvršiti brisanje podataka. Za ostatak aplikacije 
+ * koristiti statičke SQL naredbe. Aplikacija zatim pronalazi sve studente 
+ * kojima je ostalo manje od 60 ESPB do kraja studija, a koji se ne nalaze
+ * u tabeli DA.PRAKSA. Urediti slogove po broju preostalih poena rastuće. 
+ * Za svakog studenta, aplikacija ispisuje naredne informacije na standardni
+ * izlaz: (1) indeks, (2) ime, (3) prezime, (4) broj preostalih ESPB i
+ * (5) prosek studenta pomnožen brojem 10. 
+ * Aplikacija za tekućeg studenta pita korisnika da li želi da ga unese kao 
+ * kandidata za praksu u tabelu DA.PRAKSA. Ukoliko korisnik potvrdi, onda 
+ * aplikacija unosi kandidata u tabelu DA.PRAKSA, pri čemu se za poene
+ * za praksu postavlja vrednost -1 (tj. nijedan kandidat nije polagao test).
+ * Napomene: Obrada jednog studenta predstavlja jednu transakciju. Proveravati 
+ * greške koje se javljaju prilikom izvršavanja aplikacije u višekorisničkom 
+ * okruženju. Postaviti istek vremena za zahtevanje katanaca na 5 sekundi. 
+ * Obezbediti da nijedna druga aplikacija ne može da pristupa redovima koje 
+ * ova aplikacija obraduje. Obavezno je obradivanje grešaka. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 indeks;
+char ime[51];
+char prezime[51];
+short preostalo;
+int poeniStudije;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int waitForLock(const char *msg);
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+    
+    EXEC SQL SET CURRENT LOCK TIMEOUT 5;
+    checkSQL("Lock 5");
+
+    printf("Da li zelite da obrisete podatke o kandidatima za polaganje teksta? [d/n] ");
+    char odgovor = getchar();
+    getchar();
+    if(odgovor == 'd') {
+        printf("\tPripremam tabelu za rad...\n");
+        
+        char naredba[50] = "DELETE FROM DA.PRAKSA";
+        
+        EXEC SQL 
+            EXECUTE IMMEDIATE :naredba;
+        if(waitForLock("Execute immediate"))
+            continue;
+        checkSQL("Execute immediate");
+        
+        printf("\tSvi podaci su uspesno obrisani!\n");
+    }
+    
+    EXEC SQL 
+        DECLARE cStudenti CURSOR WITH HOLD FOR
+        WITH POLOZENO_BODOVA_I_PROSEK AS (
+            SELECT INDEKS, COUNT(P.ESPB) AS POLOZENO,
+                   AVG(REAL(OCENA)) AS PROSEK
+            FROM DA.ISPIT I JOIN DA.PREDMET P
+                ON I.IDPREDMETA = P.ID
+            WHERE OCENA > 5 AND STATUS = 'o'
+            GROUP BY INDEKS
+        )
+        SELECT D.INDEKS, IME, PREZIME,
+               SP.OBIMESPB - PBIP.POLOZENO AS PREOSTALO,
+               PBIP.PROSEK * 10 AS PROSEK
+        FROM DA.DOSIJE D JOIN DA.STUDIJSKIPROGRAM SP
+                ON D.IDPROGRAMA = SP.ID
+            JOIN POLOZENO_BODOVA_I_PROSEK PBIP
+                ON D.INDEKS = PBIP.INDEKS
+        WHERE SP.OBIMESPB - PBIP.POLOZENO BETWEEN 0 AND 60
+            AND D.INDEKS NOT IN (SELECT INDEKS
+                                 FROM DA.PRAKSA)
+        ORDER BY PREOSTALO ASC
+        WITH RS;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cStudenti;
+    checkSQL("Open");
+    
+    int i = 1;
+    for(;;) {
+        EXEC SQL 
+            FETCH cStudenti
+            INTO :indeks, :ime, :prezime, :preostalo, :poeniStudije;
+            
+        if(waitForLock("Fetch"))
+            continue;
+
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("=========================================================\n");
+        printf("%d. kandidat: %s %s (%d) - preostalo ESPB: %hd\n", i, ime, prezime, indeks, preostalo);
+        ++i;
+        
+        printf("\tDa li zelite da prijavite kandidata za polaganje testa za praksu? [d/n] ");
+        odgovor = getchar();
+        getchar();
+        if(odgovor == 'd') {
+            EXEC SQL
+                INSERT INTO DA.PRAKSA
+                VALUES (:indeks, :poeniStudije, -1);
+                
+            if(waitForLock("Insert"))
+                continue;
+            checkSQL("Insert");
+            
+            printf("\tUspesno ste prijavili kandidata!\n");
+        }
+        
+        EXEC SQL COMMIT;
+        checkSQL("Commit");
+    }
+    
+    EXEC SQL
+        CLOSE cStudenti;
+    checkSQL("Close");
+    
+    EXEC SQL SET CURRENT LOCK TIMEOUT NULL;
+    checkSQL("Lock NULL");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}
+
+int waitForLock(const char *msg) {
+    if(-913 <= SQLCODE && SQLCODE <= -911){
+        printf("[%s]\n", msg);
+        
+        EXEC SQL ROLLBACK;
+        checkSQL("Rollback");
+        EXEC SQL
+            OPEN cStudenti;
+        checkSQL("Open");
+        
+        return 1;
+    }
+    
+    return 0;
+}

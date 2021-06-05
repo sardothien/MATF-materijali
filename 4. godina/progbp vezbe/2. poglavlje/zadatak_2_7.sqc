@@ -1,0 +1,63 @@
+/* Napisati C/SQL program koji za svaku ocenu od 6 do 10 ispisuje ime i 
+ * prezime studenta koji je poslednji položio neki ispit sa tom ocenom. 
+ * U slučaju da ima više takvih studenata, klauzom LIMIT 1 naredbe SELECT INTO 
+ * se osigurati da rezultat vrati najviše 1 rezultat. (Pomoć: Koristiti for 
+ * petlju za menjanje vrednosti matične promenljive koja sadrži ocenu, pa u
+ * svakoj iteraciji dohvatiti informaciju za tekuću vrednost te matične
+ * promenljive.) */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+short ocena;
+char ime[51];
+char prezime[51];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    for(ocena = 6; ocena <= 10; ocena++) {
+        EXEC SQL
+            SELECT IME, PREZIME
+            INTO :ime, :prezime
+            FROM DA.DOSIJE D JOIN DA.ISPIT I
+                ON D.INDEKS = I.INDEKS
+            WHERE OCENA = :ocena
+              AND STATUS = 'o'
+            LIMIT 1;
+        checkSQL("Select");
+        
+        printf("%hd - %s %s\n", ocena, ime, prezime);
+    }
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

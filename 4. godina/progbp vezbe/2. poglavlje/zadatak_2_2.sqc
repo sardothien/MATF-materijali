@@ -1,0 +1,60 @@
+/* Napisati C/SQL program koji ispisuje indeks, ime, prezime, mesto rođenja
+ * (ukoliko je navedeno u bazi) i datum diplomiranja (ukoliko je navedeno 
+ * u bazi) za studenta sa maksimalnim indeksom iz tabele ISPIT. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 indeks;
+char ime[51];
+char prezime[51];
+char mesto[51];
+short mestoInd;
+char datum[51];
+short datumInd;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+    
+    EXEC SQL
+        SELECT D.INDEKS, D.IME, D.PREZIME, D.MESTORODJENJA, D.DATDIPLOMIRANJA
+        INTO :indeks, :ime, :prezime, :mesto :mestoInd, :datum :datumInd
+        FROM DA.DOSIJE D
+        WHERE D.INDEKS = (SELECT MAX(I.INDEKS) FROM DA.ISPIT I);
+    checkSQL("Select");
+        
+    printf("%d - %s %s - %s - %s\n", indeks, ime, prezime,
+                                     mestoInd >= 0 ? mesto : "NULL",
+                                     datumInd >= 0 ? datum : "NULL");    
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

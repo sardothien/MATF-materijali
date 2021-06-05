@@ -1,0 +1,88 @@
+/* Napisati C/SQL program u kojem se naredbe izvršavaju dinamički. 
+ * Izdvojiti naredne podatke o studijskim programima: identifikator, 
+ * oznaka i naziv, za svaki studijski program čiji se identifikator
+ * nivoa unosi sa standardnog ulaza. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char naredba[256];
+
+short idNivoa;
+
+sqlint32 id;
+char oznaka[11];
+char naziv[51];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    sprintf(naredba, "SELECT ID, OZNAKA, NAZIV "
+                     "FROM DA.STUDIJSKIPROGRAM "
+                     "WHERE IDNIVOA = ?");  
+    
+    EXEC SQL 
+        PREPARE pripNaredba
+        FROM :naredba;
+    checkSQL("Prepare");
+    
+    printf("Unesite ID nivoa:\n");
+    scanf("%hd", &idNivoa);
+    
+    EXEC SQL 
+        DECLARE cStudProg CURSOR FOR
+        pripNaredba;
+    checkSQL("Declare");
+    
+    EXEC SQL
+        OPEN cStudProg
+        USING :idNivoa;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cStudProg
+            INTO :id, :oznaka, :naziv;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%d - %s - %s\n", id, oznaka, naziv);
+    }
+    
+    EXEC SQL 
+        CLOSE cStudProg;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

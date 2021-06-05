@@ -1,0 +1,70 @@
+/* Napisati C/SQL program kojim se dodaje novi studijski program prvog 
+ * stepena čiji se podaci unose sa standardnog ulaza. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 id;
+char oznaka[11];
+char naziv[51];
+short idNivoa;
+short obimEspb;
+char zvanje[101];
+struct {
+    short duzina;
+    char tekst[32700];
+} opis;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    printf("Unesite podatke za novi studijski program:\n");
+    scanf("%d", &id);
+    scanf("%s", oznaka);
+    getchar();
+    scanf("%s", naziv);
+    idNivoa = 1;
+    scanf("%hd", &obimEspb);
+    scanf("%s", zvanje);
+    getchar();
+    scanf("%s", opis.tekst);
+    
+    printf("%d - %s - %s - %hd - %s - %s\n", id, oznaka, naziv, obimEspb, zvanje, opis.tekst);
+    
+    EXEC SQL
+        INSERT INTO DA.STUDIJSKIPROGRAM
+        VALUES (:id, :oznaka, :naziv, :idNivoa, :obimEspb, :zvanje, :opis);
+    checkSQL("Insert");
+    
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

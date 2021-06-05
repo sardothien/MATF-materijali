@@ -1,0 +1,139 @@
+/* Napisati C/SQL program kojim se za svaki smer pronalazi student
+ * koji ima najviše položenih ESPB bodova. Zatim u tabeli ISPIT u 
+ * napomeni koja se odnosi na poslednji položeni ispit tog studenta
+ * zapisuje 'Ovo je student koji ima najvise polozenih kredita na
+ * svom smeru'. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 id;
+char naziv[201];
+sqlint32 indeks;
+char ime[51];
+char prezime[51];
+short sumaESPB;
+short skGodina;
+char oznaka[21];
+char nazivPredmeta[151];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL
+        DECLARE cNajviseESPB CURSOR FOR
+        WITH POMOCNA AS (
+            SELECT D.IDPROGRAMA, D.INDEKS, 
+                   SUM(P.ESPB) SUMA
+            FROM DA.DOSIJE D JOIN DA.ISPIT I 
+                    ON I.INDEKS = D.INDEKS 
+                JOIN DA.PREDMET P 
+                    ON P.ID = I.IDPREDMETA
+            WHERE OCENA > 5 AND STATUS = 'o'
+            GROUP BY D.IDPROGRAMA, D.INDEKS
+        )
+        SELECT POM.SUMA, D.INDEKS, POM.IDPROGRAMA
+        FROM POMOCNA POM JOIN DA.DOSIJE D 
+                ON D.INDEKS = POM.INDEKS 
+        WHERE POM.SUMA IN (SELECT  MAX(SUMA) 
+                           FROM POMOCNA POM1 
+                           WHERE POM1.IDPROGRAMA = POM.IDPROGRAMA)
+        ORDER BY IDPROGRAMA; 
+    checkSQL("Declare 1");
+    
+    EXEC SQL 
+        DECLARE cIspiti CURSOR FOR 
+        WITH POMOCNA AS (
+            SELECT I.INDEKS, MAX(DATPOLAGANJA) DATUMPOSLEDNJEG
+            FROM DA.ISPIT I JOIN DA.DOSIJE D
+                ON D.INDEKS = I.INDEKS
+            WHERE OCENA > 5 AND STATUS = 'o'
+            GROUP BY I.INDEKS
+            HAVING MAX(DATPOLAGANJA) IS NOT NULL
+        )
+        SELECT I.INDEKS
+        FROM DA.ISPIT I
+        WHERE I.INDEKS = :indeks AND
+              EXISTS (
+                    SELECT  * 
+                    FROM POMOCNA PO 
+                    WHERE PO.INDEKS = I.INDEKS AND
+                          PO.DATUMPOSLEDNJEG = DATPOLAGANJA)
+        FOR UPDATE OF NAPOMENA;
+    checkSQL("Declare 2");
+    
+    EXEC SQL
+        OPEN cNajviseESPB;
+    checkSQL("Open 1");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cNajviseESPB
+            INTO :id, :naziv, :indeks, :ime, :prezime, :sumaESPB;
+        checkSQL("Fetch 1");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%d - %s - %d - %s %s - %d\n", id, naziv, indeks, ime, prezime, sumaESPB);
+        
+        EXEC SQL
+            OPEN cIspiti;
+        checkSQL("Open 2");
+        
+        for(;;){
+            EXEC SQL 
+                FETCH cIspiti
+                INTO :skGodina, :oznaka, :nazivPredmeta;
+            checkSQL("Fetch 2");
+            
+            if(SQLCODE == 100)
+                break;
+            
+            EXEC SQL
+                UPDATE DA.ISPIT
+                SET NAPOMENA = 'Ovo je student koji ima najvise polozenih kredita na svom smeru'
+                WHERE CURRENT OF cIspiti;
+            checkSQL("Update");
+        }
+        
+        EXEC SQL
+            CLOSE cIspiti;
+        checkSQL("Close 2");
+    }
+    
+    EXEC SQL 
+        CLOSE cNajviseESPB;
+    checkSQL("Close 1");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

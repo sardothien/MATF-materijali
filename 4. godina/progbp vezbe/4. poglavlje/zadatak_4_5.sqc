@@ -1,0 +1,89 @@
+/* Napisati C/SQL program u kojem se naredbe izvršavaju dinamički.
+ * Izdvojiti naziv predmeta, prosečnu ocenu i procenat studenata 
+ * iz tog predmeta u školskoj godini koja se unosi sa standardnog ulaza. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+char naredba[256];
+
+char naziv[151];
+double prosek;
+double procenat;
+short ocenaInd;
+
+short skGodina;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    sprintf(naredba, "SELECT NAZIV, AVG(OCENA), COUNT(*) * 100.0 / SUM(COUNT(*)) OVER () as PROCENAT "
+                     "FROM DA.ISPIT I JOIN DA.PREDMET P ON I.IDPREDMETA = P.ID "
+                     "WHERE SKGODINA = ?"
+                     "GROUP BY NAZIV");
+    
+    EXEC SQL 
+        PREPARE pripNaredba
+        FROM :naredba;
+    checkSQL("Prepare");
+    
+    printf("Uneti skolsku godinu:\n");
+    scanf("%hd", &skGodina);
+    
+    EXEC SQL 
+        DECLARE cPredmeti CURSOR FOR
+        pripNaredba;
+    checkSQL("Declare");
+    
+    EXEC SQL 
+        OPEN cPredmeti
+        USING :skGodina;
+    checkSQL("Open");
+    
+    for(;;){
+        EXEC SQL 
+            FETCH cPredmeti
+            INTO :naziv, :prosek :ocenaInd, :procenat;
+        checkSQL("Fetch");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("%s - %lf - %lf\n", naziv, ocenaInd < 0 ? 0.0 : prosek, procenat);
+    }
+    
+    EXEC SQL 
+        CLOSE cPredmeti;
+    checkSQL("Close");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

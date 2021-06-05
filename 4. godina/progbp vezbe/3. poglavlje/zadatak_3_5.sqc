@@ -1,0 +1,111 @@
+/* Napisati C/SQL program kojim se formira izveštaj o studentima 
+ * koji su padali neki ispit koji sadrži sledeće informacije: 
+ * ime, prezime i broj indeksa. Za svaki studijski program formirati 
+ * posebnu sekciju izveštaja sa zaglavljem koje sadrži identifikator
+ * i naziv studijskog programa. Izveštaj urediti po nazivu studijskog 
+ * programa rastuće, a sadržaj svake sekcije urediti po broju indeksa 
+ * rastuće. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 indeks;
+char ime[51];
+char prezime[51];
+sqlint32 id;
+char naziv[51];
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    EXEC SQL
+        DECLARE cStudProg CURSOR FOR
+        SELECT ID, NAZIV
+        FROM DA.STUDIJSKIPROGRAM
+        ORDER BY NAZIV;
+    checkSQL("Declare 1");
+    
+    EXEC SQL
+        DECLARE cNepolozeni CURSOR FOR
+        SELECT D.INDEKS, IME, PREZIME
+        FROM DA.DOSIJE D 
+        WHERE D.IDPROGRAMA = :id 
+            AND EXISTS (SELECT *
+                        FROM DA.ISPIT
+                        WHERE D.INDEKS = INDEKS
+                            AND OCENA = 5
+                            AND STATUS = 'o')
+        ORDER BY INDEKS;
+    checkSQL("Declare 2");
+    
+    EXEC SQL
+        OPEN cStudProg;
+    checkSQL("Open 1");
+    
+    for(;;){
+        EXEC SQL
+            FETCH cStudProg
+            INTO :id, :naziv;
+        checkSQL("Fetch 1");
+        
+        if(SQLCODE == 100)
+            break;
+        
+        printf("*** %d - %s ***\n", id, naziv);
+        
+        EXEC SQL
+            OPEN cNepolozeni;
+        checkSQL("Open 2");
+        
+        for(;;){
+            EXEC SQL
+                FETCH cNepolozeni
+                INTO :indeks, :ime, :prezime;
+            checkSQL("Fetch");
+            
+            if(SQLCODE == 100)
+                break;
+            
+            printf("\t%d - %s %s\n", indeks, ime, prezime);
+        }
+        
+        EXEC SQL
+            CLOSE cNepolozeni;
+        checkSQL("Close 2");
+    }
+    
+    EXEC SQL
+        CLOSE cStudProg;
+    checkSQL("Close 1");
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}

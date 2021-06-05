@@ -1,0 +1,127 @@
+/* Napisati naredne funkcije:
+
+    1. Napisati funkciju void insertNewCourse() koja sa standardnog
+       ulaza učitava podatke o identifikatoru, oznaci, nazivu i bodovima 
+       za novi predmet na fakultetu. Potrebno je uneti te podatke u tabelu 
+       PREDMET. Nakon toga, odgovarajućom naredbom proveriti da li su podaci 
+       dobro uneti i ispisati ih.
+
+    2. Napisati funkciju void updateNewCourse() koja izvršava ažuriranje podataka 
+       za novouneseni predmet, tako što se broj bodova duplo povećava i nakon čega 
+       se podaci izlistavaju ponovo.
+
+    3. Napisati funkciju void deleteNewCourse() koja briše novouneseni predmet iz 
+       baze podataka.
+
+ Napisati i C/SQL program koji testira napisane funkcije. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sql.h>
+
+EXEC SQL INCLUDE SQLCA;
+
+EXEC SQL BEGIN DECLARE SECTION;
+sqlint32 id;
+char oznaka[21];
+char naziv[151];
+short espb;
+EXEC SQL END DECLARE SECTION;
+
+void checkSQL(const char *msg) {
+    if (sqlca.sqlcode < 0) {
+        char Buffer[1024];
+        short BufferSize = sizeof(Buffer);
+        short LineWidth = 50;
+        sqlaintp(Buffer, BufferSize, LineWidth, &sqlca);
+
+        printf("Greska %d: %s\n", sqlca.sqlcode, msg);
+        printf("%s\n", Buffer);
+        
+        EXEC SQL ROLLBACK;
+        EXEC SQL CONNECT RESET;
+        exit(EXIT_FAILURE);
+    }
+}
+
+void insertNewCourse();
+void updateNewCourse();
+void deleteNewCourse();
+
+int main() {
+    EXEC SQL CONNECT TO stud2020 USER student USING abcdef;
+    checkSQL("CONNECT TO");
+
+    insertNewCourse();
+    updateNewCourse();
+    deleteNewCourse();    
+    
+    EXEC SQL COMMIT;
+    checkSQL("COMMIT - kraj programa");
+    
+    EXEC SQL CONNECT RESET;
+    checkSQL("CONNECT RESET");
+    
+    return 0;
+}
+
+void insertNewCourse() {
+    printf("Uneti ID, oznaku, naziv i bodove za predmet (u novom redu):\n");
+    scanf("%d", &id);
+    scanf("%s", oznaka);
+    getchar();
+    fgets(naziv, sizeof(naziv), stdin);
+    naziv[strcspn(naziv, "\n")] = '\0';
+    scanf("%hd", &espb);
+    
+    EXEC SQL
+        INSERT INTO DA.PREDMET
+        VALUES (:id, :oznaka, :naziv, :espb);
+    checkSQL("Insert");
+    
+    EXEC SQL
+        SELECT ID, OZNAKA, NAZIV, ESPB
+        INTO :id, :oznaka, :naziv, :espb
+        FROM DA.PREDMET
+        WHERE ID = :id;
+    checkSQL("Select 1");
+    
+    printf("%d - %s - %s - %hd\n", id, oznaka, naziv, espb);
+}
+
+void updateNewCourse() {
+    EXEC SQL
+        UPDATE DA.PREDMET
+        SET ESPB = 2*ESPB
+        WHERE ID = :id;
+    checkSQL("Update");
+    
+    EXEC SQL
+        SELECT ID, OZNAKA, NAZIV, ESPB
+        INTO :id, :oznaka, :naziv, :espb
+        FROM DA.PREDMET
+        WHERE ID = :id;
+    checkSQL("Select 2");
+    
+    printf("%d - %s - %s - %hd\n", id, oznaka, naziv, espb);
+}
+
+void deleteNewCourse(){
+    EXEC SQL    
+        DELETE FROM DA.PREDMET
+        WHERE ID = :id;
+    checkSQL("Delete");
+    
+    EXEC SQL
+        SELECT ID, OZNAKA, NAZIV, ESPB
+        INTO :id, :oznaka, :naziv, :espb
+        FROM DA.PREDMET
+        WHERE ID = :id;
+    checkSQL("Select 3");
+    
+    if(SQLCODE == 100)
+        printf("Nismo dohvatili nijedan red.\n");
+    else
+        printf("%d - %s - %s - %hd\n", id, oznaka, naziv, espb);
+}
