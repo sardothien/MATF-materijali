@@ -1,0 +1,59 @@
+[{
+	"_id": {
+		"$oid": "5efb37a71c994d66a9ebab98"
+	},
+	"city": "Belgrade",
+	"country": "Serbia",
+	"temperatures": [
+		29.0,
+		28.0,
+		29.0,
+		30.0,
+		31.0,
+		24.0
+	]
+},
+{
+	"_id": {
+		"$oid": "5efb38051c994d66a9ebab99"
+	},
+	"city": "Novi Sad",
+	"country": "Serbia",
+	"temperatures": [
+		26.0,
+		27.0,
+		29.0,
+		30.0,
+		31.0
+	]
+},
+{
+	"_id": {
+		"$oid": "5efb38481c994d66a9ebab9a"
+	},
+	"city": "Berlin",
+	"country": "Germany",
+	"temperatures": [
+		24.0,
+		22.0,
+		20.0,
+		22.0,
+		19.0
+	]
+},
+{
+	"_id": {
+		"$oid": "5efb38be1c994d66a9ebab9b"
+	},
+	"city": "Lisbon",
+	"country": "Portugal",
+	"temperatures": [
+		22.0,
+		18.0,
+		19.0,
+		19.0,
+		19.0,
+		18.0
+	]
+}
+]

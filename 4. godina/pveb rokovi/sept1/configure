@@ -1,0 +1,18 @@
+# Angular 
+cd klijent 
+npm install
+cd ..
+
+# Node.js
+cd server
+npm install
+cd ..
+
+# MongoDB
+mongoimport --db pveb_septembar1_2020 --collection meteos --file meteos.json --jsonArray
+
+# Kopiranje podataka na klijent 
+mv meteos.json klijent/src/assets/
+
+# Otvori uputstvo 
+qpdfview uputstvo.pdf & 

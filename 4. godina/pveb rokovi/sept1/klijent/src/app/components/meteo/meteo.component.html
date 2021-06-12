@@ -1,0 +1,23 @@
+<h1>Meteo Statistics</h1>
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <td>City</td>
+            <td>Country</td> 
+            <td>Min Temp</td>  
+            <td>Avg Temp</td>
+            <td>Max Temp</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let meteo of meteos">
+            <td>
+                <a [routerLink]="['/details', meteo.city]">{{ meteo.city }}</a>
+            </td>
+            <td>{{ meteo.country }}</td>
+            <td>{{ meteo.temperatures | min:'meteo.temperatures'  }}</td>
+            <td>{{ meteo.temperatures | avg:'meteo.temperatures'  }}</td>
+            <td>{{ meteo.temperatures | max:'meteo.temperatures'  }}</td>
+        </tr>
+    </tbody>
+</table>

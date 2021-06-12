@@ -1,0 +1,35 @@
+<div *ngIf="error" class="alert alert-danger">
+    <p>No statistics for this city!</p>
+</div>
+<div *ngIf="!error">
+    <h5>Temperature restrictions:</h5>
+        
+    <form [formGroup]="tempRestrictions" (ngSubmit)="showFiltered(tempRestrictions.value)">
+        <input type="radio" value="start" formControlName="filter">
+        <label for="start">filter from start</label>
+
+        <input type="radio" value="end" formControlName="filter" [checked]="true">
+        <label for="end">filter from end</label>
+
+        <br>
+
+        <label>Number of values:</label><br>
+        <input type="text" formControlName="numberOfValues">
+            
+        <br><br>
+
+        <button type="submit" class="btn-primary">Show filtered temperatures</button>
+        
+    </form>
+    <button *ngIf="reset" type="submit" (click)="resetTemperatures()">Reset temperatures</button>
+    <h1>Temperature Statistics for {{ meteo.city }} in {{ meteo.country }}</h1>
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let temp of filteredTemperatures">
+                <th>{{ temp }}</th>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn" (click)="saveFilteredResults()">Save filtered results</button>
+    <span> {{ updateSuccess }}</span>
+</div>
