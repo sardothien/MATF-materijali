@@ -1,0 +1,11 @@
+.nav {
+    display: block;
+    width: 100%;
+    font-size: 25pt;
+    padding: 25pt 25pt;
+    background-color: rgb(106, 42, 165);
+}
+
+.nav a {
+    margin-right: 20pt;
+}

@@ -1,0 +1,19 @@
+# Angular 
+cd klijent 
+npm install
+cd ..
+
+# Node.js
+cd server
+npm install
+cd ..
+
+# MongoDB
+mongoimport --db pveb_jun_2020 --collection payments --file payments.json --jsonArray
+
+# Kopiranje podataka na klijent 
+mv goals.json klijent/src/assets/
+mv steps.json klijent/src/assets/
+
+# Otvori uputstvo 
+qpdfview uputstvo.pdf & 

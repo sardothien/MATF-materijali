@@ -1,0 +1,18 @@
+<nav class="nav">
+    <a [routerLink]="['/']">Home</a>
+    <a [routerLink]="['/scrobble']">Add new song</a>
+</nav>
+<h2>Add a new song to playlist!</h2>
+<form [formGroup]="newSong" (ngSubmit)="addNewSong(newSong.value)">
+    <label>Artist name:</label> <br />
+    <input type="text" formControlName="artist">
+
+    <br><br>
+
+    <label>Song title:</label> <br />
+    <input type="text" formControlName="title">
+
+    <br><br>
+
+    <button type="submit">Add a song</button>
+</form>

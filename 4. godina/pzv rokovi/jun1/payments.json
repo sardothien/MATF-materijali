@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "5ecd675c6ab1f711fb910564"
+  },
+  "name": "Petar",
+  "surname": "Perić",
+  "email": "petar.peric@mail.com",
+  "amounts": [
+    15000,
+    4500,
+    5000,
+    14500,
+    4000
+  ]
+},{
+  "_id": {
+    "$oid": "5ecd67b12c0bd41dd0c48ef4"
+  },
+  "name": "Marija",
+  "surname": "Perić",
+  "email": "marija.peric@mail.com",
+  "amounts": [
+    27000,
+    15000,
+    4500,
+    7850
+  ]
+}]

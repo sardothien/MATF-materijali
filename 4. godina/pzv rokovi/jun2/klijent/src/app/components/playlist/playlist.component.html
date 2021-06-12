@@ -1,0 +1,9 @@
+<div>
+    <p>Choose a criterium for sorting:</p>
+    <select class="form-control" [(ngModel)]="selectedOption" >
+        <option *ngFor="let opt of options" [ngValue]="opt" (click)="getSongs(opt)">{{opt.name}}</option>
+    </select>
+</div>
+<div>
+    <app-song *ngFor="let song of songs" [song]="song"></app-song>
+</div>

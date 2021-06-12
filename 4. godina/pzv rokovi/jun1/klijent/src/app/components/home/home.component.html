@@ -1,0 +1,23 @@
+<div>
+    <h1>Pregled prijava</h1>
+
+    <h4>Unesite email:</h4>
+    <form [formGroup]="emailForm" (ngSubmit)="search(emailForm.value)">
+        <input type="text" name="email" formControlName="email" class="form-control">
+        <button class="btn btn-success btn-block">Pretrazi</button>
+        <p *ngIf="empty">Unesite email u polje iznad i pritisnite dugme za pretragu</p>
+        <p *ngIf="error">Ne postoji uplata sa datim email-om</p>
+    </form>
+
+    <div *ngIf="found">
+        <p>Ime i prezime: {{ payment.name }} {{ payment.surname }}</p>
+        <p>Email: {{ payment.email }}</p>
+        <button class="btn btn-dark" [routerLink]="['/payment', payment._id]">Prikazite sve uplate</button>
+        <form [formGroup]="amountForm" (ngSubmit)="addNewAmount(payment._id, amountForm.value)">
+            <p>Novi iznos za uplatu:</p>
+            <input type="number" class="form-control" formControlName="amount">
+            <br/> <br/>
+            <button class="btn btn-primary" type="submit">Dodaj novu uplatu</button>
+        </form>
+    </div>
+</div>

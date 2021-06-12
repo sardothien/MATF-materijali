@@ -1,0 +1,3 @@
+[{"_id":{"$oid":"5efe232083481816bdb5d9d8"},"count":{"$numberInt":"9"},"artist":"Lady Gaga","title":"1000 Doves","__v":{"$numberInt":"0"}},
+{"_id":{"$oid":"5efe23e6da8f9217b5c8842d"},"count":{"$numberInt":"6"},"artist":"Lady Gaga","title":"Rain On Me (with Ariana Grande)","__v":{"$numberInt":"0"}},
+{"_id":{"$oid":"5efe25beda8f9217b5c88431"},"count":{"$numberInt":"3"},"artist":"Ariana Grande","title":"Don't Call Me Angel (feat. Miley Cyrus & Lana Del Rey)","__v":{"$numberInt":"0"}}]

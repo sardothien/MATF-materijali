@@ -1,0 +1,21 @@
+.alert p {
+    display: inline-block;
+  }
+  
+  .alert p:nth-child(1) {
+    width: 20%;
+  }
+  
+  .alert p:nth-child(2) {
+    width: 40%;
+  }
+  
+  .alert p:nth-child(3) {
+    width: 20%;
+  }
+  
+  .alert button {
+    position: absolute;
+    right: 5%;
+    width: 20%;
+  }
