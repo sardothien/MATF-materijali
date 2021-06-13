@@ -1,0 +1,18 @@
+<h2>List of recepies</h2>
+<li>
+    <ul *ngFor="let dessert of desserts" [ngClass]="{'light' : dessert.nutrition<400}"
+        [routerLink]="[]"> {{ dessert.name }} 
+        <span *ngIf="dessert.glutenFree"> *</span>
+    </ul>
+</li>
+<span>* gluten free</span>
+<!-- TODO -->
+<!-- <div>
+    <h4>Details</h4>
+    <br>
+
+    <p>Name: {{ dessert.name }}</p>
+    <p>{{ dessert.description }}</p>
+    <p>Nutrition: {{ dessert.nutrition }} kcal</p>
+    <p>Complexity: {{ dessert.complexity }}</p>
+</div> -->

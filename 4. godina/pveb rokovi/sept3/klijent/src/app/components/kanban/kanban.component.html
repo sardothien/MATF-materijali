@@ -1,0 +1,17 @@
+<div class="kanban" *ngIf="showKanban">
+    <h3>{{ kanban.title }}</h3>
+
+    <div>
+        {{kanban.description}}
+    </div>
+
+    <p>Progress</p>
+    <div class="border border-secondary">
+        <div class="innerDiv" 
+             [ngClass]="[percentage<30 ? 'red' : '', (percentage>=30 && percentage<70) ? 'yellow' : '', percentage>=70 ? 'green' : '']"
+             [ngStyle]="{'width.%': percentage}"></div>
+    </div>
+    <br>
+
+    <button type="submit" (click)="incSubtasks(kanban._id)">Complete next subtask</button>
+</div>

@@ -1,0 +1,67 @@
+[{
+	"_id": {
+		"$oid": "5f22d49d98ead219b48f8fa1"
+	},
+	"name": "Lemon cheesecake",
+	"description": "Need a simple zingy dessert you can make with minimal fuss? Try this creamy lemon cheesecake, made with just a few basic storecupboard ingredients.",
+	"complexity": "easy",
+	"nutrition": 470.0
+},
+{
+	"_id": {
+		"$oid": "5f22d60298ead219b48f8fa2"
+	},
+	"name": "Date, banana and rum loaf",
+	"description": "A tasty cake with no added fat or sugar - try it to believe it.",
+	"complexity": "hard",
+	"nutrition": 310.0,
+	"glutenFree": true
+},
+{
+	"_id": {
+		"$oid": "5f22d7be98ead219b48f8fa3"
+	},
+	"name": "Chocolate cookies",
+	"description": "Bake a batch of our irresistible all-American chocolate chunk cookies to enjoy with your cuppa. These easy sweet treats are ideal for weekend baking.",
+	"complexity": "medium",
+	"nutrition": 381.0
+},
+{
+	"_id": {
+		"$oid": "5f22d88198ead219b48f8fa4"
+	},
+	"name": "Banana milkshake",
+	"description": "An easy fruit shake you can create up in minutes, with creamy vanilla ice cream, a pinch of cinnamon and a swizzle of whipped cream.",
+	"complexity": "easy",
+	"nutrition": 722.0,
+	"glutenFree": true
+},
+{
+	"_id": {
+		"$oid": "5f22d99998ead219b48f8fa5"
+	},
+	"name": "Raspberry coconut ice-cream",
+	"description": "A yummy treat on a hot day, get the kids to help make these yogurt-based lollies.",
+	"complexity": "easy",
+	"nutrition": 140.0
+},
+{
+	"_id": {
+		"$oid": "5f22dba198ead219b48f8fa6"
+	},
+	"name": "Plum tart",
+	"description": "A winning combination of sweet pastry with plums.",
+	"complexity": "hard",
+	"nutrition": 540.0
+},
+{
+	"_id": {
+		"$oid": "5f2869730133328cd00feddd"
+	},
+	"name": "Super recepie",
+	"description": "Try it!",
+	"complexity": "easy",
+	"nutrition": 340,
+	"__v": 0
+}]
+

@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5f2dceb9f7c999293084dc50"
+  },
+  "completedSubtasks": 3,
+  "title": "This is a Kanban example!",
+  "description": "You can type any message that you want here. For example, this can display a series of subtasks that you need to complete before completing this Kanban.",
+  "numOfSubtasks": 5
+},{
+  "_id": {
+    "$oid": "5f2dd3a1a178ec2d060223a7"
+  },
+  "completedSubtasks": 83,
+  "title": "Trying HTML code",
+  "description": "How to become the best web developer:<ul>  <li>Learn every framework and language</li></ul>",
+  "numOfSubtasks": 500
+},{
+  "_id": {
+    "$oid": "5f2dd536a178ec2d060223a8"
+  },
+  "completedSubtasks": 0,
+  "title": "More HTML and CSS",
+  "description": "I mean, you can even have <div style=\"color: red;\" class=\"text-center\">HTML</div> and <div class=\"text-center alert alert-info\">CSS</div> code here!",
+  "numOfSubtasks": 10
+}]

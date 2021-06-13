@@ -1,0 +1,57 @@
+nav {
+  display: block;
+  width: 100%;
+}
+
+nav a {
+  display: inline-block;
+  border: 1px solid rgb(62, 118, 201);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 20px 10px 0;
+}
+
+header {
+  text-transform: uppercase;
+  font-size: 2em;
+  margin: 20px 0;
+  border-top: 5px solid rgb(62, 118, 201);
+  border-bottom: 5px solid rgb(62, 118, 201);
+  text-align: center;
+}
+
+.kanban {
+  border-top: 15px solid rgb(62, 118, 201);
+  border-radius: 10px;
+  width: 45%;
+  margin: 10px 2.5%;
+  padding: 10px;
+  display: inline-block;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.kanban p {
+  border-top: 5px solid rgb(62, 118, 201);
+}
+
+.border {
+  margin: 10px 0;
+}
+
+.innerDiv {
+  height: 20px;
+  border: 1px solid black;
+}
+
+.red { 
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}

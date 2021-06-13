@@ -1,0 +1,5 @@
+<h2>List of {{ criterion }} recepies</h2>
+<p *ngIf="!correctCriterion">This filtering has not been supported yet!</p>
+<li *ngIf="correctCriterion">
+    <ul *ngFor="let dessert of desserts">{{ dessert.name }}</ul>
+</li>

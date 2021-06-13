@@ -1,0 +1,18 @@
+# Angular 
+cd klijent 
+npm install
+cd ..
+
+# Node.js
+cd server
+npm install
+cd ..
+
+# MongoDB
+mongoimport --db pveb_septembar3_2020 --collection kanbans --file kanbans.json --jsonArray
+
+# Kopiranje podataka na klijent 
+mv kanbans.json klijent/src/assets/
+
+# Otvori uputstvo 
+qpdfview uputstvo.pdf & 

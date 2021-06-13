@@ -1,0 +1,18 @@
+# Angular 
+cd klijent 
+npm install
+cd ..
+
+# Node.js
+cd server
+npm install
+cd ..
+
+# MongoDB
+mongoimport --db pveb_septembar2_2020 --collection desserts --file desserts.json --jsonArray
+
+# Kopiranje podataka na klijent 
+mv desserts.json klijent/src/assets/
+
+# Otvori uputstvo 
+qpdfview uputstvo.pdf & 

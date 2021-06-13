@@ -1,0 +1,38 @@
+.color-container{
+  background-color: cadetblue;
+  color: white;
+  padding: 30px;
+  font-family: sans-serif;
+  margin-top: 20px;
+}
+
+.color-container h2{
+  color: white;
+}
+
+.save-button {
+  background-color: #CED979;
+}
+
+nav{
+  text-align: center;
+}
+
+h2{
+  color: cadetblue;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+li {
+  border-bottom: 1px solid gray;
+  padding: 5px;
+}
+
+.light {
+  background-color:  #CED979;
+  color: #fff;
+}
